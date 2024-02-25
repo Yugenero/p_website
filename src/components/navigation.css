@@ -1,0 +1,54 @@
+.navigation {
+	background-color: rgb(22, 22, 22);
+}
+.navigation-list {
+	font-size: 0.85em;
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.navigation-link {
+	margin-right: 10px;
+}
+.navigation-link {
+	color: #fff;
+	text-decoration: none;
+	transition: background-color 0.3s ease;
+}
+.navigation-link:hover {
+	background-color: rgb(179, 163, 105);
+}
+.navigation-link:visited {
+	color: #fff;
+	text-decoration: none;
+}
+
+.link-gatech {
+	text-decoration: none;
+	color: inherit;
+	font-weight: bold;
+	transition: background-color 0.3 ease
+}
+.link-gatech:hover {
+	color: rgb(179, 163, 105);
+	background-color: #555;
+}
+.link-gatech:visited {
+	color: rgb(179, 163, 105​);
+	text-decoration: none;
+}
+.link-parchment {
+	font-weight: bold;
+	text-decoration: none;
+} 
+.link-parchment:visited {
+	color: rgb(179, 163, 105);	
+}
+.link-parchment:hover{
+	font-weight: bold;
+	text-decoration: none;
+	background-color: #555;
+} 
+
+

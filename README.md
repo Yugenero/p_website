@@ -1,1 +1,1 @@
-Personal website Made with React by Nelson Rodriguez
+Personal website Made with React and animejs libraries for fun by Nelson Rodriguez

@@ -26,11 +26,10 @@ function App() {
           {/**<LineAnimation x1="100%" y1="75%" x2="0%" y2="75%"/> */}
         </div>
         <strong class="header-introduction"><AnimateText/></strong>
-        {/**Fake it till you fucking make it*/}
         <p class='header-information'>Software Engineer and <a> </a>
           <a class="link-parchment" target="_blank" rel="noopener noreferrer" href="https://www.parchment.com/u/award/cdc63a097762a059103a9b3ce857a15e">CS Alum</a>
           <a> </a>
-          <a class="link-gatech" target="_blank" rel="noopener noreferrer" href="https://www.gatech.edu/">
+          <a class="link-gatech" target="_blank" rel="noopener noreferrer" href="https://www.cc.gatech.edu/">
             <strong class="georgia-tech">@Georgia Tech</strong>
           </a> 
         </p>

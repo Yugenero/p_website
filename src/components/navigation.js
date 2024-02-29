@@ -6,21 +6,21 @@ const Navbar = () => {
 	return(
 		<nav class="navigation">
         <ul class="navigation-list">
-          <li class ="navigation-item" href="#">
-		  <a class="navigation-link" target="_blank" rel="noopener noreferrer" 
-			href="mailto: neroxv1313@gmail.com">Email</a>
+		  <li class ="navigation_item" href="#">
+		  <a class="navigation-link" target="_blank" rel="noopener noreferrer"
+		  href="src/components/Rodriguez2024.pdf">Resume</a>
 		  </li>
           <li class ="navigation_item" href="#">
 		  <a class="navigation-link" target="_blank" rel="noopener noreferrer" 
-			href="https://www.linkedin.com/in/nelson-rodriguez-866261156/">LinkedIn </a> {' '}
+			href="https://www.linkedin.com/in/nelson-rodriguez13/">LinkedIn </a> {' '}
 		  </li>
           <li class ="navigation_item" href="#">
 		  	<a class="navigation-link" target="_blank" rel="noopener noreferrer" 
 			href="https://github.com/Yugenero"> Github </a>
 		  </li>
-		  <li class ="navigation_item" href="#">
+		  <li class ="navigation-item" href="#">
 		  <a class="navigation-link" target="_blank" rel="noopener noreferrer" 
-			href="https://www.linkedin.com/in/nelson-rodriguez-866261156/">Resume</a>
+			href="mailto: neroxv1313@gmail.com">Email</a>
 		  </li>
         </ul>
         </nav>

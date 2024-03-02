@@ -32,23 +32,30 @@
 }
 .link-gatech:hover {
 	color: rgb(179, 163, 105);
-	background-color: #555;
+	text-decoration: underline;
 }
 .link-gatech:visited {
 	color: rgb(179, 163, 105​);
 	text-decoration: none;
 }
 .link-parchment {
+	font-family: "Roboto Slab", serif;
+	color: rgb(179, 163, 105);	
 	font-weight: bold;
 	text-decoration: none;
 } 
 .link-parchment:visited {
 	color: rgb(179, 163, 105);	
 }
-.link-parchment:hover{
+.link-parchment:hover {
 	font-weight: bold;
-	text-decoration: none;
-	background-color: #555;
-} 
+	text-decoration: underline;
+}
+
+.company {
+	font-family: "Roboto Slab", serif;
+	font-weight: bold;
+	color: rgb(0, 128, 251);
+}
 
 

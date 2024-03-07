@@ -26,7 +26,7 @@ function App() {
           {/**<LineAnimation x1="100%" y1="75%" x2="0%" y2="75%"/> */}
         </div>
         <strong class="header-introduction"><AnimateText/></strong>
-        <p class='header-information'>Software Engineer {/**<a class="company">@Meta</a>**/} and
+        <p class='header-information'>Aspiring Software Engineer {/**<a class="company">@Meta</a>**/} and
           <a> </a>
           <a class="link-parchment" target="_blank" rel="noopener noreferrer" href="https://www.parchment.com/u/award/cdc63a097762a059103a9b3ce857a15e">CS Alum</a>
           <a> </a>

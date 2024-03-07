@@ -5,11 +5,21 @@
 .header-spin span {
   position: relative;
   display: inline-block;
-  font-size: 70px;
+  font-size: 90px;
   color: #fff;
   text-transform: uppercase;
   animation: flip 2s;
   animation-delay: calc(.2s * var(--i))
+}
+
+/**On screens with width 1000px or less, decrease font size*/
+@media (max-width: 1000px) {
+  .header-spin span {
+    font-size: 35px;
+  }
+  .header-information {
+        font-size: 11px;
+  }
 }
 
 @keyframes flip {

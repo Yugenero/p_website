@@ -8,7 +8,7 @@ const Navbar = () => {
         <ul class="navigation-list">
 		  <li class ="navigation_item" href="#">
 		  <a class="navigation-link" target="_blank" rel="noopener noreferrer" 
-			href="https://github.com/Yugenero/p_website/blob/main/README.md"> Resume 
+			href="./files/rodriguez2024.pdf"> Resume 
 			</a>
 		  </li>
           <li class ="navigation_item" href="#">

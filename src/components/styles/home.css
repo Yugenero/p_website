@@ -1,0 +1,130 @@
+/**
+ * Home page styles
+*/
+.home_page_ui {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: calc(13px + 2vmin);
+    color: white;
+    height: 100%;
+    width: 100vw;
+    min-height: 100vh;
+} .home_page_intro {
+    display: flex;
+    flex-direction: column;
+    margin-top: 200px;
+    margin-bottom: 175px;
+} 
+
+.home_text_container {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: left;
+    font-family: var(--font-family-ibm-plex-mono);
+
+} .header-introduction_text {
+    font-size: 0.8em;
+    margin: 0;
+} .header-introduction_name {
+    font-size: 2.5em;
+    font-weight: 500;
+    margin: 20px 0;
+} .header-introduction-typer {
+    color: var(--white);
+    background: linear-gradient( 270deg, var(--accent-color-red), var(--accent-color-blue), var(--accent-color-green), var(--accent-color-yellow));
+    animation: gradientAnimation 4s ease infinite; /* Apply the animation */
+    background-size: 200% 200%; /* Enlarge background size to ensure smooth transition */
+    opacity: 1;
+}
+
+.home_text {
+    width: 100%;
+}
+
+.header-introduction {
+    animation: slide-in-blurred-bottom 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+} .header-information {
+    margin: 0;
+    animation: slide-in-blurred-bottom 2s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+} .navigation-list {
+    animation: slide-in-blurred-bottom 3s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+} .about_me {
+    animation: slide-in-blurred-bottom 3s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+}
+
+.georgia-tech {
+	font-family: "Roboto Slab", serif;
+	font-weight: bold;
+}
+
+/**
+ * ----------------------------------------
+ * animation slide-in-blurred-bottom
+ * ----------------------------------------
+ */
+ @-webkit-keyframes slide-in-blurred-bottom {
+  0% {
+    -webkit-transform: translateY(1000px) scaleY(2.5) scaleX(0.2);
+        transform: translateY(1000px) scaleY(2.5) scaleX(0.2);
+    -webkit-transform-origin: 50% 100%;
+        transform-origin: 50% 100%;
+    -webkit-filter: blur(40px);
+        filter: blur(40px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+        transform: translateY(0) scaleY(1) scaleX(1);
+    -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+    -webkit-filter: blur(0);
+        filter: blur(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-blurred-bottom {
+  0% {
+    -webkit-transform: translateY(1000px) scaleY(2.5) scaleX(0.2);
+        transform: translateY(1000px) scaleY(2.5) scaleX(0.2);
+    -webkit-transform-origin: 50% 100%;
+        transform-origin: 50% 100%;
+    -webkit-filter: blur(40px);
+        filter: blur(40px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+        transform: translateY(0) scaleY(1) scaleX(1);
+    -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+    -webkit-filter: blur(0);
+        filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+}
+
+/**On screens with width 750px or less, decrease font size*/
+@media (max-width: 770px) {
+    .header-spin span {
+        font-size: 35px;
+    }
+    .header-information {
+        font-size: 11px;
+    }
+}

@@ -1,0 +1,62 @@
+.about_me_container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: left;
+	width: 100%;
+	font-family: var(--font-family-ibm-plex-mono);
+	color: var(--primary-color-light);
+} 
+
+/** About me */
+.about_me_title_container {
+	display: flex;
+	flex-direction: column;
+	width: 70%;
+} .about_me_title {
+	font-weight: 400;
+	padding-top: 10px;
+	padding-bottom: 20px;
+    width: auto; /* Adjust width to auto to fit content */
+    display: inline-flex; /* Changed from flex to inline-flex */
+    position: relative; /* Ensure the pseudo-element positions relative to this */
+	justify-content: space-between;
+	color: var(--white);
+} .about_me_info {
+	font-size: 0.6em;
+	width: 70%;
+	z-index: 1;
+	color: var(--primary-color-light2);
+	background-color: var(--primary-color-dark);
+} 
+
+/** Skills */
+.about_me_skills_container {
+	width: 70%;
+	display: flex;
+	flex-direction: column;
+} .about_me_skills_title {
+	display: inline-flex;
+	position: relative;
+	font-size: inherit;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	font-weight: 400;
+	color: var(--white);
+} .container {
+	border: 1px solid var(--primary-color);
+	border-radius: 10px;
+}
+
+.about_me_skills {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	/** Wrap the skills from top to bottom */
+	flex-wrap: wrap; 
+	width: 100%; 
+} .about_me_skill {
+	width: 50%; 
+	height: 50%;
+}

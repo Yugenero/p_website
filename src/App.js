@@ -1,47 +1,62 @@
 import React from 'react';
-import './App.css';
 import Navbar from './components/navigation';
-import { Squash as Hamburger } from 'hamburger-react';
-import './components/text_animation';
-import AnimateText from './components/text_animation';
-import CircleAnimation from './components/shapes';
-import { SvgAnimation } from './components/shapes';
-import { LineAnimation } from './components/shapes';
+import HomeText from './components/homeText';
+import Header from './components/header';
+import Footer from './components/footer';
+import Work from './components/work';
+import AboutMe from './components/about';
+import Projects from './components/projects';
+import CustomCursor from './components/cursor/cursor';
+import { Router } from 'react-router-dom';
+import './App.css';
+import './components/styles/home.css';
+
+function reverseAPp() {
+  let string1 = 0;
+  let string2 = 0;
+  let string3 = 0;
+
+  let newString = '';
+
+  for (let i = 0; i < string1.length; i++) {
+    document.querySelector('.home_page_intro').innerHTML += string2[i];
+    for (let j = 0; j < string2.length; j++) {
+      document.querySelector('.home_page_intro').innerHTML += string3[j];
+    }
+  }
+  return (
+    <div className='new_String'>
+      {}
+    </div>
+  )
+}
 
 
 function App() {
   return (
+
     <div className="App">
 
-      {/**Font for Georgia Tech link */}
+      <CustomCursor/>
+      
       <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap')
       </style>
-      
-      <header className="App-header">
-        <div className="line-container">      
-          {/**<LineAnimation x1="0%" y1="25%" x2="100%" y2="25%"/> */}
+
+      <Header/>
+      <div className="home_page_ui">
+        <div className='home_page_intro'>
+          <HomeText/>
         </div>
-        <div className="line-container">      
-          {/**<LineAnimation x1="100%" y1="75%" x2="0%" y2="75%"/> */}
-        </div>
-        <strong class="header-introduction"><AnimateText/></strong>
-        <p class='header-information'>Aspiring Software Engineer {/**<a class="company">@Meta</a>**/} and
-          <a> </a>
-          <a class="link-parchment" target="_blank" rel="noopener noreferrer" href="https://www.parchment.com/u/award/cdc63a097762a059103a9b3ce857a15e">CS Alum</a>
-          <a> </a>
-          <a class="link-gatech" target="_blank" rel="noopener noreferrer" href="https://www.cc.gatech.edu/">
-            <strong class="georgia-tech">@Georgia Tech</strong>
-          </a> 
-        </p>
-        <Navbar/>
-      </header>
-      {/**
-       * Body section for animations
-       */}
-      <body>
-        {/** <SvgAnimation/>*/}
-      </body>
+        <hr className='break'/>
+        <AboutMe/>
+        <hr className='break'/>
+        <Projects/>
+        <hr className='break'/>
+      </div>
+      <Footer/>
+
     </div> 
   );
 };

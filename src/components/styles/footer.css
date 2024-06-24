@@ -1,0 +1,8 @@
+.react_link {
+	color: var(--white);
+	text-decoration: none;		
+}
+
+.react_link:visited{
+	color: var(--white);
+}

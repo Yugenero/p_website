@@ -1,0 +1,6 @@
+.app_header {
+	background-color: var(--primary-color-dark);
+} .app_header_name {
+	font-family: var(--font-family-ibm-plex-mono);
+	color: white;
+}

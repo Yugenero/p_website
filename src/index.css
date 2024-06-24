@@ -1,3 +1,28 @@
+:root{
+	--primary-color: rgb(50, 50, 50);
+  --primary-color-dark: rgb(15, 15, 15);
+  --primary-color-dark2: rgb(20, 20, 20);
+  --primary-color-light: rgb(100, 100, 100);
+  --primary-color-light2: rgb(150, 150, 150);
+	--black: black;
+	--white: white;
+  --break-color: #eee;
+  --accent-color-red: rgb(200, 0, 0);
+  --accent-color-green: rgb(0, 200, 0);
+  --accent-color-blue: rgb(0, 0, 200);
+  --accent-color-yellow: rgb(255, 200, 0);
+  --accent-color-gt: rgb(179, 163, 105);
+  --accent-color-gh: rgb(45, 186, 78);
+	--font-family-text: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-family-gt: 'Roboto Slab', 'Roboto', sans-serif;
+  --font-family-ibm-plex-mono: 'IBM Plex Mono', monospace;
+}
+
+::selection {
+  background-color: var(--white);
+  color: var(--black);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

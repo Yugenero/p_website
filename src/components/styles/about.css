@@ -9,15 +9,16 @@
 	color: var(--primary-color-light);
 } 
 
+
 /** About me */
 .about_me_title_container {
 	display: flex;
 	flex-direction: column;
 	width: 70%;
 } .about_me_title {
+	font-size: 0.9em;
 	font-weight: 400;
-	padding-top: 10px;
-	padding-bottom: 20px;
+	padding-bottom: 40px;
     width: auto; /* Adjust width to auto to fit content */
     display: inline-flex; /* Changed from flex to inline-flex */
     position: relative; /* Ensure the pseudo-element positions relative to this */
@@ -40,23 +41,20 @@
 	display: inline-flex;
 	position: relative;
 	font-size: inherit;
-	padding-top: 40px;
-	padding-bottom: 40px;
+	padding: 40px 0;
 	font-weight: 400;
+	font-size: 0.9em;
 	color: var(--white);
 } .container {
+	background-color: var(--primary-color-dark);
 	border: 1px solid var(--primary-color);
-	border-radius: 10px;
-}
-
-.about_me_skills {
+	border-radius: 20px;
+	z-index: 0;
+} .about_me_skills {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	/** Wrap the skills from top to bottom */
 	flex-wrap: wrap; 
 	width: 100%; 
-} .about_me_skill {
-	width: 50%; 
-	height: 50%;
-}
+} 

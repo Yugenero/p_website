@@ -30,7 +30,7 @@ const Footer = () => {
           </div>
           <Box sx={{ display: 'flex', width: '30%', justifyContent: 'center', fontFamily: 'var(--font-family-ibm-plex-mono)'}}>
             <Typography variant="p" align="left" sx={{fontSize: '0.8em', paddingBottom:'10px'}}>
-              placeholder text blah blah blah
+              nelsonrodriguez.me
             </Typography>
           </Box>
       </Toolbar>

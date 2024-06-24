@@ -20,11 +20,7 @@ const AboutMe = () => {
 			</div>
 
 			<div className="about_me_info">
-				Welcome to my portfolio!
-				<br/><br/>
-
-				As a Software Engineer, Developer, and Designer, I aim to channel my passion for software, complexity, 
-				and design into everything I create. Last Fall, I graduated with a {' '}
+				Last Fall, I graduated with a {' '}
 				<a class="link-parchment" target="_blank" rel="noopener noreferrer" 
 					href="https://www.parchment.com/u/award/cdc63a097762a059103a9b3ce857a15e">
 					Bachelor of Science in Computer Science
@@ -37,7 +33,6 @@ const AboutMe = () => {
 				My concentration in Information Networks and Media Applications provided me a robust foundation in topics
 				such as Algorithms and Data Structures, Mathematics, Computer Networks, and Database Systems. 
 	
-				<br/><br/>
 				At Georgia Tech, I immersed myself in computing, striving to understand not just the "how" but
 				the "why" behind every thing I learned. This intellectual curiosity is what drives me to learn
 				something new every day, be it a new algorithm, equation, or emerging technology. But I also believe
@@ -48,11 +43,12 @@ const AboutMe = () => {
 				I think that the best results come from collective effort and diverse perspectives. No matter the project,
 				I always embrace the dynamics of teamwork and the opportunity to learn from others. 
 
+				Finally, I'm always embracing complexity and seeking new challenges in software engineering, seeing them as 
+				opportunities to grow and improve. I aim to reflect this belief through my work by continually learning, iterating, 
+				and improving.
+				
 				<br/><br/>
-				Finally, I embrace complexity and new challenges, seeing them as opportunities to grow and improve. 
-				I believe that understanding and solving complex problems is what drives innovation and progress, so I
-				reflect this belief through my work by continually learning, iterating, and improving.
-				Here are just some of the skills in my toolkit:
+				Here is an overview of just some of the tools I've worked with:
 
 			</div>
 
@@ -65,9 +61,9 @@ const AboutMe = () => {
 					<i class="devicon-java-plain"></i>
 					<i class="devicon-python-plain"></i>
 					<i class="devicon-c-plain"></i>
-					<i class="devicon-swift-plain"></i>
 					<i class="devicon-html5-plain"></i>
 					<i class="devicon-css3-plain"></i>
+					<i class="devicon-swift-plain"></i>
 					<i class="devicon-nodejs-plain"></i>
 					<i class="devicon-express-original"></i>
             		<i class="devicon-mongodb-plain-wordmark"></i>

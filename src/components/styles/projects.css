@@ -18,8 +18,9 @@
 	display: inline-flex; /* Changed from flex to inline-flex */
     position: relative; /* Ensure the pseudo-element positions relative to this */
 	justify-content: space-between;
+	padding-bottom: 40px;
+	font-size: 0.9em;
 	font-weight: 400;
-    padding: 10px 0;
 	width: 70%;
 	color: var(--white);
 }

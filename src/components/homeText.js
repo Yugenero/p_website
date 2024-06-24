@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import { ReactTyped } from 'react-typed';
 import ParticlesComponent from './particles/particlesComponent';
@@ -7,6 +7,16 @@ import './styles/home.css';
 import '../App.css';
 
 const HomeText = () => {
+
+  const aboutMeSectionRef = useRef(null);
+
+  // Function to scroll to the About Me section
+  const scrollToAboutMe = () => {
+    if (aboutMeSectionRef.current) {
+      aboutMeSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
 	return (
 		<div className='home_text_container'>
       <div className='home_text'>
@@ -19,15 +29,15 @@ const HomeText = () => {
           infinite={true}
         />**/}
 
+        <div className='header-introduction-typer-container'>
         <ReactTyped 
           strings={[
-            "Software Engineer and Developer with an eye for Design",
             "Algorithms Expert and Problem Solver",
+            "Entry Level Software Engineer and Developer with an eye for Design",
             "CS Alumni and Ramblin Wreck from Georgia Tech",
             "Currently learning AI/ML in my free time",
             "Hardware Enthusaist and Coffee Connosieur",
-            "Avid Runner, Passionate Gamer, and Lover of Animals",
-            "Godskin Duo Hater"
+            "Avid Runner, Passionate Gamer, and Doggo Enjoyer",
           ]} 
           typeSpeed={50} 
           backDelay={2000}
@@ -35,12 +45,13 @@ const HomeText = () => {
           loop={true}
           className='header-introduction-typer'
         />
+        </div>
 
         <ParticlesComponent id='home_particles_component'/>
       
         {/** About me button */}
         <Box className="about_me" sx={{margin: '30px 0'}}>
-          <Button variant='outlined'size='large' onClick='/scrollToAboutMe' color='inherit'
+          <Button variant='outlined'size='large' onClick={scrollToAboutMe} color='inherit'
             sx={{
               backgroundColor: 'var(--primary-color-dark)',
               color: 'var(--primary-color-light)', 
@@ -50,6 +61,8 @@ const HomeText = () => {
               },
               fontFamily: 'var(--font-family-ibm-plex-mono)', 
               textTransform: 'none', 
+              position: 'absolute',
+              top: '50px',
             }}>
             <Typography variant='h6' align='center' fontWeight={300}>
               About Me!

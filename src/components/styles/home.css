@@ -27,13 +27,21 @@
     font-family: var(--font-family-ibm-plex-mono);
 
 } .header-introduction_text {
-    font-size: 0.8em;
+    font-size: 1em;
     margin: 0;
 } .header-introduction_name {
-    font-size: 2.5em;
+    font-size: 3em;
     font-weight: 500;
     margin: 20px 0;
+    z-index: 1;
+
+}
+
+.header-introduction-typer-container {
+    height: 125px;
 } .header-introduction-typer {
+    position: relative;
+    font-size: 1.4em;
     color: var(--white);
     background: linear-gradient( 270deg, var(--accent-color-red), var(--accent-color-blue), var(--accent-color-green), var(--accent-color-yellow));
     animation: gradientAnimation 4s ease infinite; /* Apply the animation */

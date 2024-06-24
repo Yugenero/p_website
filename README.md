@@ -1,1 +1,1 @@
-web portfolio made with React and animejs libraries by Nelson Rodriguez
+Web portfolio made with React by Nelson Rodriguez

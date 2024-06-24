@@ -1,1 +1,1 @@
-Developer Web portfolio made with React by Nelson Rodriguez
+Web portfolio made with React by Nelson Rodriguez

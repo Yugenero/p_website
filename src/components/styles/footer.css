@@ -6,3 +6,9 @@
 .react_link:visited{
 	color: var(--white);
 }
+
+@media (max-width: 500px) {
+	.t {
+		font-size: 0.5em;
+	}
+}

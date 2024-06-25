@@ -21,7 +21,7 @@ const Footer = () => {
       <Box display="flex" justifyContent="center" height={'inherit'}>
 	  	<Toolbar sx={{width: '70%', justifyContent: "space-between"}}>
           <div style={{display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-family-ibm-plex-mono)'}}>
-            <Typography variant="p" align="left" sx={{fontSize: '0.8em', paddingBottom:'10px'}}>
+            <Typography className='t' variant="p" align="left" sx={{fontSize: { xs: '0.6em', sm: '0.8em' }, paddingBottom:'10px'}}>
               Built from scratch in 
               <a href='https://react.dev/' target='_blank' className='react_link'> <strong> React </strong></a> 
               © Nelson Rodriguez 2024
@@ -29,7 +29,7 @@ const Footer = () => {
             {/**<Typography sx={{fontSize: '0.8em', paddingBottom:'10px', fontFamily: 'var(--font-family-ibm-plex-mono)'}}>email me @neroxv1313@gmail.com</Typography>**/}
           </div>
           <Box sx={{ display: 'flex', width: '30%', justifyContent: 'center', fontFamily: 'var(--font-family-ibm-plex-mono)'}}>
-            <Typography variant="p" align="left" sx={{fontSize: '0.8em', paddingBottom:'10px'}}>
+            <Typography className='t'variant="p" align="left" sx={{fontSize: { xs: '0.6em', sm: '0.8em' } , paddingBottom:'10px'}}>
               nelsonrodriguez.me
             </Typography>
           </Box>

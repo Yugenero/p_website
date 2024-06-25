@@ -2,5 +2,5 @@
 
 https://nelsonrodriguez.me
 
-<img width="1075" alt="Web_Portfolio" src="https://github.com/Yugenero/p_website/assets/44268896/c67937dc-4830-4d84-bb6e-d3ab117ef49c">
+<img width="1062" alt="Screenshot 2024-06-25 at 1 45 10 PM" src="https://github.com/Yugenero/p_website/assets/44268896/27bb1a3b-616a-46d9-9971-2ae53f3587d2">
 

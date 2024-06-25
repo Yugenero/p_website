@@ -2,14 +2,6 @@ import React from "react";
 import './styles/about.css';
 import './styles/devicons.css';
 
-const secretAboutMeFunciton = ({speed, icon}) => {
-	return (
-		<div className="about_me_container">
-			<i className="image_container"></i>
-		</div>
-	)
-}
-
 const AboutMe = () => {
 	return (
 		<div className="about_me_container">

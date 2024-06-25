@@ -50,7 +50,7 @@ const HomeText = () => {
         <ParticlesComponent id='home_particles_component'/>
       
         {/** About me button */}
-        <Box className="about_me" sx={{margin: '30px 0'}}>
+        <Box className="about_me" sx={{marginTop: '30px'}}>
           <Button variant='outlined'size='large' onClick={scrollToAboutMe} color='inherit'
             sx={{
               backgroundColor: 'var(--primary-color-dark)',

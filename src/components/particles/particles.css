@@ -1,4 +1,5 @@
 #home_particles_component {
 	position: relative;
+	display: flex;
 	z-index: 0;
 }

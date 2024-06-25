@@ -16,7 +16,7 @@ function Header() {
   return (
     <div>
     <CustomCursor/>
-    <AppBar position="fixed" className="app_header"
+    <AppBar position="fixed" className="app_header" elevation={0}
 		  sx={{backgroundColor: "var(--primary-color-dark)"}}>
       <Box display="flex" justifyContent="center">
         <Toolbar sx={{width: '70vw', justifyContent: 'space-between'}}>
@@ -28,7 +28,7 @@ function Header() {
                 cursorChar='_'
                 />
           </Typography>
-          <NavbarSmall/>
+          <NavbarSmall className="app_header_nav"/>
         </Toolbar>
       </Box>
     </AppBar>

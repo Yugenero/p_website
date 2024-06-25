@@ -54,7 +54,7 @@ const ParticlesComponent = (props) => {
             duration: 15,
           },
           grab: {
-            distance: 150,
+            distance: 100,
           },
         },
       },
@@ -63,10 +63,10 @@ const ParticlesComponent = (props) => {
           value: "#323232",
         },
         links: {
-          color: "#FFFFFF",
+          color: "#323232",
           distance: 150,
           enable: true,
-          opacity: 0.3,
+          opacity: 0.5,
           width: 1,
         },
         move: {
@@ -86,7 +86,7 @@ const ParticlesComponent = (props) => {
           value: 150,
         },
         opacity: {
-          value: 1.0,
+          value: 0,
         },
         shape: {
           type: "circle",

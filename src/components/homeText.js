@@ -34,9 +34,9 @@ const HomeText = () => {
           strings={[
             "Algorithms Expert and Problem Solver",
             "Entry Level Software Engineer and Developer with an eye for Design",
-            "CS Alumni and Ramblin Wreck from Georgia Tech",
+            "CS Alumnus and Ramblin Wreck from Georgia Tech",
             "Currently learning AI/ML in my free time",
-            "Hardware Enthusaist and Coffee Connosieur",
+            "Hardware Enthusaist and Coffee Connoisseur",
             "Avid Runner, Passionate Gamer, and Doggo Enjoyer",
           ]} 
           typeSpeed={50} 

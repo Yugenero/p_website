@@ -27,16 +27,16 @@
     font-family: var(--font-family-ibm-plex-mono);
 
 } .header-introduction_text {
+    position: relative;
     font-size: 1em;
     z-index: 1;
     margin: 0;
 } .header-introduction_name {
+    position: relative;
     font-size: 3em;
     font-weight: 500;
     margin: 20px 0;
-    background: var(--primary-color-dark);
     z-index: 1;
-
 }
 
 .header-introduction-typer-container {
@@ -148,6 +148,18 @@
         font-size: 2em;
     } .header-introduction-typer {
         font-size: 1.2em;
+    }
+}
+
+/**On screens with width 1920px or more, increase font size*/
+@media (min-width: 1920px) and (min-height: 1080px) {
+    .home_page_intro {
+        margin-top: 300px;
+        margin-bottom: 250px;
+    } .header-introduction_name {
+        font-size: 4em;
+    } .header-introduction-typer {
+        font-size: 1.6em;
     }
 }
   

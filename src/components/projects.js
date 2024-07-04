@@ -72,7 +72,7 @@ const ProjectList = projects.map((projects) => {
 const Projects = () => {
 	return (
 		<div className="projects_container">
-			<div className="projects_title">./projects</div>
+			<div className="projects_title">/projects</div>
 			<div className="projects_list">
 				{ProjectList}
 			</div>

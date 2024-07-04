@@ -136,30 +136,37 @@
 @media (max-width: 770px) {
     .header-spin span {
         font-size: 35px;
-    }
-    .header-information {
+    } .header-information {
         font-size: 11px;
+    } .skill_container i {
+        font-size: 5em;
     }
 }
 
 
-@media (max-width: 500px) {
-    .header-introduction_name {
-        font-size: 2em;
+@media (max-width: 600px) {
+    .home_page_intro {
+        margin-top: 285px;
+    } .header-introduction_name {
+        font-size: 2.5em;
     } .header-introduction-typer {
-        font-size: 1.2em;
+        font-size: 1.5em;
+    } .skill_container i {
+        font-size: 4em;
     }
 }
 
 /**On screens with width 1920px or more, increase font size*/
-@media (min-width: 1920px) and (min-height: 1080px) {
+@media (min-width: 1920px) {
     .home_page_intro {
         margin-top: 300px;
         margin-bottom: 250px;
     } .header-introduction_name {
-        font-size: 4em;
+        font-size: 3.5em;
     } .header-introduction-typer {
-        font-size: 1.6em;
-    }
+        font-size: 1.5em;
+    } .about_me_skills > * {
+        width: 125px;
+    } 
 }
   

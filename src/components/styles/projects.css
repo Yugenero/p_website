@@ -59,6 +59,7 @@
 } .project_link {
 	font-size: 0.9em;
 	text-decoration: none;
+	color: var(--primary-color-light);
 } .project_link:hover {
 	color: var(--primary-color-light);
 } .project_link:visited {

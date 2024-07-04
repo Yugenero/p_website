@@ -10,12 +10,14 @@ const HomeText = () => {
 
   const aboutMeSectionRef = useRef(null);
 
-  // Function to scroll to the About Me section
-  const scrollToAboutMe = () => {
-    if (aboutMeSectionRef.current) {
-      aboutMeSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+  function scrollToAboutMe() {
+    // get about me container defined by class name
+    const aboutMeSection = document.querySelector('.break');
+  
+    if (aboutMeSection) {
+      aboutMeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-  };
+  }
 
 	return (
 		<div className='home_text_container'>
@@ -34,13 +36,13 @@ const HomeText = () => {
           strings={[
             "Algorithms Expert and Problem Solver",
             "Entry Level Software Engineer and Developer with an eye for Design",
-            "CS Alumnus and Ramblin Wreck from Georgia Tech",
+            "Georgia Tech CS Alumnus and Ramblin' Wreck",
             "Currently learning AI/ML in my free time",
             "Hardware Enthusaist and Coffee Connoisseur",
             "Avid Runner, Passionate Gamer, and Doggo Enjoyer",
           ]} 
-          typeSpeed={50} 
-          backDelay={2000}
+          typeSpeed={40} 
+          backDelay={2500}
           cursorChar='|'
           loop={true}
           className='header-introduction-typer'

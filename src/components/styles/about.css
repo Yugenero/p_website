@@ -57,7 +57,17 @@
 	/** Wrap the skills from top to bottom */
 	flex-wrap: wrap; 
 	width: 100%; 
-} 
+} .skill_container {
+	display: flex; 
+	align-items: center;
+	flex-direction: column;
+	color: var(--primary-color-light2);
+	font-size: 0.5em;
+	width: 10%;
+	height: 10%;
+	padding-bottom: 30px;
+	margin: 0 20px;
+}
 
 .cs_valorant {
 	color: var(--white);

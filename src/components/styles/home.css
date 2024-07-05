@@ -133,24 +133,18 @@
 }
 
 /**On screens with width 750px or less, decrease font size*/
-@media (max-width: 770px) {
-    .header-spin span {
-        font-size: 35px;
-    } .header-information {
-        font-size: 11px;
-    } .skill_container i {
-        font-size: 5em;
-    }
-}
 
 
-@media (max-width: 600px) {
+@media (max-width: 750px) {
     .home_page_intro {
-        margin-top: 285px;
+        margin-top: 200px;
+        margin-bottom: 225px;
     } .header-introduction_name {
         font-size: 2.5em;
     } .header-introduction-typer {
         font-size: 1.5em;
+    } .about_me button {
+        margin-top: 100px;
     } .skill_container i {
         font-size: 4em;
     }
@@ -169,4 +163,3 @@
         width: 125px;
     } 
 }
-  

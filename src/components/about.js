@@ -113,6 +113,35 @@ const AboutMe = () => {
 						<i class="devicon-github-original"></i>
 						Github
 					</div>
+					<div className="skill_container">
+						<i class="devicon-github-original"></i>
+						Github
+					</div>
+					<div className="skill_container">
+						<i class="devicon-github-original"></i>
+						Github
+					</div>
+					<div className="skill_container">
+						<i class="devicon-github-original"></i>
+						Github
+					</div>
+					<div className="skill_container">
+						<i class="devicon-github-original"></i>
+						Github
+					</div>
+					<div className="skill_container">
+						<i class="devicon-github-original"></i>
+						Github
+					</div>
+					<div className="skill_container">
+						<i class="devicon-github-original"></i>
+						Github
+					</div>
+					<div className="skill_container">
+						<i class="devicon-github-original"></i>
+						Github
+					</div>
+					
 				</div>
 				</div>
 			</div>

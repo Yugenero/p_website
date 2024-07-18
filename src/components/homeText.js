@@ -36,7 +36,7 @@ const HomeText = () => {
           strings={[
             "Algorithms Expert and Problem Solver",
             "Entry Level Software Engineer and Developer with an eye for Design",
-            "Georgia Tech CS Alumnus and Ramblin' Wreck",
+            "Georgia Tech CS Alumnus w/ specialization in Information Networks",
             "Currently learning AI/ML in my free time",
             "Hardware Enthusaist and Coffee Connoisseur",
             "Avid Runner, Passionate Gamer, and Doggo Enjoyer",

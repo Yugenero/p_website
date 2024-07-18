@@ -35,10 +35,7 @@ const AboutMe = () => {
 				As a <span style={{color: 'white'}}>collaborator</span> and <span style={{color: 'white'}}>teammate</span>, I thrive in fast-paced environemnts where communication 
 				and adaptability are essential. I think that the best results come from collective effort and diverse perspectives. 
 				No matter the work or project, I embrace the dynamics of teamwork and the opportunity to learn from and teach 
-				others. 
-
-				<br/><br/>
-				Finally, I embrace complexity, seeking to undertake new challenges and solve problems, seeing them as 
+				others. Finally, I embrace complexity, seeking to undertake new challenges and solve problems, seeing them as 
 				opportunities to grow and improve. I aim to reflect this mentality through my work by continually learning, iterating, 
 				and improving.
 

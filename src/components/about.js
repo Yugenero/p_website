@@ -6,6 +6,7 @@ const AboutMe = () => {
 	return (
 		<div className="about_me_container">
 			<link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+
 			
 			<div className="about_me_title_container">
 				<span className="about_me_title">/about</span>
@@ -111,34 +112,34 @@ const AboutMe = () => {
 						Github
 					</div>
 					<div className="skill_container">
-						<i class="devicon-github-original"></i>
-						Github
+						<i class="devicon-amazonwebservices-plain-wordmark"></i>
+						AWS
 					</div>
 					<div className="skill_container">
-						<i class="devicon-github-original"></i>
-						Github
+						<i class="devicon-nextjs-original-wordmark"></i>
+						Next.js
+					</div>
+					<div className="skill_container">		
+					<i class="devicon-vercel-original"></i>
+						Vercel
+					</div>
+					<div className="skill_container">	
+						<i class="devicon-heroku-original"></i>
+						Heroku
 					</div>
 					<div className="skill_container">
-						<i class="devicon-github-original"></i>
-						Github
+						<i class="devicon-d3js-plain"></i>
+							D3.js
 					</div>
 					<div className="skill_container">
-						<i class="devicon-github-original"></i>
-						Github
+						<i class="devicon-django-plain"></i>
+							Django
 					</div>
 					<div className="skill_container">
-						<i class="devicon-github-original"></i>
-						Github
+						<i class="devicon-docker-plain"></i>
+							Docker
 					</div>
-					<div className="skill_container">
-						<i class="devicon-github-original"></i>
-						Github
-					</div>
-					<div className="skill_container">
-						<i class="devicon-github-original"></i>
-						Github
-					</div>
-					
+				
 				</div>
 				</div>
 			</div>

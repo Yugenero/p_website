@@ -67,6 +67,10 @@
 	height: 10%;
 	padding-bottom: 30px;
 	margin: 0 20px;
+} .skill_container i {
+	font-size: 4em;
+	color: white;
+	padding: 30px;
 }
 
 .cs_valorant {

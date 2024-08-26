@@ -35,11 +35,11 @@ const HomeText = () => {
         <ReactTyped 
           strings={[
             "Algorithms Expert and Problem Solver",
-            "Entry Level Software Engineer and Developer with an eye for Design",
+            "Design-Minded Software Engineer and Developer",
             "Georgia Tech CS Alumnus w/ specialization in Information Networks",
             "Currently learning AI/ML in my free time",
             "Hardware Enthusaist and Coffee Connoisseur",
-            "Avid Runner, Passionate Gamer, and Doggo Enjoyer",
+            "Avid Runner, Passionate Artist, and Animal Lover",
           ]} 
           typeSpeed={40} 
           backDelay={2500}

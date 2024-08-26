@@ -21,8 +21,8 @@ function Header() {
       <Box display="flex" justifyContent="center">
         <Toolbar sx={{width: '70vw', justifyContent: 'space-between'}}>
           <Typography component="a" href="/" className='app_header_name' 
-            sx={{fontFamily: fontFamily, textDecoration: 'none', fontSize: '1.5em'}}>
-              /nero.me
+            sx={{fontFamily: fontFamily, color: 'var(--primary-color-light2)', textDecoration: 'none', fontSize: '1.5em'}}>
+              nero.me
               <ReactTyped 
                 strings={[' ']} 
                 cursorChar='_'

@@ -29,7 +29,7 @@ const Footer = () => {
             {/**<Typography sx={{fontSize: '0.8em', paddingBottom:'10px', fontFamily: 'var(--font-family-ibm-plex-mono)'}}>email me @neroxv1313@gmail.com</Typography>**/}
           </div>
           <Box sx={{ display: 'flex', width: '30%', justifyContent: 'center', fontFamily: 'var(--font-family-ibm-plex-mono)'}}>
-            <Typography className='t'variant="p" align="left" sx={{fontSize: { xs: '0.6em', sm: '0.8em' } , paddingBottom:'10px'}}>
+            <Typography variant="p" align="left" sx={{fontSize: { xs: '0.6em', sm: '0.8em' } , paddingBottom:'10px'}}>
               nelsonrodriguez.me
             </Typography>
           </Box>

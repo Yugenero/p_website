@@ -28,6 +28,7 @@
 
 } .header-introduction_text {
     position: relative;
+    color: var(--primary-color-light2);
     font-size: 1em;
     z-index: 1;
     margin: 0;
@@ -136,8 +137,6 @@
 }
 
 /**On screens with width 750px or less, decrease font size*/
-
-
 @media (max-width: 750px) {
     .home_page_intro {
         margin-top: 150px;
@@ -153,8 +152,8 @@
     }
 }
 
-/**On screens with width 1920px or more, increase font size*/
-@media (min-width: 1920px) {
+
+@media (min-width: 1921px) {
     .home_page_intro {
         margin-top: 300px;
         margin-bottom: 250px;

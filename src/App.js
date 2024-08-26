@@ -30,6 +30,8 @@ function App() {
         <hr className='break'/>
         <AboutMe/>
         <hr className='break'/>
+        <Work/>
+        <hr className='break'/>
         <Projects/>
         <hr className='break'/>
       </div>

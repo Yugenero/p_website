@@ -15,7 +15,6 @@ function Header() {
 
   return (
     <div>
-    <CustomCursor/>
     <AppBar position="fixed" className="app_header" elevation={0}
 		  sx={{backgroundColor: "var(--primary-color-dark)"}}>
       <Box display="flex" justifyContent="center">

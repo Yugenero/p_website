@@ -49,8 +49,10 @@
 	font-family: var(--font-family-ibm-plex-mono);
 }.experience_location {
 	margin-top: 0;
+	font-family: var(--font-family-ibm-plex-mono);
 }.experience_date {
 	margin-top: 0;
+	font-family: var(--font-family-ibm-plex-mono);
 }.experience_description {
 	margin-top: 0;
     margin: 16px 0; /* Add some margin for spacing */

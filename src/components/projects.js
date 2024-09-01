@@ -51,7 +51,7 @@ const ProjectList = projects.map((projects) => {
 			<Box sx={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
 			<IconButton className="project_link" component={Link} href={projects.link} target="_blank" rel="noopener noreferrer"
 				sx={{
-					color: 'var(--primary-color)',
+					color: 'var(--primary-color-light)',
 					padding: '0',
 					transition: '0.2s',
 					'&:hover': {

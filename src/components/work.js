@@ -10,13 +10,13 @@ const workExperiences = [
         title: "Client-Facing Software Developer",
         description: "As a Client-Facing Software Developer for eKlozet, I collaborated with a team of student developers to create a sustainable fashion iOS mobile app for client Tanjuria Willis. My contributions included developing a collaborative-filtering algorithm for personalized outfit recommendations and designing a SQL database to manage user CRUD functionality, ultimately serving 10,000+ users. Additionally, I proficiently used Git/GitHub for code versioning, playing a role in coordinating team responsibilities, ensuring the successful completion of sprints and feature delivery."
     },
-	{
-		employer: "Georgia Tech Research Institute",
-		location: "Atlanta, GA",
-		date: "May 2021 - August 2021",
-		title: "Software Engineer Intern",
-        description: "As a Software Engineer Intern at the Georgia Tech Research Institute, I developed a Python-based web application for the U.S. Army to visualize and analyze data from the Army's tactical network. I designed and implemented a RESTful API to interface with the Army's tactical network, enabling the visualization of network data in real-time. Additionally, I collaborated with a team of engineers to develop a user-friendly interface for the web application, ensuring the successful delivery of the project to the U.S. Army."
-	},
+    {
+        employer: "GT WebDev",
+        location: "Atlanta, GA",
+        date: "August 2020 - May 2021",
+        title: "Web Developer",
+        description: "As a member of the Georgia Tech student organization GT WebDev, I contributed to the development of a collaborative web application by working with student-led teams. My responsibilities included developing Material UI/UX features and managing code versioning to ensure seamless integration across app components. Additionally, I organized and hosted multiple front-end workshops and seminars, resulting in a 50% increase in attendance."
+    },
 ];
 
 const TabPanel = ({ children, value, index, ...other }) => {
@@ -43,41 +43,51 @@ const Work = () => {
     return (
         <div className="work_container">
             <div className="work_title">/experience</div>
-            <div className="work_tabs_container">
-                <Box sx={{ display: 'flex', flexGrow: 1, bgcolor: 'inherit', height: '100%' }}>
-                    
-					<MuiTabs
-                        orientation="vertical"
-                        variant="scrollable"
-                        value={selectedTab}
-                        onChange={(event, newValue) => setSelectedTab(newValue)}
-                        aria-label="Vertical tabs"
-                        textColor="inherit"
-                        indicatorColor="secondary"
-                        sx={{
-                            borderRight: 1,
-                            borderColor: 'divider',
-                            width: '1000px',
-                            color: 'var(--white)',
-                            bgcolor: 'inherit', // Change background color
-                            '& .MuiTabs-indicator': {
-                                backgroundColor: 'var(--white)',
-                            },
-                        }}>
-                        {workExperiences.map((experience, index) => (
-                            <Tab key={index} label={experience.employer}/>
-                        ))}
-                    </MuiTabs>
-
+            <div style={{ display: 'flex', width: '70%' }}>
+                <MuiTabs
+                    orientation="vertical"
+                    variant="scrollable"
+                    value={selectedTab}
+                    onChange={(event, newValue) => setSelectedTab(newValue)}
+                    aria-label="Vertical tabs"
+                    textColor="inherit"
+                    indicatorColor="secondary"
+                    sx={{
+                        borderRight: 1,
+                        borderColor: 'divider',
+                        width: '200px',
+                        color: 'var(--white)',
+                        fontFamily: 'var(--font-family-ibm-plex-mono)',
+                        '& .MuiTabs-indicator': {
+                            backgroundColor: 'var(--white)',
+                        },
+                    }}>
                     {workExperiences.map((experience, index) => (
-                        <TabPanel key={index} value={selectedTab} index={index} className="tab_panel">
-                            <h2 className='experience_title'>{experience.title} @ {experience.employer}</h2>
-                            <p className='experience_location'>{experience.date}</p>
-                            <p className='experience_description'>{experience.description}</p>
+                        <Tab key={index} label={experience.employer} 
+                            sx={{ fontSize: '0.7em', fontFamily: 'var(--font-family-ibm-plex-mono)', textTransform: 'none' }}/>
+                    ))}
+                </MuiTabs>
+
+                <div className="work_tab_panel" style={{ flex: 1, paddingLeft: '20px', minHeight: '300px', position: 'relative' }}>
+                    {workExperiences.map((experience, index) => (
+                        <TabPanel key={index} value={selectedTab} index={index} className="tab_panel" 
+                            style={{ 
+                                width: '100%',
+                                position: 'absolute', 
+                                top: 0, 
+                                left: '20px', 
+                                right: 0, 
+                                opacity: selectedTab === index ? 1 : 0, 
+                                transition: 'opacity 0.3s ease-in-out' 
+                            }}>
+                            <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                                <h2 className='experience_title'>{experience.title} @ {experience.employer}</h2>
+                                <p className='experience_location'>{experience.date}</p>
+                                <p className='experience_description'>{experience.description}</p>
+                            </div>
                         </TabPanel>
                     ))}
-
-                </Box>
+                </div>
             </div>
         </div>
     );

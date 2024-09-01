@@ -36,7 +36,7 @@ const HomeText = () => {
           strings={[
             "Algorithms Expert and Problem Solver",
             "Design-Minded Software Engineer and Developer",
-            "Georgia Tech CS Alumnus w/ specialization in Information Networks",
+            "Georgia Tech CS Alumnus w/ Specialization in Information Networks",
             "Currently learning AI/ML in my free time",
             "Hardware Enthusaist and Coffee Connoisseur",
             "Avid Runner, Passionate Artist, and Animal Lover",
@@ -49,7 +49,7 @@ const HomeText = () => {
         />
         </div>
 
-        <ParticlesComponent id='home_particles_component'/>
+        {/**<ParticlesComponent id='home_particles_component'/>**/}
       
         {/** About me button */}
         <Box className="about_me" sx={{marginTop: '30px'}}>

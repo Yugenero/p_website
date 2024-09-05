@@ -61,6 +61,10 @@ const Work = () => {
                         '& .MuiTabs-indicator': {
                             backgroundColor: 'var(--white)',
                         },
+                        '@media (max-width: 750px)': {
+                            orientation: 'horizontal',
+                            width: '90px',
+                        },
                     }}>
                     {workExperiences.map((experience, index) => (
                         <Tab key={index} label={experience.employer} 
@@ -78,7 +82,7 @@ const Work = () => {
                                 left: '20px', 
                                 right: 0, 
                                 opacity: selectedTab === index ? 1 : 0, 
-                                transition: 'opacity 0.3s ease-in-out' 
+                                transition: 'opacity 0.3s ease-in-out'
                             }}>
                             <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                                 <h2 className='experience_title'>{experience.title} @ {experience.employer}</h2>

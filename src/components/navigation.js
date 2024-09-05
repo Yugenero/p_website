@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import './styles/navigation.css';
-import {useState} from 'react';
 import './styles/home.css';
 import IconButton from '@mui/material/IconButton';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -31,42 +30,6 @@ const navLinkStyles = {
 	
 };
 
-const Navbar = () => {
-
-	return (
-		<nav className="navigation">
-		<ul className="navigation-list">
-			<li className="navigation_link">
-			<Tooltip title="Resume" placement="right" >
-			<IconButton component="a" href="/documents/Rodriguez2024Q4.pdf" target="_blank" rel="noopener noreferrer"
-				sx={navLinkStyles.link}>
-				<DescriptionIcon sx={navLinkStyles.icon} />
-			</IconButton>
-			</Tooltip>
-			</li>
-			<li className="navigation_item">
-			<IconButton component={Link} href="https://www.linkedin.com/in/nelson-rodriguez13/" target="_blank" rel="noopener noreferrer"
-				sx={navLinkStyles.link}>
-				<LinkedInIcon sx={navLinkStyles.icon} />
-			</IconButton>
-			</li>
-			<li className="navigation_item">
-			<IconButton component={Link} href="https://github.com/Yugenero" target="_blank" rel="noopener noreferrer"
-				sx={navLinkStyles.link}>
-				<GitHubIcon sx={navLinkStyles.icon} />
-			</IconButton>
-			</li>
-			<li className="navigation_item">
-			<IconButton component={Link} href="mailto: neroxv1313@gmail.com" target="_blank" rel="noopener noreferrer"
-				sx={navLinkStyles.link}>
-				<EmailIcon sx={navLinkStyles.icon} />
-			</IconButton>
-			</li>
-		</ul>
-		</nav>
-	);
-};
-
 const NavbarSmall = () => {
 
 	// tooltip states
@@ -77,14 +40,17 @@ const NavbarSmall = () => {
 		email: false,
 	});
 
+	const timeouts = useRef({});
+
 	// tooltip handlers
 	const handleMouseEnter = (key) => {
-		setTimeout(() => {
+		timeouts.current[key] = setTimeout(() => {
 			setTooltipOpen((prev) => ({...prev, [key]: true}));
 		}, 200);
 	}
 
 	const handleMouseLeave = (key) => {
+		clearTimeout(timeouts.current[key]);
 		setTooltipOpen((prev) => ({...prev, [key]: false}));
 	}
 	return (
@@ -144,5 +110,4 @@ const NavbarSmall = () => {
 	)
 }
 
-export default Navbar;
 export { NavbarSmall };

@@ -150,9 +150,49 @@
     } .skill_container i {
         font-size: 4em;
     }
+
+    /* Work experience */
+    .work_container {
+        width: 100%;
+        padding: 0 10px; /* Add some padding for better spacing */
+    }
+    .work_title {
+        font-size: 1em; /* Increase font size for better readability */
+        padding-bottom: 20px; /* Adjust padding */
+    }
+    .work_tabs_container {
+        flex-direction: column; /* Stack tabs and content vertically */
+        width: 100%;
+
+    }
+
+    .MuiTabs-root {
+        width: 50%;
+    }.MuiTabs-flexContainer {
+        font-size: 1em;
+        width: 50%;
+    }.MuiTabs-vertical {
+        width: 100%; /* Make tabs full width */
+        border-right: none; /* Remove right border */
+    }
+
+    .work_tab_panel {
+        width: 100%;
+        padding: 0; /* Remove left padding */
+        min-height: auto; /* Adjust min-height */
+        position: static; /* Change position to static */
+    }.tab_panel {
+        position: static; /* Change position to static */
+    }.experience_title {
+        font-size: 0.9em; /* Increase title font size */
+
+    } p.experience_description, p.experience_location {
+        font-size: 0.7em; /* Adjust description font size */
+    }
+    
 }
 
-
+/* On screens with width 1921px or more, increase font size */
 @media (min-width: 1921px) {
     .home_page_intro {
         margin-top: 300px;

@@ -24,7 +24,7 @@
     margin-right: auto;
     margin-left: auto;
     text-align: left;
-    font-family: var(--font-family-ibm-plex-mono);
+    font-family: var(--current-font);
 
 } .header-introduction_text {
     position: relative;
@@ -34,7 +34,7 @@
     margin: 0;
 } .header-introduction_name {
     position: relative;
-    font-size: 3em;
+    font-size: 2.8em;
     font-weight: 500;
     margin-top: 5px;
     margin-bottom: 20px;

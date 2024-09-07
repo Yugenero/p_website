@@ -7,7 +7,6 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { Tooltip, Fade, Zoom } from '@mui/material';
-import { Box, Button, Typography} from '@mui/material';
 import { Link } from '@mui/material';
 
 const navLinkStyles = {
@@ -59,7 +58,7 @@ const NavbarSmall = () => {
 			<li className="navigation_link">
 			<Tooltip title="Resume" placement="bottom" open={tooltipOpen.resume} TransitionComponent={Zoom}
 				componentsProps={{
-					tooltip: { sx: { backgroundColor: 'var(--primary-color-dark)', fontFamily: 'var(--font-family-ibm-plex-mono)', fontSize: '14px'}}}}>
+					tooltip: { sx: { backgroundColor: 'var(--primary-color-dark)', fontFamily: 'var(--current-font)', fontSize: '14px'}}}}>
 				<IconButton component="a" href="/documents/Rodriguez2024Q4.pdf" target="_blank" rel="noopener noreferrer"
 					sx={navLinkStyles.link}
 					onMouseEnter={() => handleMouseEnter('resume')}
@@ -72,7 +71,7 @@ const NavbarSmall = () => {
 			<li className="navigation_item">
 			<Tooltip title="LinkedIn" placement="bottom" open={tooltipOpen.linkedin} TransitionComponent={Zoom}
 				componentsProps={{
-					tooltip: { sx: { backgroundColor: 'var(--primary-color-dark)', fontFamily: 'var(--font-family-ibm-plex-mono)', fontSize: '14px'}}}}>
+					tooltip: { sx: { backgroundColor: 'var(--primary-color-dark)', fontFamily: 'var(--current-font)', fontSize: '14px'}}}}>
 				<IconButton component={Link} href="https://www.linkedin.com/in/nelson-rodriguez13/" target="_blank" rel="noopener noreferrer"
 					sx={navLinkStyles.link}
 					onMouseEnter={() => handleMouseEnter('linkedin')}
@@ -84,7 +83,7 @@ const NavbarSmall = () => {
 
 			<li className="navigation_item">
 			<Tooltip title="GitHub" TransitionComponent={Zoom} open={tooltipOpen.github} componentsProps={{
-                        tooltip: { sx: { backgroundColor: 'var(--primary-color-dark)', fontFamily: 'var(--font-family-ibm-plex-mono)', fontSize: '14px'}}}} placement="bottom">
+                        tooltip: { sx: { backgroundColor: 'var(--primary-color-dark)', fontFamily: 'var(--current-font)', fontSize: '14px'}}}} placement="bottom">
 				<IconButton component={Link} href="https://github.com/Yugenero" target="_blank" rel="noopener noreferrer"
 					sx={navLinkStyles.link}
 					onMouseEnter={() => handleMouseEnter('github')}
@@ -97,7 +96,7 @@ const NavbarSmall = () => {
 			<li className="navigation_item">
 			<Tooltip title="Email" placement="bottom" TransitionComponent={Zoom} open={tooltipOpen.email}
 				componentsProps={{
-					tooltip: { sx: { backgroundColor: 'var(--primary-color-dark)', fontFamily: 'var(--font-family-ibm-plex-mono)', fontSize: '14px'}}}}>
+					tooltip: { sx: { backgroundColor: 'var(--primary-color-dark)', fontFamily: 'var(--current-font)', fontSize: '14px'}}}}>
 			<IconButton component={Link} href="mailto: neroxv1313@gmail.com" target="_blank" rel="noopener noreferrer"
 				sx={navLinkStyles.link}
 				onMouseEnter={() => handleMouseEnter('email')}

@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { useState } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import { ReactTyped } from 'react-typed';
 import ParticlesComponent from './particles/particlesComponent';
@@ -8,12 +9,10 @@ import '../App.css';
 
 const HomeText = () => {
 
-  const aboutMeSectionRef = useRef(null);
-
+  const aboutMeSectionRef = useRef(null); 
   function scrollToAboutMe() {
     // get about me container defined by class name
     const aboutMeSection = document.querySelector('.break');
-  
     if (aboutMeSection) {
       aboutMeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -61,7 +60,7 @@ const HomeText = () => {
                 backgroundColor: 'white', 
                 color: 'black'
               },
-              fontFamily: 'var(--font-family-ibm-plex-mono)', 
+              fontFamily: 'var(--current-font)', 
               textTransform: 'none', 
               position: 'absolute',
               top: '50px',

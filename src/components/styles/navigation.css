@@ -6,7 +6,7 @@
 	margin: 50px 0;
 	width: 70%;
 	background-color: rgb(22, 22, 22);
-	font-family: var(--font-family-ibm-plex-mono);
+	font-family: var(--current-font);
 	
 }
 .navigation-list {

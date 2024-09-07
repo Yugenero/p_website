@@ -5,7 +5,7 @@
 	align-items: center;
 	text-align: left;
 	width: 100%;
-	font-family: var(--font-family-ibm-plex-mono);
+	font-family: var(--current-font);
 	color: var(--primary-color-light);
 } 
 

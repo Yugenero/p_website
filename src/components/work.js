@@ -57,7 +57,7 @@ const Work = () => {
                         borderColor: 'divider',
                         width: '200px',
                         color: 'var(--white)',
-                        fontFamily: 'var(--font-family-ibm-plex-mono)',
+                        fontFamily: 'var(--current-font)',
                         '& .MuiTabs-indicator': {
                             backgroundColor: 'var(--white)',
                         },
@@ -68,7 +68,7 @@ const Work = () => {
                     }}>
                     {workExperiences.map((experience, index) => (
                         <Tab key={index} label={experience.employer} 
-                            sx={{ fontSize: '0.7em', fontFamily: 'var(--font-family-ibm-plex-mono)', textTransform: 'none' }}/>
+                            sx={{ fontSize: '0.7em', fontFamily: 'var(--current-font)', textTransform: 'none' }}/>
                     ))}
                 </MuiTabs>
 

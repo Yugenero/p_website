@@ -1,6 +1,6 @@
 ## Web portfolio made with React by Nelson Rodriguez
 https://nelsonrodriguez.me
 
-![nelsonrodriguez.me](https://github.com/user-attachments/assets/ee11644f-0bb0-4476-ad7e-b29c9db1da69)
+![https://nelsonrodriguez.me](https://github.com/user-attachments/assets/ee11644f-0bb0-4476-ad7e-b29c9db1da69)
 
 

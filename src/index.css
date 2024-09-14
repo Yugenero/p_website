@@ -2,7 +2,7 @@
   /* --primary-color-dark: rgb(12, 12, 12); previous black */
   --current-font: 'IBM Plex Mono', monospace;
 	--primary-color: rgb(50, 50, 50);
-  --primary-color-dark: rgb(0, 0, 0); /* new jet black */
+  --primary-color-dark: #080808; /* OpenAI black */
   --primary-color-dark2: rgb(20, 20, 20);
   --primary-color-light: rgb(100, 100, 100);
   --primary-color-light2: rgb(150, 150, 150);
@@ -23,9 +23,21 @@
 	--font-family-text: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font-family-gt: 'Roboto Slab', 'Roboto', sans-serif;
   --font-family-ibm-plex-mono: 'IBM Plex Mono', monospace;
-  --font-family-geist: 'Geist', sans-serif;
+  --font-family-geist: 'Geist Mono', sans-serif;
   --font-family-playwrite: "Playwrite CA", cursive;
+  --font-family-georgia: "Georgia", serif;
+  --font-family-inter: "Inter";
 }
+
+/* geist-mono-latin-400-normal */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/geist-mono@latest/latin-400-normal.woff2) format('woff2'), url(https://cdn.jsdelivr.net/fontsource/fonts/geist-mono@latest/latin-400-normal.woff) format('woff');
+}
+
 
 ::selection {
   background-color: var(--white);

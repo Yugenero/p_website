@@ -1,12 +1,13 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-const FontContext = createContext();
 
+const FontContext = createContext();
 const fontFamilies = [
+	/* Technical font famlies */
 	'var(--font-family-ibm-plex-mono)',
-	'var(--font-family-text)',
+	'var(--font-family-geist)', 
 	'var(--font-family-gt)',
-	'var(--font-family-geist)'
+	'var(--font-family-inter)',
 ];
 
 const FontProvider = ({ children }) => {

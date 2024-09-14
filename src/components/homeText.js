@@ -66,7 +66,7 @@ const HomeText = () => {
               top: '50px',
             }}>
             <Typography variant='h6' align='center' fontWeight={300}>
-              About Me!
+              About Me
             </Typography>
           </Button>
 

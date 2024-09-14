@@ -33,6 +33,7 @@ const NavbarSmall = () => {
 
 	// tooltip states
 	const [tooltipOpen, setTooltipOpen] = useState({
+		font: false,
 		resume: false,
 		linkedin: false,
 		github: false,

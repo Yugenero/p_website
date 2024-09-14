@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { NavbarSmall } from './navigation';
-import { ReactTyped } from 'react-typed';
+import { ReactTyped, Typed } from 'react-typed';
 import { Button } from '@mui/material';
 import { FontContext } from './fontContext';
 import './styles/header.css';
@@ -12,19 +12,58 @@ import './styles/header.css';
 const ChangeFontButton = ({ onClick }) => {
   return (
     <Button onClick={onClick} variant="contained" color="primary"
-      sx={{ display: 'flex', position: 'absolute', right: '205px', backgroundColor: 'black',
-        fontFamily: 'var(--font-family-playwrite)', color: 'var(--primary-color-light2)',
+      sx={{ display: 'flex', position: 'absolute', right: '200px', backgroundColor: 'var(--primary-color-dark)',
+        fontFamily: 'Times New Roman', fontSize: '1.6em', color: 'var(--primary-color-light2)',
         '&:hover': {
-          backgroundColor: 'black',
+          backgroundColor: 'var(--primary-color-dark)',
           color: 'var(--white)'
-        }
-      }}>
+        } }}>
         A
     </Button>
   );
 }
 
+function HeaderAnimation() {
+
+  const { fontFamily } = useContext(FontContext);
+  const [hover, setHover] = useState(false);
+
+  const handleMouseEnter = () => {
+    setHover(true);
+  }
+  const handleMouseLeave = () => {
+    setHover(false);
+  }
+
+  return (
+    <Typography component="a" href="/" className='app_header_name'
+      sx={{ 
+        fontFamily: fontFamily, 
+        color: 'var(--primary-color-light2)', 
+        textDecoration: 'none', 
+        fontSize: '1.2em', 
+        fontWeight: 'normal',
+        '&:hover': {
+          color: 'white',
+        }}}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        >
+        nero.me
+        <ReactTyped
+          strings={hover ? ['/home'] : ['']}
+          typeSpeed={40}
+          backSpeed={40}
+          cursorChar='|'
+          loop={false}
+        />
+    </Typography>
+  );
+}
+
+
 function Header() {
+
   const { fontFamily, changeFont } = useContext(FontContext);
 
   return (
@@ -33,14 +72,7 @@ function Header() {
         sx={{ backgroundColor: "var(--primary-color-dark)" }}>
         <Box display="flex" justifyContent="center">
           <Toolbar sx={{ width: '70vw', justifyContent: 'space-between' }}>
-            <Typography component="a" href="/" className='app_header_name'
-              sx={{ fontFamily: fontFamily, color: 'var(--primary-color-light2)', textDecoration: 'none', fontSize: '1.2em', fontWeight: 'bold'}}>
-              nero.me
-              <ReactTyped
-                strings={[' ']}
-                cursorChar='|'
-              />
-            </Typography>
+            <HeaderAnimation/>
             <NavbarSmall className="app_header_nav" />
             <ChangeFontButton onClick={changeFont} />
           </Toolbar>

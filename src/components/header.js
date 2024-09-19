@@ -12,7 +12,7 @@ import './styles/header.css';
 const ChangeFontButton = ({ onClick }) => {
   return (
     <Button onClick={onClick} variant="contained" color="primary"
-      sx={{ display: 'flex', position: 'absolute', right: '200px', backgroundColor: 'var(--primary-color-dark)',
+      sx={{ display: 'flex', position: 'absolute', right: '210px', backgroundColor: 'var(--primary-color-dark)',
         fontFamily: 'Times New Roman', fontSize: '1.6em', color: 'var(--primary-color-light2)',
         '&:hover': {
           backgroundColor: 'var(--primary-color-dark)',

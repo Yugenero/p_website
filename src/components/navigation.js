@@ -60,7 +60,7 @@ const NavbarSmall = () => {
 			<Tooltip title="Resume" placement="bottom" open={tooltipOpen.resume} TransitionComponent={Zoom}
 				componentsProps={{
 					tooltip: { sx: { backgroundColor: 'var(--primary-color-dark)', fontFamily: 'var(--current-font)', fontSize: '14px'}}}}>
-				<IconButton component="a" href="/documents/Rodriguez2024Q4.pdf" target="_blank" rel="noopener noreferrer"
+				<IconButton component="a" href="/documents/RodriguezNelson.pdf" target="_blank" rel="noopener noreferrer"
 					sx={navLinkStyles.link}
 					onMouseEnter={() => handleMouseEnter('resume')}
 					onMouseLeave={() => handleMouseLeave('resume')}>

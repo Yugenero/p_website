@@ -37,6 +37,7 @@ const AboutMe = () => {
 				outcomes emerge from diverse perspectives and collective effort. Whether it’s contributing 
 				to a team project or leading a development initiative,<span style={{color: 'white'}}> I embrace the opportunity to learn, 
 				teach others, and grow both as an engineer and a person</span>.
+
 				<br/><br/>
 
 			</div>

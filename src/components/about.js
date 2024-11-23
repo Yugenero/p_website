@@ -20,11 +20,14 @@ const AboutMe = () => {
 					B.S. in Computer Science
 				</a> {' '}from the{' '} 
 				<a class="link-gatech" target="_blank" rel="noopener noreferrer" href="https://www.cc.gatech.edu/">
-				<strong class="georgia-tech">College of Computing</strong>
+					<strong class="georgia-tech">College of Computing</strong>
 				</a>{' '}
 				<strong class="georgia-tech" style={{color: 'var(--white)'}}> @{' '}
-				<a class="link-gatech" target="_blank" rel="noopener noreferrer" href="https://www.gatech.edu/">Georgia Tech</a></strong>. My concentration in Information Networks 
-				and Media Applications gave me a robust foundation in subjects comprising <strong style={{color: 'white'}}>Algorithms & Data Structures, Applied Mathematics, AI/ML, Computer Networks, and Database Systems</strong>. 
+				<a class="link-gatech" target="_blank" rel="noopener noreferrer" href="https://www.gatech.edu/">Georgia Tech</a></strong>. 
+				
+				My concentration in Information Networks 
+				and Media Applications gave me a robust foundation in subjects comprising <strong style={{color: 'white'}}>Algorithms & Data Structures, Applied Mathematics, AI/ML, 
+				Computer Networks, and Database Systems</strong>. 
 				
 				<br/><br/>				
 				My passion for tech extends beyond coding; 

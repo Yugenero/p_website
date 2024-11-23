@@ -4,9 +4,16 @@ import './styles/work.css';
 
 const workExperiences = [
     {
+        employer: "Civic DX",
+        location: "Atlanta, GA",
+        date: "October 2024 - Present",
+        title: "Software Engineer",
+        description: "Developing internal tooling and Consulting for Civic DX. Currently developing an application for ABM Industries to facilitate the management of ABM assets and facilities using React.js, JavaScript, C#, and MongoDB."
+    },
+    {
         employer: "eKlozet",
         location: "Atlanta, GA",
-        date: "August 2022 - December 2022",
+        date: "January 2022 - December 2022",
         title: "Client-Facing Software Developer",
         description: "As a Client-Facing Software Developer for eKlozet, I collaborated with a team of student developers to create a sustainable fashion iOS mobile app for client Tanjuria Willis. My contributions included developing a collaborative-filtering algorithm for personalized outfit recommendations and designing a SQL database to manage user CRUD functionality, ultimately serving 10,000+ users. Additionally, I proficiently used Git/GitHub for code versioning, playing a role in coordinating team responsibilities, ensuring the successful completion of sprints and feature delivery."
     },

@@ -30,7 +30,11 @@
 	z-index: 1;
 	color: var(--primary-color-light2);
 	background-color: var(--primary-color-dark);
-} 
+} .gt_logo{
+	margin-left: 10px;
+	width: 100px;
+	height: auto;
+}
 
 /** Skills */
 .about_me_skills_container {

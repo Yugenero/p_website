@@ -6,7 +6,6 @@ const fontFamilies = [
 	/* Technical font famlies */
 	'var(--font-family-ibm-plex-mono)',
 	'var(--font-family-geist)', 
-	'var(--font-family-gt)',
 	'var(--font-family-inter)',
 ];
 

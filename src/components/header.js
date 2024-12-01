@@ -7,18 +7,20 @@ import { NavbarSmall } from './navigation';
 import { ReactTyped, Typed } from 'react-typed';
 import { Button } from '@mui/material';
 import { FontContext } from './fontContext';
+import { Squash as Hamburger } from 'hamburger-react'
 import './styles/header.css';
+
 
 const ChangeFontButton = ({ onClick }) => {
   return (
     <Button onClick={onClick} variant="contained" color="primary"
-      sx={{ display: 'flex', position: 'absolute', right: '200px', backgroundColor: 'var(--primary-color-dark)',
+      sx={{ forceLowerdisplay: 'flex', position: 'absolute', right: '200px', backgroundColor: 'var(--primary-color-dark)',
         fontFamily: 'Times New Roman', fontSize: '1.6em', color: 'var(--primary-color-light2)',
         '&:hover': {
           backgroundColor: 'var(--primary-color-dark)',
           color: 'var(--white)'
         } }}>
-        A
+        f
     </Button>
   );
 }
@@ -36,7 +38,7 @@ function HeaderAnimation() {
   }
 
   return (
-    <Typography component="a" href="/" className='app_header_name'
+    <Typography component="a" href="/" className='app_header_navigation'
       sx={{ 
         fontFamily: fontFamily, 
         color: 'var(--primary-color-light2)', 
@@ -49,18 +51,10 @@ function HeaderAnimation() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         >
-        nero
-        {/*<ReactTyped
-          strings={hover ? ['/home'] : ['']}
-          typeSpeed={40}
-          backSpeed={40}
-          cursorChar=''
-          loop={false}
-        />*/}
+        navigation
     </Typography>
   );
 }
-
 
 function Header() {
 
@@ -72,9 +66,9 @@ function Header() {
         sx={{ backgroundColor: "var(--primary-color-dark)" }}>
         <Box display="flex" justifyContent="center">
           <Toolbar sx={{ width: '70vw', justifyContent: 'space-between' }}>
-            <HeaderAnimation/>
+            <HeaderAnimation />
             <NavbarSmall className="app_header_nav" />
-            <ChangeFontButton onClick={changeFont} />
+            <ChangeFontButton className="change-font-button" onClick={changeFont} />
           </Toolbar>
         </Box>
       </AppBar>

@@ -26,7 +26,6 @@ const navLinkStyles = {
 		width: '30px',
 		height: '30px',
 	},
-	
 };
 
 const NavbarSmall = () => {

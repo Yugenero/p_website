@@ -3,11 +3,25 @@ import { Tabs as MuiTabs, Tab, Box, Typography } from '@mui/material';
 import './styles/work.css';
 
 const workExperiences = [
+
+    {
+        employer: "Company Name",
+        location: "Atlanta, GA",
+        date: "December 2025 - Present",
+        title: "Full-stack Software Engineer",
+        point1: "point 1",
+        point2: "point 2",
+        point3: "point 3",
+        point4: "point 4",
+    },
     {
         employer: "Civic DX",
         location: "Atlanta, GA",
         date: "October 2024 - Present",
         title: "Software Engineer",
+        point1: "Consulting, Software QA and Development for Civic DX.",
+        point2: "Developing application for ABM Industries to facilitate management of ABM assets and facilities with React, JavaScript, C#, and MongoDB.",
+        point3: "Spearheading Software QA and Testing for asset management application with AzureDevOps",
         description: "Developing internal tooling and Consulting for Civic DX. Currently developing an application for ABM Industries to facilitate the management of ABM assets and facilities using React.js, JavaScript, C#, and MongoDB."
     },
     {
@@ -15,6 +29,10 @@ const workExperiences = [
         location: "Atlanta, GA",
         date: "January 2022 - December 2022",
         title: "Client-Facing Software Developer",
+        point1: "point 1",
+        point2: "point 2",
+        point3: "point 3",
+        point4: "point 4",
         description: "As a Client-Facing Software Developer for eKlozet, I collaborated with a team of student developers to create a sustainable fashion iOS mobile app for client Tanjuria Willis. My contributions included developing a collaborative-filtering algorithm for personalized outfit recommendations and designing a SQL database to manage user CRUD functionality, ultimately serving 10,000+ users. Additionally, I proficiently used Git/GitHub for code versioning, playing a role in coordinating team responsibilities, ensuring the successful completion of sprints and feature delivery."
     },
     {
@@ -22,6 +40,10 @@ const workExperiences = [
         location: "Atlanta, GA",
         date: "August 2020 - May 2021",
         title: "Web Developer",
+        point1: "point 1",
+        point2: "point 2",
+        point3: "point 3",
+        point4: "point 4",
         description: "As a member of the Georgia Tech student organization GT WebDev, I contributed to the development of a collaborative web application by working with student-led teams. My responsibilities included developing Material UI/UX features and managing code versioning to ensure seamless integration across app components. Additionally, I organized and hosted multiple front-end workshops and seminars, resulting in a 50% increase in attendance."
     },
 ];
@@ -65,6 +87,7 @@ const Work = () => {
                         width: '200px',
                         color: 'var(--white)',
                         fontFamily: 'var(--current-font)',
+                        textAlign: 'left',
                         '& .MuiTabs-indicator': {
                             backgroundColor: 'var(--white)',
                         },
@@ -75,7 +98,17 @@ const Work = () => {
                     }}>
                     {workExperiences.map((experience, index) => (
                         <Tab key={index} label={experience.employer} 
-                            sx={{ fontSize: '0.7em', fontFamily: 'var(--current-font)', textTransform: 'none' }}/>
+                            sx={{ fontSize: '0.7em', 
+                                fontFamily: {
+                                    xs: 'var(--font-family-ibm-plex-mono)',
+                                    lg: 'var(--font-family-inter)',
+                                    xl: 'var(--font-family-inter)',
+                                },
+                                textTransform: 'none', 
+                                justifyContent: 'flex-start',
+                                alignItems: 'start',
+                                borderTop: '1px solid var(--primary-color)',
+                            }}/>
                     ))}
                 </MuiTabs>
 
@@ -94,7 +127,11 @@ const Work = () => {
                             <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                                 <h2 className='experience_title'>{experience.title} @ {experience.employer}</h2>
                                 <p className='experience_location'>{experience.date}</p>
-                                <p className='experience_description'>{experience.description}</p>
+                                <ul className='experience_description'>
+                                    <li className='experience_point'>{experience.point1}</li>
+                                    <li className='experience_point'>{experience.point2}</li>
+                                    <li className='experience_point'>{experience.point3}</li>
+                                </ul>
                             </div>
                         </TabPanel>
                     ))}

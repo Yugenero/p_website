@@ -29,7 +29,7 @@
 } .header-introduction_text {
     position: relative;
     color: var(--primary-color-light2);
-    font-size: 1em;
+    font-size: 0.8em;
     z-index: 1;
     margin: 0;
 } .header-introduction_name {

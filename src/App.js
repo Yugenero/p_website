@@ -33,6 +33,7 @@ function App() {
       {/** Page Routes in Header Page */}
       <Router>
         <div className="App"> 
+          {/** Header should always render */}
           <Header />
             <Routes>
               <Route path="/" element={<Home/>}/>
@@ -41,7 +42,8 @@ function App() {
               <Route path="/projects" element={<ProjectsPage/>}/>
               <Route path="/photography" element={<Photography />}/>
             </Routes>
-            <Footer/>
+          {/** Footer should always render */}
+          <Footer/>
           <Signature />
         </div> 
       </Router>

@@ -69,10 +69,11 @@ function NavigationButton() {
             <Link to="/work" className='nav-list-item'>Work</Link> <span className='nav-list-info'> My work experience and history </span>
             <Link to="/projects" className='nav-list-item'>Projects</Link> <span className='nav-list-info'> Passion dev projects  </span>
             <Link to="/photography" className='nav-list-item'>Photography </Link> <span className='nav-list-info'> My photography portfolio </span>
-            under construction (links might not work)
+              under construction (links might not work) 
+              currently optimizing for mobile devices
           </ul>
           <div className='navigation-subcontainer'> 
-            
+
           </div>
       </div> : <></>}
       </>

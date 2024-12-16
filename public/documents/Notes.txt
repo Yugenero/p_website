@@ -1,0 +1,12 @@
+ - Note to self instead of having text that brings you to the home page 
+ 	try to create a navigation icon that opens up the whole page and displays the 
+ 	navigation items along with breadcrumbs in the top of the page. Add visuals for 
+	the text fade in effects and other shapes such as lines for a more cohesive look
+	text should be black and the background whould be white and should drop from the 
+	top-down
+
+- Thinking about adding more personality to my portfolio and adding more misc things hobbies,
+	extracurriculars, etc. Navigation will help with this and I should be using Router and router context
+	in order to direct visitors properly to different pages separate from the main page
+
+- Go back up button on either the left or the right side of the page to make use of empty space

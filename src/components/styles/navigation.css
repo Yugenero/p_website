@@ -1,0 +1,80 @@
+/**
+ * Navigation
+ */
+
+.navigation {
+	margin: 50px 0;
+	width: 70%;
+	background-color: rgb(22, 22, 22);
+	font-family: var(--current-font);
+	
+}
+.navigation-list {
+	font-size: 0.85em;
+	display: flex;
+	list-style: none;
+	margin: 10px 0;
+	padding: 0;
+} .navigation-list_small {
+	font-size: 0.85em;
+	display: flex;
+	list-style: none;
+	margin: 10px 0;
+	padding: 0;
+}
+
+
+
+/**
+ * Navigation Links
+ */
+.navigation-link {
+	margin-right: 10px;
+	color: white;
+	text-decoration: none;
+} .navigation-link:hover {
+	background-color: white;
+	color: black;
+} .navigation-link:visited {
+	text-decoration: none;
+}
+
+/**
+ * Georgia Tech
+ */
+.link-gatech {
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+	transition: background-color 0.3 ease
+}
+.link-gatech:hover {
+	color: white;
+	text-decoration: underline;
+}
+.link-gatech:visited {
+	color: white;
+	text-decoration: none;
+}
+.link-parchment {
+	font-family: "Roboto Slab", serif;
+	font-weight: bold;
+	text-decoration: none;
+	color: white;
+} 
+.link-parchment:visited {
+	color: white;
+}
+.link-parchment:hover {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+
+.company {
+	font-family: "Roboto Slab", serif;
+	font-weight: bold;
+	color: rgb(0, 128, 251);
+}
+
+

@@ -1,0 +1,66 @@
+.work_container { 
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: left;
+	width: 100%;
+	font-family: var(--current-font);
+	color: var(--primary-color-light2);
+} .work_tabs_container {
+	display: flex;
+	flex-direction: row;
+	width: 70%;
+}
+
+.work_title {
+	display: flex;
+	flex-direction: column;
+	font-size: 0.9em;
+	font-weight: 400;
+	padding-bottom: 40px;
+    width: 70%; /* Adjust width to auto to fit content */
+    display: inline-flex; /* Changed from flex to inline-flex */
+    position: relative; /* Ensure the pseudo-element positions relative to this */
+	justify-content: space-between;
+	text-align: left;
+	color: var(--white);
+}
+.my_work {
+	align-self: flex-end;
+	font-size: 0.6em;
+	width: 70%;
+	z-index: 1;
+	color: var(--primary-color-light2);
+	background-color: var(--primary-color-dark);
+}
+
+.tab_panel {
+	display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Aligns content to the top */
+    height: 100%; /* Ensures the panel takes the full height */
+    overflow: auto; /* Add scroll if content overflows */
+}
+
+.experience_title {
+	margin-top: 0;
+	color: var(--white);
+	font-family: var(--current-font);
+}.experience_location {
+	margin-top: 0;
+	font-family: var(--current-font);
+}.experience_date {
+	margin-top: 0;
+	font-family: var(--current-font);
+}.experience_description {
+	margin-top: 0;
+    margin: 16px 0; /* Add some margin for spacing */
+	padding: 0 1em;
+    font-size: 16px; /* Adjust font size as needed */
+    line-height: 1.5; /* Adjust line height for readability */
+	white-space: pre-wrap; /* Preserve whitespace and line breaks */
+	font-family: var(--current-font);
+} .experience_point {
+	margin-bottom: 1em;
+}

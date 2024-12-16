@@ -1,0 +1,348 @@
+/**
+ * Home page styles
+*/
+.home_page_ui {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: calc(13px + 2vmin);
+    color: white;
+    height: 100%;
+    width: 100vw;
+    min-height: 100vh;
+} .home_page_intro {
+    display: flex;
+    flex-direction: column;
+    margin-top: 175px;
+    margin-bottom: 175px;
+} 
+
+.home_text_container {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: left;
+    font-family: var(--current-font);
+
+} .header-introduction_text {
+    position: relative;
+    color: var(--primary-color-light2);
+    font-size: 0.8em;
+    z-index: 1;
+    margin: 0;
+} .header-introduction_name {
+    position: relative;
+    font-size: 2.8em;
+    font-weight: 500;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    margin-right: 0;
+    margin-left: 0;
+    z-index: 1;
+}
+
+.header-introduction-typer-container {
+    height: 125px;
+} .header-introduction-typer {
+    position: relative;
+    font-size: 1.5em;
+    color: var(--white);
+    background: linear-gradient(270deg, var(--primary-color-dark2), var(--primary-color), 
+                                        var(--primary-color-light), var(--primary-color-light2), 
+                                        var(--primary-color-light));
+    animation: gradientAnimation 4s ease infinite; /* Apply the animation */
+    background-size: 200% 200%; /* Enlarge background size to ensure smooth transition */
+    opacity: 1;
+    z-index: 1000;
+}
+
+.home_text {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+} .home-text-poly0 {
+    position: absolute;
+    top: 190px;
+    right: 300px;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 40%;
+    background-color: var(--primary-color-dark);
+} .home-text-poly1 {
+    position: absolute;
+    top: 210px;
+    right: 280px;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 40%;
+    background-color: var(--primary-color-dark1);
+} .home-text-poly2 {
+    position: absolute;
+    top: 230px;
+    right: 260px;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 40%;
+    background-color: var(--primary-color-dark2);
+} .home-text-poly3 {
+    position: absolute;
+    top: 250px;
+    right: 240px;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 40%;
+    background-color: var(--primary-color-dark3);
+}.home-text-poly4 {
+    position: absolute;
+    top: 270px;
+    right: 220px;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 40%;
+    background-color: var(--primary-color-dark4);
+}.home-text-poly5 {
+    position: absolute;
+    top: 290px;
+    right: 200px;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 40%;
+    background-color: var(--primary-color-dark5);
+}.home-text-poly6 {
+    position: absolute;
+    top: 310px;
+    right: px;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 40%;
+    background-color: var(--primary-color-dark6);
+}
+
+.header-introduction {
+    animation: slide-in-blurred-bottom 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+} .header-information {
+    margin: 0;
+    animation: slide-in-blurred-bottom 2s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+} .navigation-list {
+    animation: slide-in-blurred-bottom 3s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+}
+
+.state-button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    color: var(--primary-color-light2);
+    font-size: 0.8em;
+    z-index: 1001;
+}
+
+.state-button:hover {
+    color: var(--white);
+    cursor: pointer;
+}
+
+.georgia-tech {
+	font-family: "Roboto Slab", serif;
+	font-weight: bold;
+}
+
+/**
+ * ----------------------------------------
+ * animation slide-in-blurred-bottom
+ * ----------------------------------------
+ */
+ @-webkit-keyframes slide-in-blurred-bottom {
+  0% {
+    -webkit-transform: translateY(1000px) scaleY(2.5) scaleX(0.2);
+        transform: translateY(1000px) scaleY(2.5) scaleX(0.2);
+    -webkit-transform-origin: 50% 100%;
+        transform-origin: 50% 100%;
+    -webkit-filter: blur(40px);
+        filter: blur(40px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+        transform: translateY(0) scaleY(1) scaleX(1);
+    -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+    -webkit-filter: blur(0);
+        filter: blur(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-blurred-bottom {
+  0% {
+    -webkit-transform: translateY(1000px) scaleY(2.5) scaleX(0.2);
+        transform: translateY(1000px) scaleY(2.5) scaleX(0.2);
+    -webkit-transform-origin: 50% 100%;
+        transform-origin: 50% 100%;
+    -webkit-filter: blur(40px);
+        filter: blur(40px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+        transform: translateY(0) scaleY(1) scaleX(1);
+    -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+    -webkit-filter: blur(0);
+        filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+}
+
+/**On screens with width 750px or less, decrease font size*/
+@media (max-width: 750px) {
+    .home_page_intro {
+        margin-top: 150px;
+        margin-bottom: 225px;
+    } .header-introduction_name {
+        font-size: 2.5em;
+    } .header-introduction-typer {
+        font-size: 1.5em;
+    } .skill_container i {
+        font-size: 4em;
+    }
+
+    /* Work experience */
+    .work_container {
+        width: 100%;
+        padding: 0 10px; /* Add some padding for better spacing */
+    }
+    .work_title {
+        font-size: 1em; /* Increase font size for better readability */
+        padding-bottom: 20px; /* Adjust padding */
+    }
+    .work_tabs_container {
+        flex-direction: column; /* Stack tabs and content vertically */
+        width: 100%;
+
+    }
+
+    .MuiTabs-root {
+        width: 50%;
+    }.MuiTabs-flexContainer {
+        font-size: 1em;
+        width: 50%;
+    }.MuiTabs-vertical {
+        width: 100%; /* Make tabs full width */
+        border-right: none; /* Remove right border */
+    }
+
+    .work_tab_panel {
+        width: 100%;
+        padding: 0; /* Remove left padding */
+        min-height: auto; /* Adjust min-height */
+        position: static; /* Change position to static */
+    }.tab_panel {
+        position: static; /* Change position to static */
+    }.experience_title {
+        font-size: 0.9em; /* Increase title font size */
+
+    } p.experience_description, p.experience_location {
+        font-size: 0.7em; /* Adjust description font size */
+    }
+    
+}
+
+/* On screens with width 1921px or more, increase font size */
+@media (min-width: 1921px) {
+    .home_page_intro {
+        margin-top: 300px;
+        margin-bottom: 250px;
+    } .header-introduction_name {
+        font-size: 3.5em;
+    } .header-introduction-typer {
+        font-size: 1.5em;
+    } .about_me_skills > * {
+        width: 125px;
+    }
+}
+
+
+.scroll-line {
+    width: 1px;
+    height: 100px;
+    background-color: var(--primary-color);
+    z-index: 1000;
+}
+
+
+.state-button {
+    justify-content: center;
+    bottom: 10%;
+}
+
+
+/** Arrows animation */
+.arrows {
+    width: 30px;
+    height: 36px;
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translateX(-50%); /* Center horizontally */
+    transform: translateY(300%); /* Center vertically */
+    margin-left: 0; /* Remove margin-left */
+}
+.arrows path {
+    stroke: var(--white);
+    fill: transparent;
+    stroke-width: 1px;  
+    animation: arrow 2s infinite;
+    -webkit-animation: arrow 2s infinite; 
+}
+  @keyframes arrow
+  {
+    0% {opacity:0}
+    40% {opacity:1}
+    80% {opacity:0}
+    100% {opacity:0}
+  }
+  
+  @-webkit-keyframes arrow /*Safari and Chrome*/
+  {
+    0% {opacity:0}
+    40% {opacity:1}
+    80% {opacity:0}
+    100% {opacity:0}
+  }
+  
+  .arrows path.a1 {
+    animation-delay:-1s;
+    -webkit-animation-delay:-1s; /* Safari 和 Chrome */
+  }
+  
+  .arrows path.a2 {
+    animation-delay:-0.5s;
+    -webkit-animation-delay:-0.5s; /* Safari 和 Chrome */
+  }
+  
+  .arrows path.a3 { 
+    animation-delay:0s;
+    -webkit-animation-delay:0s; /* Safari 和 Chrome */
+  }

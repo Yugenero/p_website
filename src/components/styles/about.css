@@ -1,0 +1,91 @@
+.about_me_container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: left;
+	width: 100%;
+	font-family: var(--current-font);
+	color: var(--primary-color-light);
+} 
+
+
+/** About me */
+.about_me_title_container {
+	display: flex;
+	flex-direction: column;
+	width: 70%;
+} .about_me_title {
+	font-size: 0.9em;
+	font-weight: 400;
+	padding-bottom: 40px;
+    width: auto; /* Adjust width to auto to fit content */
+    display: inline-flex; /* Changed from flex to inline-flex */
+    position: relative; /* Ensure the pseudo-element positions relative to this */
+	justify-content: space-between;
+	color: var(--white);
+} .about_me_info {
+	font-size: 0.6em;
+	width: 70%;
+	z-index: 1;
+	color: var(--primary-color-light2);
+	background-color: var(--primary-color-dark);
+} .gt_logo{
+	margin-left: 10px;
+	width: 100px;
+	height: auto;
+}
+
+/** Skills */
+.about_me_skills_container {
+	width: 70%;
+	display: flex;
+	flex-direction: column;
+} .about_me_skills_title {
+	display: inline-flex;
+	position: relative;
+	font-size: inherit;
+	padding: 40px 0;
+	font-weight: 400;
+	font-size: 0.9em;
+	color: var(--white);
+} .container {
+	background-color: var(--primary-color-dark);
+	border: 1px solid var(--primary-color);
+	border-radius: 20px;
+	z-index: 0;
+} .about_me_skills {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	/** Wrap the skills from top to bottom */
+	flex-wrap: wrap; 
+	width: 100%; 
+} .skill_container {
+	display: flex; 
+	align-items: center;
+	flex-direction: column;
+	color: var(--primary-color-light2);
+	font-size: 0.5em;
+	width: 10%;
+	height: 10%;
+	padding-bottom: 30px;
+	margin: 0 20px;
+	transition: transform 0.3s;
+} .skill_container i {
+	font-size: 4em;
+	color: white;
+	padding: 30px;
+} .skill_container:hover {
+	transform: scale(1.2);
+
+}
+
+.cs_valorant {
+	color: var(--white);
+	text-decoration: none;
+	font-weight: 400;
+	
+} cs_valorant:visited {
+	color: var(--white);
+}

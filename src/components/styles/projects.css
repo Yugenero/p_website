@@ -1,0 +1,67 @@
+/**
+* Projects Conainter
+*/
+.projects_container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: left;
+	width: 100%;
+	font-family: var(--current-font);
+	color: var(--primary-color-light);
+} .projects_list {
+	color: white;
+	font-size: 0.6em;
+	width: 70%;
+} .projects_title {
+	display: inline-flex; /* Changed from flex to inline-flex */
+    position: relative; /* Ensure the pseudo-element positions relative to this */
+	justify-content: space-between;
+	padding-bottom: 40px;
+	font-size: 0.9em;
+	font-weight: 400;
+	width: 70%;
+	color: var(--white);
+}
+
+/**
+* Object styles
+*/
+.project_object_container {
+	display: flex;
+	flex-direction: column;	
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	height: 200px;
+	width: 100%;
+	margin: 20px 0;
+	border: 1px solid var(--primary-color);
+	background-color: var(--primary-color-dark);
+	border-radius: 10px;
+} .project_object {
+	display: flex;
+	flex-direction:  column;
+	justify-content: space-between;
+	height: 75%;
+	width: 90%;
+} 
+
+/**
+* child element styles
+*/
+.project_title {
+	font-size: 0.9em;
+	font-weight: bold;
+} .project_description {
+	font-size: 0.8em;
+} .project_link {
+	font-size: 0.9em;
+	text-decoration: none;
+	color: var(--primary-color-light);
+} .project_link:hover {
+	color: var(--primary-color-light);
+} .project_link:visited {
+	color: var(--primary-color-light);
+}

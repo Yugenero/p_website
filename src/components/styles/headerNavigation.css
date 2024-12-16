@@ -1,0 +1,94 @@
+.hamburger {
+	z-index: 1002;
+} .hamburger:hover .line {
+    stroke: var(--white);
+}
+
+.navigation-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    height: 100vh;
+    background-color: var(--primary-color-dark);
+    z-index: 1001;
+} .navigation-list-2 {
+	display: flex;
+	flex-direction: column;
+	list-style-type: none;
+	justify-content: center;
+	align-items: flex-start;
+	background-color: black;
+	margin: 0;
+	width: 50%;
+} .nav-list-item {
+	color: var(--white);
+	text-decoration: none;
+	margin: 10px 0;
+	font-size: 4rem;
+	font-family: var(--font-family-ibm-plex-mono);
+  } .nav-list-item:hover {
+	text-decoration: underline;
+  } .nav-list-item:visited {
+	color: var(--white);
+  } .nav-list-info {
+	color: var(--primary-color-light);
+	font-family: var(--font-family-text);
+  }
+  
+  .navigation-subcontainer {
+	display: flex;
+	width: 50%;
+	background-color: black; 
+}
+
+/** Hamburger Icon Animation */
+.ham {
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+	transition: transform 400ms;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+  }
+
+  .hamRotate.active {
+	transform: rotate(45deg);
+  }
+  .hamRotate180.active {
+	transform: rotate(180deg);
+  }
+  .line {
+	fill: none;
+	transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+	stroke-width: 5;
+	stroke-linecap: round;
+	stroke: var(--primary-color-light2);
+  }
+  .ham8 .top {
+	stroke-dasharray: 40 160;
+  }
+  .ham8 .middle {
+	stroke-dasharray: 40 142;
+	transform-origin: 50%;
+	transition: transform 400ms;
+  }
+  .ham8 .bottom {
+	stroke-dasharray: 40 85;
+	transform-origin: 50%;
+	transition: transform 400ms, stroke-dashoffset 400ms;
+  }
+  .ham8.active .top {
+	stroke-dashoffset: -64px;
+  }
+  .ham8.active .middle {
+	transform: rotate(90deg);
+  }
+  .ham8.active .bottom {
+	stroke-dashoffset: -64px;
+  }

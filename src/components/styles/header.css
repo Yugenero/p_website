@@ -1,0 +1,14 @@
+.app_header {
+	background-color: var(--primary-color-dark);
+} .app_header_navigation {
+	font-family: var(--current-font);
+	color: white;
+}
+
+@media (max-width: 500px) {
+	.app_header_navigation {
+		font-size: 0.5em;
+	} .app_header {
+		font-size: 0.7em;
+	}
+}

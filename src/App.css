@@ -1,0 +1,50 @@
+/* This code is going to be modified for personal use */
+
+
+.App {
+  text-align: center;
+  background-color: var(--primary-color-dark);
+  width: 100vw;
+}
+
+.break {
+  margin: 70px auto;
+  width: 70%;
+  height: 0.5px; /* Adjusted to make the line extremely thin */
+  background-color: var(--primary-color); /* Set the color of the hr */
+  border: none;
+}
+
+.signature {
+  writing-mode: vertical-rl;
+  position: fixed;
+  transform-origin: center;
+  width: fit-content;
+  transform: rotate(180deg);
+  bottom: 45%;
+  left: 0;
+  right: 0;
+  font-size: 0.8rem;
+  margin: 30px 0;
+  z-index: 9999;
+  color: var(--primary-color-light);
+} .signature::before,
+  .signature::after {
+  content: '';
+  position: fixed;
+  bottom: 90%;
+  left: 0;
+  right: 0;
+  width: 1px;
+  height: 150px;
+  margin: 30px 20px;
+  background-color: var(--primary-color);
+}
+ 
+/**On screens with width 1000px or less, decrease font size*/
+@media (max-width: 1000px) {
+	.header-spin {
+    font-size: 10px;
+  }
+}
+

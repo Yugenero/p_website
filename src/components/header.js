@@ -49,15 +49,6 @@ function NavigationButton() {
    */
   return (
     <>
-      {/*<div className='hamburger'>
-        <Hamburger
-          label='navigation'
-          color='var(--primary-color-light2)'
-          size={25}
-          toggled={isOpen} 
-          toggle={toggleNavigati</svg>on}
-        />
-      </div>*/}
       <div className='hamburger'>
         <svg 
           className={`ham hamRotate ham8 ${isOpen ? 'active' : ''}`} 
@@ -78,9 +69,10 @@ function NavigationButton() {
             <Link to="/work" className='nav-list-item'>Work</Link> <span className='nav-list-info'> My work experience and history </span>
             <Link to="/projects" className='nav-list-item'>Projects</Link> <span className='nav-list-info'> Passion dev projects  </span>
             <Link to="/photography" className='nav-list-item'>Photography </Link> <span className='nav-list-info'> My photography portfolio </span>
+            under construction (links might not work)
           </ul>
           <div className='navigation-subcontainer'> 
-              
+            
           </div>
       </div> : <></>}
       </>

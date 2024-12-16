@@ -68,7 +68,7 @@
     right: 300px;
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 60%;
     height: 40%;
     background-color: var(--primary-color-dark);
 } .home-text-poly1 {
@@ -77,7 +77,7 @@
     right: 280px;
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 60%;
     height: 40%;
     background-color: var(--primary-color-dark1);
 } .home-text-poly2 {
@@ -86,7 +86,7 @@
     right: 260px;
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 60%;
     height: 40%;
     background-color: var(--primary-color-dark2);
 } .home-text-poly3 {
@@ -95,7 +95,7 @@
     right: 240px;
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 60%;
     height: 40%;
     background-color: var(--primary-color-dark3);
 }.home-text-poly4 {
@@ -104,7 +104,7 @@
     right: 220px;
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 60%;
     height: 40%;
     background-color: var(--primary-color-dark4);
 }.home-text-poly5 {
@@ -113,16 +113,16 @@
     right: 200px;
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 60%;
     height: 40%;
     background-color: var(--primary-color-dark5);
 }.home-text-poly6 {
     position: absolute;
     top: 310px;
-    right: px;
+    right: 180px;
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 60%;
     height: 40%;
     background-color: var(--primary-color-dark6);
 }

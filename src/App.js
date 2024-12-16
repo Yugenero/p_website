@@ -20,7 +20,6 @@ function App() {
 
   return (
     <FontProvider>
-    <div className="App" > 
       
       {/** CSS style imports */}
       <style>
@@ -33,18 +32,19 @@ function App() {
 
       {/** Page Routes in Header Page */}
       <Router>
-        <Header />
-          <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/about" element={<AboutPage/>}/>
-            <Route path="/work" element={<WorkPage/>}/>
-            <Route path="/projects" element={<ProjectsPage/>}/>
-            <Route path="/photography" element={<Photography />}/>
-          </Routes>
-          <Footer/>
+        <div className="App"> 
+          <Header />
+            <Routes>
+              <Route path="/" element={<Home/>}/>
+              <Route path="/about" element={<AboutPage/>}/>
+              <Route path="/work" element={<WorkPage/>}/>
+              <Route path="/projects" element={<ProjectsPage/>}/>
+              <Route path="/photography" element={<Photography />}/>
+            </Routes>
+            <Footer/>
           <Signature />
+        </div> 
       </Router>
-    </div> 
     </FontProvider>
   );
 };

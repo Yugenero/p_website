@@ -245,7 +245,7 @@
 /**On screens with width 750px or less, decrease font size*/
 @media (max-width: 750px) {
     .home_page_intro {
-        margin-top: 150px;
+        margin-top: 225px;
         margin-bottom: 225px;
     } .header-introduction_name {
         font-size: 2.5em;
@@ -343,7 +343,8 @@
     animation: arrow 2s infinite;
     -webkit-animation: arrow 2s infinite; 
 }
-  @keyframes arrow
+
+@keyframes arrow
   {
     0% {opacity:0}
     40% {opacity:1}

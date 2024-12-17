@@ -13,7 +13,7 @@ import './components/styles/home.css';
 // Page Imports
 import { AboutPage } from './components/pages/about';
 import { WorkPage } from './components/pages/work';
-import { Photography } from './components/pages/photography';
+import Photography from './components/pages/photography';
 import { ProjectsPage } from './components/pages/projects';
 
 function App() {

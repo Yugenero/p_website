@@ -11,6 +11,26 @@ import { animateNavTextSlideIn, animateNavTextSlideOut, animateNavFadeIn } from 
 import './styles/header.css';
 import './styles/headerNavigation.css'
 
+// binary search algorith for literally no reason
+function binarySearch(arr, target) {
+  let left = 0;
+  let right = arr.length - 1;
+  while (left <= right) {
+    let mid = Math.floor(right - left) / 2;
+
+    if (arr[mid] === target) {
+      return mid;
+    } else if (arr[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+    if (right < left) {
+      return -1;
+    }
+  }
+  return -1;
+}
 
 const ChangeFontButton = ({ onClick }) => {
   return (
@@ -65,12 +85,12 @@ function NavigationButton() {
       {isOpen? 
       <div className='navigation-container'>
           <ul className='navigation-list-2'>
-            <Link to="/about" className='nav-list-item'>About</Link> <span className='nav-list-info'> Infomation about me + hobbies </span>
-            <Link to="/work" className='nav-list-item'>Work</Link> <span className='nav-list-info'> My work experience and history </span>
-            <Link to="/projects" className='nav-list-item'>Projects</Link> <span className='nav-list-info'> Passion dev projects  </span>
-            <Link to="/photography" className='nav-list-item'>Photography </Link> <span className='nav-list-info'> My photography portfolio </span>
-              under construction (links might not work) 
-              currently optimizing for mobile devices
+            <Link to="/about" className='nav-list-item' onClick={toggleNavigation}>About</Link> <span className='nav-list-info'> Infomation about me + hobbies </span>
+            <Link to="/work" className='nav-list-item' onClick={toggleNavigation}>Work</Link> <span className='nav-list-info'> My work experience and history </span>
+            <Link to="/projects" className='nav-list-item' onClick={toggleNavigation}>Projects</Link> <span className='nav-list-info'> Passion dev projects  </span>
+            <Link to="/photography" className='nav-list-item' onClick={toggleNavigation}>Photography </Link> <span className='nav-list-info'> My photography portfolio </span>
+            under construction (links might not work) 
+            currently optimizing for mobile devices
           </ul>
           <div className='navigation-subcontainer'> 
 

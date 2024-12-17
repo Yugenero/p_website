@@ -34,6 +34,7 @@ function App() {
       <Router>
         <div className="App"> 
           {/** Header should always render */}
+        
           <Header />
             <Routes>
               <Route path="/" element={<Home/>}/>

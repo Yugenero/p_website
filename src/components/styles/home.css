@@ -127,6 +127,33 @@
     background-color: var(--primary-color-dark6);
 }
 
+@media (max-width: 500px) {
+    .home_text {
+        width: 90%;
+    } .home-text-poly0 {
+        height: 50%;
+        right: 180px;
+    } .home-text-poly1 {
+        height: 50%;
+        right: 160px;
+    } .home-text-poly2 {
+        height: 50%;
+        right: 140px;
+    } .home-text-poly3 {
+        height: 50%;
+        right: 120px;
+    } .home-text-poly4 {
+        height: 50%;
+        right: 100px;
+    } .home-text-poly5 {
+        height: 50%;
+        right: 80px;
+    } .home-text-poly6 {
+        height: 50%;
+        right: 60px;
+    }
+}
+
 .header-introduction {
     animation: slide-in-blurred-bottom 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
 } .header-information {

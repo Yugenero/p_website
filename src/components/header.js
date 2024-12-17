@@ -92,9 +92,9 @@ function NavigationButton() {
             under construction (links might not work) 
             currently optimizing for mobile devices
           </ul>
-          <div className='navigation-subcontainer'> 
-
-          </div>
+          {/**<div className='navigation-subcontainer'> 
+           * We dont need this right now
+          </div>**/}
       </div> : <></>}
       </>
     </>

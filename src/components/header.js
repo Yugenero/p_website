@@ -11,7 +11,7 @@ import { animateNavTextSlideIn, animateNavTextSlideOut, animateNavFadeIn } from 
 import './styles/header.css';
 import './styles/headerNavigation.css'
 
-// binary search algorith for literally no reason
+// binary search algorithm for literally no reason
 function binarySearch(arr, target) {
   let left = 0;
   let right = arr.length - 1;
@@ -84,11 +84,11 @@ function NavigationButton() {
       <>
       {isOpen? 
       <div className='navigation-container'>
-          <ul className='navigation-list-2'>
+          <ul className='navigation-list-2'> 
+            <Link to="/" className='nav-list-item' onClick={toggleNavigation}>Home</Link> <span className='nav-list-info'> Go back to the home page </span>
             <Link to="/about" className='nav-list-item' onClick={toggleNavigation}>About</Link> <span className='nav-list-info'> Infomation about me + hobbies </span>
             <Link to="/work" className='nav-list-item' onClick={toggleNavigation}>Work</Link> <span className='nav-list-info'> My work experience and history </span>
             <Link to="/projects" className='nav-list-item' onClick={toggleNavigation}>Projects</Link> <span className='nav-list-info'> Passion dev projects  </span>
-            <Link to="/photography" className='nav-list-item' onClick={toggleNavigation}>Photography </Link> <span className='nav-list-info'> My photography portfolio </span>
             under construction (links might not work) 
             currently optimizing for mobile devices
           </ul>

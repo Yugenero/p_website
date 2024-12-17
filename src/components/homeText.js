@@ -56,7 +56,7 @@ const HomeText = () => {
             className='header-introduction-typer'
           />
         </div>
-
+        
         {/**<ParticlesComponent id='home_particles_component'/>**/}
       
         <div className="state-button" onClick={scrollToAboutMe} variant='h6' align='center' fontWeight={300}>

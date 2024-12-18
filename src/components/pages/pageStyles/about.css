@@ -8,3 +8,8 @@
 	min-height: 100vh;
 	background-color: var(--primary-color-dark);
 }
+
+.random-japanese-text {
+	font-size: 4rem;
+	color: var(--primary-color-light2);
+}

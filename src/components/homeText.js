@@ -56,9 +56,14 @@ const HomeText = () => {
             className='header-introduction-typer'
           />
         </div>
-        
+
         {/**<ParticlesComponent id='home_particles_component'/>**/}
       
+
+        {/** state button for future use. the main feature of this button is that it will 
+         * scroll to the different sections of the page interactively and let the user know 
+         * visually which section they are on
+         */}
         <div className="state-button" onClick={scrollToAboutMe} variant='h6' align='center' fontWeight={300}>
           <svg className="arrows">
               <div className="line"></div>  

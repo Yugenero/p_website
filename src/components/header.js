@@ -84,6 +84,7 @@ function NavigationButton() {
       <>
       {isOpen? 
       <div className='navigation-container'>
+        <div className='navigation-subcontainer'>
           <ul className='navigation-list-2'> 
             <Link to="/" className='nav-list-item' onClick={toggleNavigation}>Home</Link> <span className='nav-list-info'> Go back to the home page </span>
             <Link to="/about" className='nav-list-item' onClick={toggleNavigation}>About</Link> <span className='nav-list-info'> Infomation about me + hobbies </span>
@@ -92,9 +93,10 @@ function NavigationButton() {
             under construction (links might not work) 
             currently optimizing for mobile devices
           </ul>
-          {/**<div className='navigation-subcontainer'> 
+          {/**<div className='navigation-subcontainer2'> 
            * We dont need this right now
           </div>**/}
+        </div>
       </div> : <></>}
       </>
     </>

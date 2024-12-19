@@ -7,9 +7,20 @@
 	width: 100%;
 	min-height: 100vh;
 	background-color: var(--primary-color-dark);
+	font-size: 1.5rem;
+	color: var(--primary-color-light2);
 }
 
 .random-japanese-text {
 	font-size: 4rem;
 	color: var(--primary-color-light2);
+}
+
+.photography-link {
+	color: var(--primary-color-light);
+	text-decoration: none;
+} .photography-link:hover {
+	text-decoration: underline;
+} .photography-link:visited {
+	color: var(--primary-color-light);
 }

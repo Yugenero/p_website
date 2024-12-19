@@ -5,8 +5,8 @@ function tileFadeIn() {
 	animejs({
 		targets: '.photo-item',
 		opacity: [0, 1],
-		easing: 'easeInOutQuad',
-		delay: animejs.stagger(100),
+		translateY: [-50, 0],
+		delay: animejs.stagger(10),
 	})
 }
 

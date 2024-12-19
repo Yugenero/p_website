@@ -5,9 +5,8 @@ import './pageStyles/about.css';
 const AboutPage = () => {
   return (
     <div className='about-page-container'>
-      <div>Welcome to the about page</div>
-      <Link to="/photography" className='photography-page-link'>photography</Link>
-      <div className='random-japanese-text'>ありがとうございますね</div>
+      <div>Welcome to the about page (under construction)</div>
+      <Link to="/photography" className='photography-link'>photography</Link>
     </div>
   )
 }

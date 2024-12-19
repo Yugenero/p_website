@@ -14,8 +14,8 @@
 	columns: 5 300px;
 	column-gap: 0.6rem;
 	row-gap: 0.6rem;
-	width: 80%;
-	margin: 0 auto;
+	width: 70%;
+	margin: 5% auto;
 	padding: 2rem;
   }
   
@@ -23,12 +23,13 @@
 	width: 100%;
 	margin: 3px;
 	break-inside: avoid;
-	border-radius: 2px;
+	border-radius: 5px;
 	transition: transform 0.3s ease;
   }
   
   .photo-item:hover {
-	transform: scale(1.02);
+	transform: scale(0.98);
+	z-index: 1;
 	cursor: pointer;
   }
   

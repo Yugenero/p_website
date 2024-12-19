@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import { ReactTyped } from 'react-typed';
 import { homeTextFadeIn } from './animations/text_animation';
 import { polySlideIn } from './animations/shapes';
-import './particles/particles.css'
 import './styles/home.css'; 
 import '../App.css';
 
@@ -22,8 +21,6 @@ const HomeText = () => {
     homeTextFadeIn();
     polySlideIn();  
   }, []);
-
-
 
 	return (
 		<div className='home_text_container'>

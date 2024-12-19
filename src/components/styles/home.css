@@ -70,6 +70,7 @@
     flex-direction: column;
     width: 60%;
     height: 40%;
+    border-radius: 5px;
     background-color: var(--primary-color-dark);
 } .home-text-poly1 {
     position: absolute;
@@ -79,6 +80,7 @@
     flex-direction: column;
     width: 60%;
     height: 40%;
+    border-radius: 5px;
     background-color: var(--primary-color-dark1);
 } .home-text-poly2 {
     position: absolute;
@@ -88,6 +90,7 @@
     flex-direction: column;
     width: 60%;
     height: 40%;
+    border-radius: 5px;
     background-color: var(--primary-color-dark2);
 } .home-text-poly3 {
     position: absolute;
@@ -97,6 +100,7 @@
     flex-direction: column;
     width: 60%;
     height: 40%;
+    border-radius: 4px;
     background-color: var(--primary-color-dark3);
 }.home-text-poly4 {
     position: absolute;
@@ -106,6 +110,7 @@
     flex-direction: column;
     width: 60%;
     height: 40%;
+    border-radius: 5px;
     background-color: var(--primary-color-dark4);
 }.home-text-poly5 {
     position: absolute;
@@ -115,6 +120,7 @@
     flex-direction: column;
     width: 60%;
     height: 40%;
+    border-radius: 5px;
     background-color: var(--primary-color-dark5);
 }.home-text-poly6 {
     position: absolute;
@@ -124,6 +130,7 @@
     flex-direction: column;
     width: 60%;
     height: 40%;
+    border-radius: 5px;
     background-color: var(--primary-color-dark6);
 }
 

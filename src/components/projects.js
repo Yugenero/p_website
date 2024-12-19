@@ -44,29 +44,40 @@ const projects = [
 
 const ProjectList = projects.map((projects) => {
 	return (
-		<div className="project_object_container">
+	  <div className="project_object_container">
 		<div className="project_object">
-			<div className="project_title">{projects.title}</div>
-			<div className="project_description">{projects.description}</div>
-			<Box sx={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
-			<IconButton className="project_link" component={Link} href={projects.link} target="_blank" rel="noopener noreferrer"
-				sx={{
-					color: 'var(--primary-color-light)',
-					padding: '0',
-					transition: '0.2s',
-					'&:hover': {
-					color: 'var(--accent-color-gh)',
-					transform: 'scale(1.1)',
-					},
-				}}>
-				<GitHubIcon />
-				<Typography variant="body1" sx={{ ml: 1 }}> GitHub</Typography>
+		  <div className="project_title">{projects.title}</div>
+		  <div className="project_description">{projects.description}</div>
+		  <Box sx={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
+			<IconButton 
+			  className="project_link" 
+			  component={Link} 
+			  href={projects.link} 
+			  target="_blank" 
+			  rel="noopener noreferrer"
+			  sx={{
+				color: 'var(--primary-color-light)',
+				padding: '0',
+				transition: 'all 0.2s ease',
+				'&:hover': {
+				  color: 'var(--white) !important',
+				  transform: 'scale(0.9)',
+				  '& .MuiTypography-root': {
+					color: 'var(--white)'
+				  }
+				},
+			  }}
+			>
+			  <GitHubIcon sx={{fontSize: '2rem'}}/>
+			  <Typography variant="body1" sx={{  ml: 1, fontSize: '1.1rem', color: 'inherit', fontFamily: 'var(--font-family-n27)'}} >
+				GitHub
+			  </Typography>
 			</IconButton>
-			</Box>
+		  </Box>
 		</div>
-		</div>
+	  </div>
 	);
-})
+  });
 
 
 const Projects = () => {

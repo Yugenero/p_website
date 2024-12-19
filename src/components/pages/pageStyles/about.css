@@ -1,4 +1,3 @@
-
 /** Under construction*/ 
 .about-page-container {
 	display: flex;
@@ -8,11 +7,6 @@
 	min-height: 100vh;
 	background-color: var(--primary-color-dark);
 	font-size: 1.5rem;
-	color: var(--primary-color-light2);
-}
-
-.random-japanese-text {
-	font-size: 4rem;
 	color: var(--primary-color-light2);
 }
 

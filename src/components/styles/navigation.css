@@ -16,6 +16,7 @@
 	margin: 10px 0;
 	padding: 0;
 } .navigation-list_small {
+	font-family: var(--font-family-n27);
 	font-size: 0.85em;
 	display: flex;
 	list-style: none;

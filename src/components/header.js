@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
-import { NavbarSmall } from './navigation';
-import { Button } from '@mui/material';
+import { NavbarText } from './navigation';
+import { Button} from '@mui/material';
 import { FontContext } from './fontContext';
 import { animateNavTextSlideIn, animateNavTextSlideOut, animateNavFadeIn } from './animations/text_animation';
 import './styles/header.css';
 import './styles/headerNavigation.css'
+import { Margin } from '@mui/icons-material';
 
 // binary search algorithm for literally no reason
 function binarySearch(arr, target) {
@@ -34,14 +35,13 @@ function binarySearch(arr, target) {
 
 const ChangeFontButton = ({ onClick }) => {
   return (
-    <Button onClick={onClick} variant="contained" color="primary"
-      sx={{ forceLowerdisplay: 'flex', position: 'absolute', right: '200px', backgroundColor: 'var(--primary-color-dark)',
-        fontFamily: 'Times New Roman', fontSize: '1.6em', color: 'var(--primary-color-light2)',
+    <Button onClick={onClick} color="primary"
+      sx={{ forceLowerdisplay: 'flex', position: 'absolute', right: '47%', backgroundColor: 'var(--primary-color-dark)',
+        fontFamily: 'Times New Roman', fontSize: '1em', color: 'var(--primary-color-light2)',
         '&:hover': {
           backgroundColor: 'var(--primary-color-dark)',
           color: 'var(--white)'
-        } }}>
-        f
+        } }}>Font
     </Button>
   );
 }
@@ -85,8 +85,7 @@ function NavigationButton() {
             <Link to="/about" className='nav-list-item' onClick={toggleNavigation}>About</Link> <span className='nav-list-info'> Infomation about me + hobbies </span>
             <Link to="/work" className='nav-list-item' onClick={toggleNavigation}>Work</Link> <span className='nav-list-info'> My work experience and history </span>
             <Link to="/projects" className='nav-list-item' onClick={toggleNavigation}>Projects</Link> <span className='nav-list-info'> Passion dev projects  </span>
-            under construction (links might not work) 
-            currently optimizing for mobile devices
+            under construction (some links might not work) 
           </ul>
           {/**<div className='navigation-subcontainer2'> 
            * We dont need this right now
@@ -106,12 +105,16 @@ function Header() {
   return (
     <div>
       <AppBar position="fixed" className="app_header" elevation={0}
-        sx={{ backgroundColor: "var(--primary-color-dark)" }}>
+        sx={{ 
+          backgroundColor: "var(--primary-color-dark)", 
+          borderBottom: '0.5px solid var(--primary-color)', 
+          zIndex: 1000
+        }}>
         <Box display="flex" justifyContent="center">
           <Toolbar sx={{ width: '70vw', justifyContent: 'space-between' }}>
             <NavigationButton />
-            <NavbarSmall className="app_header_nav" />
-            <ChangeFontButton className="change-font-button" onClick={changeFont} />
+            <NavbarText className="app_header_nav" />
+            {/**<ChangeFontButton className="change-font-button" onClick={changeFont} />**/}
           </Toolbar>
         </Box>
       </AppBar>

@@ -6,7 +6,7 @@ const AboutPage = () => {
   return (
     <div className='about-page-container'>
       <div>Welcome to the about page (under construction)</div>
-      <Link to="/photography" className='photography-link'>photography</Link>
+      <div> In the meantime, check out my <span><Link to="/photography" className='photography-link'>photography</Link></span> </div>
     </div>
   )
 }

@@ -8,9 +8,9 @@ const workExperiences = [
         location: "Atlanta, GA",
         date: "October 2024 - Present",
         title: "Software Engineer",
-        point1: "Consulting, Software QA and Development for Civic DX.",
+        point1: "Software QA and Development for Civic DX.",
         point2: "Developing application for ABM Industries to facilitate management of ABM assets and facilities with React, JavaScript, C#, and MongoDB.",
-        point3: "Spearheading Software QA and Testing for asset management application with AzureDevOps",
+        point3: "Spearheading Software QA and Testing for asset management application with Azure DevOps",
         description: "Developing internal tooling and Consulting for Civic DX. Currently developing an application for ABM Industries to facilitate the management of ABM assets and facilities using React.js, JavaScript, C#, and MongoDB."
     },
     {
@@ -73,7 +73,7 @@ const Work = () => {
                         borderColor: 'divider',
                         width: '200px',
                         color: 'var(--white)',
-                        fontFamily: 'var(--current-font)',
+                        fontFamily: 'var(--font-family-n27)',
                         textAlign: 'left',
                         '& .MuiTabs-indicator': {
                             backgroundColor: 'var(--white)',
@@ -88,8 +88,8 @@ const Work = () => {
                             sx={{ fontSize: '0.7em', 
                                 fontFamily: {
                                     xs: 'var(--font-family-ibm-plex-mono)',
-                                    lg: 'var(--font-family-inter)',
-                                    xl: 'var(--font-family-inter)',
+                                    lg: 'var(--font-family-ibm-plex-mono)',
+                                    xl: 'var(--font-family-ibm-plex-mono)',
                                 },
                                 textTransform: 'none', 
                                 justifyContent: 'flex-start',

@@ -4,6 +4,7 @@ import { homeTextFadeIn } from './animations/text_animation';
 import { polySlideIn } from './animations/shapes';
 import './styles/home.css'; 
 import '../App.css';
+import { Button } from '@mui/material';
 
 
 const HomeText = () => {
@@ -61,18 +62,22 @@ const HomeText = () => {
          * scroll to the different sections of the page interactively and let the user know 
          * visually which section they are on
          */}
-        <div className="state-button" onClick={scrollToAboutMe} variant='h6' align='center' fontWeight={300}>
-          <svg className="arrows">
-              <div className="line"></div>  
-              <path class="a1" d="M0 0 L15 16 L30 0"></path>
-              <path class="a2" d="M0 10 L15 26 L30 10"></path>
-              <path class="a3" d="M0 20 L15 36 L30 20"></path>
-          </svg>
+    <div className="select-button" onClick={scrollToAboutMe}>
+      <div className="select-button-container">
+            <div className="animated-arrow">
+              <span className="the-arrow -left">
+                <span className="shaft"></span>
+              </span>
+              <span className="main">
+                <span className="text">about me</span>
+                <span className="the-arrow -right">
+                  <span className="shaft"></span>
+                </span>
+              </span>
+            </div>
         </div>
-      </div>
-
-
-
+    </div>
+    </div>
     </div>
 	)
 }

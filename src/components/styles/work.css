@@ -5,7 +5,7 @@
 	align-items: center;
 	text-align: left;
 	width: 100%;
-	font-family: var(--current-font);
+	font-family: var(--font-family-n27);
 	color: var(--primary-color-light2);
 } .work_tabs_container {
 	display: flex;

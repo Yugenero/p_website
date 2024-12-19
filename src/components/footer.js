@@ -14,8 +14,8 @@ const Footer = () => {
         position: 'relative', // needs to be set to relative to avoid particles.js overlap
         width: '100vw', 
 		    height: '200px',
-        color: 'var(--primary-color-light2)',
-        zIndex: 1000,
+        color: 'var(--primary-color-light)',
+        zIndex: 999,
         py: 2 // padding top and bottom
       }}>
       <Box display="flex" justifyContent="center" height={'inherit'}>

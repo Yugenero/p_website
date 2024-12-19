@@ -1,9 +1,14 @@
 .app_header {
-	background-color: var(--primary-color-dark);
-} .app_header_navigation {
-	font-family: var(--current-font);
-	color: white;
-}
+	border-image: linear-gradient(
+	  to right,
+	  transparent 0%,
+	  var(--primary-color) 20%,
+	  var(--primary-color) 80%,
+	  transparent 100%
+	) 1;
+	border-bottom: 0.5px solid;
+  }
+
 
 @media (max-width: 500px) {
 	.app_header_navigation {

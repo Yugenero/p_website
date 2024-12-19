@@ -16,6 +16,7 @@
 }
 
 .signature {
+  font-family: var(--font-family-n27);
   writing-mode: vertical-rl;
   position: fixed;
   transform-origin: center;

@@ -15,7 +15,7 @@ const navLinkStyles = {
 		transition: '0.2s',
 		'&:hover': {
 		color: 'var(--white)',
-		transform: 'scale(1.2)',
+		transform: 'scale(0.9)',
 		},
 	}, 
 	icon: {
@@ -28,8 +28,42 @@ const navLinkStyles = {
 	},
 };
 
-const NavbarSmall = () => {
+const NavbarText = () => {
 
+	return (
+		<ul className="navigation-list_small">
+			<li className="navigation_link">
+				<IconButton component="a" href="/documents/RodriguezNelson.pdf" target="_blank" rel="noopener noreferrer"
+					sx={navLinkStyles.link} >
+					Resume
+				</IconButton>
+			</li>
+
+			<li className="navigation_item">
+				<IconButton component={Link} href="https://www.linkedin.com/in/nelson-rodriguez13/" target="_blank" rel="noopener noreferrer"
+					sx={navLinkStyles.link} >
+					LinkedIn
+				</IconButton>
+			</li>
+
+			<li className="navigation_item">
+				<IconButton component={Link} href="https://github.com/Yugenero" target="_blank" rel="noopener noreferrer"
+					sx={navLinkStyles.link} >
+					GitHub
+				</IconButton>
+			</li>
+
+			<li className="navigation_item">
+				<IconButton component={Link} href="mailto: neroxv1313@gmail.com" target="_blank" rel="noopener noreferrer"
+					sx={navLinkStyles.link} >
+					Email
+				</IconButton>
+			</li>
+		</ul>
+	)
+}
+
+const NavbarIcon = () => {
 	// tooltip states
 	const [tooltipOpen, setTooltipOpen] = useState({
 		font: false,
@@ -109,4 +143,4 @@ const NavbarSmall = () => {
 	)
 }
 
-export { NavbarSmall };
+export { NavbarText, NavbarIcon };

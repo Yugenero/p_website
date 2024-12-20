@@ -10,28 +10,27 @@
 	
 }
 .navigation-list {
-	font-size: 0.85em;
+	font-size: 0.3em;
 	display: flex;
 	list-style: none;
 	margin: 10px 0;
 	padding: 0;
 } .navigation-list_small {
 	font-family: var(--font-family-n27);
-	font-size: 0.85em;
+	font-size: 0.3em;
 	display: flex;
 	list-style: none;
 	margin: 10px 0;
 	padding: 0;
 }
 
-
-
 /**
  * Navigation Links
  */
-.navigation-link {
+ .navigation-link {
 	margin-right: 10px;
-	color: white;
+	font-size: 5em;
+	color: var(--primary-color-light);
 	text-decoration: none;
 } .navigation-link:hover {
 	background-color: white;
@@ -76,6 +75,12 @@
 	font-family: "Roboto Slab", serif;
 	font-weight: bold;
 	color: rgb(0, 128, 251);
+}
+
+@media (max-width: 770px) {
+	.navigation-link  {
+		font-size: 4em;
+	}
 }
 
 

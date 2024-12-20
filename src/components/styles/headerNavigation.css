@@ -40,6 +40,7 @@
 } .nav-list-item {
 	color: var(--white);
 	text-decoration: none;
+	
 	margin: 10px 0;
 	font-size: 4rem;
 	font-family: var(--font-family-ibm-plex-mono);

@@ -10,7 +10,6 @@ import { FontContext } from './fontContext';
 import { animateNavTextSlideIn, animateNavTextSlideOut, animateNavFadeIn } from './animations/text_animation';
 import './styles/header.css';
 import './styles/headerNavigation.css'
-import { Margin } from '@mui/icons-material';
 
 // binary search algorithm for literally no reason
 function binarySearch(arr, target) {

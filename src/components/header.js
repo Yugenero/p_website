@@ -33,6 +33,7 @@ function binarySearch(arr, target) {
   return -1;
 }
 
+
 const ChangeFontButton = ({ onClick }) => {
   return (
     <Button onClick={onClick} color="primary"
@@ -120,6 +121,9 @@ function Header() {
       </AppBar>
     </div>
   );
+
+
+  // export the header downb her this is going to be a little better now t
 }
 
 export default Header;

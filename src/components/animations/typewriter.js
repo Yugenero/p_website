@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+/* Old TypeWriter effect */
 const Typewriter = ({ text, delay, infinite }) => {
   const [currentText, setCurrentText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);

@@ -9,6 +9,17 @@
 	border-bottom: 0.5px solid;
   }
 
+a {
+	font-size: 0.2em;
+	color: var(--primary-color-light);
+	transition: 0.2s;
+}
+
+.navigation-item:hover {
+	color: var(--white);
+	transform: scale(0.9);
+}
+
 
 @media (max-width: 500px) {
 	.app_header_navigation {

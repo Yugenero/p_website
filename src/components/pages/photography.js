@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import { tileFadeIn } from '../animations/photographyPageAnimations';
 import './pageStyles/photography.css';
 
+/**
+ * Tile layout for the photography page using masonry grid
+ * @param {*} param0 
+ * @returns 
+ */
 const TileLayout = ({ photos }) => {
   return (
     <div className="masonry-grid-container">

@@ -11,6 +11,7 @@ import { Link } from '@mui/material';
 
 const navLinkStyles = {
 	link: {
+		fontSize: '0.8em',
 		color: 'var(--primary-color-light)',
 		transition: '0.2s',
 		'&:hover': {
@@ -33,31 +34,27 @@ const NavbarText = () => {
 	return (
 		<ul className="navigation-list_small">
 			<li className="navigation_link">
-				<IconButton component="a" href="/documents/RodriguezNelson.pdf" target="_blank" rel="noopener noreferrer"
-					sx={navLinkStyles.link} >
+				<a className="navigation-link" href="/documents/RodriguezNelson.pdf" target="_blank" rel="noopener noreferrer">
 					Resume
-				</IconButton>
+				</a>
 			</li>
 
 			<li className="navigation_item">
-				<IconButton component={Link} href="https://www.linkedin.com/in/nelson-rodriguez13/" target="_blank" rel="noopener noreferrer"
-					sx={navLinkStyles.link} >
+				<a className="navigation-link" href="https://www.linkedin.com/in/nelson-rodriguez13/" target="_blank" rel="noopener noreferrer" >
 					LinkedIn
-				</IconButton>
+				</a>
 			</li>
 
 			<li className="navigation_item">
-				<IconButton component={Link} href="https://github.com/Yugenero" target="_blank" rel="noopener noreferrer"
-					sx={navLinkStyles.link} >
+				<a className='navigation-link' href="https://github.com/Yugenero" target="_blank" rel="noopener noreferrer">
 					GitHub
-				</IconButton>
+				</a>
 			</li>
 
 			<li className="navigation_item">
-				<IconButton component={Link} href="mailto: neroxv1313@gmail.com" target="_blank" rel="noopener noreferrer"
-					sx={navLinkStyles.link} >
+				<a className="navigation-link" href="mailto: neroxv1313@gmail.com" target="_blank" rel="noopener noreferrer">
 					Email
-				</IconButton>
+				</a>
 			</li>
 		</ul>
 	)

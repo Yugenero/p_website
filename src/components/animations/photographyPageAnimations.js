@@ -20,14 +20,12 @@ function tileFadeOut() {
 	})
 }
 
-
-
 function tileSlideIn() {
 	animejs({
 		targets: '.photo-itme',
 		opacity: [0, 1],
-		duration: 10000,
-		translateY: [-50, 0],
+		duration: 10000, 
+		translateY: [-50, 0], 
 	})
 }
 

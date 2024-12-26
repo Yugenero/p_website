@@ -32,6 +32,18 @@
 	z-index: 1;
 	cursor: pointer;
   }
+
+.photography-loading-icon {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 100%;
+	font-family: var(--font-family-ibm-plex-mono);
+	color: white;
+
+}
   
   /* Responsive adjustments */
   @media (max-width: 1200px) {

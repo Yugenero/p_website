@@ -78,6 +78,7 @@
 	padding: 30px;
 } .skill_container:hover {
 	transform: scale(1.2);
+	color: black;
 
 }
 

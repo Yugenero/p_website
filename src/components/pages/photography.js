@@ -54,7 +54,7 @@ const Photography = () => {
       });
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className="photography-loading-icon">Loading...</div>;
   if (error) return <div>Error loading images: {error}</div>;
 
   return (

@@ -356,12 +356,12 @@
     left: 0;
 } .the-arrow.-left > .shaft {
     width: 0;
-    background-color: #000;
+    background-color: var(--primary-color-light);
 } 
 .the-arrow.-left > .shaft:before,
 .the-arrow.-left > .shaft:after {
+    background-color: var(--primary-color-light);
     width: 0;
-    background-color: #000;
 } .the-arrow.-left > .shaft:before {
     transform: rotate(0);
 } .the-arrow.-left > .shaft:after {
@@ -386,7 +386,8 @@
 } .the-arrow.-right > .shaft:after {
     transform: rotate(-40deg);
 } .the-arrow > .shaft {
-    background-color: #000;
+    background-color: var(--primary-color-light);
+
     display: block;
     height: 1px;
     position: relative;
@@ -397,7 +398,7 @@
 
 .the-arrow > .shaft:before,
 .the-arrow > .shaft:after {
-    background-color: #000;
+    background-color: var(--primary-color-light);
     content: '';
     display: block;
     height: 1px;

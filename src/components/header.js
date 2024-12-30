@@ -88,7 +88,7 @@ function NavigationButton() {
             under construction (some links might not work) 
           </ul>
           {/**<div className='navigation-subcontainer2'> 
-           * We dont need this right now
+           * We dont need this right \
           </div>**/}
         </div>
       </div> : <></>}

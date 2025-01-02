@@ -19,7 +19,12 @@
     align-self: center;
     margin-top: 175px;
     margin-bottom: 50px;
-} 
+} @media (min-width: 1079px) {
+    .home_page_intro {
+        margin-top: 225px;
+        margin-bottom: 255px;
+    }
+}
 
 /** Name **/
 .home_text_container {
@@ -464,3 +469,4 @@
 } .animated-arrow > .main > .the-arrow {
     position: relative;
 }
+

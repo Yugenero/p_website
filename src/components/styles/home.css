@@ -19,7 +19,7 @@
     align-self: center;
     margin-top: 175px;
     margin-bottom: 50px;
-} @media (min-width: 1079px) {
+} @media (max-width: 1079px) {
     .home_page_intro {
         margin-top: 225px;
         margin-bottom: 255px;

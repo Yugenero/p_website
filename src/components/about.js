@@ -27,7 +27,7 @@ const AboutMe = () => {
 				
 				My concentration in Information Networks 
 				and Media Applications gave me a robust foundation in subjects comprising <strong style={{color: 'white'}}>Algorithms & Data Structures, Applied Mathematics, AI/ML, 
-				Computer Networks, and Database Systems</strong>. 
+				Computer Networks, Software Engineering, and Database Systems</strong>. 
 				
 				<br/><br/>				
 				My passion for tech extends beyond coding; 

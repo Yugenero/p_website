@@ -41,7 +41,7 @@ const HomeText = () => {
           <ReactTyped 
             strings={[
               "Algorithms Expert and Problem Solver",
-              "Design-Minded Developer & Software QA @ Civic DX",
+              "Design-Minded Developer + Software Engineer @ Civic DX",
               "Georgia Tech CS Alumnus w/ Specialization in Information Networks",
               "Currently learning AI/ML in my free time",
               "Hardware Enthusaist and Coffee Connoisseur",

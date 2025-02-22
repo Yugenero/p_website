@@ -4,7 +4,6 @@ import { homeTextFadeIn } from './animations/text_animation';
 import { polySlideIn } from './animations/shapes';
 import './styles/home.css'; 
 import '../App.css';
-import { Button } from '@mui/material';
 
 
 const HomeText = () => {
@@ -25,13 +24,6 @@ const HomeText = () => {
 
 	return (
 		<div className='home_text_container'>
-      <div className="home-text-poly6"></div>
-      <div className="home-text-poly5"></div>
-      <div className="home-text-poly4"></div>
-      <div className="home-text-poly3"></div>
-      <div className="home-text-poly2"></div>
-      <div className="home-text-poly1"></div>
-      <div className="home-text-poly0"></div>
 
       <div className='home_text'>
         <p className="header-introduction_text"> Hey, I'm </p>
@@ -43,10 +35,10 @@ const HomeText = () => {
               "Algorithms Expert and Problem Solver",
               "Design-Minded Developer + Software Engineer @ Civic DX",
               "Georgia Tech CS Alumnus w/ Specialization in Information Networks",
-              "Currently learning AI/ML in my free time",
+              "Currently studying AI/ML in my free time",
               "Hardware Enthusaist and Coffee Connoisseur",
               "Avid Runner, Sim Racer, and Animal Lover",
-            ]} 
+            ]}
             typeSpeed={40} 
             backDelay={2500}
             cursorChar='|'

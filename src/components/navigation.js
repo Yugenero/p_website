@@ -79,12 +79,6 @@ const NavbarIcon = () => {
 		}, 200);
 	}
 
-	const handleMouseLeaveAfter = (key) => {
-		timeouts.current[key] = setTimeout((p) => {
-			return { ...p, [key]: true};
-		});
-	};
-
 	const handleMouseLeave = (key) => {
 		clearTimeout(timeouts.current[key]);
 		setTooltipOpen((prev) => ({...prev, [key]: false}));

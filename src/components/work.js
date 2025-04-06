@@ -8,9 +8,9 @@ const workExperiences = [
         location: "Atlanta, GA",
         date: "October 2024 - Present",
         title: "Software Engineer",
-        point1: "Software QA and Development for Civic DX.",
-        point2: "Developing application for ABM Industries to facilitate management of ABM assets and facilities with React, JavaScript, C#, and MongoDB.",
-        point3: "Spearheading Software QA and Testing for asset management application with Azure DevOps",
+        point1: "Software Engineer for CDX.",
+        point2: "Developing software for ABM Industries to facilitate management of ABM assets and facilities with React, JavaScript, C#, and MongoDB.",
+        point3: "Implementing Agile methodologies and DevOps practices with Azure DevOps for continuous integration and testing of asset management applications",
         description: "Developing internal tooling and Consulting for Civic DX. Currently developing an application for ABM Industries to facilitate the management of ABM assets and facilities using React.js, JavaScript, C#, and MongoDB."
     },
     {

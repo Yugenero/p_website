@@ -83,6 +83,7 @@ const NavbarIcon = () => {
 		clearTimeout(timeouts.current[key]);
 		setTooltipOpen((prev) => ({...prev, [key]: false}));
 	}
+	
 	return (
 		<ul className="navigation-list_small">
 

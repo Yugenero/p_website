@@ -32,12 +32,12 @@ const HomeText = () => {
         <div className='header-introduction-typer-container'>
           <ReactTyped 
             strings={[
-              "Algorithms Expert and Problem Solver",
-              "Design-Minded Developer + Software Engineer @ Civic DX",
+              "Algorithms Expert + Problem Solver",
+              "Design-Minded Developer + Software Engineer @ CDX",
               "Georgia Tech CS Alumnus w/ Specialization in Information Networks",
-              "Currently studying AI/ML in my free time",
+              "暇な時間に日本語を勉強しています.",
               "Hardware Enthusaist and Coffee Connoisseur",
-              "Avid Runner, Sim Racer, and Animal Lover",
+              "Avid Runner, Sim Racer, and Bookworm",
             ]}
             typeSpeed={40} 
             backDelay={2500}

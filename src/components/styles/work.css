@@ -19,12 +19,16 @@
 	font-size: 0.9em;
 	font-weight: 400;
 	padding-bottom: 40px;
-    width: 70%; /* Adjust width to auto to fit content */
-    display: inline-flex; /* Changed from flex to inline-flex */
-    position: relative; /* Ensure the pseudo-element positions relative to this */
+    width: 70%; 
+    display: inline-flex; 
+    position: relative; 
 	justify-content: space-between;
+	font-family: var(--current-font);
 	text-align: left;
 	color: var(--white);
+}
+.work_experience {
+	height: 20rem;
 }
 .my_work {
 	align-self: flex-end;
@@ -38,9 +42,9 @@
 .tab_panel {
 	display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Aligns content to the top */
-    height: 100%; /* Ensures the panel takes the full height */
-    overflow: auto; /* Add scroll if content overflows */
+    justify-content: flex-start; 
+    height: 100%; 
+    overflow: auto; 
 }
 
 .experience_title {
@@ -55,11 +59,11 @@
 	font-family: var(--current-font);
 }.experience_description {
 	margin-top: 0;
-    margin: 16px 0; /* Add some margin for spacing */
+    margin: 16px 0; 
 	padding: 0 1em;
-    font-size: 16px; /* Adjust font size as needed */
-    line-height: 1.5; /* Adjust line height for readability */
-	white-space: pre-wrap; /* Preserve whitespace and line breaks */
+    font-size: 16px; 
+    line-height: 1.5; 
+	white-space: pre-wrap; 
 	font-family: var(--current-font);
 } .experience_point {
 	margin-bottom: 1em;

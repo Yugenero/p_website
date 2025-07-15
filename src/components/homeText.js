@@ -32,12 +32,12 @@ const HomeText = () => {
         <div className='header-introduction-typer-container'>
           <ReactTyped 
             strings={[
-              "Algorithms Expert + Problem Solver",
+              "Seasoned Algorithms practitioner & Problem Solver",
               "Design-Minded Developer + Software Engineer @ CDX",
-              "Georgia Tech CS Alumnus w/ Specialization in Information Networks",
-              "暇な時間に日本語を勉強しています.",
               "Hardware Enthusaist and Coffee Connoisseur",
-              "Avid Runner, Sim Racer, and Bookworm",
+              "Georgia Tech CS Alumnus w/ Specialization in Information Networks",
+              "Avid Runner, Sim Racer, and Book Reader",
+              "暇な時間に日本語を勉強しています. (Currently studying Japanese in my free time)",
             ]}
             typeSpeed={40} 
             backDelay={2500}
@@ -50,10 +50,10 @@ const HomeText = () => {
         {/**<ParticlesComponent id='home_particles_component'/>**/}
       
 
-        {/** state button for future use. the main feature of this button is that it will 
-         * scroll to the different sections of the page interactively and let the user know 
-         * visually which section they are on
-         */}
+      {/** state button for future use. the main feature of this button is that it will 
+       * scroll to the different sections of the page interactively and let the user know 
+       * visually which section they are on
+       */}
     <div className="select-button" onClick={scrollToAboutMe}>
       <div className="select-button-container">
             <div className="animated-arrow">

@@ -34,23 +34,20 @@ const NavbarText = () => {
 	return (
 		<ul className="navigation-list_small">
 			<li className="navigation_link">
-				<a className="navigation-link" href="/documents/RodriguezNelson.pdf" target="_blank" rel="noopener noreferrer">
+				<a className="navigation-link" href="/documents/Nelson_Rodriguez_2025_Q3.pdf" target="_blank" rel="noopener noreferrer">
 					Resume
 				</a>
 			</li>
-
 			<li className="navigation_item">
 				<a className="navigation-link" href="https://www.linkedin.com/in/nelson-rodriguez13/" target="_blank" rel="noopener noreferrer" >
 					LinkedIn
 				</a>
 			</li>
-
 			<li className="navigation_item">
 				<a className='navigation-link' href="https://github.com/Yugenero" target="_blank" rel="noopener noreferrer">
 					GitHub
 				</a>
 			</li>
-
 			<li className="navigation_item">
 				<a className="navigation-link" href="mailto: neroxv1313@gmail.com" target="_blank" rel="noopener noreferrer">
 					Email
@@ -91,7 +88,7 @@ const NavbarIcon = () => {
 			<Tooltip title="Resume" placement="bottom" open={tooltipOpen.resume} TransitionComponent={Zoom}
 				componentsProps={{
 					tooltip: { sx: { backgroundColor: 'var(--primary-color-dark)', fontFamily: 'var(--current-font)', fontSize: '14px'}}}}>
-				<IconButton component="a" href="/documents/RodriguezNelson.pdf" target="_blank" rel="noopener noreferrer"
+				<IconButton component="a" href="/documents/Nelson_Rodriguez_2025_Q3.pdf" target="_blank" rel="noopener noreferrer"
 					sx={navLinkStyles.link}
 					onMouseEnter={() => handleMouseEnter('resume')}
 					onMouseLeave={() => handleMouseLeave('resume')}>

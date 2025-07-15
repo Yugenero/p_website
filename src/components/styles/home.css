@@ -18,7 +18,7 @@
     align-items: flex-start;
     align-self: center;
     margin-top: 175px;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 } @media (max-width: 1079px) {
     .home_page_intro {
         margin-top: 225px;
@@ -92,15 +92,12 @@
 .select-button {
     position: absolute;
     left: 15%;
-    bottom: 2rem;
+    bottom: 5rem; /* Increase this value to move it higher */
     width: auto;
     height: 40px;
     color: var(--primary-color-light2);
     font-size: 0.8em;
-    display: inline-flex;
-    align-items: center;
-    border: none;
-    background: none;
+    z-index: 1; /* Ensure proper stacking */
 }
 
 .select-button:hover {

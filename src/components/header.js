@@ -32,7 +32,6 @@ function binarySearch(arr, target) {
   return -1;
 }
 
-
 const ChangeFontButton = ({ onClick }) => {
   return (
     <Button onClick={onClick} color="primary"

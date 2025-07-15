@@ -6,21 +6,21 @@ const workExperiences = [
     {
         employer: "Civic DX",
         location: "Atlanta, GA",
-        date: "October 2024 - Present",
+        date: "October 2024 - July 2025",
         title: "Software Engineer",
-        point1: "Software Engineer for CDX.",
-        point2: "Developing software for ABM Industries to facilitate management of ABM assets and facilities with React, JavaScript, C#, and MongoDB.",
-        point3: "Implementing Agile methodologies and DevOps practices with Azure DevOps for continuous integration and testing of asset management applications",
-        description: "Developing internal tooling and Consulting for Civic DX. Currently developing an application for ABM Industries to facilitate the management of ABM assets and facilities using React.js, JavaScript, C#, and MongoDB."
+        point1: "Improved Civic DX platform navigation and data presentation by engineering dynamic, reusable React components that enhanced user experience.",
+        point2: "Led application state management and built a global data filtering system for an internal dashboarding app with React and C#, while delivering 10+ reusable UI components and dynamic routing integrated with backend APIs.",
+        point3: "Created scalable C# CRUD endpoints following SOLID and Clean Architecture principles to support Civic DX platform backend operations.",
+        description: "Delivering internal tooling and consulting for Civic DX, including a dashboarding application for ABM Industries built with React, C# .NET, and MongoDB, enhancing asset management, data visibility, and Agile delivery through Azure DevOps."
     },
     {
         employer: "eKlozet",
         location: "Atlanta, GA",
         date: "January 2022 - December 2022",
-        title: "Client-Facing Software Developer",
-        point1: "Spearheaded backend development of eKlozet iOS app with SQL; serving 10,000+ users",
+        title: "Contract Software Development Intern",
+        point1: "Spearheaded database development of eKlozet iOS app with SQL, serving 1000+ users",
         point2: "Developed collaborative-filtering algorithm for personalized outfit recommendations",
-        point3: "Designed and implemented SQL database for user CRUD functionality utilizing Git for version control",
+        point3: "Designed and developed SQL database and RESTAPI for CRUD functionality, utilizing Git for version control",
         description: "As a Client-Facing Software Developer for eKlozet, I collaborated with a team of student developers to create a sustainable fashion iOS mobile app for client Tanjuria Willis. My contributions included developing a collaborative-filtering algorithm for personalized outfit recommendations and designing a SQL database to manage user CRUD functionality, ultimately serving 10,000+ users. Additionally, I proficiently used Git/GitHub for code versioning, playing a role in coordinating team responsibilities, ensuring the successful completion of sprints and feature delivery."
     },
     {
@@ -59,7 +59,7 @@ const Work = () => {
     return (
         <div className="work_container">
             <div className="work_title">/experience</div>
-            <div style={{ display: 'flex', width: '70%' }}>
+            <div className="work_experience" style={{ display: 'flex', width: '70%' }}>
                 <MuiTabs
                     orientation="vertical"
                     variant="scrollable"

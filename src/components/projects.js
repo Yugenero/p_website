@@ -9,13 +9,12 @@ import './styles/projects.css'
 
 const projects = [
 	{
-		title: "eKlozet - Sustainable Fashion Mobile App",
-		description: `I developed a sustainable fashion iOS app with a student team using Agile 
-			methodology, Swift, and SQL, creating fashion screening functionality, an outfit recommendation 
-			algorithm, and dynamic clothing storage for 5000+ users. This project won 2nd place in the Fall 
-			2022 Georgia Tech CS Junior Design Capstone Expo out of 30+ teams.`,
-		link: "https://github.com/allisonfain08/team2120"
-	}, 
+		title: "Ikigai.ai Mobile Application (In Development)",
+		description: `A React Native mobile app designed to help users discover their life's purpose through the Japanese concept of Ikigai. 
+		Combines user-driven inputs with AI-powered insights to visualize passions, skills, and career alignment. Built with NativeWind for 
+		styling and Firebase for authentication. Currently in progress with a focus on user onboarding and AI-driven recommendations.`,
+		link: "https://github.com/Yugenero/Ikigai.ai"
+	},
 	{
 		title: "Nexus - Blogging Web App",
 		description: `I built a web application using React Hooks and Context API for state management to 
@@ -34,11 +33,12 @@ const projects = [
 		link: "https://github.com/Yugenero/RodriguezNelson_Simulator"
 	}, 
 	{
-		title: "Ongoing - NLP Sentiment Analysis",
-		description: `Exploritory youtube content + comments analysis using NLP; a one stop shop to acquire a deeper 
-			insight into the commments on a video and how they resonant with the actual content from the youtube video. Currently
-			In progress.`,
-		link: "https://github.com/fmartinez32/Youtube_Content_NLP"
+		title: "eKlozet - Sustainable Fashion Mobile App",
+		description: `I developed a sustainable fashion iOS app with a student team using Agile 
+			methodology, Swift, and SQL, creating fashion screening functionality, an outfit recommendation 
+			algorithm, and dynamic clothing storage for 5000+ users. This project won 2nd place in the Fall 
+			2022 Georgia Tech CS Junior Design Capstone Expo out of 30+ teams.`,
+		link: "https://github.com/allisonfain08/team2120"
 	}, 
 ]
 

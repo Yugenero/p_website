@@ -11,27 +11,6 @@ import { animateNavTextSlideIn, animateNavTextSlideOut, animateNavFadeIn } from 
 import './styles/header.css';
 import './styles/headerNavigation.css'
 
-// binary search algorithm for literally no reason
-function binarySearch(arr, target) {
-  let left = 0;
-  let right = arr.length - 1;
-  while (left <= right) {
-    let mid = Math.floor(right - left) / 2;
-
-    if (arr[mid] === target) {
-      return mid;
-    } else if (arr[mid] < target) {
-      left = mid + 1;
-    } else {
-      right = mid - 1;
-    }
-    if (right < left) {
-      return -1;
-    }
-  }
-  return -1;
-}
-
 const ChangeFontButton = ({ onClick }) => {
   return (
     <Button onClick={onClick} color="primary"

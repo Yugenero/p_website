@@ -32,7 +32,7 @@ const HomeText = () => {
         <div className='header-introduction-typer-container'>
           <ReactTyped 
             strings={[
-              "Seasoned Algorithms practitioner & Problem Solver",
+              "Algorithms practitioner & Problem Solver",
               "Design-Minded Developer + Software Engineer @ CDX",
               "Hardware Enthusaist and Coffee Connoisseur",
               "Georgia Tech CS Alumnus w/ Specialization in Information Networks",

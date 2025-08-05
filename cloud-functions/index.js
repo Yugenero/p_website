@@ -3,7 +3,7 @@
  */
 const { Storage } = require('@google-cloud/storage');
 
-exports.getPhotos = async (req, res) => {
+exports.getPhotos = async (res) => {
   const storage = new Storage();
   const bucketName = process.env.GOOGLE_CLOUD_BUCKET_NAME;
 
@@ -21,6 +21,7 @@ exports.getPhotos = async (req, res) => {
     res.json(photos);
   } catch (error) {
     console.error('Detailed error:', error);
+    console.log("Detailed error for user", error);
     res.status(500).json({ error: error.message });
   }
 };

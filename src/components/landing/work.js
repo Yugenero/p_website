@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Tabs as MuiTabs, Tab, Box, Typography } from '@mui/material';
-import './styles/work.css';
+import '../styles/work.css';
 
 const workExperiences = [
     {

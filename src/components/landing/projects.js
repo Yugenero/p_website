@@ -1,11 +1,9 @@
-import React from "react";
 import { Link } from '@mui/material';
 import Typography from "@mui/material/Typography";
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import GitHubIcon from "@mui/icons-material/GitHub";
-import LinkIcon from '@mui/icons-material/Link';
-import './styles/projects.css'
+import '../styles/projects.css'
 
 const projects = [
 	{

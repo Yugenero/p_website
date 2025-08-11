@@ -1,8 +1,8 @@
 import React from 'react';
-import HomeText from '../homeText';
-import AboutMe from '../about';
-import Work from '../work';
-import Projects from '../projects';
+import HomeText from '../landing/homeText';
+import AboutMe from '../landing/about';
+import Work from '../landing/work';
+import Projects from '../landing/projects';
 import '../styles/home.css';
 
 const Home = () => {

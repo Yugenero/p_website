@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { ReactTyped } from 'react-typed';
-import { homeTextFadeIn } from './animations/text_animation';
-import { polySlideIn } from './animations/shapes';
-import './styles/home.css'; 
-import '../App.css';
+import { homeTextFadeIn } from '../animations/text_animation';
+import { polySlideIn } from '../animations/shapes';
+import '../styles/home.css'; 
+import '../../App.css';
 
 
 const HomeText = () => {

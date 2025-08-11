@@ -1,15 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Squash as Hamburger } from 'hamburger-react'
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
-import { NavbarText } from './navigation';
+import { NavbarText } from '../landing/navigation';
 import { Button} from '@mui/material';
-import { FontContext } from './fontContext';
-import { animateNavTextSlideIn, animateNavTextSlideOut, animateNavFadeIn } from './animations/text_animation';
-import './styles/header.css';
-import './styles/headerNavigation.css'
+import { FontContext } from '../fontContext';
+import { animateNavTextSlideIn, animateNavTextSlideOut } from '../animations/text_animation';
+import '../styles/header.css'; 
+import '../styles/headerNavigation.css' 
 
 const ChangeFontButton = ({ onClick }) => {
   return (

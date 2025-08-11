@@ -1,7 +1,5 @@
-import React from "react";
-import './styles/about.css';
-import './styles/devicons.css';
-import Work from "./work";
+import '../styles/about.css';
+import '../styles/devicons.css';
 
 const AboutMe = () => {
 	return (

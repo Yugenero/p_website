@@ -10,7 +10,7 @@ const Home = () => {
 		<>
 		<div className="home_page">
 			<TracingBeam >
-			<hr className='break' /> <Intro/>
+			<Intro/>
 			<hr className='break'/> <AboutMe/>
 			<hr className='break'/> <Work />
 			<hr className='break'/> <Projects/>

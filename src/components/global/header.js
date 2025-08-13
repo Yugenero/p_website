@@ -4,24 +4,9 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
 import { NavbarText } from '../landing/navigation';
-import { Button} from '@mui/material';
 import { animateNavTextSlideIn, animateNavTextSlideOut } from '../animations/text_animation';
 import '../styles/header.css'; 
 import '../styles/headerNavigation.css' 
-
-const ChangeFontButton = ({ onClick }) => {
-  return (
-    <Button onClick={onClick} color="primary"
-      sx={{ forceLowerdisplay: 'flex', position: 'absolute', right: '47%', backgroundColor: 'var(--primary-color-dark)',
-        fontFamily: 'Times New Roman', fontSize: '1em', color: 'var(--primary-color-light2)',
-        '&:hover': {
-          backgroundColor: 'var(--primary-color-dark)',
-          color: 'var(--white)'
-        } }}>Font
-    </Button>
-  );
-}
-
 
 function NavigationButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,18 +16,12 @@ function NavigationButton() {
 
   useEffect(() => {
     if (isOpen) {
-      // animateNavFadeIn();
       animateNavTextSlideIn();
     } if (!isOpen) {
       animateNavTextSlideOut();
     }
   }, [isOpen]);
 
-  /**
-   * This function returns the toggle button and conditionally renders
-   * the navigation based on the state of the button when its clicked
-   * @returns {JSX.Element}
-   */
   return (
     <>
       <div className='hamburger'>
@@ -63,9 +42,6 @@ function NavigationButton() {
             <Link to="/projects" className='nav-list-item' onClick={toggleNavigation}>Projects</Link> <span className='nav-list-info'> Passion dev projects  </span>
             under construction (some links might not work) 
           </ul>
-          {/**<div className='navigation-subcontainer2'> 
-           * We dont need this right \
-          </div>**/}
         </div>
       </div> : <></>}
       </>
@@ -84,10 +60,9 @@ function Header() {
           zIndex: 1000
         }}>
         <Box display="flex" justifyContent="center">
-          <Toolbar sx={{ width: '70vw', justifyContent: 'space-between' }}>
+          <Toolbar sx={{ width: '50vw', justifyContent: 'space-between' }}>
             <NavigationButton />
             <NavbarText className="app_header_nav" />
-            {/**<ChangeFontButton className="change-font-button" onClick={changeFont} />**/}
           </Toolbar>
         </Box>
       </AppBar>

@@ -6,7 +6,7 @@
 
 .break {
   margin: 70px auto;
-  width: 70%;
+  width: 50%;
   height: 0.5px; /* Adjusted to make the line extremely thin */
   background-color: var(--primary-color); /* Set the color of the hr */
   border: none;

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useTransform, useScroll, useSpring } from "framer-motion";
 import clsx from "clsx";
-import { CurrencyYenTwoTone } from "@mui/icons-material";
+import '../styles/traceBeam.css'
 
 export const TracingBeam = ({ children, className }) => {
   const ref = useRef(null);
@@ -30,16 +30,7 @@ export const TracingBeam = ({ children, className }) => {
 
   return (
     <>
-      <div
-        style={{
-          position: "fixed",
-            top: 0,
-            left: "48px",
-            pointerEvents: "none",
-            zIndex: 9999
-        }}
-        aria-hidden="true"
-      >
+      <div className="trace-path" aria-hidden="true">
         <svg
           viewBox={`0 0 20 ${svgHeight}`}
           width="20"

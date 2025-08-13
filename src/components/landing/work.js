@@ -8,8 +8,8 @@ const workExperiences = [
         location: "Atlanta, GA",
         date: "October 2024 - July 2025",
         title: "Software Engineer",
-        point1: "Improved Civic DX platform navigation and data presentation by engineering dynamic, reusable React components that enhanced user experience.",
-        point2: "Led application state management and built a global data filtering system for an internal dashboarding app with React and C#, while delivering 10+ reusable UI components and dynamic routing integrated with backend APIs.",
+        point1: "Advanced development of the Civic DX internal dashboard using React, C#/.NET, MongoDB, and Snowflake, enabling real-time visualization of key operations, business metrics, and asset data for 20,000+ ABM Industries contractors.",
+        point2: "Led application state management and built a global data filtering system for an internal dashboarding app with React and C#, while delivering 30+ reusable UI components and dynamic routing integrated with backend APIs.",
         point3: "Created scalable C# CRUD endpoints following SOLID and Clean Architecture principles to support Civic DX platform backend operations.",
         description: "Delivering internal tooling and consulting for Civic DX, including a dashboarding application for ABM Industries built with React, C# .NET, and MongoDB, enhancing asset management, data visibility, and Agile delivery through Azure DevOps."
     },
@@ -59,7 +59,7 @@ const Work = () => {
     return (
         <div className="work_container">
             <div className="work_title">/experience</div>
-            <div className="work_experience" style={{ display: 'flex', width: '70%' }}>
+            <div className="work_experience" style={{ display: 'flex', width: '50%' }}>
                 <MuiTabs
                     orientation="vertical"
                     variant="scrollable"

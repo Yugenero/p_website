@@ -1,6 +1,7 @@
 :root{
-
 /** Font Sizes **/
+  /** Root Size **/
+  font-size: 16px;
   --font-small: 10px;
   --font-medium: 14px;
   --font-large: 16px;
@@ -12,12 +13,9 @@
 	--primary-color: rgb(50, 50, 50); 
 
   /** Variations of black */
-  --primary-color-dark: #080808; /* OpenAI black */
-  --primary-color-dark2: rgb(16, 16, 16);
+  --primary-color-dark: #000000; /* New OpenAI black */
+  --primary-color-dark2: #080808; /* Old OpenAI black */
   --primary-color-dark3: rgb(20, 20, 20);
-  --primary-color-dark4: rgb(25, 25, 25);
-  --primary-color-dark5: rgb(30, 30, 30);
-  --primary-color-dark6: rgb(35, 35, 35);
   --primary-color-light: rgb(100, 100, 100);
   --primary-color-light2: rgb(150, 150, 150);
   --accent-color-red: rgb(200, 0, 0);
@@ -26,7 +24,7 @@
   --accent-color-yellow: rgb(255, 200, 0);
   --accent-color-gt: rgb(179, 163, 105);
   --accent-color-gh: rgb(45, 186, 78);
-  background-color: #080808;
+  --background-color: #080808;
 }
 
 /* font families for website */

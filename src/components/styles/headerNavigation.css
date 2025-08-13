@@ -3,7 +3,7 @@
 .hamburger {
   z-index: 1002;
 } .hamburger:hover .line {
-    stroke: var(--white);
+    stroke: white;
 }
 
 .navigation-container {
@@ -23,7 +23,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 70%;
+	width: 100%;
 } 
 /** navigation list with respective links */
 .navigation-list-2 {
@@ -37,7 +37,7 @@
 	padding: 0;
 	width: 50%;
 } .nav-list-item {
-	color: var(--white);
+	color: white;
 	text-decoration: none;
 	margin: 10px 0;
 	font-size: 4rem;
@@ -45,7 +45,7 @@
   } .nav-list-item:hover {
 	text-decoration: underline;
   } .nav-list-item:visited {
-	color: var(--white);
+	color: white;
   } .nav-list-info {
 	color: var(--primary-color-light);
 	font-family: var(--font-family-text);
@@ -73,9 +73,9 @@
   }
   
   .hamburger:hover .line {
-	stroke: var(--white);
+	stroke: white;
   } .ham:hover .line {
-	stroke: var(--white) !important;
+	stroke: white !important;
   }
 
   .ham4 .top {

@@ -15,10 +15,10 @@ const Footer = () => {
 		    height: '200px',
         color: 'var(--primary-color-light)',
         zIndex: 999,
-        py: 2 // padding top and bottom
+        py: 2 
       }}>
       <Box display="flex" justifyContent="center" height={'inherit'}>
-	  	<Toolbar sx={{width: '70%', justifyContent: "space-between"}}>
+	  	<Toolbar sx={{width: '50%', justifyContent: "space-between"}}>
           <div style={{display: 'flex', flexDirection: 'column', fontFamily: 'var(--current-font)'}}>
             <Typography className='t' variant="p" align="left" sx={{fontSize: { xs: '0.6em', sm: '0.8em' }, paddingBottom:'10px'}}>
               Built from scratch in 

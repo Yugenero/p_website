@@ -24,7 +24,6 @@ const Intro = () => {
 
 	return (
       <div className='intro-container'>
-        <></>
         <p className="header-introduction_text"> Hey, I'm </p>
         <p class="header-introduction_name"> Nelson Rodriguez </p>
 
@@ -45,7 +44,7 @@ const Intro = () => {
           />
         </div>
 
-        <div className="select-button" onClick={scrollToAboutMe}>
+        {/* <div className="select-button" onClick={scrollToAboutMe}>
           <div className="select-button-container">
                 <div className="animated-arrow">
                   <span className="the-arrow -left">
@@ -59,7 +58,7 @@ const Intro = () => {
                   </span>
                 </div>
             </div>
-        </div>
+        </div> */}
     </div>
 	)
 }

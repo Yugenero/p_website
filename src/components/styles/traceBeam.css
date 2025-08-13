@@ -1,0 +1,7 @@
+.trace-path {
+	position: fixed;
+	top: 0;
+	left: 200px;
+	pointer-events: none;
+	z-index: 1000;
+}

@@ -5,7 +5,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
 import { NavbarText } from '../landing/navigation';
 import { Button} from '@mui/material';
-import { FontContext } from '../fontContext';
 import { animateNavTextSlideIn, animateNavTextSlideOut } from '../animations/text_animation';
 import '../styles/header.css'; 
 import '../styles/headerNavigation.css' 
@@ -76,9 +75,6 @@ function NavigationButton() {
 }
 
 function Header() {
-
-  const { fontFamily, changeFont } = useContext(FontContext);
-
   return (
     <div>
       <AppBar position="fixed" className="app_header" elevation={0}

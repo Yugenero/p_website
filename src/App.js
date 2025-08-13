@@ -1,9 +1,8 @@
 import Header from './components/global/header';
 import Footer from './components/global/footer';
-import Home from './components/pages/home';
+import Home from './components/landing/home';
 
 import Signature from './components/global/signature';
-import { FontProvider } from './components/fontContext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import './components/styles/home.css';
@@ -17,7 +16,7 @@ import { ProjectsPage } from './components/pages/projects';
 function App() {
 
   return (
-    <FontProvider>
+    <>
       <style>
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
@@ -40,7 +39,7 @@ function App() {
           <Signature />
         </div> 
       </Router>
-    </FontProvider>
+    </>
   );
 };
 

@@ -1,9 +1,18 @@
 :root{
-  /* --primary-color-dark: rgb(12, 12, 12); previous black */
+
+/** Font Sizes **/
+  --font-small: 10px;
+  --font-medium: 14px;
+  --font-large: 16px;
+  --font-huge: 20px;
+  --font-HUGE: 24px;
+
+  /** Color Palette **/
   --current-font: 'IBM Plex Mono', monospace;
 	--primary-color: rgb(50, 50, 50); 
+
+  /** Variations of black */
   --primary-color-dark: #080808; /* OpenAI black */
-  --primary-color-dark1: rgb(12, 12, 12);
   --primary-color-dark2: rgb(16, 16, 16);
   --primary-color-dark3: rgb(20, 20, 20);
   --primary-color-dark4: rgb(25, 25, 25);
@@ -11,9 +20,6 @@
   --primary-color-dark6: rgb(35, 35, 35);
   --primary-color-light: rgb(100, 100, 100);
   --primary-color-light2: rgb(150, 150, 150);
-	--black: black;
-	--white: white;
-  --break-color: #eee;
   --accent-color-red: rgb(200, 0, 0);
   --accent-color-green: rgb(0, 200, 0);
   --accent-color-blue: rgb(0, 0, 200);
@@ -45,6 +51,7 @@
   src: url(https://cdn.jsdelivr.net/fontsource/fonts/geist-mono@latest/latin-400-normal.woff2) format('woff2'), url(https://cdn.jsdelivr.net/fontsource/fonts/geist-mono@latest/latin-400-normal.woff) format('woff');
 }
 
+/** Might have to remove the font face later */
 @font-face {
   font-family: 'N27';
   src: url('../public/fonts/n27/Webfont/n27-regular-webfont.woff2') format('woff2'),

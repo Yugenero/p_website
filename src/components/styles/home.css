@@ -1,22 +1,21 @@
-/**
- * Home page styles
-*/
-.home_page_ui {
+/* Home page styles */
+.home_page {
     display: flex;
     flex-direction: column;
     justify-content: center;
     font-size: calc(13px + 2vmin);
     color: white;
+    overflow-x: hidden;
     height: 100%;
     width: 100vw;
     min-height: 100vh;
 } .home_page_intro {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 60%;
+    margin: 175px auto 100px auto;
     height: 100%;
     align-items: flex-start;
-    align-self: center;
     margin-top: 175px;
     margin-bottom: 100px;
 } @media (max-width: 1079px) {
@@ -26,15 +25,17 @@
     }
 }
 
-/** Name **/
-.home_text_container {
+/** Introduction Container **/
+.intro-container {
     display: flex;
-    flex-direction: row;
-    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* 70% of the Homepage UI */
     text-align: left;
     font-family: var(--current-font);
 
 } .header-introduction_text {
+    width: 70%;
     position: relative;
     color: var(--primary-color-light2);
     font-size: 0.8em;
@@ -42,7 +43,7 @@
     margin: 0;
 } .header-introduction_name {
     position: relative;
-    width: 80%;
+    width: 70%;
     font-size: 3.2em;
     font-weight: 500;
     margin-top: 5px;
@@ -55,7 +56,7 @@
 /** React-Typed **/
 .header-introduction-typer-container {
     height: 125px;
-    width: 100%;
+    width: 70%;
 } .header-introduction-typer {
     width: 100%;
     position: relative;
@@ -64,15 +65,9 @@
     background: linear-gradient(270deg, var(--primary-color-dark2), var(--primary-color), 
                                         var(--primary-color-light), var(--primary-color-light2), 
                                         var(--primary-color-light));
-    animation: gradientAnimation 4s ease infinite; /* Apply the animation */
-    background-size: 200% 200%; /* Enlarge background size to ensure smooth transition */
+    animation: gradientAnimation 4s ease infinite; 
+    background-size: 200% 200%; 
     opacity: 1;
-}
-
-.home_text {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
 }
 
 .header-introduction {
@@ -84,7 +79,6 @@
     animation: slide-in-blurred-bottom 3s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
 }
 
-
 .select-button-container {
     border: none;
 }
@@ -92,7 +86,7 @@
 .select-button {
     position: absolute;
     left: 15%;
-    bottom: 5rem; /* Increase this value to move it higher */
+    bottom: 5rem; 
     width: auto;
     height: 40px;
     color: var(--primary-color-light2);
@@ -112,11 +106,7 @@
 	font-weight: bold;
 }
 
-/**
- * ----------------------------------------
- * animation slide-in-blurred-bottom
- * ----------------------------------------
- */
+/* animation slide-in-blurred-bottom */
  @-webkit-keyframes slide-in-blurred-bottom {
   0% {
     -webkit-transform: translateY(1000px) scaleY(2.5) scaleX(0.2);
@@ -186,14 +176,14 @@
     /* Work experience */
     .work_container {
         width: 100%;
-        padding: 0 10px; /* Add some padding for better spacing */
+        padding: 0 10px; 
     }
     .work_title {
-        font-size: 1em; /* Increase font size for better readability */
-        padding-bottom: 20px; /* Adjust padding */
+        font-size: 1em; 
+        padding-bottom: 20px;
     }
     .work_tabs_container {
-        flex-direction: column; /* Stack tabs and content vertically */
+        flex-direction: column; 
         width: 100%;
 
     }
@@ -204,27 +194,26 @@
         font-size: 1em;
         width: 50%;
     }.MuiTabs-vertical {
-        width: 100%; /* Make tabs full width */
-        border-right: none; /* Remove right border */
+        width: 100%; 
+        border-right: none; 
     }
 
     .work_tab_panel {
         width: 100%;
-        padding: 0; /* Remove left padding */
-        min-height: auto; /* Adjust min-height */
-        position: static; /* Change position to static */
+        padding: 0; 
+        min-height: auto; 
+        position: static; 
     }.tab_panel {
-        position: static; /* Change position to static */
+        position: static; 
     }.experience_title {
-        font-size: 0.9em; /* Increase title font size */
+        font-size: 0.9em; 
 
     } p.experience_description, p.experience_location {
-        font-size: 0.7em; /* Adjust description font size */
+        font-size: 0.7em; 
     }
     
 }
 
-/* On screens with width 1921px or more, increase font size */
 @media (min-width: 1921px) {
     .home_page_intro {
         margin-top: 300px;

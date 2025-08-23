@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
-import { NavbarText } from '../landing/navigation';
+import { NavbarText, NavbarIcon } from '../landing/navigation';
 import { animateNavTextSlideIn, animateNavTextSlideOut } from '../animations/text_animation';
 import '../styles/header.css'; 
 import '../styles/headerNavigation.css' 
@@ -24,14 +24,7 @@ function NavigationButton() {
 
   return (
     <>
-      <div className='hamburger'>
-        <svg class={`ham hamRotate ham4 ${isOpen ? 'active' : ''}`} viewBox="0 0 100 100" width="50" onClick={toggleNavigation}>
-          <path class="line top" d="m 70,33 h -40 c 0,0 -8.5,-0.149796 -8.5,8.5 0,8.649796 8.5,8.5 8.5,8.5 h 20 v -20" />
-          <path class="line middle" d="m 70,50 h -40" />
-          <path class="line bottom" d="m 30,67 h 40 c 0,0 8.5,0.149796 8.5,-8.5 0,-8.649796 -8.5,-8.5 -8.5,-8.5 h -20 v 20" />
-        </svg>
-      </div>
-      <>
+      <div className='header-name' onClick={ toggleNavigation }> Nelson Rodriguez </div>
       {isOpen? 
       <div className='navigation-container'>
         <div className='navigation-subcontainer'>
@@ -44,23 +37,24 @@ function NavigationButton() {
           </ul>
         </div>
       </div> : <></>}
-      </>
     </>
 
   );
 }
 
-function Header() {
+export const Header = () => {
   return (
     <div>
       <AppBar position="fixed" className="app_header" elevation={0}
         sx={{ 
-          backgroundColor: "var(--primary-color-dark)", 
-          borderBottom: '0.5px solid var(--primary-color)', 
+          backgroundColor: "transparent", 
+          justifyContent: 'space-between',
+          fontSize: 'var(--font-medium)',
+          padding: '1rem',
           zIndex: 1000
         }}>
         <Box display="flex" justifyContent="center">
-          <Toolbar sx={{ width: '50vw', justifyContent: 'space-between' }}>
+          <Toolbar sx={{ width: '100vw', justifyContent: 'space-between' }}>
             <NavigationButton />
             <NavbarText className="app_header_nav" />
           </Toolbar>
@@ -70,4 +64,11 @@ function Header() {
   );
 }
 
-export default Header;
+export const SideBar = () => {
+  return (
+    <div>
+      <NavbarIcon />
+      {/** Social Icons */}
+    </div>
+  )
+}

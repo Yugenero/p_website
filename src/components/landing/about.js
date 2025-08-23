@@ -6,42 +6,14 @@ const AboutMe = () => {
 		<div className="about_me_container">
 			<link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 
-			
 			<div className="about_me_title_container">
 				<span className="about_me_title">/about</span>
 			</div>
 
-			<div className="about_me_info">
-				Last Fall, I graduated with a {' '}
-				<a class="link-parchment" target="_blank" rel="noopener noreferrer" 
-					href="https://www.parchment.com/u/award/cdc63a097762a059103a9b3ce857a15e">
-					B.S. in Computer Science
-				</a> {' '}from the{' '} 
-				<a class="link-gatech" target="_blank" rel="noopener noreferrer" href="https://www.cc.gatech.edu/">
-					<strong class="georgia-tech">College of Computing</strong>
-				</a>{' '}
-				<strong class="georgia-tech" style={{color: 'var(--white)'}}> @{' '}
-				<a class="link-gatech" target="_blank" rel="noopener noreferrer" href="https://www.gatech.edu/">Georgia Tech</a></strong>. 
-				
-				My concentration in Information Networks 
-				and Media Applications gave me a robust foundation in subjects comprising <strong style={{color: 'white'}}>Algorithms & Data Structures, Applied Mathematics, AI/ML, 
-				Computer Networks, Software Engineering, and Database Systems</strong>. 
-				
-				<br/><br/>				
-				My passion for tech extends beyond coding; 
-				it’s about continuously <strong style={{color: 'var(--white)'}}>iterating</strong>, <strong style={{color: 'var(--white)'}}>improving</strong>, 
-				and <strong style={{color: 'var(--white)'}}>delivering</strong> impactful solutions that make 
-				a difference. As a full-stack software engineer, I am driven by the challenge of solving real problems and
-				generating tangible value. 
-				During my time at Georgia Tech, I collaborated on projects that served over users and competed in industry-recognized events, 
-				which sharpened my ability to thrive in fast-paced environments. Ultimately, I believe that the best 
-				outcomes emerge from diverse perspectives and collective effort. Whether it’s contributing 
-				to a team project or leading a development initiative,<span style={{color: 'white'}}> I embrace the opportunity to learn, 
-				teach others, and grow both as an engineer and a person</span>.
-
-				<br/><br/>
-
-			</div>
+			  <div className="about_me_info">
+                Since graduating from Georgia Tech, I’ve worked on full‑stack projects that scaled to thousands of users. At Civic Digital Experience (Civic DX) I was a primary engineer on the internal dashboard built with React, C#/.NET, MongoDB, and Snowflake — a system supporting 20,000+ ABM contractors. I’ve designed and implemented REST APIs, built collaborative‑filtering recommendation systems, and containerized developer environments with Docker to streamline onboarding and workflows for multiple engineers. 
+                <br/><br/>
+            </div>
 
 			<div className="about_me_skills_container">
 				<div className="about_me_skills_title">/about/skills</div>

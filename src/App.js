@@ -1,4 +1,4 @@
-import Header from './components/global/header';
+import { Header }  from './components/global/header';
 import Footer from './components/global/footer';
 import Home from './components/landing/home';
 
@@ -27,16 +27,16 @@ function App() {
 
       <Router>
         <div className="App">         
-          <Header />
+          <Header/>
             <Routes>
               <Route path="/" element={<Home/>}/>
               <Route path="/about" element={<AboutPage/>}/>
               <Route path="/work" element={<WorkPage/>}/>
               <Route path="/projects" element={<ProjectsPage/>}/>
-              <Route path="/photography" element={<Photography />}/>
+              <Route path="/photography" element={<Photography/>}/>
             </Routes>
           <Footer/>
-          <Signature />
+          <Signature/>
         </div> 
       </Router>
     </>

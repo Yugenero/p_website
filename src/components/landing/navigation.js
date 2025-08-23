@@ -9,48 +9,20 @@ import { Link } from '@mui/material';
 import '../styles/navigation.css';
 import '../styles/home.css';
 
-const navLinkStyles = {
-	link: {
-		fontSize: '0.8em',
-		color: 'var(--primary-color-light)',
-		transition: '0.2s',
-		'&:hover': {
-		color: 'var(--white)',
-		transform: 'scale(0.9)',
-		},
-	}, 
-	icon: {
-		width: '40px',
-		height: '40px',
-	},
-	iconFooter: {
-		width: '30px',
-		height: '30px',
-	},
-};
 const NavbarText = () => {
-
 	return (
-		<ul className="navigation-list_small">
+		<ul className="navigation-list">
 			<li className="navigation_link">
-				<a className="navigation-link" href="/documents/NelsonRodriguez2025.pdf" target="_blank" rel="noopener noreferrer">
-					Resume
-				</a>
+				<a className="navigation-link" href="/documents/NelsonRodriguez2025.pdf" target="_blank" rel="noopener noreferrer"> Resume </a>
 			</li>
 			<li className="navigation_item">
-				<a className="navigation-link" href="https://www.linkedin.com/in/nelson-rodriguez13/" target="_blank" rel="noopener noreferrer" >
-					LinkedIn
-				</a>
+				<a className="navigation-link" href="https://www.linkedin.com/in/nelson-rodriguez13/" target="_blank" rel="noopener noreferrer" > LinkedIn </a>
 			</li>
 			<li className="navigation_item">
-				<a className='navigation-link' href="https://github.com/Yugenero" target="_blank" rel="noopener noreferrer">
-					GitHub
-				</a>
+				<a className='navigation-link' href="https://github.com/Yugenero" target="_blank" rel="noopener noreferrer"> GitHub </a>
 			</li>
 			<li className="navigation_item">
-				<a className="navigation-link" href="mailto: neroxv1313@gmail.com" target="_blank" rel="noopener noreferrer">
-					Email
-				</a>
+				<a className="navigation-link" href="mailto: neroxv1313@gmail.com" target="_blank" rel="noopener noreferrer"> Email </a>
 			</li>
 		</ul>
 	)
@@ -81,7 +53,7 @@ const NavbarIcon = () => {
 	}
 	
 	return (
-		<ul className="navigation-list_small">
+		<ul className="navigation-list">
 			<li className="navigation_link">
 			<Tooltip title="Resume" placement="bottom" open={tooltipOpen.resume} TransitionComponent={Zoom}
 				componentsProps={{
@@ -135,5 +107,25 @@ const NavbarIcon = () => {
 		</ul>
 	)
 }
+
+const navLinkStyles = {
+	link: {
+		fontSize: '0.8em',
+		color: 'var(--primary-color-light)',
+		transition: '0.2s',
+		'&:hover': {
+		color: 'var(--white)',
+		transform: 'scale(0.9)',
+		},
+	}, 
+	icon: {
+		width: '40px',
+		height: '40px',
+	},
+	iconFooter: {
+		width: '30px',
+		height: '30px',
+	},
+};
 
 export { NavbarText, NavbarIcon };

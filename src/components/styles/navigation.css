@@ -9,35 +9,22 @@
 	font-family: var(--current-font);
 	
 }
-.navigation-list {
-	font-size: 0.3em;
+.navigation-list{
 	display: flex;
-	list-style: none;
-	margin: 10px 0;
-	padding: 0;
-} .navigation-list_small {
+	flex-direction: column;
+	text-align: right;
 	height: 100%;
-	justify-content: center;
-	align-items: center;
 	font-family: var(--font-family-n27);
-	font-size: 0.3em;
-	display: flex;
+	font-size: 1.2rem;
 	list-style: none;
-	padding: 0;
 }
-
-/**
- * Navigation Links
- */
- .navigation-link {
+.navigation-link {
 	height: inherit;
-	margin-left: 20px;
-	font-size: 4.5em;
+
 	color: var(--primary-color-light);
 	text-decoration: none;
 } .navigation-link:hover {
-	background-color: white;
-	color: black;
+	color: var(--white);
 } .navigation-link:visited {
 	text-decoration: none;
 }

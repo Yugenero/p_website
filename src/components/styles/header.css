@@ -1,10 +1,15 @@
-.MuiPaper-root .MuiPaper-elevation .MuiPaper-elevation0 .MuiAppBar-root .MuiAppBar-colorPrimary .MuiAppBar-positionFixed .app_header .mui-fixed .css-g9yxei-MuiPaper-root-MuiAppBar-root {
-	padding: 0 0;
-}
-
 .header-name {
+	color: var(--white);
 	font-size: var(--font-HUGE);
+	font-family: var(--current-font);
+	font-size: 1.2rem;
+	font-weight: 600;
 	margin-top: 2rem;
+	margin-left: 1rem;
+} .header-name:hover {
+	background-color: var(--white);
+	color: var(--black);
+	cursor: pointer;
 }
 
 /** navigation icon */
@@ -54,38 +59,7 @@
 	transition: transform 400ms;
 	user-select: none;
 }
-  
-/* Increase specificity for line color */
-.ham .line {
-	fill: none;
-	stroke: var(--primary-color-light2) !important; /* Force color */
-	stroke-width: 5;
-	stroke-linecap: round;
-	transition: 
-	  stroke 0.3s ease,
-	  stroke-dasharray 400ms,
-	  stroke-dashoffset 400ms,
-	  transform 400ms;
-  }
-  
-  .hamburger:hover .line {
-	stroke: white;
-  } .ham:hover .line {
-	stroke: white !important;
-  }
 
-  .ham4 .top {
-	stroke-dasharray: 40 121;
-  }
-  .ham4 .bottom {
-	stroke-dasharray: 40 121;
-  }
-  .ham4.active .top {
-	stroke-dashoffset: -68px;
-  }
-  .ham4.active .bottom {
-	stroke-dashoffset: -68px;
-  }
 /** Media Queries for Mobile Devices */
 @media (max-width: 500px) {
 	.navigation-container {

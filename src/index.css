@@ -18,7 +18,8 @@
   --primary-color-dark3: rgb(20, 20, 20);
   --primary-color-light: rgb(100, 100, 100);
   --primary-color-light2: rgb(200, 200, 200);
-  --primary-color-white: white;
+  --white: white;
+  --black: black;
   --accent-color-red: rgb(200, 0, 0);
   --accent-color-green: rgb(0, 200, 0);
   --accent-color-blue: rgb(0, 0, 200);

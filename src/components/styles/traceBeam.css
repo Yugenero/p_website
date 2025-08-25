@@ -1,7 +1,15 @@
-.trace-path {
+.trace-path-left {
 	position: fixed;
 	top: 0;
-	left: 0;
+	left: 16rem;
+	pointer-events: none;
+	z-index: 1000;
+}
+
+.trace-path-right {
+	position: fixed;
+	top: 0;
+	left: 76rem;
 	pointer-events: none;
 	z-index: 1000;
 }

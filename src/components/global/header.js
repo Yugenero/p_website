@@ -54,7 +54,9 @@ export const Header = () => {
           zIndex: 1000
         }}>
         <Box display="flex" justifyContent="flex-start">  {/* align content to left */}
-          <Toolbar sx={{ 
+          <Toolbar 
+            disableGutters
+            sx={{ 
               width: '100vw', 
               justifyContent: 'space-between',
               alignItems: 'flex-start',

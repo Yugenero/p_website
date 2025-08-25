@@ -1,25 +1,55 @@
+import { ReactTyped } from 'react-typed';
 import '../styles/about.css';
 import '../styles/devicons.css';
+import '../styles/home.css'; 
+import '../../App.css';
 
-const AboutMe = () => {
+export const Intro = () => {
 	return (
-		<div className="about_me_container">
+		<div className="about-container">
 			<link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 
-			<div className="about_me_title_container">
-				<span className="about_me_title">/about</span>
-			</div>
-
-			  <div className="about_me_info">
-                Since graduating from Georgia Tech, I’ve worked on full‑stack projects that scaled to thousands of users. At Civic Digital Experience (Civic DX) I was a primary engineer on the internal dashboard built with React, C#/.NET, MongoDB, and Snowflake — a system supporting 20,000+ ABM contractors. I’ve designed and implemented REST APIs, built collaborative‑filtering recommendation systems, and containerized developer environments with Docker to streamline onboarding and workflows for multiple engineers. 
+			{/**Brief Introduction About me + Work History */}
+			  <div className="about-info">
+				 <div className='header-introduction-typer-container'>
+					<ReactTyped 
+						strings={[
+						"Humanistic + User-centric Software Engineer",
+						"Algorithms Practitioner and Problem Solver",
+						"Computer Hardware Enthusaist and Coffee Connoisseur",
+						"Georgia Tech CS Alum w/ Specialization in Information Networks + Algorithms",
+						]}
+						typeSpeed={40} 
+						backDelay={2500}
+						cursorChar='|'
+						loop={true}
+						className='header-introduction-typer'
+          			/>
+        		</div>
+				{/** Change this to a more readable format later  */}
+				Hi, I’m Nelson — a Software Engineer passionate about building scalable systemss among other things.
+				Over the past year, I’ve worked on full-stack applications that scaled to thousands of users. 
+				Most recently @ <a className="about-link" href="https://civicdx.com" target="_blank" rel="noopener noreferrer"> Civic Digital Experience Inc. (Civic DX)</a>, 
+				I was a primary engineer on an internal financial/asset-management dashboard supporting 20,000+ ABM contractors. 
+				I built and optimized core features with React, C#/.NET, MongoDB, and Snowflake — including global dataset filtering pipelines, 
+				reusable UI components, and REST APIs. I also hold a Bachelors in Computer Science from the College of Computing @ <a className="about-link" href="https://www.gatech.edu" target="_blank" rel="noopener noreferrer">
+				<img
+					src="files/images/gt-logo.svg"
+					alt="Georgia Tech"
+					className="about-gt-logo"
+					width="28"
+					height="18"
+					style={{ verticalAlign: 'middle' }}
+                />  Georgia Tech</a>, 
+				where I built a robust foundation in Theoretical Algorithms, Computing Systems, and Mathematics. 
                 <br/><br/>
             </div>
 
-			<div className="about_me_skills_container">
-				<div className="about_me_skills_title">/about/skills</div>
-				<p className="about_me_info" style={{fontSize: '0.6em', width: '100%'}}>Here is an overview of just some of the languages and systems I work with</p>
+			<div className="about-skills-container">
+				<div className="landing-title">/about/skills</div>
+				<p className="about-info" style={{fontSize: '0.6em', width: '100%'}}>Here is an overview of just some of the languages and systems I work with</p>
 				<div className="container">
-				<div className="about_me_skills">
+				<div className="about-skills">
 					<div className="skill_container">
 						<i class="devicon-react-original"></i>
 						React.js
@@ -111,5 +141,3 @@ const AboutMe = () => {
 		</div>
 	);
 }
-
-export default AboutMe;

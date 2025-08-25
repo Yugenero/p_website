@@ -53,7 +53,7 @@ const TabPanel = ({ children, value, index, ...other }) => {
     );
 };
 
-const Work = () => {
+export const Work = () => {
     const [selectedTab, setSelectedTab] = useState(0);
 
     return (
@@ -127,5 +127,3 @@ const Work = () => {
         </div>
     );
 };
-
-export default Work;

@@ -1,3 +1,7 @@
+.MuiPaper-root .MuiPaper-elevation .MuiPaper-elevation0 .MuiAppBar-root .MuiAppBar-colorPrimary .MuiAppBar-positionFixed .app_header .mui-fixed .css-g9yxei-MuiPaper-root-MuiAppBar-root {
+	padding: 0 0;
+}
+
 .header-name {
 	font-size: var(--font-HUGE);
 	margin-top: 2rem;

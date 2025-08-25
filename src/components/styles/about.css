@@ -1,10 +1,12 @@
-.about_me_container {
+.about-container {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	text-align: left;
 	width: 100%;
+	margin-top: 12rem;
+	margin-bottom: 12rem;
 	font-family: var(--current-font);
 	color: var(--primary-color-light);
 } 
@@ -15,7 +17,7 @@
 	display: flex;
 	flex-direction: column;
 	width: 50%;
-} .about_me_title {
+} .about-title {
 	font-size: 0.9em;
 	font-weight: 400;
 	padding-bottom: 40px;
@@ -24,7 +26,7 @@
     position: relative; /* Ensure the pseudo-element positions relative to this */
 	justify-content: space-between;
 	color: var(--white);
-} .about_me_info {
+} .about-info {
 	font-size: 0.6em;
 	width: 50%;
 	z-index: 1;
@@ -37,11 +39,11 @@
 }
 
 /** Skills */
-.about_me_skills_container {
+.about-skills-container {
 	width: 50%;
 	display: flex;
 	flex-direction: column;
-} .about_me_skills_title {
+} .landing-title {
 	display: inline-flex;
 	position: relative;
 	font-size: inherit;
@@ -54,7 +56,7 @@
 	border: 1px solid var(--primary-color);
 	border-radius: 20px;
 	z-index: 0;
-} .about_me_skills {
+} .about-skills {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;

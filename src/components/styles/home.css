@@ -46,8 +46,7 @@
 
 /** React-Typed **/
 .header-introduction-typer-container {
-    height: 125px;
-    width: 50%;
+    height: 8rem;
 } .header-introduction-typer {
     width: 100%;
     position: relative;
@@ -163,7 +162,7 @@
         width: 100%;
         padding: 0 10px; 
     }
-    .work_title {
+    .landing-title {
         font-size: 1em; 
         padding-bottom: 20px;
     }

@@ -6,7 +6,6 @@ import Box from '@mui/material/Box';
 import { NavbarText, NavbarIcon } from '../landing/navigation';
 import { animateNavTextSlideIn, animateNavTextSlideOut } from '../animations/text_animation';
 import '../styles/header.css'; 
-import '../styles/headerNavigation.css' 
 
 function NavigationButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,19 +41,27 @@ function NavigationButton() {
   );
 }
 
+// ...existing code...
 export const Header = () => {
   return (
     <div>
       <AppBar position="fixed" className="app_header" elevation={0}
         sx={{ 
-          backgroundColor: "transparent", 
+          backgroundColor: "transparent",
           justifyContent: 'space-between',
           fontSize: 'var(--font-medium)',
-          padding: '1rem',
+          padding: '0.25rem 1rem',        
           zIndex: 1000
         }}>
-        <Box display="flex" justifyContent="center">
-          <Toolbar sx={{ width: '100vw', justifyContent: 'space-between' }}>
+        <Box display="flex" justifyContent="flex-start">  {/* align content to left */}
+          <Toolbar sx={{ 
+              width: '100vw', 
+              justifyContent: 'space-between',
+              alignItems: 'flex-start',
+              minHeight: '48px',    
+              paddingLeft: '0.5rem',
+              paddingRight: '0.5rem'
+            }}>
             <NavigationButton />
             <NavbarText className="app_header_nav" />
           </Toolbar>
@@ -63,6 +70,7 @@ export const Header = () => {
     </div>
   );
 }
+// ...existing code...
 
 export const SideBar = () => {
   return (

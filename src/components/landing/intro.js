@@ -6,7 +6,7 @@ import '../styles/home.css';
 import '../../App.css';
 
 
-const Intro = () => {
+export const Intro = () => {
 
   // Scroll Button
   function scrollToAboutMe() {
@@ -24,8 +24,7 @@ const Intro = () => {
 
 	return (
       <div className='intro-container'>
-        <p className="header-introduction_text"> Hey, I'm </p>
-        <p class="header-introduction_name"> Nelson Rodriguez </p>
+        <p className="header-introduction"> Hi, I'm </p>
 
         <div className='header-introduction-typer-container'>
           <ReactTyped 
@@ -63,4 +62,3 @@ const Intro = () => {
 	)
 }
 
-export default Intro;

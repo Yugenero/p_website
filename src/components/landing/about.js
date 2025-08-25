@@ -1,22 +1,43 @@
+import { ReactTyped } from 'react-typed';
 import '../styles/about.css';
 import '../styles/devicons.css';
+import '../styles/home.css'; 
+import '../../App.css';
 
-const AboutMe = () => {
+export const Intro = () => {
 	return (
 		<div className="about_me_container">
 			<link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 
-			<div className="about_me_title_container">
-				<span className="about_me_title">/about</span>
-			</div>
-
+			{/**Brief Introduction About me + Work History */}
 			  <div className="about_me_info">
-                Since graduating from Georgia Tech, I’ve worked on full‑stack projects that scaled to thousands of users. At Civic Digital Experience (Civic DX) I was a primary engineer on the internal dashboard built with React, C#/.NET, MongoDB, and Snowflake — a system supporting 20,000+ ABM contractors. I’ve designed and implemented REST APIs, built collaborative‑filtering recommendation systems, and containerized developer environments with Docker to streamline onboarding and workflows for multiple engineers. 
+				 <div className='header-introduction-typer-container'>
+					<ReactTyped 
+						strings={[
+						"Algorithms Practitioner & Intentional Problem Solver",
+						"Humanistic and Design-Minded Software Engineer",
+						"Hardware Enthusaist and Coffee Connoisseur",
+						"Georgia Tech CS Alumnus w/ Specialization in Information Networks",
+						"Avid Runner, Sim Racer, and Book Reader",
+						]}
+						typeSpeed={40} 
+						backDelay={2500}
+						cursorChar='|'
+						loop={true}
+						className='header-introduction-typer'
+          			/>
+        		</div>
+				{/** Change this to a more readable format later  */}
+					Since graduating from Georgia Tech, I’ve worked on full‑stack projects that scaled to thousands of users. 
+					At Civic Digital Experience (Civic DX) I was a primary engineer on the internal dashboard built with 
+					React, C#/.NET, MongoDB, and Snowflake — a system supporting 20,000+ ABM contractors. I’ve designed and 
+					implemented REST APIs, built collaborative‑filtering recommendation systems, and containerized developer 
+					environments with Docker to streamline onboarding and workflows for multiple engineers. 
                 <br/><br/>
             </div>
 
 			<div className="about_me_skills_container">
-				<div className="about_me_skills_title">/about/skills</div>
+				<div className="landing-title">/about/skills</div>
 				<p className="about_me_info" style={{fontSize: '0.6em', width: '100%'}}>Here is an overview of just some of the languages and systems I work with</p>
 				<div className="container">
 				<div className="about_me_skills">
@@ -111,5 +132,3 @@ const AboutMe = () => {
 		</div>
 	);
 }
-
-export default AboutMe;

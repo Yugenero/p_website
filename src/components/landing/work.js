@@ -58,7 +58,7 @@ const Work = () => {
 
     return (
         <div className="work_container">
-            <div className="work_title">/experience</div>
+            <div className="landing-title">/experience</div>
             <div className="work_experience" style={{ display: 'flex', width: '50%' }}>
                 <MuiTabs
                     orientation="vertical"

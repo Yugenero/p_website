@@ -5,7 +5,6 @@
 	align-items: center;
 	text-align: left;
 	width: 100%;
-
 	font-family: var(--current-font);
 	color: var(--primary-color-light);
 } 
@@ -24,7 +23,7 @@
 } .about-info {
 	font-size: 1.1rem;
 	margin-top: 12rem;
-	margin-bottom: 12rem;
+	margin-bottom: 14rem;
 	width: 50%;
 	z-index: 1;
 	color: var(--primary-color-light2);
@@ -32,8 +31,9 @@
 } .about-link {
 	font-weight: 600;
 	text-decoration: none;
+	color: var(--white);
 } .about-link:hover {
-	background-color: var(--white);
+	text-decoration: underline;
 } .about-link:visited {
 	color: var(--white);
 } .about-gt-logo {
@@ -54,9 +54,8 @@ img.about-gt-logo {
 	display: inline-flex;
 	position: relative;
 	font-size: inherit;
-	padding: 40px 0;
 	font-weight: 400;
-	font-size: 0.9em;
+	font-size: 1rem;
 	color: var(--white);
 } .container {
 	background-color: var(--primary-color-dark);

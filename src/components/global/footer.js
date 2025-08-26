@@ -21,8 +21,7 @@ const Footer = () => {
 	  	<Toolbar sx={{width: '50%', justifyContent: "space-between"}}>
           <div style={{display: 'flex', flexDirection: 'column', fontFamily: 'var(--current-font)'}}>
             <Typography className='t' variant="p" align="left" sx={{fontSize: { xs: '0.6em', sm: '0.8em' }, paddingBottom:'10px'}}>
-              Built from scratch in 
-              <a href='https://react.dev/' target='_blank' className='react_link'> <strong> React </strong></a> 
+              Built in <a href='https://react.dev/' target='_blank' className='react_link'> <strong> React </strong></a> 
               © Nelson Rodriguez 2025
             </Typography>
           </div>

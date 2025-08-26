@@ -2,7 +2,6 @@ import { Header }  from './components/global/header';
 import Footer from './components/global/footer';
 import Home from './components/landing/home';
 
-import Signature from './components/global/signature';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import './components/styles/home.css';
@@ -36,7 +35,6 @@ function App() {
               <Route path="/photography" element={<Photography/>}/>
             </Routes>
           <Footer/>
-          <Signature/>
         </div> 
       </Router>
     </>

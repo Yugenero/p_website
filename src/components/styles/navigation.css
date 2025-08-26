@@ -9,23 +9,25 @@
 	font-family: var(--current-font);
 	
 }
-.navigation-list{
+.navigation-list { 
 	display: flex;
 	flex-direction: column;
 	text-align: right;
-	height: 100%;
+	font-weight: 600;
 	font-family: var(--font-family-n27);
-	font-size: 1.2rem;
+	font-size: 1.1rem;
 	list-style: none;
 }
-.navigation-link {
+.nav-link-li {
+	margin-bottom: 0.5rem;
+}
+.nav-link {
 	height: inherit;
-
 	color: var(--primary-color-light);
 	text-decoration: none;
-} .navigation-link:hover {
+} .nav-link:hover {
 	color: var(--white);
-} .navigation-link:visited {
+} .nav-link:visited {
 	text-decoration: none;
 }
 

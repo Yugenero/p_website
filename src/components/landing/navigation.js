@@ -12,17 +12,17 @@ import '../styles/home.css';
 const NavbarText = () => {
 	return (
 		<ul className="navigation-list">
-			<li className="navigation_link">
-				<a className="navigation-link" href="/documents/NelsonRodriguez2025.pdf" target="_blank" rel="noopener noreferrer"> Resume </a>
+			<li className="nav-link-li">
+				<a className="nav-link" href="/documents/NelsonRodriguez2025.pdf" target="_blank" rel="noopener noreferrer"> Resume </a>
 			</li>
-			<li className="navigation_item">
-				<a className="navigation-link" href="https://www.linkedin.com/in/nelson-rodriguez13/" target="_blank" rel="noopener noreferrer" > LinkedIn </a>
+			<li className="nav-link-li">
+				<a className="nav-link" href="https://www.linkedin.com/in/nelson-rodriguez13/" target="_blank" rel="noopener noreferrer" > LinkedIn </a>
 			</li>
-			<li className="navigation_item">
-				<a className='navigation-link' href="https://github.com/Yugenero" target="_blank" rel="noopener noreferrer"> GitHub </a>
+			<li className="nav-link-li">
+				<a className='nav-link' href="https://github.com/Yugenero" target="_blank" rel="noopener noreferrer"> GitHub </a>
 			</li>
-			<li className="navigation_item">
-				<a className="navigation-link" href="mailto: neroxv1313@gmail.com" target="_blank" rel="noopener noreferrer"> Email </a>
+			<li className="nav-link-li">
+				<a className="nav-link" href="mailto: neroxv1313@gmail.com" target="_blank" rel="noopener noreferrer"> Email </a>
 			</li>
 		</ul>
 	)

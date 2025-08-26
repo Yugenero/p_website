@@ -9,7 +9,7 @@
 .trace-path-right {
 	position: fixed;
 	top: 0;
-	left: 76rem;
+	left: 77rem;
 	pointer-events: none;
 	z-index: 1000;
 }

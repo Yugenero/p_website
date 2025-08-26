@@ -16,9 +16,9 @@
 .landing-title {
 	display: flex;
 	flex-direction: column;
-	font-size: 0.9em;
+	font-size: 1.2rem;
 	font-weight: 400;
-	padding-bottom: 40px;
+	padding-bottom: 2rem;
     width: 50%; 
     display: inline-flex; 
     position: relative; 

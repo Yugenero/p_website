@@ -72,7 +72,7 @@ export const TracingBeamLeft = ({ children, className }) => {
 export const TracingBeamRight = ({ children, className }) => {
   const ref = useRef(null);
   const body = document.body;
-  const html = document.documentElement; 
+  const html = document.documentElement;
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const contentRef = useRef(null);
@@ -89,7 +89,7 @@ export const TracingBeamRight = ({ children, className }) => {
 
   useEffect(() => {
     setSvgHeight(pageHeight);
-  }, []);
+  }, [pageHeight]);
 
   const y1 = useSpring(useTransform(scrollYProgress, [0, 0.8], [50, svgHeight]), { stiffness: 500, damping: 90 });
   const y2 = useSpring(useTransform(scrollYProgress, [0, 1], [50, svgHeight]), { stiffness: 500, damping: 90 });
@@ -102,22 +102,23 @@ export const TracingBeamRight = ({ children, className }) => {
           width="20"
           height={svgHeight}
         >
+          {/* mirrored horizontal path (start at x=19 and draw leftwards) */}
           <motion.path
-            d={`M 1 0V -36 l 18 24 V ${svgHeight * 0.8} l -18 24V ${svgHeight}`}
+            d={`M 19 0V -36 l -18 24 V ${svgHeight * 0.8} l 18 24V ${svgHeight}`}
             fill="none"
             stroke="#9091A0"
             strokeOpacity="0.16"
             transition={{ duration: 10 }}
           />
           <motion.path
-            d={`M 1 0V -36 l 18 24 V ${svgHeight * 0.8} l -18 24V ${svgHeight}`}
+            d={`M 19 0V -36 l -18 24 V ${svgHeight * 0.8} l 18 24V ${svgHeight}`}
             fill="none"
-            stroke="url(#gradient)"
+            stroke="url(#gradient-right)"
             strokeWidth="1.25"
             transition={{ duration: 10 }}
           />
           <defs>
-            <motion.linearGradient id="gradient" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1={y1} y2={y2}>
+            <motion.linearGradient id="gradient-right" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1={y1} y2={y2}>
               <stop stopColor="#FFFFFF" stopOpacity="0" />
               <stop stopColor="#FFFFFF" />
               <stop offset="0.325" stopColor="#FFFFFF" />

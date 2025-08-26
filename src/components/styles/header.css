@@ -7,17 +7,10 @@
 	margin-top: 2rem;
 	margin-left: 1rem;
 } .header-name:hover {
-	background-color: var(--white);
-	color: var(--black);
 	cursor: pointer;
 }
 
 /** navigation icon */
-.hamburger {
-  z-index: 1002;
-} .hamburger:hover .line {
-    stroke: white;
-}
 .navigation-container {
     display: flex;
     flex-direction: row;

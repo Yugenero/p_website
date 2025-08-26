@@ -28,13 +28,17 @@
 	z-index: 1;
 	color: var(--primary-color-light2);
 	background-color: var(--primary-color-dark);
-} .about-link {
+} .about-link, .about-link-gt {
 	font-weight: 600;
 	text-decoration: none;
 	color: var(--white);
-} .about-link:hover {
+} .about-link-gt {
+	font-family: 'Roboto Slab';
+} 
+
+.about-link:hover, .about-link-gt:hover {
 	text-decoration: underline;
-} .about-link:visited {
+} .about-link:visited, .about-link-gt:visited {
 	color: var(--white);
 } .about-gt-logo {
 	vertical-align: middle;

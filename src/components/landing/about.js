@@ -27,12 +27,12 @@ export const Intro = () => {
           			/>
         		</div>
 				{/** Change this to a more readable format later  */}
-				Hi, I’m Nelson — a Software Engineer passionate about building scalable systemss among other things.
+				Hi, I’m Nelson — a Software Engineer who's passionate about building systems people actually use, among other things.
 				Over the past year, I’ve worked on full-stack applications that scaled to thousands of users. 
-				Most recently @ <a className="about-link" href="https://civicdx.com" target="_blank" rel="noopener noreferrer"> Civic Digital Experience Inc (Civic DX)</a>, 
-				I was a primary developer on an internal financial/asset-management dashboard supporting 20,000+ ABM contractors. 
+				Most recently, I was a primary developer on an internal financial/asset-management dashboard supporting 20,000+ ABM contractors
+				@ <a className="about-link" href="https://civicdx.com" target="_blank" rel="noopener noreferrer"> Civic Digital Experience Inc (Civic DX)</a>, where
 				I built and optimized core features with React, C#/.NET, MongoDB, and Snowflake — including global dataset filtering pipelines, 
-				reusable UI components, and REST APIs. I also hold a Bachelors in Computer Science from the College of Computing @ <a className="about-link" href="https://www.gatech.edu" target="_blank" rel="noopener noreferrer">
+				reusable UI components, and REST APIs. I also hold a B.S. in CS from <a className="about-link-gt" href="https://www.gatech.edu" target="_blank" rel="noopener noreferrer">
 				<img
 					src="files/images/gt-logo.svg"
 					alt="Georgia Tech"
@@ -46,7 +46,7 @@ export const Intro = () => {
             </div>
 
 			<div className="about-skills-container">
-				<div className="landing-title">/about/skills</div>
+				<div className="landing-title">/skills</div>
 				<p className="about-skills-info" style={{fontSize: '0.6em', width: '100%'}}>Here is an overview of just some of the languages and systems I work with</p>
 				<div className="container">
 				<div className="about-skills">

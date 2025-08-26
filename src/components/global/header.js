@@ -23,7 +23,7 @@ function NavigationButton() {
 
   return (
     <>
-      <div className='header-name' onClick={ toggleNavigation }> Nelson Rodriguez </div>
+      <div className='header-name'> Nelson Rodriguez </div>
       {isOpen? 
       <div className='navigation-container'>
         <div className='navigation-subcontainer'>

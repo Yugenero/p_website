@@ -70,7 +70,6 @@ img.about-gt-logo {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	/** Wrap the skills from top to bottom */
 	flex-wrap: wrap; 
 	width: 100%; 
 } .skill_container {
@@ -90,4 +89,14 @@ img.about-gt-logo {
 	padding: 30px;
 } .skill_container:hover {
 	transform: scale(1.2);
+}
+
+@media (max-width: 900px) {
+	.about-info {
+		width: 75%;
+		margin-top: 12rem;
+	}
+	.about-info-text { font-size: 1rem; }
+	.about-skills-container { width: 75%; }
+	.about-skills-info { font-size: 1rem !important;  }
 }

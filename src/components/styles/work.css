@@ -11,6 +11,8 @@
 	display: flex;
 	flex-direction: row;
 	width: 50%;
+} .work_tab_panel {
+	width: 50%;
 }
 
 .landing-title {
@@ -29,6 +31,7 @@
 }
 .work_experience {
 	height: 20rem;
+	width: 50%;
 }
 .my_work {
 	align-self: flex-end;

@@ -27,21 +27,26 @@ export const Intro = () => {
           			/>
         		</div>
 				{/** Change this to a more readable format later  */}
-				Hi, I’m Nelson — a Software Engineer who's passionate about building systems people actually use, among other things.
-				Over the past year, I’ve worked on full-stack applications that scaled to thousands of users. 
-				Most recently, I was a primary developer on an internal financial/asset-management dashboard supporting 20,000+ ABM contractors
-				@ <a className="about-link" href="https://civicdx.com" target="_blank" rel="noopener noreferrer"> Civic Digital Experience Inc (Civic DX)</a>, where
-				I built and optimized core features with React, C#/.NET, MongoDB, and Snowflake — including global dataset filtering pipelines, 
-				reusable UI components, and REST APIs. I also hold a B.S. in CS from <a className="about-link-gt" href="https://www.gatech.edu" target="_blank" rel="noopener noreferrer">
-				<img
-					src="files/images/gt-logo.svg"
-					alt="Georgia Tech"
-					className="about-gt-logo"
-					width="28"
-					height="18"
-					style={{ verticalAlign: 'middle' }}
-                />  Georgia Tech</a>, 
-				where I built a robust foundation in Theoretical Algorithms, Computing Systems, and Mathematics. 
+				<div className='about-info-text'>
+					Hi, I’m Nelson — a Software Engineer who's passionate about building systems people actually use, among other things.
+					Over the past year, I’ve worked on full-stack applications that scaled to thousands of users. 
+					Most recently, I was a primary developer on an internal financial/asset-management dashboard supporting 20,000+ ABM contractors
+					@ <a className="about-link" href="https://civicdx.com" target="_blank" rel="noopener noreferrer"> Civic Digital Experience Inc (Civic DX)</a>, where
+					I built and optimized core features with React, C#/.NET, MongoDB, and Snowflake — including global dataset filtering pipelines, 
+					reusable UI components, and REST APIs. 
+                	
+					<br/><br/>
+					I also hold a B.S. in CS from <a className="about-link-gt" href="https://www.gatech.edu" target="_blank" rel="noopener noreferrer">
+					<img
+						src="files/images/gt-logo.svg"
+						alt="Georgia Tech"
+						className="about-gt-logo"
+						width="28"
+						height="18"
+						style={{ verticalAlign: 'middle' }}
+					/>  Georgia Tech</a>, 
+					where I built a robust foundation in Theoretical Algorithms, Computing Systems, and Mathematics. 
+				</div>
                 <br/><br/>
             </div>
 

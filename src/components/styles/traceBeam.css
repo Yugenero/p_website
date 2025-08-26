@@ -13,3 +13,19 @@
 	pointer-events: none;
 	z-index: 1000;
 }
+
+@media (max-width: 900px) {
+  .trace-path-right {
+    display: none;
+  }
+  .trace-path-left {
+    left: 1rem; 
+    top: 0;
+    z-index: 1000;
+    transform: translateX(0);
+  }
+  .trace-path-left svg {
+    height: 100vh;
+    max-height: 100vh;
+  }
+}

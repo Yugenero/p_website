@@ -20,13 +20,13 @@ const Footer = () => {
       <Box display="flex" justifyContent="center" height={'inherit'}>
 	  	<Toolbar sx={{width: '50%', justifyContent: "space-between"}}>
           <div style={{display: 'flex', flexDirection: 'column', fontFamily: 'var(--current-font)'}}>
-            <Typography className='t' variant="p" align="left" sx={{fontSize: { xs: '0.6em', sm: '0.8em' }, paddingBottom:'10px'}}>
+            <Typography className='footer-info' variant="p" align="left" sx={{fontSize: { xs: '0.6em', sm: '0.8em' }, paddingBottom:'10px'}}>
               Built in <a href='https://react.dev/' target='_blank' className='react_link'> <strong> React </strong></a> 
               © Nelson Rodriguez 2025
             </Typography>
           </div>
           <Box sx={{ display: 'flex', width: '30%', justifyContent: 'center', fontFamily: 'var(--current-font)'}}>
-            <Typography variant="p" align="left" sx={{fontSize: { xs: '0.6em', sm: '0.8em' } , paddingBottom:'10px'}}>
+            <Typography className="footer-url" variant="p" align="left" sx={{fontSize: { xs: '0.6em', sm: '0.8em' } , paddingBottom:'10px'}}>
               nelsonrodriguez.me
             </Typography>
           </Box>

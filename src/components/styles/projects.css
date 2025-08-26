@@ -10,7 +10,16 @@
 	width: 100%;
 	font-family: var(--current-font);
 	color: var(--primary-color-light);
-} .projects_list {
+
+
+} .projects-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+} 
+
+.projects_list {
 	color: white;
 	font-size: 0.6em;
 	width: 50%;
@@ -60,4 +69,23 @@
 	color: var(--primary-color-light);
 } .project_link:visited {
 	color: var(--primary-color-light);
+}
+
+@media (max-width: 900px) {
+	.landing-title { width: 80%;}
+	.MuiBox-root, .css-f0tus0 { margin-top: 1rem; }
+	.project_title {
+		font-size: 1rem;
+		margin-bottom: 1rem;
+		font-weight: bold;
+	} 
+	.project_description {
+		font-size: 0.8rem;
+	} 
+	.projects_list {
+		width: 80%;
+	}
+	.project_object_container {
+		height: 20rem;
+	}
 }

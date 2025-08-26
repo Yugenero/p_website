@@ -81,9 +81,11 @@ const ProjectList = projects.map((projects) => {
 const Projects = () => {
 	return (
 		<div className="projects_container">
-			<div className="landing-title">/projects</div>
-			<div className="projects_list">
+			<div className='projects-wrapper'>
+				<div className="landing-title">/projects</div>
+				<div className="projects_list">
 				{ProjectList}
+			</div>
 			</div>
 		</div>
 	);

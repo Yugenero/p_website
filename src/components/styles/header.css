@@ -6,6 +6,7 @@
 	font-weight: 600;
 	margin-top: 2rem;
 	margin-left: 1rem;
+	user-select: none;
 } .header-name:hover {
 	cursor: pointer;
 }
@@ -30,7 +31,6 @@
 	align-items: center;
 	width: 100%;
 } 
-/** navigation list with respective links */
 .nav-list-item {
 	color: white;
 	text-decoration: none;
@@ -45,14 +45,6 @@
 	font-family: var(--font-family-text);
 }
 
-/** navigation icon */
-.ham {
-	cursor: pointer;
-	-webkit-tap-highlight-color: transparent;
-	transition: transform 400ms;
-	user-select: none;
-}
-
 /** Media Queries for Mobile Devices */
 @media (max-width: 500px) {
 	.navigation-container {
@@ -65,6 +57,12 @@
 }
 
 @media (max-width: 500px) {
+
+	.header-name { margin-left: 2rem; }
+	.nav-list-item { 
+		font-size: 5rem;
+	}
+
 	.app_header_navigation {
 		font-size: 0.5em;
 	} .app_header {

@@ -46,26 +46,19 @@
 }
 
 /** Media Queries for Mobile Devices */
-@media (max-width: 500px) {
+@media (max-width: 900px) {
 	.navigation-container {
 		height: 100%;
 		width: 90%;
 	}
-	.nav-list-item {
-		font-size: 2.8rem;
+	.nav-link {
+		font-size: 1rem;
 	}
 }
 
-@media (max-width: 500px) {
-
-	.header-name { margin-left: 2rem; }
-	.nav-list-item { 
-		font-size: 5rem;
-	}
-
-	.app_header_navigation {
-		font-size: 0.5em;
-	} .app_header {
-		font-size: 0.7em;
+@media (max-width: 900px) {
+	.header-name { 
+		font-size: 1rem;
+		margin-left: 2rem;
 	}
 }

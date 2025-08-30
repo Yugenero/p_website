@@ -72,7 +72,6 @@ export const Header = () => {
     </div>
   );
 }
-// ...existing code...
 
 export const SideBar = () => {
   return (

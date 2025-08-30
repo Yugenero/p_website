@@ -13,16 +13,16 @@ const NavbarText = () => {
 	return (
 		<ul className="navigation-list">
 			<li className="nav-link-li">
-				<a className="nav-link" href="/documents/NelsonRodriguez2025.pdf" target="_blank" rel="noopener noreferrer"> Resume </a>
+				<a className="nav-link" href="/documents/NelsonRodriguez2025.pdf" target="_blank" rel="noopener noreferrer"> 00. Resume </a>
 			</li>
 			<li className="nav-link-li">
-				<a className="nav-link" href="https://www.linkedin.com/in/nelson-rodriguez13/" target="_blank" rel="noopener noreferrer" > LinkedIn </a>
+				<a className="nav-link" href="https://www.linkedin.com/in/nelson-rodriguez13/" target="_blank" rel="noopener noreferrer" > 01. LinkedIn </a>
 			</li>
 			<li className="nav-link-li">
-				<a className='nav-link' href="https://github.com/Yugenero" target="_blank" rel="noopener noreferrer"> GitHub </a>
+				<a className='nav-link' href="https://github.com/Yugenero" target="_blank" rel="noopener noreferrer">  10. GitHub </a>
 			</li>
 			<li className="nav-link-li">
-				<a className="nav-link" href="mailto: neroxv1313@gmail.com" target="_blank" rel="noopener noreferrer"> Email </a>
+				<a className="nav-link" href="mailto: neroxv1313@gmail.com" target="_blank" rel="noopener noreferrer"> 11. Email </a>
 			</li>
 		</ul>
 	)

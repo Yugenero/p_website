@@ -12,7 +12,7 @@ import '../styles/home.css';
 const NavbarText = () => {
 	return (
 		<ul className="navigation-list">
-			<li className="nav-link-li">
+			<li className="nav-link-li"> 
 				<a className="nav-link" href="/documents/NelsonRodriguez2025.pdf" target="_blank" rel="noopener noreferrer"> 00. Resume </a>
 			</li>
 			<li className="nav-link-li">

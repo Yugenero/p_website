@@ -28,10 +28,10 @@ export const Intro = () => {
         		</div>
 				{/** Change this to a more readable format later  */}
 				<div className='about-info-text'>
-					Hi, I’m Nelson — a Software Engineer who's passionate about building systems people actually use, among other things.
+					Hi, I’m Nelson — a Software Engineer passionate about building systems that people actually use, among other things.
 					Over the past year, I’ve worked on full-stack applications that scaled to thousands of users. 
-					Most recently, I was a primary developer on an internal financial/asset-management dashboard supporting 20,000+ ABM contractors
-					@ <a className="about-link" href="https://civicdx.com" target="_blank" rel="noopener noreferrer"> Civic Digital Experience Inc (Civic DX)</a>, where
+					Most recently, I was a primary developer on an internal financial and asset-management dashboard supporting 20,000+ ABM contractors
+					@ <a className="about-link" href="https://civicdx.com" target="_blank" rel="noopener noreferrer"> CDX</a> where I where
 					I built and optimized core features with React, C#/.NET, MongoDB, and Snowflake — including global dataset filtering pipelines, 
 					reusable UI components, and REST APIs. 
                 	

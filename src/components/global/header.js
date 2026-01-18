@@ -1,6 +1,7 @@
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
@@ -71,7 +72,15 @@ const ExternalLink = styled('a')(({ theme }) => ({
   fontWeight: 600,
 }));
 
-export const Header = () => {
+const ThemeToggle = styled(Button)(({ theme }) => ({
+  padding: `${theme.spacing(0.75)} ${theme.spacing(1.5)}`,
+  minWidth: 'auto',
+  fontSize: '0.7rem',
+}));
+
+export const Header = ({ mode, onToggleTheme }) => {
+  const nextModeLabel = mode === 'light' ? 'Dark' : 'Light';
+
   return (
     <HeaderBar position="sticky" elevation={0}>
       <Toolbar disableGutters>
@@ -95,6 +104,13 @@ export const Header = () => {
             >
               Resume
             </ExternalLink>
+            <ThemeToggle
+              variant="outlined"
+              onClick={onToggleTheme}
+              aria-label={`Switch to ${nextModeLabel.toLowerCase()} mode`}
+            >
+              {nextModeLabel}
+            </ThemeToggle>
           </NavGroup>
         </HeaderInner>
       </Toolbar>

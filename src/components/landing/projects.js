@@ -85,21 +85,21 @@ const ProjectGrid = styled(Box)(({ theme }) => ({
 }));
 
 const ProjectCard = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.common.black,
-  color: theme.palette.common.white,
+  backgroundColor: theme.palette.text.primary,
+  color: theme.palette.background.default,
   padding: theme.spacing(4),
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
   minHeight: 240,
-  border: `1px solid ${theme.palette.grey[900]}`,
+  border: `1px solid ${theme.palette.divider}`,
   gap: theme.spacing(3),
 }));
 
 const ProjectLink = styled(Link)(({ theme }) => ({
   display: 'inline-block',
   marginTop: theme.spacing(2),
-  color: theme.palette.common.white,
+  color: theme.palette.background.default,
   textDecoration: 'none',
   textTransform: 'uppercase',
   letterSpacing: '0.12em',
@@ -108,7 +108,7 @@ const ProjectLink = styled(Link)(({ theme }) => ({
 }));
 
 const ProjectMetaItem = styled(InlineItem)(({ theme }) => ({
-  color: theme.palette.grey[300],
+  color: theme.palette.text.secondary,
 }));
 
 export default Projects;

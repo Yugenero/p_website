@@ -106,5 +106,5 @@ const PhotoItem = styled('img')(({ theme }) => ({
   width: '100%',
   marginBottom: theme.spacing(3),
   breakInside: 'avoid',
-  border: `1px solid ${theme.palette.grey[200]}`,
+  border: `1px solid ${theme.palette.divider}`,
 }));

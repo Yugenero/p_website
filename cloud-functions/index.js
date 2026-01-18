@@ -1,5 +1,5 @@
 /**
- * Custom Function for retrieving photos from Google Cloud Storage.
+ * Custom Function for retrieving personal photos from Google Cloud Storage.
  */
 const { Storage } = require('@google-cloud/storage');
 

@@ -25,9 +25,9 @@ export const Intro = () => {
                 strings={[
                   'Algorithms practitioner and intentional problem solver.',
                   'Humanistic, design-minded software engineer.',
-                  'Hardware enthusiast and coffee devotee.',
+                  'Hardware enthusiast and iced coffee lover.',
                   'Georgia Tech CS alum, information networks focus.',
-                  'Runner, sim racer, and reader.',
+                  'Runner, car enthusiast, and reader.',
                 ]}
                 typeSpeed={40}
                 backDelay={2600}

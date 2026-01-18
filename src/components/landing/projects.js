@@ -14,11 +14,11 @@ import {
 
 const projects = [
   {
-    title: 'Ikigai.ai Mobile Application',
+    title: 'Zenith - iOS Application',
     description:
       'React Native product helping users map purpose using structured prompts and AI-assisted insights. Focused on onboarding and recommendation flows.',
-    stack: ['React Native', 'Firebase', 'NativeWind'],
-    link: 'https://github.com/Yugenero/Ikigai.ai',
+    stack: ['React Native', 'Firebase', 'NativeWind', 'OpenAI Vector API'],
+    link: 'https://github.com/Yugenero/Zenith',
   },
   {
     title: 'Nexus Blogging Platform',

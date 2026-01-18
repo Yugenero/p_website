@@ -1,83 +1,22 @@
-:root{
-/** Font Sizes **/
-  /** Root Size **/
-  font-size: 16px;
-  --font-small: 10px;
-  --font-medium: 14px;
-  --font-large: 16px;
-  --font-huge: 20px;
-  --font-HUGE: 24px;
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
 
-  /** Color Palette **/
-  --current-font: 'IBM Plex Mono', monospace;
-	--primary-color: rgb(50, 50, 50); 
-
-  /** Variations of black */
-  --primary-color-dark: #000000; /* New OpenAI black */
-  --primary-color-dark2: #080808; /* Old OpenAI black */
-  --primary-color-dark3: rgb(20, 20, 20);
-  --primary-color-light: rgb(100, 100, 100);
-  --primary-color-light2: rgb(200, 200, 200);
-  --white: white;
-  --black: black;
-  --accent-color-red: rgb(200, 0, 0);
-  --accent-color-green: rgb(0, 200, 0);
-  --accent-color-blue: rgb(0, 0, 200);
-  --accent-color-yellow: rgb(255, 200, 0);
-  --accent-color-gt: rgb(179, 163, 105);
-  --accent-color-gh: rgb(45, 186, 78);
-  --background-color: #080808;
-}
-
-/* font families for website */
-@import url('https://fonts.googleapis.com/css2?family=Geist&display=swap');
 :root {
-  --font-family-text: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-family-n27: 'N27', sans-serif;
-  --font-family-gt: 'Roboto Slab', 'Roboto', sans-serif;
-  --font-family-ibm-plex-mono: 'IBM Plex Mono', monospace;
-  --font-family-geist: 'Geist Mono', sans-serif;
-  --font-family-playwrite: "Playwrite CA", cursive;
-  --font-family-georgia: "Georgia", serif;
-  --font-family-inter: "Inter";
+  font-size: 16px;
 }
 
-/* Manual Font Imports */
-@font-face {
-  font-family: 'Geist Mono';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 400;
-  src: url(https://cdn.jsdelivr.net/fontsource/fonts/geist-mono@latest/latin-400-normal.woff2) format('woff2'), url(https://cdn.jsdelivr.net/fontsource/fonts/geist-mono@latest/latin-400-normal.woff) format('woff');
-}
-
-/** Might have to remove the font face later */
-@font-face {
-  font-family: 'N27';
-  src: url('../public/fonts/n27/Webfont/n27-regular-webfont.woff2') format('woff2'),
-       url('../public/fonts/n27/Webfont/n27-regular-webfont.woff') format('woff'),
-       url('../public/fonts/n27/Webfont/n27-regular-webfont.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-::selection {
-  background-color: var(--white);
-  color: var(--black);
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Geist", "Geist Sans", "Inter", system-ui, sans-serif;
+  background-color: #f6f6f6;
+  color: #111111;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 html, body, #root {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+  min-height: 100%;
 }

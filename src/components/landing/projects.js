@@ -1,94 +1,95 @@
-import { Link } from '@mui/material';
-import Typography from "@mui/material/Typography";
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import GitHubIcon from "@mui/icons-material/GitHub";
-import '../styles/projects.css'
+import { Stack, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { Container, InlineLink, MetaText, Section } from '../ui/primitives';
+
+const ProjectGrid = styled('div')(({ theme }) => ({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+  gap: theme.spacing(3),
+}));
+
+const ProjectCard = styled('article')(({ theme }) => ({
+  backgroundColor: theme.palette.common.black,
+  color: theme.palette.common.white,
+  padding: theme.spacing(4),
+  border: `1px solid ${theme.palette.grey[900]}`,
+  display: 'grid',
+  gap: theme.spacing(2),
+  minHeight: '100%',
+  transition: 'background-color 0.3s ease',
+  '&:hover': {
+    backgroundColor: theme.palette.grey[900],
+  },
+}));
+
+const ProjectTech = styled(Typography)(({ theme }) => ({
+  color: theme.palette.grey[200],
+  fontSize: '0.85rem',
+}));
 
 const projects = [
-	{
-		title: "Ikigai.ai Mobile Application (In Development)",
-		description: `A React Native mobile app designed to help users discover their life's purpose through the Japanese concept of Ikigai. 
-		Combines user-driven inputs with AI-powered insights to visualize passions, skills, and career alignment. Built with NativeWind for 
-		styling and Firebase for authentication. Currently in progress with a focus on user onboarding and AI-driven recommendations.`,
-		link: "https://github.com/Yugenero/Ikigai.ai"
-	},
-	{
-		title: "Nexus - Blogging Web App",
-		description: `I built a web application using React Hooks and Context API for state management to 
-			ensure efficient data flow and page rendering. I created a REST API with Express.js/Node.js and 
-			MongoDB for data fetching and post operations, optimized performance with Axios and React Hooks, 
-			and implemented secure user authentication using bcrypt for salting and hashing with MongoDB for 
-			storage.`,
-		link: "https://github.com/Yugenero/Nexus"
-	}, 
-	{
-		title: "Running Sonification Simulator",
-		description: `Designed and developed a running sonification simulator that dynamically sonifies a 
-			user’s cadence, heart rate, and other physical attributes based on continuous sensor data, converting
-			data streams into helpful audio feedback. Achieved a 75% increase in runner performance as measured 
-			by responses to the simulator's output in research analysis.`,
-		link: "https://github.com/Yugenero/RodriguezNelson_Simulator"
-	}, 
-	{
-		title: "eKlozet - Sustainable Fashion Mobile App",
-		description: `I developed a sustainable fashion iOS app with a student team using Agile 
-			methodology, Swift, and SQL, creating fashion screening functionality, an outfit recommendation 
-			algorithm, and dynamic clothing storage for 5000+ users. This project won 2nd place in the Fall 
-			2022 Georgia Tech CS Junior Design Capstone Expo out of 30+ teams.`,
-		link: "https://github.com/allisonfain08/team2120"
-	}, 
-]
-
-const ProjectList = projects.map((projects) => {
-	return (
-	  <div className="project_object_container">
-		<div className="project_object">
-		  <div className="project_title">{projects.title}</div>
-		  <div className="project_description">{projects.description}</div>
-		  <Box sx={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
-			<IconButton 
-			  className="project_link" 
-			  component={Link} 
-			  href={projects.link} 
-			  target="_blank" 
-			  rel="noopener noreferrer"
-			  sx={{
-				color: 'var(--primary-color-light)',
-				padding: '0',
-				transition: 'all 0.2s ease',
-				'&:hover': {
-				  color: 'var(--white) !important',
-				  transform: 'scale(0.9)',
-				  '& .MuiTypography-root': {
-					color: 'var(--white)'
-				  }
-				},
-			  }}
-			>
-			  <GitHubIcon sx={{fontSize: '2rem'}}/>
-			  <Typography variant="body1" sx={{  ml: 1, fontSize: '1.1rem', color: 'inherit', fontFamily: 'var(--font-family-n27)'}} >
-				GitHub
-			  </Typography>
-			</IconButton>
-		  </Box>
-		</div>
-	  </div>
-	);
-  });
-
+  {
+    title: 'Ikigai.ai Mobile Application',
+    description:
+      "A React Native app that helps users map purpose, skills, and passions into actionable paths. Focused on onboarding flow and AI-driven insights.",
+    tech: ['React Native', 'NativeWind', 'Firebase'],
+    link: 'https://github.com/Yugenero/Ikigai.ai',
+  },
+  {
+    title: 'Nexus — Blogging Web App',
+    description:
+      'A full-stack blogging platform with React, Express, and MongoDB, featuring secure authentication, optimized content delivery, and modular UI building blocks.',
+    tech: ['React', 'Express.js', 'MongoDB'],
+    link: 'https://github.com/Yugenero/Nexus',
+  },
+  {
+    title: 'Running Sonification Simulator',
+    description:
+      'A research prototype that turns biometric cadence data into real-time audio cues for training and performance improvement.',
+    tech: ['Data Sonification', 'Sensor Streams', 'Research'],
+    link: 'https://github.com/Yugenero/RodriguezNelson_Simulator',
+  },
+  {
+    title: 'eKlozet — Sustainable Fashion iOS App',
+    description:
+      'A student-built sustainable fashion platform with outfit recommendation logic and scalable wardrobe management.',
+    tech: ['Swift', 'SQL', 'Agile Delivery'],
+    link: 'https://github.com/allisonfain08/team2120',
+  },
+];
 
 const Projects = () => {
-	return (
-		<div className="projects_container">
-			<div className='projects-wrapper'>
-				<div className="landing-title">/projects</div>
-				<div className="projects_list">
-				{ProjectList}
-			</div>
-			</div>
-		</div>
-	);
-}
+  return (
+    <Section component="section" id="projects">
+      <Container>
+        <Stack spacing={4} alignItems="flex-start">
+          <MetaText component="p">Projects</MetaText>
+          <Typography variant="h2" component="h2">
+            Selected work, built with intention.
+          </Typography>
+          <ProjectGrid>
+            {projects.map((project) => (
+              <ProjectCard key={project.title}>
+                <Stack spacing={2}>
+                  <Typography variant="h3" component="h3">
+                    {project.title}
+                  </Typography>
+                  <Typography variant="body2" component="p">
+                    {project.description}
+                  </Typography>
+                  <MetaText component="p">Tech Stack</MetaText>
+                  <ProjectTech component="p">{project.tech.join(' • ')}</ProjectTech>
+                  <InlineLink href={project.link} target="_blank" rel="noopener noreferrer">
+                    View on GitHub
+                  </InlineLink>
+                </Stack>
+              </ProjectCard>
+            ))}
+          </ProjectGrid>
+        </Stack>
+      </Container>
+    </Section>
+  );
+};
 
 export default Projects;

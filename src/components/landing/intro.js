@@ -1,64 +1,47 @@
-import { useEffect } from 'react';
+import { Stack, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import { ReactTyped } from 'react-typed';
-import { homeTextFadeIn } from '../animations/text_animation';
-import { polySlideIn } from '../animations/shapes';
-import '../styles/home.css'; 
-import '../../App.css';
+import { Container, MetaText, Section } from '../ui/primitives';
 
+const TypedHeadline = styled(ReactTyped)(({ theme }) => ({
+  display: 'block',
+  fontSize: theme.typography.h1.fontSize,
+  fontWeight: theme.typography.h1.fontWeight,
+  letterSpacing: theme.typography.h1.letterSpacing,
+  lineHeight: theme.typography.h1.lineHeight,
+  color: theme.palette.text.primary,
+}));
 
-export const Intro = () => {
-
-  // Scroll Button
-  function scrollToAboutMe() {
-    // get about me container defined by class name
-    const aboutMeSection = document.querySelector('.break');
-    if (aboutMeSection) {
-      aboutMeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-
-  useEffect(() => {
-    homeTextFadeIn();
-    polySlideIn();  
-  }, []);
-
-	return (
-      <div className='intro-container'>
-        <p className="header-introduction"> Hi, I'm </p>
-
-        <div className='header-introduction-typer-container'>
-          <ReactTyped 
+const Intro = () => {
+  return (
+    <Section component="section">
+      <Container>
+        <Stack spacing={3} alignItems="flex-start">
+          <MetaText component="p">Introduction</MetaText>
+          <Typography variant="h1" component="h1">
+            Nelson Rodriguez
+          </Typography>
+          <TypedHeadline
             strings={[
-              "Algorithms Practitioner & Intentional Problem Solver",
-              "Humanistic and Design-Minded Software Engineer",
-              "Hardware Enthusaist and Coffee Connoisseur",
-              "Georgia Tech CS Alumnus w/ Specialization in Information Networks",
-              "Avid Runner, Sim Racer, and Book Reader",
+              'Algorithms Practitioner & Intentional Problem Solver',
+              'Humanistic and Design-Minded Software Engineer',
+              'Hardware Enthusiast and Coffee Connoisseur',
+              'Georgia Tech CS Alumnus — Information Networks',
+              'Avid Runner, Sim Racer, and Book Reader',
             ]}
-            typeSpeed={40} 
+            typeSpeed={40}
             backDelay={2500}
-            cursorChar='|'
-            loop={true}
-            className='header-introduction-typer'
+            cursorChar="|"
+            loop
           />
-        </div>
+          <Typography variant="body1">
+            I design and build software systems that are deliberate, reliable, and calm to use. My work centers on clarity, performance, and
+            long-term maintainability.
+          </Typography>
+        </Stack>
+      </Container>
+    </Section>
+  );
+};
 
-        {/* <div className="select-button" onClick={scrollToAboutMe}>
-          <div className="select-button-container">
-                <div className="animated-arrow">
-                  <span className="the-arrow -left">
-                    <span className="shaft"></span>
-                  </span>
-                  <span className="main">
-                    <span className="text">about me</span>
-                    <span className="the-arrow -right">
-                      <span className="shaft"></span>
-                    </span>
-                  </span>
-                </div>
-            </div>
-        </div> */}
-    </div>
-	)
-}
-
+export { Intro };

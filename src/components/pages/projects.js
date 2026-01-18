@@ -1,12 +1,8 @@
-import React from "react";
-import './pageStyles/projects.css';
+import React from 'react';
+import Projects from '../landing/projects';
 
 const ProjectsPage = () => {
-	return (
-		<div className='projects-page-container'>
-		  <div>Welcome to the projects page (under construction)</div>
-		</div>
-	  )
-}
+  return <Projects />;
+};
 
 export { ProjectsPage };

@@ -1,148 +1,80 @@
-import { ReactTyped } from 'react-typed';
-import '../styles/about.css';
-import '../styles/devicons.css';
-import '../styles/home.css'; 
-import '../../App.css';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import { styled } from '@mui/material/styles';
+import {
+  Container,
+  InlineItem,
+  InlineList,
+  LeadText,
+  MetaText,
+  Section,
+  SectionHeader,
+  SectionTitle,
+} from '../ui/primitives';
 
-export const Intro = () => {
-	return (
-		<div className="about-container">
-			<link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+const skills = [
+  'React',
+  'TypeScript',
+  'C#/.NET',
+  'MongoDB',
+  'Snowflake',
+  'AWS',
+  'Docker',
+  'Node.js',
+  'Python',
+];
 
-			{/**Brief Introduction About me + Work History */}
-			  <div className="about-info">
-				 <div className='header-introduction-typer-container'>
-					<ReactTyped 
-						strings={[
-						"Humanistic + User-centric Software Engineer",
-						"Algorithms Practitioner and Problem Solver",
-						"Computer Hardware Enthusaist and Coffee Connoisseur",
-						"Georgia Tech CS Alum w/ Specialization in Information Networks + Algorithms",
-						]}
-						typeSpeed={40} 
-						backDelay={2500}
-						cursorChar='|'
-						loop={true}
-						className='header-introduction-typer'
-          			/>
-        		</div>
-				{/** Change this to a more readable format later  */}
-				<div className='about-info-text'>
-					Hi, I’m Nelson — a Software Engineer passionate about building systems that people actually use, among other things.
-					Over the past year, I’ve worked on full-stack applications that scaled to thousands of users. 
-					Most recently, I was a primary developer on an internal financial and asset-management dashboard supporting 20,000+ ABM contractors
-					@ <a className="about-link" href="https://civicdx.com" target="_blank" rel="noopener noreferrer"> CDX</a> where I where
-					I built and optimized core features with React, C#/.NET, MongoDB, and Snowflake — including global dataset filtering pipelines, 
-					reusable UI components, and REST APIs. 
-                	
-					<br/><br/>
-					I also hold a <a className="about-link-gt" href='https://www.parchment.com/u/award/cdc63a097762a059103a9b3ce857a15e'>B.S. in CS</a> from <a className="about-link-gt" href="https://www.gatech.edu" target="_blank" rel="noopener noreferrer">
-					<img
-						src="files/images/gt-logo.svg"
-						alt="Georgia Tech"
-						className="about-gt-logo"
-						width="28"
-						height="18"
-						style={{ verticalAlign: 'middle' }}
-					/>  Georgia Tech</a>, 
-					where I built a robust foundation in Theoretical Algorithms, Computing Systems, and Mathematics. 
-				</div>
-                <br/><br/>
-            </div>
+export const AboutSection = () => {
+  return (
+    <Section id="about">
+      <Container>
+        <SectionHeader>
+          <MetaText>About</MetaText>
+          <SectionTitle variant="h2">Editorial overview</SectionTitle>
+        </SectionHeader>
+        <AboutGrid>
+          <Box>
+            <LeadText>
+              I build software that turns complex operational data into clear,
+              reliable tools that people trust.
+            </LeadText>
+          </Box>
+          <Box>
+            <Typography variant="body1" paragraph>
+              Over the past year I led full-stack delivery on internal finance and
+              asset management systems serving 20,000+ ABM contractors at{' '}
+              <Link href="https://civicdx.com" target="_blank" rel="noopener noreferrer">
+                Civic DX
+              </Link>
+              . I focused on clean information design, scalable data filtering, and
+              dependable APIs with React, C#/.NET, MongoDB, and Snowflake.
+            </Typography>
+            <Typography variant="body1" paragraph>
+              I hold a B.S. in Computer Science from{' '}
+              <Link href="https://www.gatech.edu" target="_blank" rel="noopener noreferrer">
+                Georgia Tech
+              </Link>
+              , where I focused on algorithms, networks, and systems.
+            </Typography>
+            <MetaText>Core stack</MetaText>
+            <InlineList>
+              {skills.map((skill) => (
+                <InlineItem key={skill}>{skill}</InlineItem>
+              ))}
+            </InlineList>
+          </Box>
+        </AboutGrid>
+      </Container>
+    </Section>
+  );
+};
 
-			<div className="about-skills-container">
-				<div className="landing-title">/skills</div>
-				<p className="about-skills-info" style={{fontSize: '0.6em', width: '100%'}}>Here is an overview of just some of the languages and systems I work with</p>
-				<div className="container">
-				<div className="about-skills">
-					<div className="skill_container">
-						<i class="devicon-react-original"></i>
-						React.js
-					</div>
-					<div className="skill_container">
-						<i class="devicon-javascript-plain"></i>
-						JavaScript
-					</div>
-					<div className="skill_container">
-						<i class="devicon-java-plain"></i>
-						Java
-					</div>
-					<div className="skill_container">
-						<i class="devicon-python-plain"></i>
-						Python
-					</div>
-					<div className="skill_container">
-						<i class="devicon-c-plain"></i>
-						C
-					</div>
-					<div className="skill_container">
-						<i class="devicon-html5-plain"></i>
-						HTML5
-					</div>
-					<div className="skill_container">
-						<i class="devicon-css3-plain"></i>
-						CSS3
-					</div>
-					<div className="skill_container">
-						<i class="devicon-swift-plain"></i>
-						Swift
-					</div>
-					<div className="skill_container">
-						<i class="devicon-nodejs-plain"></i>
-						Node.js
-					</div>
-					<div className="skill_container">
-						<i class="devicon-express-original"></i>
-						Express.js
-					</div>
-					<div className="skill_container">
-						<i class="devicon-mongodb-plain-wordmark"></i>
-						MongoDB
-					</div>
-					<div className="skill_container">
-						<i class="devicon-bash-plain"></i>
-						CLI/Terminal
-					</div>
-					<div className="skill_container">
-						<i class="devicon-git-plain"></i>
-						Git
-					</div>
-					<div className="skill_container">
-						<i class="devicon-github-original"></i>
-						Github
-					</div>
-					<div className="skill_container">
-						<i class="devicon-amazonwebservices-plain-wordmark"></i>
-						AWS
-					</div>
-					<div className="skill_container">
-						<i class="devicon-nextjs-original-wordmark"></i>
-						Next.js
-					</div>
-					<div className="skill_container">		
-					<i class="devicon-vercel-original"></i>
-						Vercel
-					</div>
-					<div className="skill_container">	
-						<i class="devicon-heroku-original"></i>
-						Heroku
-					</div>
-					<div className="skill_container">
-						<i class="devicon-d3js-plain"></i>
-							D3.js
-					</div>
-					<div className="skill_container">
-						<i class="devicon-django-plain"></i>
-							Django
-					</div>
-					<div className="skill_container">
-						<i class="devicon-docker-plain"></i>
-							Docker
-					</div>
-				
-				</div>
-				</div>
-			</div>
-		</div>
-	);
-}
+const AboutGrid = styled(Box)(({ theme }) => ({
+  display: 'grid',
+  gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.4fr)',
+  gap: theme.spacing(6),
+  [theme.breakpoints.down('md')]: {
+    gridTemplateColumns: '1fr',
+  },
+}));

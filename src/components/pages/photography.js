@@ -1,6 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { tileFadeIn } from '../animations/photographyPageAnimations';
-import './pageStyles/photography.css';
+import React, { useEffect, useState } from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
+import {
+  Container,
+  LeadText,
+  MetaText,
+  Section,
+  SectionHeader,
+  SectionTitle,
+} from '../ui/primitives';
 
 /**
  * Tile layout for the photography page using masonry grid
@@ -9,18 +18,17 @@ import './pageStyles/photography.css';
  */
 const TileLayout = ({ photos }) => {
   return (
-    <div className="masonry-grid-container">
+    <MasonryGrid>
       {photos.map((photo, index) => (
-        <img 
+        <PhotoItem
           key={index}
-          className="photo-item"
           src={photo.url}
           alt={photo.name}
           loading="lazy"
           onError={(e) => console.error('Image load error:', e)}
         />
       ))}
-    </div>
+    </MasonryGrid>
   );
 };
 
@@ -28,15 +36,6 @@ const Photography = () => {
   const [photos, setPhotos] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    if (photos.length > 0 && !mounted) {
-      tileFadeIn();
-      setMounted(true);
-    }
-  }, [photos, mounted]);
-
   useEffect(() => {
     fetch('https://us-central1-angelic-center-419421.cloudfunctions.net/getPhotos')
       .then(res => {
@@ -54,15 +53,58 @@ const Photography = () => {
       });
   }, []);
 
-  if (loading) return <div className="photography-loading-icon">Loading...</div>;
-  if (error) return <div>Error loading images: {error}</div>;
+  if (loading) {
+    return (
+      <Section>
+        <Container>
+          <Typography variant="body1">Loading photography archive…</Typography>
+        </Container>
+      </Section>
+    );
+  }
+
+  if (error) {
+    return (
+      <Section>
+        <Container>
+          <Typography variant="body1">Error loading images: {error}</Typography>
+        </Container>
+      </Section>
+    );
+  }
 
   return (
-    <div className="photography-page-container">
-      <div className='photography-page-information'>Welcome to the photography page</div>
-      <TileLayout photos={photos} />
-    </div>
+    <Section id="photography">
+      <Container>
+        <SectionHeader>
+          <MetaText>Photography</MetaText>
+          <SectionTitle variant="h2">Field notes</SectionTitle>
+          <LeadText>
+            A quiet archive of light, motion, and framing. Updated as I move.
+          </LeadText>
+        </SectionHeader>
+        <TileLayout photos={photos} />
+      </Container>
+    </Section>
   );
 };
 
 export default Photography;
+
+const MasonryGrid = styled(Box)(({ theme }) => ({
+  columnCount: 3,
+  columnGap: theme.spacing(3),
+  [theme.breakpoints.down('md')]: {
+    columnCount: 2,
+  },
+  [theme.breakpoints.down('sm')]: {
+    columnCount: 1,
+  },
+}));
+
+const PhotoItem = styled('img')(({ theme }) => ({
+  width: '100%',
+  marginBottom: theme.spacing(3),
+  breakInside: 'avoid',
+  border: `1px solid ${theme.palette.grey[200]}`,
+}));

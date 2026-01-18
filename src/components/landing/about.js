@@ -1,148 +1,71 @@
-import { ReactTyped } from 'react-typed';
-import '../styles/about.css';
-import '../styles/devicons.css';
-import '../styles/home.css'; 
-import '../../App.css';
+import { Stack, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { Container, InlineLink, MetaText, Section } from '../ui/primitives';
 
-export const Intro = () => {
-	return (
-		<div className="about-container">
-			<link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+const SkillsGrid = styled('div')(({ theme }) => ({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
+  gap: theme.spacing(2),
+}));
 
-			{/**Brief Introduction About me + Work History */}
-			  <div className="about-info">
-				 <div className='header-introduction-typer-container'>
-					<ReactTyped 
-						strings={[
-						"Humanistic + User-centric Software Engineer",
-						"Algorithms Practitioner and Problem Solver",
-						"Computer Hardware Enthusaist and Coffee Connoisseur",
-						"Georgia Tech CS Alum w/ Specialization in Information Networks + Algorithms",
-						]}
-						typeSpeed={40} 
-						backDelay={2500}
-						cursorChar='|'
-						loop={true}
-						className='header-introduction-typer'
-          			/>
-        		</div>
-				{/** Change this to a more readable format later  */}
-				<div className='about-info-text'>
-					Hi, I’m Nelson — a Software Engineer passionate about building systems that people actually use, among other things.
-					Over the past year, I’ve worked on full-stack applications that scaled to thousands of users. 
-					Most recently, I was a primary developer on an internal financial and asset-management dashboard supporting 20,000+ ABM contractors
-					@ <a className="about-link" href="https://civicdx.com" target="_blank" rel="noopener noreferrer"> CDX</a> where I where
-					I built and optimized core features with React, C#/.NET, MongoDB, and Snowflake — including global dataset filtering pipelines, 
-					reusable UI components, and REST APIs. 
-                	
-					<br/><br/>
-					I also hold a B.S. in CS from <a className="about-link-gt" href="https://www.gatech.edu" target="_blank" rel="noopener noreferrer">
-					<img
-						src="files/images/gt-logo.svg"
-						alt="Georgia Tech"
-						className="about-gt-logo"
-						width="28"
-						height="18"
-						style={{ verticalAlign: 'middle' }}
-					/>  Georgia Tech</a>, 
-					where I built a robust foundation in Theoretical Algorithms, Computing Systems, and Mathematics. 
-				</div>
-                <br/><br/>
-            </div>
+const SkillItem = styled(Typography)(({ theme }) => ({
+  fontSize: '0.95rem',
+  color: theme.palette.text.primary,
+}));
 
-			<div className="about-skills-container">
-				<div className="landing-title">/skills</div>
-				<p className="about-skills-info" style={{fontSize: '0.6em', width: '100%'}}>Here is an overview of just some of the languages and systems I work with</p>
-				<div className="container">
-				<div className="about-skills">
-					<div className="skill_container">
-						<i class="devicon-react-original"></i>
-						React.js
-					</div>
-					<div className="skill_container">
-						<i class="devicon-javascript-plain"></i>
-						JavaScript
-					</div>
-					<div className="skill_container">
-						<i class="devicon-java-plain"></i>
-						Java
-					</div>
-					<div className="skill_container">
-						<i class="devicon-python-plain"></i>
-						Python
-					</div>
-					<div className="skill_container">
-						<i class="devicon-c-plain"></i>
-						C
-					</div>
-					<div className="skill_container">
-						<i class="devicon-html5-plain"></i>
-						HTML5
-					</div>
-					<div className="skill_container">
-						<i class="devicon-css3-plain"></i>
-						CSS3
-					</div>
-					<div className="skill_container">
-						<i class="devicon-swift-plain"></i>
-						Swift
-					</div>
-					<div className="skill_container">
-						<i class="devicon-nodejs-plain"></i>
-						Node.js
-					</div>
-					<div className="skill_container">
-						<i class="devicon-express-original"></i>
-						Express.js
-					</div>
-					<div className="skill_container">
-						<i class="devicon-mongodb-plain-wordmark"></i>
-						MongoDB
-					</div>
-					<div className="skill_container">
-						<i class="devicon-bash-plain"></i>
-						CLI/Terminal
-					</div>
-					<div className="skill_container">
-						<i class="devicon-git-plain"></i>
-						Git
-					</div>
-					<div className="skill_container">
-						<i class="devicon-github-original"></i>
-						Github
-					</div>
-					<div className="skill_container">
-						<i class="devicon-amazonwebservices-plain-wordmark"></i>
-						AWS
-					</div>
-					<div className="skill_container">
-						<i class="devicon-nextjs-original-wordmark"></i>
-						Next.js
-					</div>
-					<div className="skill_container">		
-					<i class="devicon-vercel-original"></i>
-						Vercel
-					</div>
-					<div className="skill_container">	
-						<i class="devicon-heroku-original"></i>
-						Heroku
-					</div>
-					<div className="skill_container">
-						<i class="devicon-d3js-plain"></i>
-							D3.js
-					</div>
-					<div className="skill_container">
-						<i class="devicon-django-plain"></i>
-							Django
-					</div>
-					<div className="skill_container">
-						<i class="devicon-docker-plain"></i>
-							Docker
-					</div>
-				
-				</div>
-				</div>
-			</div>
-		</div>
-	);
-}
+const AboutSection = () => {
+  return (
+    <Section component="section" id="about">
+      <Container>
+        <Stack spacing={4} alignItems="flex-start">
+          <MetaText component="p">About</MetaText>
+          <Typography variant="h2" component="h2">
+            Building systems that people actually use.
+          </Typography>
+          <Typography variant="body1">
+            Hi, I’m Nelson — a software engineer focused on building dependable products and internal systems. Most recently, I led frontend
+            and platform work for an internal asset-management dashboard serving 20,000+ contractors at{' '}
+            <InlineLink href="https://civicdx.com" target="_blank" rel="noopener noreferrer">
+              Civic DX
+            </InlineLink>
+            . I build data-heavy interfaces, clean APIs, and thoughtful UI systems that scale with teams.
+          </Typography>
+          <Typography variant="body1">
+            I hold a B.S. in Computer Science from{' '}
+            <InlineLink
+              href="https://www.parchment.com/u/award/cdc63a097762a059103a9b3ce857a15e"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Georgia Tech
+            </InlineLink>
+            , where I focused on algorithms, computing systems, and applied math.
+          </Typography>
+          <Stack spacing={2} width="100%">
+            <MetaText component="p">Tooling & Platforms</MetaText>
+            <SkillsGrid>
+              {[
+                'React',
+                'TypeScript',
+                'C# / .NET',
+                'MongoDB',
+                'Snowflake',
+                'Node.js',
+                'Python',
+                'Docker',
+                'AWS',
+                'Swift',
+                'D3.js',
+                'Git',
+              ].map((skill) => (
+                <SkillItem key={skill}>{skill}</SkillItem>
+              ))}
+            </SkillsGrid>
+          </Stack>
+        </Stack>
+      </Container>
+    </Section>
+  );
+};
+
+export { AboutSection };

@@ -1,83 +1,71 @@
-import { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Box from '@mui/material/Box';
-import { NavbarText, NavbarIcon } from '../landing/navigation';
-import { animateNavTextSlideIn, animateNavTextSlideOut } from '../animations/text_animation';
-import '../styles/header.css'; 
+import { NavLink as RouterNavLink } from 'react-router-dom';
+import { Box, Stack, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { Container } from '../ui/primitives';
 
-function NavigationButton() {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleNavigation = () => { 
-    setIsOpen(!isOpen);
-  }
+const HeaderBar = styled(Box)(({ theme }) => ({
+  position: 'sticky',
+  top: 0,
+  zIndex: 1200,
+  backgroundColor: theme.palette.background.paper,
+  padding: theme.spacing(2, 0),
+}));
 
-  useEffect(() => {
-    if (isOpen) {
-      animateNavTextSlideIn();
-    } if (!isOpen) {
-      animateNavTextSlideOut();
-    }
-  }, [isOpen]);
+const NavList = styled(Stack)(({ theme }) => ({
+  gap: theme.spacing(3),
+  flexWrap: 'wrap',
+  listStyle: 'none',
+  padding: 0,
+  margin: 0,
+}));
 
-  return (
-    <>
-      <div className='header-name'> Nelson Rodriguez </div>
-      {isOpen? 
-      <div className='navigation-container'>
-        <div className='navigation-subcontainer'>
-          <ul className='navigation-list-2'> 
-            <Link to="/" className='nav-list-item' onClick={toggleNavigation}>Home</Link> <span className='nav-list-info'> Go back to the home page </span>
-            <Link to="/about" className='nav-list-item' onClick={toggleNavigation}>About</Link> <span className='nav-list-info'> Infomation about me + hobbies </span>
-            <Link to="/work" className='nav-list-item' onClick={toggleNavigation}>Work</Link> <span className='nav-list-info'> My work experience and history </span>
-            <Link to="/projects" className='nav-list-item' onClick={toggleNavigation}>Projects</Link> <span className='nav-list-info'> Passion dev projects  </span>
-            under construction (some links might not work) 
-          </ul>
-        </div>
-      </div> : <></>}
-    </>
+const NavItem = styled(RouterNavLink)(({ theme }) => ({
+  textTransform: 'uppercase',
+  letterSpacing: '0.18em',
+  fontSize: '0.75rem',
+  fontWeight: 600,
+  color: theme.palette.text.primary,
+  textDecoration: 'none',
+  transition: 'opacity 0.2s ease, text-decoration-color 0.2s ease',
+  '&:hover': {
+    opacity: 0.7,
+    textDecoration: 'underline',
+    textDecorationThickness: '2px',
+  },
+  '&.active': {
+    textDecoration: 'underline',
+    textDecorationThickness: '2px',
+  },
+}));
 
-  );
-}
-
-// ...existing code...
 export const Header = () => {
   return (
-    <div>
-      <AppBar position="fixed" className="app_header" elevation={0}
-        sx={{ 
-          backgroundColor: "transparent",
-          justifyContent: 'space-between',
-          fontSize: 'var(--font-medium)',
-          padding: '0.25rem 1rem',        
-          zIndex: 1000
-        }}>
-        <Box display="flex" justifyContent="flex-start">  {/* align content to left */}
-          <Toolbar 
-            disableGutters
-            sx={{ 
-              width: '100vw', 
-              justifyContent: 'space-between',
-              alignItems: 'flex-start',
-              minHeight: '48px',    
-              paddingLeft: '0.5rem',
-              paddingRight: '0.5rem'
-            }}>
-            <NavigationButton />
-            <NavbarText className="app_header_nav" />
-          </Toolbar>
-        </Box>
-      </AppBar>
-    </div>
+    <HeaderBar component="header">
+      <Container>
+        <Stack direction={{ xs: 'column', md: 'row' }} justifyContent="space-between" spacing={2}>
+          <Typography variant="subtitle2" component="div">
+            Nelson Rodriguez
+          </Typography>
+          <nav aria-label="Primary navigation">
+            <NavList direction="row" component="ul">
+              <li>
+                <NavItem to="/" end>
+                  Home
+                </NavItem>
+              </li>
+              <li>
+                <NavItem to="/about">About</NavItem>
+              </li>
+              <li>
+                <NavItem to="/work">Work</NavItem>
+              </li>
+              <li>
+                <NavItem to="/projects">Projects</NavItem>
+              </li>
+            </NavList>
+          </nav>
+        </Stack>
+      </Container>
+    </HeaderBar>
   );
-}
-
-export const SideBar = () => {
-  return (
-    <div>
-      <NavbarIcon />
-      {/** Social Icons */}
-    </div>
-  )
-}
+};

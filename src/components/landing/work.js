@@ -1,129 +1,100 @@
-import { useState } from 'react';
-import { Tabs as MuiTabs, Tab, Box, Typography } from '@mui/material';
-import '../styles/work.css';
+import { Stack, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { Container, MetaText, Section } from '../ui/primitives';
+
+const ExperienceCard = styled('article')(({ theme }) => ({
+  backgroundColor: theme.palette.common.black,
+  color: theme.palette.common.white,
+  padding: theme.spacing(4),
+  border: `1px solid ${theme.palette.grey[900]}`,
+  display: 'grid',
+  gap: theme.spacing(2),
+}));
+
+const ExperienceMeta = styled(Typography)(({ theme }) => ({
+  fontSize: '0.75rem',
+  letterSpacing: '0.16em',
+  textTransform: 'uppercase',
+  color: theme.palette.grey[200],
+}));
+
+const ExperienceList = styled('ul')(({ theme }) => ({
+  margin: 0,
+  paddingLeft: theme.spacing(2.5),
+  display: 'grid',
+  gap: theme.spacing(1.5),
+}));
 
 const workExperiences = [
-    {
-        employer: "Civic DX",
-        location: "Atlanta, GA",
-        date: "October 2024 - July 2025",
-        title: "Software Engineer",
-        point1: "Advanced development of the Civic DX internal dashboard using React, C#/.NET, MongoDB, and Snowflake, enabling real-time visualization of key operations, business metrics, and asset data for 20,000+ ABM Industries contractors.",
-        point2: "Led application state management and built a global data filtering system for an internal dashboarding app with React and C#, while delivering 30+ reusable UI components and dynamic routing integrated with backend APIs.",
-        point3: "Created scalable C# CRUD endpoints following SOLID and Clean Architecture principles to support Civic DX platform backend operations.",
-        description: "Delivering internal tooling and consulting for Civic DX, including a dashboarding application for ABM Industries built with React, C# .NET, and MongoDB, enhancing asset management, data visibility, and Agile delivery through Azure DevOps."
-    },
-    {
-        employer: "eKlozet",
-        location: "Atlanta, GA",
-        date: "January 2022 - December 2022",
-        title: "Contract Software Development Intern",
-        point1: "Spearheaded database development of eKlozet iOS app with SQL, serving 1000+ users",
-        point2: "Developed collaborative-filtering algorithm for personalized outfit recommendations",
-        point3: "Designed and developed SQL database and RESTAPI for CRUD functionality, utilizing Git for version control",
-        description: "As a Client-Facing Software Developer for eKlozet, I collaborated with a team of student developers to create a sustainable fashion iOS mobile app for client Tanjuria Willis. My contributions included developing a collaborative-filtering algorithm for personalized outfit recommendations and designing a SQL database to manage user CRUD functionality, ultimately serving 10,000+ users. Additionally, I proficiently used Git/GitHub for code versioning, playing a role in coordinating team responsibilities, ensuring the successful completion of sprints and feature delivery."
-    },
-    {
-        employer: "GT WebDev",
-        location: "Atlanta, GA",
-        date: "August 2020 - May 2021",
-        title: "Web Developer",
-        point1: "Developed Material UI/UX features for collaborative HackGT web application in student-led teams",
-        point2: "Managed code versioning to ensure seamless integration across app components",
-        point3: "Organized and hosted front-end workshops resulting in 50% increase in attendance",
-        description: "As a member of the Georgia Tech student organization GT WebDev, I contributed to the development of a collaborative web application by working with student-led teams. My responsibilities included developing Material UI/UX features and managing code versioning to ensure seamless integration across app components. Additionally, I organized and hosted multiple front-end workshops and seminars, resulting in a 50% increase in attendance."
-    },
+  {
+    employer: 'Civic DX',
+    location: 'Atlanta, GA',
+    date: 'October 2024 - July 2025',
+    title: 'Software Engineer',
+    points: [
+      'Built and scaled an internal asset-management dashboard for 20,000+ ABM Industries contractors using React, C#/.NET, MongoDB, and Snowflake.',
+      'Led global state management and filtering architecture, shipping 30+ reusable UI components aligned to a common system.',
+      'Designed SOLID-aligned CRUD APIs and data services to keep analytics and operational tooling consistent and reliable.',
+    ],
+  },
+  {
+    employer: 'eKlozet',
+    location: 'Atlanta, GA',
+    date: 'January 2022 - December 2022',
+    title: 'Contract Software Development Intern',
+    points: [
+      'Developed a SQL data model supporting sustainable fashion workflows for 1,000+ users.',
+      'Built a collaborative-filtering algorithm for outfit recommendations with measurable engagement lift.',
+      'Shipped RESTful services and coordinated delivery through Git-based workflows.',
+    ],
+  },
+  {
+    employer: 'GT WebDev',
+    location: 'Atlanta, GA',
+    date: 'August 2020 - May 2021',
+    title: 'Web Developer',
+    points: [
+      'Delivered Material UI experiences for HackGT projects in student-led teams.',
+      'Maintained code integration standards to keep features shipping smoothly.',
+      'Ran frontend workshops that grew attendance by 50% across the org.',
+    ],
+  },
 ];
 
-const TabPanel = ({ children, value, index, ...other }) => {
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`vertical-tabpanel-${index}`}
-            aria-labelledby={`vertical-tab-${index}`}
-            className='tab_panel'
-            {...other}>
-            {value === index && ( 
-                <Box className="content" sx={{display: 'flex', px: 2, maxWidth: 'calc(100%)' }}> 
-                    <Typography>{children}</Typography> 
-                </Box> 
-            )}
-        </div>
-    );
-};
-
 export const Work = () => {
-    const [selectedTab, setSelectedTab] = useState(0);
-
-    return (
-        <div className="work_container">
-            <div className="landing-title">/experience</div>
-            <div className="work_experience" style={{ display: 'flex', width: '50%' }}>
-                <MuiTabs
-                    orientation="vertical"
-                    variant="scrollable"
-                    value={selectedTab}
-                    onChange={(event, newValue) => setSelectedTab(newValue)}
-                    aria-label="Vertical tabs"
-                    textColor="inherit"
-                    indicatorColor="secondary"
-                    sx={{
-                        borderRight: 1,
-                        borderColor: 'divider',
-                        width: '200px',
-                        color: 'var(--white)',
-                        fontFamily: 'var(--font-family-n27)',
-                        textAlign: 'left',
-                        '& .MuiTabs-indicator': {
-                            backgroundColor: 'var(--white)',
-                        },
-                        '@media (max-width: 750px)': {
-                            orientation: 'horizontal',
-                            width: '90px',
-                        },
-                    }}>
-                    {workExperiences.map((experience, index) => (
-                        <Tab key={index} label={experience.employer} 
-                            sx={{ fontSize: '0.7em', 
-                                fontFamily: {
-                                    xs: 'var(--font-family-ibm-plex-mono)',
-                                    lg: 'var(--font-family-ibm-plex-mono)',
-                                    xl: 'var(--font-family-ibm-plex-mono)',
-                                },
-                                textTransform: 'none', 
-                                justifyContent: 'flex-start',
-                                alignItems: 'start',
-                                borderTop: '1px solid var(--primary-color)',
-                            }}/>
-                    ))}
-                </MuiTabs>
-
-                <div className="work_tab_panel" style={{ flex: 1, paddingLeft: '20px', minHeight: '300px', position: 'relative' }}>
-                    {workExperiences.map((experience, index) => (
-                        <TabPanel key={index} value={selectedTab} index={index} className="tab_panel" 
-                            style={{ 
-                                width: '100%',
-                                position: 'absolute', 
-                                top: 0, 
-                                left: '20px', 
-                                right: 0, 
-                                opacity: selectedTab === index ? 1 : 0, 
-                                transition: 'opacity 0.3s ease-in-out'
-                            }}>
-                            <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                                <h2 className='experience_title'>{experience.title} @ {experience.employer}</h2>
-                                <p className='experience_location'>{experience.date}</p>
-                                <ul className='experience_description'>
-                                    <li className='experience_point'>{experience.point1}</li>
-                                    <li className='experience_point'>{experience.point2}</li>
-                                    <li className='experience_point'>{experience.point3}</li>
-                                </ul>
-                            </div>
-                        </TabPanel>
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
+  return (
+    <Section component="section" id="work">
+      <Container>
+        <Stack spacing={4} alignItems="flex-start">
+          <MetaText component="p">Experience</MetaText>
+          <Typography variant="h2" component="h2">
+            Selected roles and impact.
+          </Typography>
+          <Stack spacing={3} width="100%">
+            {workExperiences.map((experience) => (
+              <ExperienceCard key={experience.employer}>
+                <Stack spacing={1}>
+                  <ExperienceMeta component="p">
+                    {experience.date} · {experience.location}
+                  </ExperienceMeta>
+                  <Typography variant="h3" component="h3">
+                    {experience.title} — {experience.employer}
+                  </Typography>
+                </Stack>
+                <ExperienceList>
+                  {experience.points.map((point) => (
+                    <li key={point}>
+                      <Typography variant="body2" component="p">
+                        {point}
+                      </Typography>
+                    </li>
+                  ))}
+                </ExperienceList>
+              </ExperienceCard>
+            ))}
+          </Stack>
+        </Stack>
+      </Container>
+    </Section>
+  );
 };

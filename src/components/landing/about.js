@@ -36,7 +36,7 @@ export const Intro = () => {
 					reusable UI components, and REST APIs. 
                 	
 					<br/><br/>
-					I also hold a B.S. in CS from <a className="about-link-gt" href="https://www.gatech.edu" target="_blank" rel="noopener noreferrer">
+					I also hold a <a className="about-link-gt" href='https://www.parchment.com/u/award/cdc63a097762a059103a9b3ce857a15e'>B.S. in CS</a> from <a className="about-link-gt" href="https://www.gatech.edu" target="_blank" rel="noopener noreferrer">
 					<img
 						src="files/images/gt-logo.svg"
 						alt="Georgia Tech"

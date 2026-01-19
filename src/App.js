@@ -14,12 +14,14 @@ import { WorkPage } from './components/pages/work';
 import Photography from './components/pages/photography';
 import { ProjectsPage } from './components/pages/projects';
 
+// App root
 function App() {
   const [mode, setMode] = useState(() => {
     const storedMode = window.localStorage.getItem('themeMode');
     return storedMode === 'dark' ? 'dark' : 'light';
   });
 
+  // For dark/light mode theme
   useEffect(() => {
     window.localStorage.setItem('themeMode', mode);
   }, [mode]);

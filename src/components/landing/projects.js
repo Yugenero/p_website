@@ -49,7 +49,7 @@ const Projects = () => {
       <Container>
         <SectionHeader>
           <MetaText>Projects</MetaText>
-          <SectionTitle variant="h2">Selected builds</SectionTitle>
+          <SectionTitle variant="h2">Projects</SectionTitle>
         </SectionHeader>
         <ProjectGrid>
           {projects.map((project) => (
@@ -108,7 +108,7 @@ const ProjectLink = styled(Link)(({ theme }) => ({
 }));
 
 const ProjectMetaItem = styled(InlineItem)(({ theme }) => ({
-  color: theme.palette.text.secondary,
+  color: theme.palette.primary.main,
 }));
 
 export default Projects;

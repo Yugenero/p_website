@@ -11,7 +11,22 @@ import {
   SectionTitle,
 } from '../ui/primitives';
 
-const workExperiences = [
+const workExperience = [
+  {
+    employer: 'Fullstory, Inc.',
+    location: 'Atlanta, GA',
+    date: 'Dec 2025 - Present',
+    title: 'Software Engineer',
+    summary:
+      'Developing/Integrating Fullstory Mobile SDK into enterprise applications and building tooling to validate SDK implementations across ',
+    highlights: [
+        'Integrated FullStory\'s Mobile SDK into enterprise iOS, Android, and React Native codebases, implementing type-safe events, identity mapping, and privacy configurations.',
+        'Built automated SDK validation tooling in TypeScript to verify network traffic, event payloads, and session replay accuracy.',
+        'Developed and maintained internal React Native demo apps used by Sales and Product to showcase advanced session replay and behavioral analytics.',
+        'Reproduced customer-reported SDK issues by creating minimal repro environments and structured bug reports with logs and stack traces.',
+      ],
+    stack: ['TypeScript/JavaScript', 'Java', 'Swift/Swift UI'],
+  },
   {
     employer: 'Civic DX',
     location: 'Atlanta, GA',
@@ -56,16 +71,17 @@ const workExperiences = [
   },
 ];
 
+// Work section object
 export const WorkSection = () => {
   return (
     <Section id="work">
       <Container>
         <SectionHeader>
           <MetaText>Experience</MetaText>
-          <SectionTitle variant="h2">Selected work</SectionTitle>
+          <SectionTitle variant="h2">Experience</SectionTitle>
         </SectionHeader>
         <WorkList>
-          {workExperiences.map((experience) => (
+          {workExperience.map((experience) => (
             <WorkItem key={experience.employer}>
               <MetaText>{experience.date}</MetaText>
               <Typography variant="h3">

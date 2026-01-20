@@ -1,6 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 
-export const colors = {
+// Main colors for the website
+export const mainColors = {
   black: '#000000',
   nearBlack: '#111111',
   grayDark: '#222222',
@@ -9,6 +10,16 @@ export const colors = {
   offWhite: '#F6F6F6',
   white: '#FFFFFF',
 };
+
+// TODO - figure out access toggle for colors in the future
+export const accentColors = {
+  crimsonPrimary: '#8B0000',
+  crimson: '#B11226',
+  crimsonMuted: '#9E2A2B',
+  crimsonSoft: '#C73E3A',
+  crimsonDark: '#5C0A0A',
+  crimsonHighlight: '#E63946',
+}
 
 const baseTypography = {
   fontFamily: '"Geist", "Helvetica Neue", Arial, sans-serif',
@@ -88,6 +99,25 @@ const darkPalette = {
   },
   divider: colors.grayDark,
 };
+
+const colorPallete = {
+  mode: 'color ',
+  primary: {
+    main: colors.o,
+  },
+  secondary: {
+    main: colors.grayLight,
+  },
+  text: {
+    primary: colors.offWhite,
+    secondary: colors.grayLight,
+  },
+  background: {
+    default: colors.black,
+    paper: colors.nearBlack,
+  },
+  divider: colors.grayDark,
+}
 
 export const buildTheme = (mode = 'light') => {
   const baseTheme = createTheme({

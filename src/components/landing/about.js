@@ -15,14 +15,14 @@ import {
 
 const skills = [
   'React',
-  'TypeScript',
-  'C#/.NET',
+  'JavaScript/TypeScript',
+  'Java',
+  'C#',
   'MongoDB',
   'Snowflake',
   'AWS',
   'Docker',
   'Node.js',
-  'Python',
 ];
 
 export const AboutSection = () => {
@@ -30,7 +30,7 @@ export const AboutSection = () => {
     <Section id="about">
       <Container>
         <SectionHeader>
-          <MetaText className='h6'>About</MetaText>
+          <MetaText className='h6'>00</MetaText>
           <SectionTitle variant="h2">/About</SectionTitle>
         </SectionHeader>
         <AboutGrid>

@@ -16,15 +16,18 @@ const workExperience = [
     employer: 'Fullstory, Inc.',
     location: 'Atlanta, GA',
     date: 'Dec 2025 - Present',
-    title: 'Software Engineer',
+    title: 'Solutions Engineer',
     summary:
       'Developing/Integrating Fullstory Mobile SDK into enterprise applications and building tooling to validate SDK implementations across ',
+    // highlights: [
+    //     'Integrated FullStory\'s Mobile SDK into enterprise iOS, Android, and React Native codebases, implementing type-safe events, identity mapping, and privacy configurations.',
+    //     'Built automated SDK validation tooling in TypeScript to verify network traffic, event payloads, and session replay accuracy.',
+    //     'Developed and maintained internal React Native demo apps used by Sales and Product to showcase advanced session replay and behavioral analytics.',
+    //     'Reproduced customer-reported SDK issues by creating minimal repro environments and structured bug reports with logs and stack traces.',
+    //   ],
     highlights: [
-        'Integrated FullStory\'s Mobile SDK into enterprise iOS, Android, and React Native codebases, implementing type-safe events, identity mapping, and privacy configurations.',
-        'Built automated SDK validation tooling in TypeScript to verify network traffic, event payloads, and session replay accuracy.',
-        'Developed and maintained internal React Native demo apps used by Sales and Product to showcase advanced session replay and behavioral analytics.',
-        'Reproduced customer-reported SDK issues by creating minimal repro environments and structured bug reports with logs and stack traces.',
-      ],
+      ''
+    ],
     stack: ['TypeScript/JavaScript', 'Java', 'Swift/Swift UI'],
   },
   {
@@ -77,7 +80,7 @@ export const WorkSection = () => {
     <Section id="work">
       <Container>
         <SectionHeader>
-          <MetaText>00 Experience</MetaText>
+          <MetaText>01</MetaText>
           <SectionTitle variant="h2">/Experience</SectionTitle>
         </SectionHeader>
         <WorkList>

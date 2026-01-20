@@ -77,10 +77,10 @@ const Photography = () => {
     <Section id="photography">
       <Container>
         <SectionHeader>
-          <MetaText>Photography</MetaText>
-          <SectionTitle variant="h2">Field notes</SectionTitle>
+          <MetaText>11</MetaText>
+          <SectionTitle variant="h2">Photography</SectionTitle>
           <LeadText>
-            A quiet archive of light, motion, and framing. Updated as I move.
+            An archive of light, motion, and framing. Updated as I travel more.
           </LeadText>
         </SectionHeader>
         <TileLayout photos={photos} />

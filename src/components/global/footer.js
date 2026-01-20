@@ -1,7 +1,10 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import { Container, InlineItem, InlineList } from '../ui/primitives';
+import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import { Container } from '../ui/primitives';
 
 const FooterWrap = styled('footer')(({ theme }) => ({
   paddingTop: theme.spacing(6),
@@ -16,13 +19,31 @@ const FooterInner = styled(Container)(({ theme }) => ({
   flexWrap: 'wrap',
 }));
 
-const FooterLink = styled('a')(({ theme }) => ({
+const SocialList = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(2),
+}));
+
+const SocialLink = styled('a')(({ theme }) => ({
+  width: 44,
+  height: 44,
+  borderRadius: 999,
+  border: `1px solid ${theme.palette.text.primary}`,
   color: theme.palette.text.primary,
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   textDecoration: 'none',
-  textTransform: 'uppercase',
-  letterSpacing: '0.12em',
-  fontSize: '0.72rem',
-  fontWeight: 600,
+  transition: 'transform 0.2s ease, background-color 0.2s ease, color 0.2s ease',
+  '&:hover': {
+    transform: 'translateY(-2px)',
+    backgroundColor: theme.palette.text.primary,
+    color: theme.palette.background.default,
+  },
+  '& svg': {
+    fontSize: '1.25rem',
+  },
 }));
 
 const Footer = () => {
@@ -35,29 +56,27 @@ const Footer = () => {
             Atlanta, GA · nelsonrodriguez.me
           </Typography>
         </Box>
-        <InlineList>
-          <InlineItem>
-            <FooterLink href="mailto:neroxv1313@gmail.com">Email</FooterLink>
-          </InlineItem>
-          <InlineItem>
-            <FooterLink
-              href="https://www.linkedin.com/in/nelson-rodriguez13/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-            </FooterLink>
-          </InlineItem>
-          <InlineItem>
-            <FooterLink
-              href="https://github.com/Yugenero"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-            </FooterLink>
-          </InlineItem>
-        </InlineList>
+        <SocialList>
+          <SocialLink href="mailto:neroxv1313@gmail.com" aria-label="Email">
+            <EmailRoundedIcon />
+          </SocialLink>
+          <SocialLink
+            href="https://www.linkedin.com/in/nelson-rodriguez13/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <LinkedInIcon />
+          </SocialLink>
+          <SocialLink
+            href="https://github.com/Yugenero"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <GitHubIcon />
+          </SocialLink>
+        </SocialList>
       </FooterInner>
     </FooterWrap>
   );

@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 
 // Main colors for the website
-export const mainColors = {
+export const colors = {
   black: '#000000',
   nearBlack: '#111111',
   grayDark: '#222222',

@@ -32,6 +32,7 @@ function App() {
     setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
   };
 
+  // TODO - figure out why 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -41,8 +42,8 @@ function App() {
           <Main>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/about" element={<AboutPage />} />
               <Route path="/work" element={<WorkPage />} />
+              <Route path="/about" element={<AboutPage />} />
               <Route path="/projects" element={<ProjectsPage />} />
               <Route path="/photography" element={<Photography />} />
             </Routes>

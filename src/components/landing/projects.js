@@ -62,7 +62,7 @@ const Projects = () => {
     <Section id="projects">
       <Container>
         <SectionHeader>
-          <MetaText>Projects</MetaText>
+          <MetaText>10</MetaText>
           <SectionTitle variant="h2">/Projects</SectionTitle>
         </SectionHeader>
         <ProjectGrid>

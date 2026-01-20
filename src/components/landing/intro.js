@@ -15,8 +15,7 @@ export const Intro = () => {
               Nelson Rodriguez
             </Typography>
             <LeadText>
-              I build pragmatic systems and clean interfaces that respect how people
-              actually work.
+              I build pragmatic systems and clean interfaces that respect how people work.
             </LeadText>
           </Box>
           <Box>
@@ -27,7 +26,7 @@ export const Intro = () => {
                   'Humanistic, design-minded software engineer.',
                   'Hardware enthusiast and iced coffee lover.',
                   'Georgia Tech CS alum, information networks focus.',
-                  'Runner, car enthusiast, and reader.',
+                  'Car enthusaist, hybrid athelete, and podcast consumer.',
                 ]}
                 typeSpeed={40}
                 backDelay={2600}
@@ -49,9 +48,10 @@ export const Intro = () => {
 
 const HeroLayout = styled(Box)(({ theme }) => ({
   display: 'grid',
+  minHeight: '4rem',
   gridTemplateColumns: 'minmax(0, 1.2fr) minmax(0, 1fr)',
   gap: theme.spacing(6),
-  alignItems: 'end',
+  alignItems: 'start',
   [theme.breakpoints.down('md')]: {
     gridTemplateColumns: '1fr',
   },
@@ -59,6 +59,8 @@ const HeroLayout = styled(Box)(({ theme }) => ({
 
 const TypedLine = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(2),
+  minHeight: '4rem',
+  psotion: 'relative',
   '& .typed-text': {
     fontWeight: 500,
   },

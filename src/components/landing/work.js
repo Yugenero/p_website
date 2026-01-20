@@ -77,8 +77,8 @@ export const WorkSection = () => {
     <Section id="work">
       <Container>
         <SectionHeader>
-          <MetaText>Experience</MetaText>
-          <SectionTitle variant="h2">Experience</SectionTitle>
+          <MetaText>00 Experience</MetaText>
+          <SectionTitle variant="h2">/Experience</SectionTitle>
         </SectionHeader>
         <WorkList>
           {workExperience.map((experience) => (

@@ -31,7 +31,7 @@ export const AboutSection = () => {
       <Container>
         <SectionHeader>
           <MetaText className='h6'>About</MetaText>
-          <SectionTitle variant="h2">About</SectionTitle>
+          <SectionTitle variant="h2">/About</SectionTitle>
         </SectionHeader>
         <AboutGrid>
           <Box>

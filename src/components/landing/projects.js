@@ -41,6 +41,20 @@ const projects = [
     stack: ['Swift', 'SQL', 'iOS'],
     link: 'https://github.com/allisonfain08/team2120',
   },
+  {
+    title: 'Empty Card',
+    description:
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500\s... ',
+    stack: ['Swift', 'SQL', 'iOS'],
+    link: 'https://nelsonrodriguez.me',
+  },
+  {
+    title: 'Empty Card',
+    description:
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500\s... ',
+    stack: ['Swift', 'SQL', 'iOS'],
+    link: 'https://nelsonrodriguez.me',
+  },
 ];
 
 const Projects = () => {
@@ -49,7 +63,7 @@ const Projects = () => {
       <Container>
         <SectionHeader>
           <MetaText>Projects</MetaText>
-          <SectionTitle variant="h2">Projects</SectionTitle>
+          <SectionTitle variant="h2">/Projects</SectionTitle>
         </SectionHeader>
         <ProjectGrid>
           {projects.map((project) => (
@@ -92,6 +106,7 @@ const ProjectCard = styled(Box)(({ theme }) => ({
   flexDirection: 'column',
   justifyContent: 'space-between',
   minHeight: 240,
+  borderRadius: 5,
   border: `1px solid ${theme.palette.divider}`,
   gap: theme.spacing(3),
 }));

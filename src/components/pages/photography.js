@@ -80,7 +80,7 @@ const Photography = () => {
           <MetaText>11</MetaText>
           <SectionTitle variant="h2">Photography</SectionTitle>
           <LeadText>
-            An archive of light, motion, and framing. Updated as I travel more.
+            Things I find interesting. Updated as I travel more.
           </LeadText>
         </SectionHeader>
         <TileLayout photos={photos} />
@@ -107,4 +107,5 @@ const PhotoItem = styled('img')(({ theme }) => ({
   marginBottom: theme.spacing(3),
   breakInside: 'avoid',
   border: `1px solid ${theme.palette.divider}`,
+  borderRadius: '0.5rem',
 }));

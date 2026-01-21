@@ -107,4 +107,5 @@ const PhotoItem = styled('img')(({ theme }) => ({
   marginBottom: theme.spacing(3),
   breakInside: 'avoid',
   border: `1px solid ${theme.palette.divider}`,
+  borderRadius: '0.5rem',
 }));

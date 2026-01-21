@@ -99,7 +99,7 @@ const HeroHeadline = styled(Box)(({ theme }) => ({
 
 const HeroName = styled(Typography)(() => ({
   fontSize: 'clamp(2.9rem, 6vw, 4.6rem)',
-  fontFamily: 'Boska, serif',
+  fontFamily: 'serif',
   fontWeight: 700,
   fontStyle: 'normal',
 }));

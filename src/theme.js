@@ -100,25 +100,6 @@ const darkPalette = {
   divider: colors.grayDark,
 };
 
-const colorPallete = {
-  mode: 'color ',
-  primary: {
-    main: colors.o,
-  },
-  secondary: {
-    main: colors.grayLight,
-  },
-  text: {
-    primary: colors.offWhite,
-    secondary: colors.grayLight,
-  },
-  background: {
-    default: colors.black,
-    paper: colors.nearBlack,
-  },
-  divider: colors.grayDark,
-}
-
 export const buildTheme = (mode = 'light') => {
   const baseTheme = createTheme({
     palette: mode === 'dark' ? darkPalette : lightPalette,
@@ -140,7 +121,7 @@ export const buildTheme = (mode = 'light') => {
               fontDisplay: 'swap',
               fontWeight: '100 900',
               src: "url('/fonts/geist-sans/Geist-Variable.woff2') format('woff2')",
-            }, 
+            },
             {
               fontFamily: 'Junicode',
               fontStyle: 'normal',

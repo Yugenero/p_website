@@ -1,8 +1,10 @@
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
+import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
+import { ThemeToggle } from '../animations/themeToggle';
 import { styled } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
 import { Container } from '../ui/primitives';
@@ -72,15 +74,8 @@ const ExternalLink = styled('a')(({ theme }) => ({
   fontWeight: 600,
 }));
 
-const ThemeToggle = styled(Button)(({ theme }) => ({
-  padding: `${theme.spacing(0.75)} ${theme.spacing(1.5)}`,
-  minWidth: 'auto',
-  fontSize: '0.7rem',
-  borderRadius: '0.5rem',
-}));
-
 export const Header = ({ mode, onToggleTheme }) => {
-  const nextModeLabel = mode === 'light' ? 'Dark' : 'Light';
+  const nextModeLabel = mode === 'light' ? 'dark' : 'light';
 
   return (
     <HeaderBar position="sticky" elevation={0}>
@@ -106,11 +101,15 @@ export const Header = ({ mode, onToggleTheme }) => {
               Resume
             </ExternalLink>
             <ThemeToggle
-              variant="outlined"
               onClick={onToggleTheme}
-              aria-label={`Switch to ${nextModeLabel.toLowerCase()} mode`}
+              aria-label={`Switch to ${nextModeLabel} mode`}
+              aria-pressed={mode === 'dark'}
+              data-mode={mode}
             >
-              {nextModeLabel}
+              <span className="toggle-track" aria-hidden="true" />
+              <span className="toggle-thumb" aria-hidden="true">
+                {mode === 'light' ? <LightModeRoundedIcon /> : <DarkModeRoundedIcon />}
+              </span>
             </ThemeToggle>
           </NavGroup>
         </HeaderInner>

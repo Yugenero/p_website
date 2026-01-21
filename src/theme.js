@@ -140,6 +140,27 @@ export const buildTheme = (mode = 'light') => {
               fontDisplay: 'swap',
               fontWeight: '100 900',
               src: "url('/fonts/geist-sans/Geist-Variable.woff2') format('woff2')",
+            }, 
+            {
+              fontFamily: 'Junicode',
+              fontStyle: 'normal',
+              fontDisplay: 'swap',
+              fontWeight: 200,
+              src: "url('/fonts/Junicode/Junicode.woff') format('woff')",
+            },
+            {
+              fontFamily: 'Boska',
+              fontStyle: 'normal',
+              fontDisplay: 'swap',
+              fontWeight: 300,
+              src: "url('/fonts/Boska/Boska-Light.woff2') format('woff2')",
+            },
+            {
+              fontFamily: 'Boska',
+              fontStyle: 'normal',
+              fontDisplay: 'swap',
+              fontWeight: 700,
+              src: "url('/fonts/Boska/Boska-Bold.woff2') format('woff2')",
             },
           ],
           '*': {

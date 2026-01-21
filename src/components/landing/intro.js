@@ -21,7 +21,6 @@ export const Intro = () => {
         <HeroContent>
           <HeroLayout>
             <HeroHeadline>
-              <MetaText>Intro</MetaText>
               <HeroName variant="h1" component="h1">
                 Nelson Rodriguez
               </HeroName>
@@ -100,6 +99,9 @@ const HeroHeadline = styled(Box)(({ theme }) => ({
 
 const HeroName = styled(Typography)(() => ({
   fontSize: 'clamp(2.9rem, 6vw, 4.6rem)',
+  fontFamily: 'Boska, serif',
+  fontWeight: 700,
+  fontStyle: 'normal',
 }));
 
 const TypedLine = styled(Typography)(({ theme }) => ({

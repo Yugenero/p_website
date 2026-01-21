@@ -106,7 +106,7 @@ const ProjectCard = styled(Box)(({ theme }) => ({
   flexDirection: 'column',
   justifyContent: 'space-between',
   minHeight: 240,
-  borderRadius: 5,
+  borderRadius: '0.5rem',
   border: `1px solid ${theme.palette.divider}`,
   gap: theme.spacing(3),
 }));

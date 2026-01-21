@@ -76,6 +76,7 @@ const ThemeToggle = styled(Button)(({ theme }) => ({
   padding: `${theme.spacing(0.75)} ${theme.spacing(1.5)}`,
   minWidth: 'auto',
   fontSize: '0.7rem',
+  borderRadius: '0.5rem',
 }));
 
 export const Header = ({ mode, onToggleTheme }) => {

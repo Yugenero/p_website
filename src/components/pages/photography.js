@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
+import { alpha, styled } from '@mui/material/styles';
 import {
   Container,
   LeadText,
@@ -10,6 +10,28 @@ import {
   SectionHeader,
   SectionTitle,
 } from '../ui/primitives';
+
+const PhotoCard = ({ photo, index }) => {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <PhotoCardFrame
+      data-loaded={loaded}
+      style={{ '--photo-delay': `${Math.min(index * 55, 360)}ms` }}
+    >
+      <PhotoItem
+        src={photo.url}
+        alt={photo.name}
+        loading="lazy"
+        onLoad={() => setLoaded(true)}
+        onError={(e) => {
+          console.error('Image load error:', e);
+          setLoaded(true);
+        }}
+      />
+    </PhotoCardFrame>
+  );
+};
 
 /**
  * Tile layout for the photography page using masonry grid
@@ -20,13 +42,7 @@ const TileLayout = ({ photos }) => {
   return (
     <MasonryGrid>
       {photos.map((photo, index) => (
-        <PhotoItem
-          key={index}
-          src={photo.url}
-          alt={photo.name}
-          loading="lazy"
-          onError={(e) => console.error('Image load error:', e)}
-        />
+        <PhotoCard key={photo.url || index} photo={photo} index={index} />
       ))}
     </MasonryGrid>
   );
@@ -53,26 +69,6 @@ const Photography = () => {
       });
   }, []);
 
-  if (loading) {
-    return (
-      <Section>
-        <Container>
-          <Typography variant="body1">Loading photography archive…</Typography>
-        </Container>
-      </Section>
-    );
-  }
-
-  if (error) {
-    return (
-      <Section>
-        <Container>
-          <Typography variant="body1">Error loading images: {error}</Typography>
-        </Container>
-      </Section>
-    );
-  }
-
   return (
     <Section id="photography">
       <Container>
@@ -83,7 +79,24 @@ const Photography = () => {
             Things I find interesting. Updated as I travel more.
           </LeadText>
         </SectionHeader>
-        <TileLayout photos={photos} />
+        <MasonryStage aria-busy={loading}>
+          {loading && (
+            <LoadingOverlay>
+              <LoadingStack>
+                <LoadingSpinner aria-hidden="true" />
+                <Typography variant="body2">Loading photography archive…</Typography>
+              </LoadingStack>
+            </LoadingOverlay>
+          )}
+          {error && !loading && (
+            <LoadingOverlay>
+              <LoadingStack>
+                <Typography variant="body2">Error loading images: {error}</Typography>
+              </LoadingStack>
+            </LoadingOverlay>
+          )}
+          <TileLayout photos={photos} />
+        </MasonryStage>
       </Container>
     </Section>
   );
@@ -102,10 +115,71 @@ const MasonryGrid = styled(Box)(({ theme }) => ({
   },
 }));
 
-const PhotoItem = styled('img')(({ theme }) => ({
+const MasonryStage = styled(Box)(({ theme }) => ({
+  position: 'relative',
+  minHeight: '50vh',
+}));
+
+const LoadingOverlay = styled(Box)(() => ({
+  position: 'absolute',
+  inset: 0,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  pointerEvents: 'none',
+  textAlign: 'center',
+}));
+
+const LoadingStack = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: theme.spacing(1.5),
+  color: theme.palette.text.secondary,
+}));
+
+const LoadingSpinner = styled('div')(({ theme }) => ({
+  width: 46,
+  height: 46,
+  borderRadius: '999px',
+  border: `1px solid ${alpha(theme.palette.text.primary, 0.18)}`,
+  borderTopColor: alpha(theme.palette.text.primary, 0.55),
+  animation: 'photography-spin 1.2s linear infinite',
+  '@keyframes photography-spin': {
+    from: { transform: 'rotate(0deg)' },
+    to: { transform: 'rotate(360deg)' },
+  },
+}));
+
+const PhotoCardFrame = styled('div')(({ theme }) => ({
+  position: 'relative',
+  display: 'block',
   width: '100%',
   marginBottom: theme.spacing(3),
   breakInside: 'avoid',
   border: `1px solid ${theme.palette.divider}`,
-  borderRadius: '0.5rem',
+  borderRadius: '0.6rem',
+  overflow: 'hidden',
+  backgroundColor: alpha(theme.palette.text.primary, 0.04),
+  minHeight: 200,
+  opacity: 0.2,
+  transform: 'translateY(10px)',
+  transitionProperty: 'opacity, transform',
+  transitionDuration: '520ms',
+  transitionTimingFunction: 'cubic-bezier(0.2, 0.6, 0.2, 1)',
+  transitionDelay: 'var(--photo-delay, 0ms)',
+  '&[data-loaded="true"]': {
+    opacity: 1,
+    transform: 'translateY(0)',
+  },
+}));
+
+const PhotoItem = styled('img')(() => ({
+  width: '100%',
+  display: 'block',
+  opacity: 0,
+  transition: 'opacity 400ms ease',
+  '[data-loaded="true"] &': {
+    opacity: 1,
+  },
 }));

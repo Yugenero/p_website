@@ -29,9 +29,8 @@ export const Intro = () => {
                   strings={[
                     'Algorithms practitioner and intentional problem solver.',
                     'Humanistic, design-minded software engineer.',
-                    'Hardware enthusiast and iced coffee lover.',
                     'Georgia Tech CS alum, information networks focus.',
-                    'Car enthusaist, hybrid athelete, and podcast consumer.',
+                    'Car enthusaist, hybrid athelete, iced coffee enjoyer',
                   ]}
                   typeSpeed={40}
                   backDelay={2600}
@@ -99,7 +98,7 @@ const HeroHeadline = styled(Box)(({ theme }) => ({
 
 const HeroName = styled(Typography)(() => ({
   fontSize: 'clamp(2.9rem, 6vw, 4.6rem)',
-  fontFamily: 'serif',
+  fontFamily: 'Times New Roman',
   fontWeight: 700,
   fontStyle: 'normal',
 }));

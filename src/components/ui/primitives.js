@@ -70,6 +70,6 @@ export const InlineItem = styled(Typography)(({ theme }) => ({
   alignItems: 'center',
 }));
 
-InlineItem.defaultProps = {
-  component: 'span',
-};
+// InlineItem.defaultProps = {
+//   component: 'span',
+// };

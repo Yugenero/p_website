@@ -107,6 +107,7 @@ const ProjectCard = styled(Box)(({ theme }) => ({
   justifyContent: 'space-between',
   minHeight: 240,
   border: `1px solid ${theme.palette.divider}`,
+  borderRadius: '0.5rem',
   gap: theme.spacing(3),
 }));
 

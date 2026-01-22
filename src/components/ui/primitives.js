@@ -25,15 +25,26 @@ export const Container = styled(Box)(({ theme }) => ({
     paddingLeft: theme.spacing(5),
     paddingRight: theme.spacing(5),
   },
+  [theme.breakpoints.down('md')]: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+  },
 }));
 
 export const Section = styled('section')(({ theme }) => ({
   paddingTop: theme.spacing(10),
   paddingBottom: theme.spacing(10),
+  [theme.breakpoints.down('md')]: {
+    paddingTop: theme.spacing(6),
+    paddingBottom: theme.spacing(6),
+  },
 }));
 
 export const SectionHeader = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(4),
+  [theme.breakpoints.down('md')]: {
+    marginBottom: theme.spacing(3),
+  },
 }));
 
 export const MetaText = styled(Typography)(({ theme }) => ({

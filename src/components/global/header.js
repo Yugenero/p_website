@@ -25,6 +25,13 @@ const HeaderInner = styled(Container)(({ theme }) => ({
   paddingBottom: theme.spacing(2),
   flexWrap: 'wrap',
   maxWidth: 1240,
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: theme.spacing(2),
+    paddingTop: theme.spacing(1.5),
+    paddingBottom: theme.spacing(1.5),
+  },
 }));
 
 const BrandLink = styled(NavLink)(({ theme }) => ({
@@ -46,6 +53,10 @@ const NavGroup = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   gap: theme.spacing(3),
   flexWrap: 'wrap',
+  [theme.breakpoints.down('md')]: {
+    gap: theme.spacing(2),
+    rowGap: theme.spacing(1),
+  },
 }));
 
 const NavItem = styled(NavLink)(({ theme }) => ({

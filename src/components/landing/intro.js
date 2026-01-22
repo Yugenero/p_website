@@ -94,6 +94,9 @@ const HeroContent = styled(Box)(({ theme }) => ({
   justifyContent: 'center',
   alignItems: 'stretch',
   gap: theme.spacing(5),
+  [theme.breakpoints.down('md')]: {
+    gap: theme.spacing(4),
+  },
 }));
 
 const HeroLayout = styled(Box)(({ theme }) => ({
@@ -104,7 +107,7 @@ const HeroLayout = styled(Box)(({ theme }) => ({
   width: '100%',
   [theme.breakpoints.down('md')]: {
     gridTemplateColumns: '1fr',
-    gap: theme.spacing(4),
+    gap: theme.spacing(3),
   },
 }));
 
@@ -167,6 +170,9 @@ const HeroMedia = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   padding: theme.spacing(1, 0),
+  [theme.breakpoints.down('md')]: {
+    paddingTop: theme.spacing(2),
+  },
 }));
 
 const HeroImage = styled('img')(({ theme }) => ({
@@ -177,6 +183,9 @@ const HeroImage = styled('img')(({ theme }) => ({
   borderRadius: 18,
   border: `1px solid ${theme.palette.divider}`,
   filter: 'grayscale(100%) contrast(1.05)',
+  [theme.breakpoints.down('md')]: {
+    borderRadius: 16,
+  },
 }));
 
 const arrowDrift = keyframes`

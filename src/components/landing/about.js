@@ -77,5 +77,6 @@ const AboutGrid = styled(Box)(({ theme }) => ({
   gap: theme.spacing(6),
   [theme.breakpoints.down('md')]: {
     gridTemplateColumns: '1fr',
+    gap: theme.spacing(4),
   },
 }));

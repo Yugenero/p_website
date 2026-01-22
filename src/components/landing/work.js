@@ -118,6 +118,9 @@ const WorkList = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(6),
+  [theme.breakpoints.down('md')]: {
+    gap: theme.spacing(4),
+  },
 }));
 
 const WorkItem = styled(Box)(({ theme }) => ({
@@ -130,6 +133,9 @@ const Highlights = styled(Box)(({ theme }) => ({
   display: 'grid',
   gap: theme.spacing(1.5),
   marginBottom: theme.spacing(2),
+  [theme.breakpoints.down('md')]: {
+    marginBottom: theme.spacing(1.5),
+  },
 }));
 
 const HighlightItem = styled(Typography)(({ theme }) => ({

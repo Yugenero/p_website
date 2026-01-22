@@ -96,6 +96,9 @@ const ProjectGrid = styled(Box)(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
   gap: theme.spacing(3),
+  [theme.breakpoints.down('md')]: {
+    gap: theme.spacing(2),
+  },
 }));
 
 const ProjectCard = styled(Box)(({ theme }) => ({
@@ -109,6 +112,10 @@ const ProjectCard = styled(Box)(({ theme }) => ({
   border: `1px solid ${theme.palette.divider}`,
   borderRadius: '0.5rem',
   gap: theme.spacing(3),
+  [theme.breakpoints.down('md')]: {
+    padding: theme.spacing(3),
+    minHeight: 'auto',
+  },
 }));
 
 const ProjectLink = styled(Link)(({ theme }) => ({

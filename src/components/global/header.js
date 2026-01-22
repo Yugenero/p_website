@@ -24,6 +24,7 @@ const HeaderInner = styled(Container)(({ theme }) => ({
   paddingTop: theme.spacing(2),
   paddingBottom: theme.spacing(2),
   flexWrap: 'wrap',
+  maxWidth: 1240,
 }));
 
 const BrandLink = styled(NavLink)(({ theme }) => ({
@@ -105,17 +106,6 @@ const ExternalLink = styled('a')(({ theme }) => ({
   },
   '&:hover::after': {
     transform: 'scaleX(1)',
-  },
-}));
-
-const ThemeToggle = styled(Button)(({ theme }) => ({
-  padding: `${theme.spacing(0.75)} ${theme.spacing(1.5)}`,
-  minWidth: 'auto',
-  fontSize: '0.7rem',
-  borderRadius: '0.5rem',
-  transition: 'transform 0.2s ease',
-  '&:hover': {
-    transform: 'translateY(-1px)',
   },
 }));
 

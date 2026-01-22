@@ -84,6 +84,7 @@ const HeroContainer = styled(Container)(() => ({
   display: 'flex',
   flexDirection: 'column',
   flex: 1,
+  maxWidth: 1240,
 }));
 
 const HeroContent = styled(Box)(({ theme }) => ({
@@ -97,7 +98,7 @@ const HeroContent = styled(Box)(({ theme }) => ({
 
 const HeroLayout = styled(Box)(({ theme }) => ({
   display: 'grid',
-  gridTemplateColumns: 'minmax(0, 1.1fr) minmax(0, 0.9fr)',
+  gridTemplateColumns: 'minmax(0, 0.85fr) minmax(0, 1.15fr)',
   alignItems: 'center',
   gap: theme.spacing(6),
   width: '100%',
@@ -169,7 +170,8 @@ const HeroMedia = styled(Box)(({ theme }) => ({
 }));
 
 const HeroImage = styled('img')(({ theme }) => ({
-  width: 'min(100%, 420px)',
+  width: 'min(100%, 1000px)',
+  height: 'min(100%, 1000px)',
   aspectRatio: '4 / 3',
   objectFit: 'cover',
   borderRadius: 18,

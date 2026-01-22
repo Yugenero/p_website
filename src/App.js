@@ -3,7 +3,7 @@ import Footer from './components/global/footer';
 import Home from './components/landing/home';
 
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Main, Page } from './components/ui/primitives';
 import { useEffect, useMemo, useState } from 'react';
 import buildTheme from './theme';
@@ -14,14 +14,28 @@ import { WorkPage } from './components/pages/work';
 import Photography from './components/pages/photography';
 import { ProjectsPage } from './components/pages/projects';
 
-// App root
+const AnimatedRoutes = () => {
+  const location = useLocation();
+
+  return (
+    <div className="page-fade" key={location.pathname}>
+      <Routes location={location}>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/work" element={<WorkPage />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/photography" element={<Photography />} />
+      </Routes>
+    </div>
+  );
+};
+
 function App() {
   const [mode, setMode] = useState(() => {
     const storedMode = window.localStorage.getItem('themeMode');
     return storedMode === 'dark' ? 'dark' : 'light';
   });
 
-  // For dark/light mode theme
   useEffect(() => {
     window.localStorage.setItem('themeMode', mode);
   }, [mode]);
@@ -32,7 +46,6 @@ function App() {
     setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
   };
 
-  // TODO - figure out why 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -40,13 +53,7 @@ function App() {
         <Page>
           <Header mode={mode} onToggleTheme={handleToggleTheme} />
           <Main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/work" element={<WorkPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/projects" element={<ProjectsPage />} />
-              <Route path="/photography" element={<Photography />} />
-            </Routes>
+            <AnimatedRoutes />
           </Main>
           <Footer />
         </Page>

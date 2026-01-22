@@ -106,8 +106,8 @@ const ProjectCard = styled(Box)(({ theme }) => ({
   flexDirection: 'column',
   justifyContent: 'space-between',
   minHeight: 240,
-  borderRadius: '0.5rem',
   border: `1px solid ${theme.palette.divider}`,
+  borderRadius: '0.5rem',
   gap: theme.spacing(3),
 }));
 
@@ -123,7 +123,7 @@ const ProjectLink = styled(Link)(({ theme }) => ({
 }));
 
 const ProjectMetaItem = styled(InlineItem)(({ theme }) => ({
-  color: theme.palette.primary.main,
+  color: theme.palette.text.secondary,
 }));
 
 export default Projects;

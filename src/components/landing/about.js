@@ -42,13 +42,14 @@ export const AboutSection = () => {
           </Box>
           <Box>
             <Typography variant="body1" paragraph>
-              Over the past year I led full-stack delivery on internal finance and
-              asset management systems serving 20,000+ ABM contractors at{' '}
-              <Link href="https://civicdx.com" target="_blank" rel="noopener noreferrer">
-                Civic DX
+              These days I’m a Solutions Engineer at{' '}
+              <Link href="https://www.fullstory.com" target="_blank" rel="noopener noreferrer">
+                Fullstory
               </Link>
-              . I focused on clean information design, scalable data filtering, and
-              dependable APIs with React, C#/.NET, MongoDB, and Snowflake.
+              , helping teams ship mobile AI + SDK integrations across iOS, Android, and
+              React Native in real-world apps with an engineering + technical focus. Over the past year I’ve contributed to full-stack
+              delivery on internal finance and asset management tools, focusing on clean
+              information design, scalable data filtering, and dependable APIs.
             </Typography>
             <Typography variant="body1" paragraph>
               I hold a B.S. in Computer Science from{' '}

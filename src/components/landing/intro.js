@@ -4,7 +4,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import { keyframes, styled } from '@mui/material/styles';
-import { Container, LeadText, MetaText, Section } from '../ui/primitives';
+import { Container, LeadText, Section } from '../ui/primitives';
 
 export const Intro = () => {
   const handleScrollToAbout = () => {
@@ -20,36 +20,47 @@ export const Intro = () => {
       <HeroContainer>
         <HeroContent>
           <HeroLayout>
-            <HeroHeadline>
+            <HeroMain>
+              <HeroHeadline>
               <HeroName variant="h1" component="h1">
                 Nelson Rodriguez
               </HeroName>
               <TypedLine variant="h2" component="p">
-                <ReactTyped
-                  strings={[
-                    'Algorithms practitioner and intentional problem solver.',
-                    'Humanistic, design-minded software engineer.',
-                    'Hardware enthusiast and iced coffee lover.',
-                    'Georgia Tech CS alum, information networks focus.',
-                    'Car enthusaist, hybrid athelete, and podcast consumer.',
-                  ]}
-                  typeSpeed={40}
-                  backDelay={2600}
-                  cursorChar="|"
-                  loop
-                  className="typed-text"
-                />
+                <TypedSlot>
+                  <ReactTyped
+                    strings={[
+                      'Algorithms practitioner and intentional problem solver.',
+                      'Humanistic, design-minded software engineer.',
+                      'Georgia Tech CS alum, information networks focus.',
+                      'Car enthusaist, hybrid athelete, iced coffee enjoyer',
+                    ]}
+                    typeSpeed={40}
+                    backDelay={2600}
+                    cursorChar="|"
+                    loop
+                    className="typed-text"
+                  />
+                </TypedSlot>
               </TypedLine>
             </HeroHeadline>
-            <HeroBody>
-              <LeadText>
-                I build pragmatic systems and clean interfaces that respect how people work.
-              </LeadText>
-              <Typography variant="body2" color="text.secondary">
-                Currently shipping full-stack platforms with a bias toward reliability,
-                clear information design, and measurable outcomes.
-              </Typography>
-            </HeroBody>
+              <HeroBody>
+                <HeroLead>
+                  I build pragmatic systems and clean interfaces that respect how people work.
+                </HeroLead>
+                <HeroSubText variant="body2" color="text.secondary">
+                  Currently shipping full-stack platforms with a bias toward reliability, clear
+                  information design, and measurable outcomes.
+                </HeroSubText>
+              </HeroBody>
+            </HeroMain>
+            <HeroMedia>
+              <HeroImage
+                src="/files/images/me.jpg"
+                alt="Nelson Rodriguez portrait"
+                loading="lazy"
+                decoding="async"
+              />
+            </HeroMedia>
           </HeroLayout>
         </HeroContent>
         <ScrollCue>
@@ -65,7 +76,7 @@ export const Intro = () => {
 const HeroSection = styled(Section)(({ theme }) => ({
   minHeight: 'calc(100vh - 72px)',
   display: 'flex',
-  paddingTop: theme.spacing(6),
+  paddingTop: 0,
   paddingBottom: theme.spacing(4),
 }));
 
@@ -80,45 +91,90 @@ const HeroContent = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  alignItems: 'flex-start',
-  gap: theme.spacing(6),
+  alignItems: 'stretch',
+  gap: theme.spacing(5),
 }));
 
 const HeroLayout = styled(Box)(({ theme }) => ({
+  display: 'grid',
+  gridTemplateColumns: 'minmax(0, 1.1fr) minmax(0, 0.9fr)',
+  alignItems: 'center',
+  gap: theme.spacing(6),
+  width: '100%',
+  [theme.breakpoints.down('md')]: {
+    gridTemplateColumns: '1fr',
+    gap: theme.spacing(4),
+  },
+}));
+
+const HeroMain = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  gap: theme.spacing(4),
-  width: '100%',
+  gap: theme.spacing(3),
 }));
 
 const HeroHeadline = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  gap: theme.spacing(1.5),
+  gap: theme.spacing(1),
 }));
 
-const HeroName = styled(Typography)(() => ({
-  fontSize: 'clamp(2.9rem, 6vw, 4.6rem)',
-  fontFamily: 'Boska, serif',
-  fontWeight: 700,
+const HeroName = styled(Typography)(({ theme }) => ({
+  fontSize: 'clamp(2.3rem, 4.4vw, 3.6rem)',
+  fontFamily: theme.typography.h1.fontFamily,
+  fontWeight: 600,
+  letterSpacing: '-0.02em',
   fontStyle: 'normal',
 }));
 
 const TypedLine = styled(Typography)(({ theme }) => ({
-  marginBottom: theme.spacing(2),
-  minHeight: '3.6rem',
-  fontSize: 'clamp(1.5rem, 3.4vw, 2.4rem)',
+  marginBottom: theme.spacing(1.5),
+  height: '2.4em',
+  overflow: 'hidden',
+  fontSize: 'clamp(1.05rem, 2.3vw, 1.6rem)',
+  lineHeight: 1.2,
   position: 'relative',
   '& .typed-text': {
     fontWeight: 500,
+    fontFamily: theme.typography.fontFamily,
   },
+}));
+
+const TypedSlot = styled('span')(() => ({
+  position: 'absolute',
+  inset: 0,
+  display: 'block',
 }));
 
 const HeroBody = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  gap: theme.spacing(1.5),
-  maxWidth: 640,
+  gap: theme.spacing(1),
+  maxWidth: 520,
+}));
+
+const HeroLead = styled(LeadText)(() => ({
+  fontSize: '0.98rem',
+}));
+
+const HeroSubText = styled(Typography)(() => ({
+  fontSize: '0.95rem',
+}));
+
+const HeroMedia = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: theme.spacing(1, 0),
+}));
+
+const HeroImage = styled('img')(({ theme }) => ({
+  width: 'min(100%, 420px)',
+  aspectRatio: '4 / 3',
+  objectFit: 'cover',
+  borderRadius: 18,
+  border: `1px solid ${theme.palette.divider}`,
+  filter: 'grayscale(100%) contrast(1.05)',
 }));
 
 const arrowDrift = keyframes`

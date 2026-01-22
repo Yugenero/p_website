@@ -29,14 +29,15 @@ const HeaderInner = styled(Container)(({ theme }) => ({
 const BrandLink = styled(NavLink)(({ theme }) => ({
   color: theme.palette.text.primary,
   textDecoration: 'none',
-  textTransform: 'uppercase',
-  letterSpacing: '0.2em',
+  fontFamily: theme.typography.h2.fontFamily,
+  letterSpacing: '0.02em',
   fontWeight: 600,
-  fontSize: '0.75rem',
+  fontSize: '1.05rem',
 }));
 
 const BrandMeta = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.secondary,
+  fontSize: '0.85rem',
 }));
 
 const NavGroup = styled(Box)(({ theme }) => ({
@@ -54,7 +55,8 @@ const NavItem = styled(NavLink)(({ theme }) => ({
   fontSize: '0.72rem',
   fontWeight: 600,
   position: 'relative',
-  '&[aria-current="page"]::after': {
+  transition: 'color 0.2s ease',
+  '&::after': {
     content: '""',
     position: 'absolute',
     left: 0,
@@ -62,6 +64,18 @@ const NavItem = styled(NavLink)(({ theme }) => ({
     width: '100%',
     height: 2,
     backgroundColor: theme.palette.text.primary,
+    transform: 'scaleX(0)',
+    transformOrigin: 'left',
+    transition: 'transform 0.2s ease',
+  },
+  '&:hover': {
+    color: theme.palette.text.secondary,
+  },
+  '&:hover::after, &[aria-current="page"]::after': {
+    transform: 'scaleX(1)',
+  },
+  '&[aria-current="page"]': {
+    color: theme.palette.text.primary,
   },
 }));
 
@@ -72,6 +86,37 @@ const ExternalLink = styled('a')(({ theme }) => ({
   letterSpacing: '0.14em',
   fontSize: '0.72rem',
   fontWeight: 600,
+  position: 'relative',
+  transition: 'color 0.2s ease',
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    left: 0,
+    bottom: -6,
+    width: '100%',
+    height: 2,
+    backgroundColor: theme.palette.text.primary,
+    transform: 'scaleX(0)',
+    transformOrigin: 'left',
+    transition: 'transform 0.2s ease',
+  },
+  '&:hover': {
+    color: theme.palette.text.secondary,
+  },
+  '&:hover::after': {
+    transform: 'scaleX(1)',
+  },
+}));
+
+const ThemeToggle = styled(Button)(({ theme }) => ({
+  padding: `${theme.spacing(0.75)} ${theme.spacing(1.5)}`,
+  minWidth: 'auto',
+  fontSize: '0.7rem',
+  borderRadius: '0.5rem',
+  transition: 'transform 0.2s ease',
+  '&:hover': {
+    transform: 'translateY(-1px)',
+  },
 }));
 
 export const Header = ({ mode, onToggleTheme }) => {
@@ -83,7 +128,7 @@ export const Header = ({ mode, onToggleTheme }) => {
         <HeaderInner>
           <Box>
             <BrandLink to="/">Nelson Rodriguez</BrandLink>
-            <BrandMeta variant="body2">Software Engineer &amp; Systems Builder</BrandMeta>
+            <BrandMeta variant="body2">Software Engineer &amp; System Builder</BrandMeta>
           </Box>
           <NavGroup>
             <NavItem to="/" end>

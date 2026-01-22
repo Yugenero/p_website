@@ -21,24 +21,40 @@ export const accentColors = {
   crimsonHighlight: '#E63946',
 }
 
+const titleFont = '"Lora", "Times New Roman", Times, serif';
+const bodyFont =
+  'system-ui, -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", Arial, sans-serif';
+
 const baseTypography = {
-  fontFamily: '"Geist", "Helvetica Neue", Arial, sans-serif',
+  fontFamily: bodyFont,
   h1: {
     fontSize: '2.9rem',
     fontWeight: 600,
     letterSpacing: '-0.02em',
     lineHeight: 1.1,
+    fontFamily: titleFont,
   },
   h2: {
     fontSize: '2rem',
     fontWeight: 600,
     letterSpacing: '-0.015em',
     lineHeight: 1.2,
+    fontFamily: titleFont,
   },
   h3: {
     fontSize: '1.35rem',
     fontWeight: 600,
     lineHeight: 1.3,
+    fontFamily: titleFont,
+  },
+  h4: {
+    fontFamily: titleFont,
+  },
+  h5: {
+    fontFamily: titleFont,
+  },
+  h6: {
+    fontFamily: titleFont,
   },
   body1: {
     fontSize: '1rem',

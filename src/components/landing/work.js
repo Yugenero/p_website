@@ -31,7 +31,7 @@ const workExperience = [
     stack: ['TypeScript/JavaScript', 'Java', 'Swift/Swift UI'],
   },
   {
-    employer: 'Civic DX',
+    employer: 'Civic Digital Experience, Inc.',
     location: 'Atlanta, GA',
     date: 'Oct 2024 — Jul 2025',
     title: 'Software Engineer',
@@ -45,10 +45,10 @@ const workExperience = [
     stack: ['React', 'C#/.NET', 'MongoDB', 'Snowflake'],
   },
   {
-    employer: 'eKlozet',
+    employer: 'eKlozet Designer Consignment',
     location: 'Atlanta, GA',
     date: 'Jan 2022 — Dec 2022',
-    title: 'Contract Software Development Intern',
+    title: 'Software Engineer Intern',
     summary:
       'Built a sustainable fashion iOS platform with personalization and data-driven wardrobe intelligence.',
     highlights: [

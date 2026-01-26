@@ -109,8 +109,9 @@ const AboutGrid = styled(Box)(({ theme }) => ({
   },
 }));
 
-const AboutLead = styled(LeadText)(() => ({
+const AboutLead = styled(LeadText)(({ theme }) => ({
   fontSize: '1.2rem',
+  color: theme.palette.mode === 'light' ? theme.palette.text.primary : theme.palette.text.secondary,
 }));
 
 const AboutParagraph = styled(Typography)(() => ({

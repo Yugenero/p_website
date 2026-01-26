@@ -252,8 +252,8 @@ const HeroMedia = styled(Box)(({ theme }) => ({
 }));
 
 const HeroImage = styled('img')(({ theme }) => ({
-  width: 'min(100%, 40rem)',
-  aspectRatio: '4 / 3',
+  width: 'min(100%, 48rem)',
+  aspectRatio: '5 / 3',
   objectFit: 'cover',
   borderRadius: 18,
   border: `1px solid ${theme.palette.divider}`,

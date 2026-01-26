@@ -83,9 +83,9 @@ const Projects = () => {
               >
                 <ProjectHeader>
                   <ProjectTitle variant="h3">{project.title}</ProjectTitle>
-                  <Typography variant="body2" color="inherit">
+                  <ProjectDescription variant="body2" color="inherit">
                     {project.description}
-                  </Typography>
+                  </ProjectDescription>
                 </ProjectHeader>
                 <Box>
                   <InlineList>
@@ -142,6 +142,11 @@ const ProjectHeader = styled(Box)(({ theme }) => ({
 
 const ProjectTitle = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(2),
+  fontSize: '1.5rem',
+}));
+
+const ProjectDescription = styled(Typography)(() => ({
+  fontSize: '1rem',
 }));
 
 const StyledTooltip = styled(Tooltip)(({ theme }) => ({
@@ -151,7 +156,7 @@ const StyledTooltip = styled(Tooltip)(({ theme }) => ({
         ? theme.palette.background.default
         : theme.palette.background.paper,
     color: theme.palette.text.primary,
-    fontFamily: '"Lora", "Times New Roman", Times, serif',
+    fontFamily: theme.typography.h1.fontFamily,
     fontSize: '1.75rem',
     padding: theme.spacing(2, 3),
     borderRadius: '0.6rem',

@@ -87,15 +87,15 @@ export const WorkSection = () => {
           {workExperience.map((experience) => (
             <WorkItem key={experience.employer}>
               <MetaText>{experience.date}</MetaText>
-              <Typography variant="h3">
+              <WorkTitle variant="h3">
                 {experience.title} · {experience.employer}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
+              </WorkTitle>
+              <WorkLocation variant="body2" color="text.secondary">
                 {experience.location}
-              </Typography>
-              <Typography variant="body1" paragraph>
+              </WorkLocation>
+              <WorkSummary variant="body1" paragraph>
                 {experience.summary}
-              </Typography>
+              </WorkSummary>
               <Highlights>
                 {experience.highlights.map((point) => (
                   <HighlightItem key={point}>{point}</HighlightItem>
@@ -129,6 +129,18 @@ const WorkItem = styled(Box)(({ theme }) => ({
   gap: theme.spacing(1.5),
 }));
 
+const WorkTitle = styled(Typography)(() => ({
+  fontSize: '1.6rem',
+}));
+
+const WorkLocation = styled(Typography)(() => ({
+  fontSize: '0.98rem',
+}));
+
+const WorkSummary = styled(Typography)(() => ({
+  fontSize: '1.06rem',
+}));
+
 const Highlights = styled(Box)(({ theme }) => ({
   display: 'grid',
   gap: theme.spacing(1.5),
@@ -141,6 +153,7 @@ const Highlights = styled(Box)(({ theme }) => ({
 const HighlightItem = styled(Typography)(({ theme }) => ({
   position: 'relative',
   paddingLeft: theme.spacing(3),
+  fontSize: '1rem',
   '&::before': {
     content: '"—"',
     position: 'absolute',

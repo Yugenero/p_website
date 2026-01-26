@@ -75,23 +75,23 @@ const Photography = () => {
         <SectionHeader>
           <MetaText>11</MetaText>
           <SectionTitle variant="h2">&lt;photography&gt;</SectionTitle>
-          <LeadText>
+          <PhotoLead>
             Things I find interesting. Updated as I travel more.
-          </LeadText>
+          </PhotoLead>
         </SectionHeader>
         <MasonryStage aria-busy={loading}>
           {loading && (
             <LoadingOverlay>
               <LoadingStack>
                 <LoadingSpinner aria-hidden="true" />
-                <Typography variant="body2">Loading photography archive…</Typography>
+                <PhotoStatus variant="body2">Loading photography archive…</PhotoStatus>
               </LoadingStack>
             </LoadingOverlay>
           )}
           {error && !loading && (
             <LoadingOverlay>
               <LoadingStack>
-                <Typography variant="body2">Error loading images: {error}</Typography>
+                <PhotoStatus variant="body2">Error loading images: {error}</PhotoStatus>
               </LoadingStack>
             </LoadingOverlay>
           )}
@@ -113,6 +113,14 @@ const MasonryGrid = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
     columnCount: 1,
   },
+}));
+
+const PhotoLead = styled(LeadText)(() => ({
+  fontSize: '1.15rem',
+}));
+
+const PhotoStatus = styled(Typography)(() => ({
+  fontSize: '1rem',
 }));
 
 const MasonryStage = styled(Box)(({ theme }) => ({

@@ -55,7 +55,7 @@ const Footer = () => {
         <Box>
           <Typography variant="body2">© 2025 Nelson Rodriguez</Typography>
           <Typography variant="body2" color="text.secondary">
-            Atlanta, GA · nelsonrodriguez.me
+            Currently Atlanta, GA · nelsonrodriguez.me
           </Typography>
         </Box>
         <SocialList>

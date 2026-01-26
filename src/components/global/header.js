@@ -1,9 +1,11 @@
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
+import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import { ThemeToggle } from '../animations/themeToggle';
 import { styled } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
@@ -34,18 +36,26 @@ const HeaderInner = styled(Container)(({ theme }) => ({
   },
 }));
 
-const BrandLink = styled(NavLink)(({ theme }) => ({
-  color: theme.palette.text.primary,
-  textDecoration: 'none',
-  fontFamily: theme.typography.h2.fontFamily,
-  letterSpacing: '0.02em',
-  fontWeight: 600,
-  fontSize: '1.05rem',
+const SocialList = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(2.5),
 }));
 
-const BrandMeta = styled(Typography)(({ theme }) => ({
-  color: theme.palette.text.secondary,
-  fontSize: '0.85rem',
+const SocialLink = styled('a')(({ theme }) => ({
+  color: theme.palette.text.disabled,
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  textDecoration: 'none',
+  transition: 'color 0.2s ease, transform 0.2s ease',
+  '&:hover': {
+    color: theme.palette.text.primary,
+    transform: 'translateY(-1px)',
+  },
+  '& svg': {
+    fontSize: '1.6rem',
+  },
 }));
 
 const NavGroup = styled(Box)(({ theme }) => ({
@@ -127,10 +137,27 @@ export const Header = ({ mode, onToggleTheme }) => {
     <HeaderBar position="sticky" elevation={0}>
       <Toolbar disableGutters>
         <HeaderInner>
-          <Box>
-            <BrandLink to="/">Nelson Rodriguez</BrandLink>
-            <BrandMeta variant="body2">Software Engineer + Problem Solver</BrandMeta>
-          </Box>
+          <SocialList>
+            <SocialLink href="mailto:neroxv1313@gmail.com" aria-label="Email">
+              <EmailRoundedIcon />
+            </SocialLink>
+            <SocialLink
+              href="https://www.linkedin.com/in/nelson-rodriguez13/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <LinkedInIcon />
+            </SocialLink>
+            <SocialLink
+              href="https://github.com/Yugenero"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <GitHubIcon />
+            </SocialLink>
+          </SocialList>
           <NavGroup>
             <NavItem to="/" end>
               Home

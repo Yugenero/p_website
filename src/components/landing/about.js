@@ -36,12 +36,12 @@ export const AboutSection = () => {
         </SectionHeader>
         <AboutGrid>
           <Box>
-            <LeadText>
+            <AboutLead>
               I enjoy computers and building software that brings clarity to complexity.
-            </LeadText>
+            </AboutLead>
           </Box>
           <Box>
-            <Typography variant="body1" paragraph>
+            <AboutParagraph variant="body1" paragraph>
               These days I’m a Solutions Engineer with a technical + software focus at{' '}
               <Link
                 href="https://www.fullstory.com"
@@ -55,14 +55,14 @@ export const AboutSection = () => {
               React Native in real-world applications. Over the past year I’ve contributed to full-stack
               delivery as a Software Engineer on internal finance and asset management tools, focusing on clean
               information design, scalable data filtering, and dependable APIs.
-            </Typography>
-            <Typography variant="body1" paragraph>
+            </AboutParagraph>
+            <AboutParagraph variant="body1" paragraph>
               I also hold a B.S. in Computer Science from the {' '}
               <GeorgiaTechLink href="https://www.gatech.edu" target="_blank" rel="noopener noreferrer">
                 Georgia Institute of Technology
               </GeorgiaTechLink>
               ,{' '} where I focused on algorithms, networks, and systems.
-            </Typography>
+            </AboutParagraph>
             <CoreStackLabel>Core stack</CoreStackLabel>
             <SkillsList>
               {skills.map((skill) => (
@@ -84,6 +84,14 @@ const AboutGrid = styled(Box)(({ theme }) => ({
     gridTemplateColumns: '1fr',
     gap: theme.spacing(4),
   },
+}));
+
+const AboutLead = styled(LeadText)(() => ({
+  fontSize: '1.2rem',
+}));
+
+const AboutParagraph = styled(Typography)(() => ({
+  fontSize: '1.05rem',
 }));
 
 const CoreStackLabel = styled(MetaText)(({ theme }) => ({

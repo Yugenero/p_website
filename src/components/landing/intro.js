@@ -2,7 +2,6 @@ import { ReactTyped } from 'react-typed';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
-import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import { keyframes, styled } from '@mui/material/styles';
 import { Container, LeadText, Section } from '../ui/primitives';
 
@@ -33,6 +32,7 @@ export const Intro = () => {
                       'Humanistic, design-minded software engineer.',
                       'Georgia Tech CS alum, information networks focus.',
                       'Car enthusaist, hybrid athelete, iced coffee enjoyer',
+                      "Kaizen as a practice - 1% better every day",
                     ]}
                     typeSpeed={40}
                     backDelay={2600}
@@ -45,9 +45,13 @@ export const Intro = () => {
             </HeroHeadline>
               <HeroBody>
                 <HeroLead>
+                  I build practical software that makes teams feel faster, calmer, and more
+                  confident in what they ship.
                 </HeroLead>
                 <HeroSubText variant="body2" color="text.secondary">
-                  I love building software that brings together my love for thoughtful design, efficient systems, and making life easier for people.
+                  Right now I’m focused on mobile SDK work, smooth integrations, and turning messy
+                  product data into clear, useful experiences. I care about the little details,
+                  but I’m always chasing simple, human workflows that just make sense.
                 </HeroSubText>
               </HeroBody>
             </HeroMain>
@@ -61,11 +65,6 @@ export const Intro = () => {
             </HeroMedia>
           </HeroLayout>
         </HeroContent>
-        <ScrollCue>
-          <ScrollButton onClick={handleScrollToAbout} aria-label="Scroll to the about section">
-            <ArrowForwardRoundedIcon fontSize="medium" />
-          </ScrollButton>
-        </ScrollCue>
       </HeroContainer>
     </HeroSection>
   );
@@ -121,9 +120,9 @@ const HeroHeadline = styled(Box)(({ theme }) => ({
 }));
 
 const HeroName = styled(Typography)(({ theme }) => ({
-  fontSize: 'clamp(2.3rem, 4.4vw, 3.6rem)',
+  fontSize: 'clamp(3rem, 6vw, 5rem)',
   fontFamily: theme.typography.h1.fontFamily,
-  fontWeight: 600,
+  fontWeight: 400,
   letterSpacing: '-0.02em',
   fontStyle: 'normal',
 }));
@@ -132,7 +131,7 @@ const TypedLine = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(1.5),
   height: '2.4em',
   overflow: 'hidden',
-  fontSize: 'clamp(1.05rem, 2.3vw, 1.6rem)',
+  fontSize: 'clamp(1.15rem, 2.6vw, 1.85rem)',
   lineHeight: 1.2,
   position: 'relative',
   '& .typed-text': {
@@ -155,11 +154,11 @@ const HeroBody = styled(Box)(({ theme }) => ({
 }));
 
 const HeroLead = styled(LeadText)(() => ({
-  fontSize: '0.98rem',
+  fontSize: '1.2rem',
 }));
 
 const HeroSubText = styled(Typography)(() => ({
-  fontSize: '0.95rem',
+  fontSize: '1.05rem',
 }));
 
 const HeroMedia = styled(Box)(({ theme }) => ({
@@ -173,8 +172,7 @@ const HeroMedia = styled(Box)(({ theme }) => ({
 }));
 
 const HeroImage = styled('img')(({ theme }) => ({
-  width: 'min(100%, 1000px)',
-  height: 'min(100%, 1000px)',
+  width: 'min(100%, 46.875rem)',
   aspectRatio: '4 / 3',
   objectFit: 'cover',
   borderRadius: 18,

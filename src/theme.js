@@ -21,7 +21,7 @@ export const accentColors = {
   crimsonHighlight: '#E63946',
 }
 
-const titleFont = '"Lora", "Times New Roman", Times, serif';
+const titleFont = '"Crimson Pro", "Times New Roman", Times, serif';
 const bodyFont =
   '"Voyager-Thin", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif';
 
@@ -158,6 +158,13 @@ export const buildTheme = (mode = 'light') => {
               fontDisplay: 'swap',
               fontWeight: 700,
               src: "url('/fonts/Boska/Boska-Bold.woff2') format('woff2')",
+            },
+            {
+              fontFamily: 'Crimson Pro',
+              fontStyle: 'normal',
+              fontDisplay: 'swap',
+              fontWeight: 300,
+              src: "url('/fonts/CrimsonPro_Complete/Fonts/OTF/CrimsonPro-Light.otf') format('opentype')",
             },
           ],
           '*': {

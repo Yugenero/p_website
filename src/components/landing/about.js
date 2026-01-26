@@ -1,7 +1,9 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
+import Starfield from '../global/starfield';
+
 import {
   Container,
   InlineItem,
@@ -27,9 +29,20 @@ const skills = [
 ];
 
 export const AboutSection = () => {
+  const theme = useTheme();
+
   return (
-    <Section id="about">
-      <Container>
+    <AboutWrap id="about">
+      <Starfield
+        density={15}
+        color={theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.text.secondary}
+        backgroundStops={['transparent', 'transparent']}
+        maxDrift={0.6}
+        ultraSubtle
+        style={{ opacity: theme.palette.mode === 'dark' ? 0.5 : 0.25 }}
+        forceWhite={true}
+      />
+      <AboutContent>
         <SectionHeader>
           <MetaText className='h6'>00</MetaText>
           <SectionTitle variant="h2">About</SectionTitle>
@@ -71,10 +84,20 @@ export const AboutSection = () => {
             </SkillsList>
           </Box>
         </AboutGrid>
-      </Container>
-    </Section>
+      </AboutContent>
+    </AboutWrap>
   );
 };
+
+const AboutWrap = styled(Section)(() => ({
+  position: 'relative',
+  overflow: 'hidden',
+}));
+
+const AboutContent = styled(Container)(() => ({
+  position: 'relative',
+  zIndex: 1,
+}));
 
 const AboutGrid = styled(Box)(({ theme }) => ({
   display: 'grid',

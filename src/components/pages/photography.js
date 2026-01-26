@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { alpha, styled } from '@mui/material/styles';
+import { alpha, styled, useTheme } from '@mui/material/styles';
 import {
   Container,
   LeadText,
@@ -10,6 +10,7 @@ import {
   SectionHeader,
   SectionTitle,
 } from '../ui/primitives';
+import Starfield from '../global/starfield';
 
 const PhotoCard = ({ photo, index }) => {
   const [loaded, setLoaded] = useState(false);
@@ -34,7 +35,7 @@ const PhotoCard = ({ photo, index }) => {
 };
 
 /**
- * Tile layout for the photography page using masonry grid
+ * Tile layout for the photography page using pinterest inspired masonry grid
  * @param {*} param0 
  * @returns 
  */
@@ -49,6 +50,7 @@ const TileLayout = ({ photos }) => {
 };
 
 const Photography = () => {
+  const theme = useTheme();
   const [photos, setPhotos] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -70,13 +72,22 @@ const Photography = () => {
   }, []);
 
   return (
-    <Section id="photography">
-      <Container>
+    <PhotoWrap id="photography">
+      <Starfield
+        density={0.9}
+        color={theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.text.secondary}
+        backgroundStops={['transparent', 'transparent']}
+        maxDrift={0.6}
+        ultraSubtle
+        style={{ opacity: theme.palette.mode === 'dark' ? 0.4 : 0.18 }}
+        forceWhite={true}
+      />
+      <PhotoContent>
         <SectionHeader>
           <MetaText>11</MetaText>
           <SectionTitle variant="h2">Photography</SectionTitle>
           <PhotoLead>
-            Things I find interesting. Updated as I travel more.
+            Stuff I find interesting. Updated as I travel more.
           </PhotoLead>
         </SectionHeader>
         <MasonryStage aria-busy={loading}>
@@ -97,15 +108,15 @@ const Photography = () => {
           )}
           <TileLayout photos={photos} />
         </MasonryStage>
-      </Container>
-    </Section>
+      </PhotoContent>
+    </PhotoWrap>
   );
 };
 
 export default Photography;
 
 const MasonryGrid = styled(Box)(({ theme }) => ({
-  columnCount: 3,
+  columnCount: 4,
   columnGap: theme.spacing(3),
   [theme.breakpoints.down('md')]: {
     columnCount: 2,
@@ -113,6 +124,16 @@ const MasonryGrid = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
     columnCount: 1,
   },
+}));
+
+const PhotoWrap = styled(Section)(() => ({
+  position: 'relative',
+  overflow: 'hidden',
+}));
+
+const PhotoContent = styled(Container)(() => ({
+  position: 'relative',
+  zIndex: 1,
 }));
 
 const PhotoLead = styled(LeadText)(() => ({

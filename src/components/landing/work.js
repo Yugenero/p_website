@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import {
   Container,
   InlineItem,
@@ -10,6 +10,7 @@ import {
   SectionHeader,
   SectionTitle,
 } from '../ui/primitives';
+import Starfield from '../global/starfield';
 
 const workExperience = [
   {
@@ -85,9 +86,20 @@ const workExperience = [
 
 // Work section object
 export const WorkSection = () => {
+  const theme = useTheme();
+
   return (
-    <Section id="work">
-      <Container>
+    <WorkWrap id="work">
+      <Starfield
+        density={20}
+        color={theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.text.secondary}
+        backgroundStops={['transparent', 'transparent']}
+        maxDrift={0.6}
+        ultraSubtle
+        style={{ opacity: theme.palette.mode === 'dark' ? 0.4 : 0.18 }}
+        forceWhite={true}
+      />
+      <WorkContent>
         <SectionHeader>
           <MetaText>01</MetaText>
           <SectionTitle variant="h2">Experience</SectionTitle>
@@ -118,10 +130,20 @@ export const WorkSection = () => {
             </WorkItem>
           ))}
         </WorkList>
-      </Container>
-    </Section>
+      </WorkContent>
+    </WorkWrap>
   );
 };
+
+const WorkWrap = styled(Section)(() => ({
+  position: 'relative',
+  overflow: 'hidden',
+}));
+
+const WorkContent = styled(Container)(() => ({
+  position: 'relative',
+  zIndex: 1,
+}));
 
 const WorkList = styled(Box)(({ theme }) => ({
   display: 'flex',

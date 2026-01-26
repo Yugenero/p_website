@@ -19,6 +19,7 @@ const skills = [
   'Java',
   'C#',
   'MongoDB',
+  'Firebase',
   'Snowflake',
   'AWS',
   'Docker',
@@ -31,39 +32,43 @@ export const AboutSection = () => {
       <Container>
         <SectionHeader>
           <MetaText className='h6'>00</MetaText>
-          <SectionTitle variant="h2">/About</SectionTitle>
+          <SectionTitle variant="h2">&lt;about&gt;</SectionTitle>
         </SectionHeader>
         <AboutGrid>
           <Box>
             <LeadText>
-              I build software that turns complex operational data into clear,
-              reliable tools that people trust.
+              I enjoy computers and building software that brings clarity to complexity.
             </LeadText>
           </Box>
           <Box>
             <Typography variant="body1" paragraph>
-              These days I’m a Solutions Engineer at{' '}
-              <Link href="https://www.fullstory.com" target="_blank" rel="noopener noreferrer">
+              These days I’m a Solutions Engineer with a technical + software focus at{' '}
+              <Link
+                href="https://www.fullstory.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{ fontWeight: 700 }}
+              >
                 Fullstory
               </Link>
-              , helping teams ship mobile AI + SDK integrations across iOS, Android, and
-              React Native in real-world apps with an engineering + technical focus. Over the past year I’ve contributed to full-stack
-              delivery on internal finance and asset management tools, focusing on clean
+              , helping our specialist team ship mobile AI + SDK integrations across iOS, Android, and
+              React Native in real-world applications. Over the past year I’ve contributed to full-stack
+              delivery as a Software Engineer on internal finance and asset management tools, focusing on clean
               information design, scalable data filtering, and dependable APIs.
             </Typography>
             <Typography variant="body1" paragraph>
-              I hold a B.S. in Computer Science from{' '}
-              <Link href="https://www.gatech.edu" target="_blank" rel="noopener noreferrer">
-                Georgia Tech
-              </Link>
-              , where I focused on algorithms, networks, and systems.
+              I also hold a B.S. in Computer Science from the {' '}
+              <GeorgiaTechLink href="https://www.gatech.edu" target="_blank" rel="noopener noreferrer">
+                Georgia Institute of Technology
+              </GeorgiaTechLink>
+              ,{' '} where I focused on algorithms, networks, and systems.
             </Typography>
-            <MetaText>Core stack</MetaText>
-            <InlineList>
+            <CoreStackLabel>Core stack</CoreStackLabel>
+            <SkillsList>
               {skills.map((skill) => (
                 <InlineItem key={skill}>{skill}</InlineItem>
               ))}
-            </InlineList>
+            </SkillsList>
           </Box>
         </AboutGrid>
       </Container>
@@ -79,4 +84,19 @@ const AboutGrid = styled(Box)(({ theme }) => ({
     gridTemplateColumns: '1fr',
     gap: theme.spacing(4),
   },
+}));
+
+const CoreStackLabel = styled(MetaText)(({ theme }) => ({
+  marginBottom: theme.spacing(2),
+  display: 'block',
+}));
+
+const SkillsList = styled(InlineList)(({ theme }) => ({
+  gap: theme.spacing(1),
+  rowGap: theme.spacing(0.5),
+}));
+
+const GeorgiaTechLink = styled(Link)(() => ({
+  fontFamily: '"Roboto Slab", serif',
+  fontWeight: 600,
 }));

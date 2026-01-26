@@ -17,7 +17,7 @@ export const Main = styled('main')(() => ({
 
 export const Container = styled(Box)(({ theme }) => ({
   width: '100%',
-  maxWidth: 1120,
+  maxWidth: '100%',
   margin: '0 auto',
   paddingLeft: theme.spacing(3),
   paddingRight: theme.spacing(3),
@@ -58,6 +58,7 @@ export const MetaText = styled(Typography)(({ theme }) => ({
 export const SectionTitle = styled(Typography)(({ theme }) => ({
   fontWeight: 600,
   marginTop: theme.spacing(1),
+  fontFamily: theme.typography.fontFamily,
 }));
 
 export const LeadText = styled(Typography)(({ theme }) => ({

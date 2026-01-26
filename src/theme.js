@@ -23,7 +23,7 @@ export const accentColors = {
 
 const titleFont = '"Lora", "Times New Roman", Times, serif';
 const bodyFont =
-  'system-ui, -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", Arial, sans-serif';
+  '"Voyager-Thin", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif';
 
 const baseTypography = {
   fontFamily: bodyFont,

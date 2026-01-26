@@ -9,6 +9,7 @@ import { Container } from '../ui/primitives';
 const FooterWrap = styled('footer')(({ theme }) => ({
   paddingTop: theme.spacing(6),
   paddingBottom: theme.spacing(6),
+  width: '100%',
 }));
 
 const FooterInner = styled(Container)(({ theme }) => ({
@@ -17,6 +18,7 @@ const FooterInner = styled(Container)(({ theme }) => ({
   justifyContent: 'space-between',
   gap: theme.spacing(4),
   flexWrap: 'wrap',
+  maxWidth: '100%',
 }));
 
 const SocialList = styled(Box)(({ theme }) => ({

@@ -24,7 +24,7 @@ const HeaderInner = styled(Container)(({ theme }) => ({
   paddingTop: theme.spacing(2),
   paddingBottom: theme.spacing(2),
   flexWrap: 'wrap',
-  maxWidth: 1240,
+  maxWidth: '100%',
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column',
     alignItems: 'flex-start',
@@ -129,7 +129,7 @@ export const Header = ({ mode, onToggleTheme }) => {
         <HeaderInner>
           <Box>
             <BrandLink to="/">Nelson Rodriguez</BrandLink>
-            <BrandMeta variant="body2">Software Engineer &amp; System Builder</BrandMeta>
+            <BrandMeta variant="body2">Software Engineer + Problem Solver</BrandMeta>
           </Box>
           <NavGroup>
             <NavItem to="/" end>

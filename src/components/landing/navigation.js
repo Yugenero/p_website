@@ -4,7 +4,8 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import DescriptionIcon from '@mui/icons-material/Description';
-import { Tooltip, Zoom,  } from '@mui/material';
+import { Tooltip, Zoom } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import { Link } from '@mui/material';
 import '../styles/navigation.css';
 import '../styles/home.css';
@@ -55,58 +56,72 @@ const NavbarIcon = () => {
 	return (
 		<ul className="navigation-list">
 			<li className="navigation_link">
-			<Tooltip title="Resume" placement="bottom" open={tooltipOpen.resume} TransitionComponent={Zoom}
-				componentsProps={{
-					tooltip: { sx: { backgroundColor: 'var(--primary-color-dark)', fontFamily: 'var(--current-font)', fontSize: '14px'}}}}>
+			<NavTooltip title="Resume" placement="bottom" open={tooltipOpen.resume} TransitionComponent={Zoom}>
 				<IconButton component="a" href="/documents/NelsonRodriguez2025.pdf" target="_blank" rel="noopener noreferrer"
 					sx={navLinkStyles.link}
 					onMouseEnter={() => handleMouseEnter('resume')}
 					onMouseLeave={() => handleMouseLeave('resume')}>
 					<DescriptionIcon sx={navLinkStyles.iconFooter} />
 				</IconButton>
-			</Tooltip>
+			</NavTooltip>
 			</li>
 
 			<li className="navigation_item">
-			<Tooltip title="LinkedIn" placement="bottom" open={tooltipOpen.linkedin} TransitionComponent={Zoom}
-				componentsProps={{
-					tooltip: { sx: { backgroundColor: 'var(--primary-color-dark)', fontFamily: 'var(--current-font)', fontSize: '14px'}}}}>
+			<NavTooltip title="LinkedIn" placement="bottom" open={tooltipOpen.linkedin} TransitionComponent={Zoom}>
 				<IconButton component={Link} href="https://www.linkedin.com/in/nelson-rodriguez13/" target="_blank" rel="noopener noreferrer"
 					sx={navLinkStyles.link}
 					onMouseEnter={() => handleMouseEnter('linkedin')}
 					onMouseLeave={() => handleMouseLeave('linkedin')}>
 					<LinkedInIcon sx={navLinkStyles.iconFooter} />
 				</IconButton>
-			</Tooltip>	
+			</NavTooltip>	
 			</li>
 
 			<li className="navigation_item">
-			<Tooltip title="GitHub" TransitionComponent={Zoom} open={tooltipOpen.github} componentsProps={{
-                        tooltip: { sx: { backgroundColor: 'var(--primary-color-dark)', fontFamily: 'var(--current-font)', fontSize: '14px'}}}} placement="bottom">
+			<NavTooltip title="GitHub" TransitionComponent={Zoom} open={tooltipOpen.github} placement="bottom">
 				<IconButton component={Link} href="https://github.com/Yugenero" target="_blank" rel="noopener noreferrer"
 					sx={navLinkStyles.link}
 					onMouseEnter={() => handleMouseEnter('github')}
 					onMouseLeave={() => handleMouseLeave('github')}>
 					<GitHubIcon sx={navLinkStyles.iconFooter} />
 				</IconButton>
-			</Tooltip>
+			</NavTooltip>
 			</li>
 
 			<li className="navigation_item">
-			<Tooltip title="Email" placement="bottom" TransitionComponent={Zoom} open={tooltipOpen.email}
-				componentsProps={{
-					tooltip: { sx: { backgroundColor: 'var(--primary-color-dark)', fontFamily: 'var(--current-font)', fontSize: '14px'}}}}>
+			<NavTooltip title="Email" placement="bottom" TransitionComponent={Zoom} open={tooltipOpen.email}>
 			<IconButton component={Link} href="mailto: neroxv1313@gmail.com" target="_blank" rel="noopener noreferrer"
 				sx={navLinkStyles.link}
 				onMouseEnter={() => handleMouseEnter('email')}
 				onMouseLeave={() => handleMouseLeave('email')}>
 				<EmailIcon sx={navLinkStyles.iconFooter} />
 			</IconButton>
-			</Tooltip>
+			</NavTooltip>
 			</li>
 		</ul>
 	)
 }
+
+const NavTooltip = styled(Tooltip)(({ theme }) => ({
+	'& .MuiTooltip-tooltip': {
+		backgroundColor:
+			theme.palette.mode === 'dark'
+				? theme.palette.background.default
+				: theme.palette.background.paper,
+		color: theme.palette.text.primary,
+		fontFamily: theme.typography.fontFamily,
+		fontSize: '0.85rem',
+		padding: theme.spacing(1, 1.5),
+		borderRadius: '0.6rem',
+		boxShadow: `0 2px 8px rgba(0, 0, 0, 0.15)`,
+	},
+	'& .MuiTooltip-arrow': {
+		color:
+			theme.palette.mode === 'dark'
+				? theme.palette.background.default
+				: theme.palette.background.paper,
+	},
+}));
 
 const navLinkStyles = {
 	link: {

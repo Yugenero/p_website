@@ -29,7 +29,7 @@ export const Intro = () => {
                 <TypedSlot>
                   <ReactTyped
                     strings={[
-                      'Algorithms practitioner and intentional problem solver.',
+                      'Algorithms pracitioner, intentional problem solver.',
                       'Humanistic, design-minded software engineer.',
                       'Georgia Tech CS alum, information networks focus.',
                       'Car enthusaist, hybrid athelete, iced coffee enjoyer',
@@ -45,17 +45,15 @@ export const Intro = () => {
             </HeroHeadline>
               <HeroBody>
                 <HeroLead>
-                  I build pragmatic systems and clean interfaces that respect how people work.
                 </HeroLead>
                 <HeroSubText variant="body2" color="text.secondary">
-                  Currently shipping full-stack platforms with a bias toward reliability, clear
-                  information design, and measurable outcomes.
+                  I love building software that brings together my love for thoughtful design, efficient systems, and making life easier for people.
                 </HeroSubText>
               </HeroBody>
             </HeroMain>
             <HeroMedia>
               <HeroImage
-                src="/files/images/me.jpg"
+               src="/files/images/me.jpg"
                 alt="Nelson Rodriguez portrait"
                 loading="lazy"
                 decoding="async"
@@ -84,7 +82,6 @@ const HeroContainer = styled(Container)(() => ({
   display: 'flex',
   flexDirection: 'column',
   flex: 1,
-  maxWidth: 1240,
 }));
 
 const HeroContent = styled(Box)(({ theme }) => ({
@@ -102,7 +99,7 @@ const HeroContent = styled(Box)(({ theme }) => ({
 const HeroLayout = styled(Box)(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: 'minmax(0, 0.85fr) minmax(0, 1.15fr)',
-  alignItems: 'center',
+  alignItems: 'flex-start',
   gap: theme.spacing(6),
   width: '100%',
   [theme.breakpoints.down('md')]: {

@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import InstagramIcon from '@mui/icons-material/Instagram';
 import { Container } from '../ui/primitives';
 
 const FooterWrap = styled('footer')(({ theme }) => ({
@@ -21,6 +22,11 @@ const FooterInner = styled(Container)(({ theme }) => ({
   maxWidth: '100%',
 }));
 
+const FooterName = styled(Typography)(({ theme }) => ({
+  fontFamily: theme.typography.h1.fontFamily,
+  fontSize: '1.4rem',
+}));
+
 const SocialList = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
@@ -28,11 +34,11 @@ const SocialList = styled(Box)(({ theme }) => ({
 }));
 
 const SocialLink = styled('a')(({ theme }) => ({
-  width: 44,
-  height: 44,
-  borderRadius: 999,
-  border: `1px solid ${theme.palette.text.primary}`,
-  color: theme.palette.text.primary,
+  width: 'auto',
+  height: 'auto',
+  borderRadius: 0,
+  border: 'none',
+  color: theme.palette.mode === 'dark' ? theme.palette.text.disabled : theme.palette.text.secondary,
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -40,11 +46,10 @@ const SocialLink = styled('a')(({ theme }) => ({
   transition: 'transform 0.2s ease, background-color 0.2s ease, color 0.2s ease',
   '&:hover': {
     transform: 'translateY(-2px)',
-    backgroundColor: theme.palette.text.primary,
-    color: theme.palette.background.default,
+    color: theme.palette.text.primary,
   },
   '& svg': {
-    fontSize: '1.25rem',
+    fontSize: '2rem',
   },
 }));
 
@@ -53,7 +58,7 @@ const Footer = () => {
     <FooterWrap>
       <FooterInner>
         <Box>
-          <Typography variant="body2">© 2025 Nelson Rodriguez</Typography>
+          <FooterName variant="body2">© 2026 Nelson Rodriguez</FooterName>
           <Typography variant="body2" color="text.secondary">
             Currently Atlanta, GA · nelsonrodriguez.me
           </Typography>
@@ -77,6 +82,14 @@ const Footer = () => {
             aria-label="GitHub"
           >
             <GitHubIcon />
+          </SocialLink>
+          <SocialLink
+            href="https://www.instagram.com/ne.ro.x/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
+            <InstagramIcon />
           </SocialLink>
         </SocialList>
       </FooterInner>

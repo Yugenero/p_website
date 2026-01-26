@@ -56,9 +56,10 @@ export const MetaText = styled(Typography)(({ theme }) => ({
 }));
 
 export const SectionTitle = styled(Typography)(({ theme }) => ({
-  fontWeight: 600,
+  fontWeight: 300,
   marginTop: theme.spacing(1),
-  fontFamily: theme.typography.fontFamily,
+  fontFamily: theme.typography.h1.fontFamily,
+  fontSize: '3rem',
 }));
 
 export const LeadText = styled(Typography)(({ theme }) => ({

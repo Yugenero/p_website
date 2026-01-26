@@ -30,6 +30,20 @@ const AnimatedRoutes = () => {
   );
 };
 
+const AppShell = ({ mode, onToggleTheme }) => {
+  const location = useLocation();
+
+  return (
+    <Page>
+      <Header mode={mode} onToggleTheme={onToggleTheme} />
+      <Main>
+        <AnimatedRoutes />
+      </Main>
+      {location.pathname !== '/' && <Footer />}
+    </Page>
+  );
+};
+
 function App() {
   const [mode, setMode] = useState(() => {
     const storedMode = window.localStorage.getItem('themeMode');
@@ -50,13 +64,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <Page>
-          <Header mode={mode} onToggleTheme={handleToggleTheme} />
-          <Main>
-            <AnimatedRoutes />
-          </Main>
-          <Footer />
-        </Page>
+        <AppShell mode={mode} onToggleTheme={handleToggleTheme} />
       </Router>
     </ThemeProvider>
   );

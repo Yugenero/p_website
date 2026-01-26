@@ -7,8 +7,8 @@ export const colors = {
   grayDark: '#222222',
   gray: '#888888',
   grayLight: '#E0E0E0',
-  offWhite: '#F6F6F6',
-  white: '#FFFFFF',
+  offWhite: '#F1F0EC',
+  white: '#F1F0EC',
 };
 
 // TODO - figure out access toggle for colors in the future
@@ -92,7 +92,7 @@ const lightPalette = {
   },
   background: {
     default: colors.offWhite,
-    paper: colors.white,
+    paper: colors.offWhite,
   },
   divider: colors.grayLight,
 };

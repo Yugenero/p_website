@@ -6,6 +6,7 @@ import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import InstagramIcon from '@mui/icons-material/Instagram';
 import { ThemeToggle } from '../animations/themeToggle';
 import { styled } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
@@ -157,17 +158,25 @@ export const Header = ({ mode, onToggleTheme }) => {
             >
               <GitHubIcon />
             </SocialLink>
+            <SocialLink
+              href="https://www.instagram.com/ne.ro.x/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <InstagramIcon />
+            </SocialLink>
           </SocialList>
           <NavGroup>
             <NavItem to="/" end>
               Home
             </NavItem>
             <NavItem to="/about">About</NavItem>
-            <NavItem to="/work">Work</NavItem>
+            <NavItem to="/work">Experience</NavItem>
             <NavItem to="/projects">Projects</NavItem>
             <NavItem to="/photography">Photography</NavItem>
             <ExternalLink
-              href="/documents/NelsonRodriguez2025.pdf"
+              href="/documents/NelsonRodriguez.pdf"
               target="_blank"
               rel="noopener noreferrer"
             >

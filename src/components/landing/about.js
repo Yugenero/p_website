@@ -32,12 +32,12 @@ export const AboutSection = () => {
       <Container>
         <SectionHeader>
           <MetaText className='h6'>00</MetaText>
-          <SectionTitle variant="h2">&lt;about&gt;</SectionTitle>
+          <SectionTitle variant="h2">About</SectionTitle>
         </SectionHeader>
         <AboutGrid>
           <Box>
             <AboutLead>
-              I enjoy computers and building software that brings clarity to complexity.
+              I enjoy computers and building software that brings clarity to complexity through performance & great user experience :)
             </AboutLead>
           </Box>
           <Box>
@@ -91,7 +91,7 @@ const AboutLead = styled(LeadText)(() => ({
 }));
 
 const AboutParagraph = styled(Typography)(() => ({
-  fontSize: '1.05rem',
+  fontSize: '1.2rem',
 }));
 
 const CoreStackLabel = styled(MetaText)(({ theme }) => ({

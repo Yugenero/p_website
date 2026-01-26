@@ -45,8 +45,7 @@ export const Intro = () => {
             </HeroHeadline>
               <HeroBody>
                 <HeroLead>
-                  I build practical software that makes teams feel faster, calmer, and more
-                  confident in what they ship.
+                  Hey, I'm Nelson and I love everything software, technology and engineering.
                 </HeroLead>
                 <HeroSubText variant="body2" color="text.secondary">
                   Right now I’m focused on mobile SDK work, smooth integrations, and turning messy
@@ -120,9 +119,9 @@ const HeroHeadline = styled(Box)(({ theme }) => ({
 }));
 
 const HeroName = styled(Typography)(({ theme }) => ({
-  fontSize: 'clamp(3rem, 6vw, 5rem)',
+  fontSize: 'clamp(2.6rem, 5.2vw, 4.4rem)',
   fontFamily: theme.typography.h1.fontFamily,
-  fontWeight: 400,
+  fontWeight: 300,
   letterSpacing: '-0.02em',
   fontStyle: 'normal',
 }));
@@ -135,7 +134,7 @@ const TypedLine = styled(Typography)(({ theme }) => ({
   lineHeight: 1.2,
   position: 'relative',
   '& .typed-text': {
-    fontWeight: 500,
+    fontWeight: 400,
     fontFamily: theme.typography.fontFamily,
   },
 }));
@@ -150,15 +149,24 @@ const HeroBody = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(1),
-  maxWidth: 520,
+  maxWidth: '100%',
+  '& .MuiTypography-root': {
+    color: theme.palette.mode === 'light' ? theme.palette.text.primary : theme.palette.text.secondary,
+  },
 }));
 
 const HeroLead = styled(LeadText)(() => ({
   fontSize: '1.2rem',
+  '@media (min-width: 1440px)': {
+    fontSize: '1.35rem',
+  },
 }));
 
 const HeroSubText = styled(Typography)(() => ({
-  fontSize: '1.05rem',
+  fontSize: '1.2rem',
+  '@media (min-width: 1440px)': {
+    fontSize: '1.3rem',
+  },
 }));
 
 const HeroMedia = styled(Box)(({ theme }) => ({
@@ -180,49 +188,5 @@ const HeroImage = styled('img')(({ theme }) => ({
   filter: 'grayscale(100%) contrast(1.05)',
   [theme.breakpoints.down('md')]: {
     borderRadius: 16,
-  },
-}));
-
-const arrowDrift = keyframes`
-  0% {
-    transform: translateX(0);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translateX(6px);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 0.6;
-  }
-`;
-
-const ScrollCue = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  paddingTop: theme.spacing(1),
-  marginTop: theme.spacing(-2),
-}));
-
-const ScrollButton = styled(ButtonBase)(({ theme }) => ({
-  width: 56,
-  height: 56,
-  borderRadius: 999,
-  border: `1px solid ${theme.palette.text.primary}`,
-  color: theme.palette.text.primary,
-  backgroundColor: 'transparent',
-  cursor: 'pointer',
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  transition: 'transform 0.2s ease, background-color 0.2s ease',
-  '& svg': {
-    animation: `${arrowDrift} 1.6s ease-in-out infinite`,
-  },
-  '&:hover': {
-    transform: 'translateX(4px)',
-    backgroundColor: theme.palette.text.primary,
-    color: theme.palette.background.default,
   },
 }));

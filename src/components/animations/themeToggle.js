@@ -1,4 +1,5 @@
 import ButtonBase from '@mui/material/ButtonBase';
+import { colors } from '../../theme';
 import { alpha, keyframes, styled } from '@mui/material/styles';
 
 const toggleGlow = keyframes`
@@ -21,7 +22,7 @@ export const ThemeToggle = styled(ButtonBase)(({ theme }) => ({
 	border: `1px solid ${theme.palette.text.primary}`,
 	padding: 3,
 	// Set backgroundColor hard to white or black depending on mode, no gray
-	backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#000',
+	backgroundColor: theme.palette.mode === 'light' ? colors.offWhite : '#000',
 	display: 'inline-flex',
 	alignItems: 'center',
 	justifyContent: 'flex-start',
@@ -32,7 +33,7 @@ export const ThemeToggle = styled(ButtonBase)(({ theme }) => ({
 		inset: 0,
 		borderRadius: 999,
 		// Just hard white or black, no gradient or gray
-		backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#000',
+		backgroundColor: theme.palette.mode === 'light' ? colors.offWhite : '#000',
 		backgroundImage: 'none',
 		animation: 'none',
 		opacity: 1,
@@ -44,7 +45,7 @@ export const ThemeToggle = styled(ButtonBase)(({ theme }) => ({
 		height: 26,
 		borderRadius: '50%',
 		backgroundColor: theme.palette.text.primary,
-		color: theme.palette.mode === 'light' ? '#fff' : '#000',
+		color: theme.palette.mode === 'light' ? colors.offWhite : '#000',
 		display: 'inline-flex',
 		alignItems: 'center',
 		justifyContent: 'center',
@@ -58,11 +59,17 @@ export const ThemeToggle = styled(ButtonBase)(({ theme }) => ({
 	'&[data-mode="light"] .toggle-thumb': {
 		transform: 'translateX(0)',
 		backgroundColor: theme.palette.text.primary,
-		color: '#fff',
+		color: colors.offWhite,
+	},
+	'&[data-mode="light"] .toggle-thumb svg': {
+		color: colors.offWhite,
 	},
 	'&[data-mode="dark"] .toggle-thumb': {
 		transform: 'translateX(38px)',
 		backgroundColor: theme.palette.text.primary,
+		color: '#000',
+	},
+	'&[data-mode="dark"] .toggle-thumb svg': {
 		color: '#000',
 	},
 	'&[data-mode="light"]:hover .toggle-thumb': {
@@ -79,4 +86,3 @@ export const ThemeToggle = styled(ButtonBase)(({ theme }) => ({
 		outlineOffset: 3,
 	},
 }));
-

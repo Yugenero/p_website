@@ -18,7 +18,7 @@ const workExperience = [
     date: 'Dec 2025 - Present',
     title: 'Solutions Engineer',
     summary:
-      'Developing/Integrating Fullstory Mobile SDK into enterprise applications and building tooling to validate SDK implementations across ',
+      'Mobile AI & SDK development + Implementation across iOS, Android, and React Native into real-world cross-platform applications.',
     // highlights: [
     //     'Integrated FullStory\'s Mobile SDK into enterprise iOS, Android, and React Native codebases, implementing type-safe events, identity mapping, and privacy configurations.',
     //     'Built automated SDK validation tooling in TypeScript to verify network traffic, event payloads, and session replay accuracy.',
@@ -52,9 +52,9 @@ const workExperience = [
     summary:
       'Built a sustainable fashion iOS platform with personalization and data-driven wardrobe intelligence.',
     highlights: [
-      'Developed a collaborative-filtering algorithm for personalized outfit recommendations.',
-      'Designed SQL data models and REST APIs to support CRUD functionality.',
-      'Partnered with cross-functional teammates to deliver production-ready mobile workflows.',
+      'Built item-item collaborative filtering recommendations and bi-directional Google Calendar sync for 10,000+ users.',
+      'Designed the SQL schema and ETL pipeline that merged usage logs, catalog data, and preferences with sub-5ms retrieval.',
+      'Ran Agile delivery with Git and Jira, and placed 2nd out of 30+ teams at the 2022 GT CS Capstone Expo.',
     ],
     stack: ['Swift', 'SQL', 'REST APIs'],
   },
@@ -67,10 +67,19 @@ const workExperience = [
       'Contributed to student-led web apps and taught front-end workflows across campus teams.',
     highlights: [
       'Built MUI-driven UI features for HackGT web experiences.',
-      'Managed version control and integration across distributed teams.',
       'Hosted front-end workshops that grew attendance by 50%.',
     ],
     stack: ['React', 'MUI', 'Git'],
+  },
+  {
+    employer: 'Georgia Institute of Technology',
+    location: 'Atlanta, GA',
+    date: 'Aug 2020 — Dec 2023',
+    title: 'CS Undergraduate',
+    summary:
+      'B.S. Computer Science with a focus on algorithms, networks, and systems.',
+    highlights: [],
+    stack: ['Computer Science'],
   },
 ];
 
@@ -81,7 +90,7 @@ export const WorkSection = () => {
       <Container>
         <SectionHeader>
           <MetaText>01</MetaText>
-          <SectionTitle variant="h2">&lt;experience&gt;</SectionTitle>
+          <SectionTitle variant="h2">Experience</SectionTitle>
         </SectionHeader>
         <WorkList>
           {workExperience.map((experience) => (
@@ -131,6 +140,7 @@ const WorkItem = styled(Box)(({ theme }) => ({
 
 const WorkTitle = styled(Typography)(() => ({
   fontSize: '1.6rem',
+  fontWeight: '300',
 }));
 
 const WorkLocation = styled(Typography)(() => ({

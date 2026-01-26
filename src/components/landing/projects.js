@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
-import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import {
@@ -64,38 +63,30 @@ const Projects = () => {
       <Container>
         <SectionHeader>
           <MetaText>10</MetaText>
-          <SectionTitle variant="h2">&lt;projects&gt;</SectionTitle>
+          <SectionTitle variant="h2">Projects</SectionTitle>
         </SectionHeader>
         <ProjectGrid>
           {projects.map((project) => (
-            <StyledTooltip
+            <ProjectCard
               key={project.title}
-              title="Github"
-              placement="top"
-              arrow
-              followCursor
-              TransitionProps={{ timeout: 200 }}
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <ProjectCard 
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ProjectHeader>
-                  <ProjectTitle variant="h3">{project.title}</ProjectTitle>
-                  <ProjectDescription variant="body2" color="inherit">
-                    {project.description}
-                  </ProjectDescription>
-                </ProjectHeader>
-                <Box>
-                  <InlineList>
-                    {project.stack.map((item) => (
-                      <ProjectMetaItem key={item}>{item}</ProjectMetaItem>
-                    ))}
-                  </InlineList>
-                </Box>
-              </ProjectCard>
-            </StyledTooltip>
+              <ProjectHeader>
+                <ProjectTitle variant="h3">{project.title}</ProjectTitle>
+                <ProjectDescription variant="body2" color="inherit">
+                  {project.description}
+                </ProjectDescription>
+              </ProjectHeader>
+              <Box>
+                <InlineList>
+                  {project.stack.map((item) => (
+                    <ProjectMetaItem key={item}>{item}</ProjectMetaItem>
+                  ))}
+                </InlineList>
+              </Box>
+            </ProjectCard>
           ))}
         </ProjectGrid>
       </Container>
@@ -113,13 +104,15 @@ const ProjectGrid = styled(Box)(({ theme }) => ({
 }));
 
 const ProjectCard = styled(Link)(({ theme }) => ({
+  aspectRatio: '1 / 1',
+  width: '100%',
   backgroundColor: theme.palette.text.primary,
   color: theme.palette.background.default,
   padding: theme.spacing(4),
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  minHeight: 240,
+  minHeight: 'auto',
   border: `1px solid ${theme.palette.divider}`,
   borderRadius: '0.5rem',
   gap: theme.spacing(3),
@@ -147,27 +140,6 @@ const ProjectTitle = styled(Typography)(({ theme }) => ({
 
 const ProjectDescription = styled(Typography)(() => ({
   fontSize: '1rem',
-}));
-
-const StyledTooltip = styled(Tooltip)(({ theme }) => ({
-  '& .MuiTooltip-tooltip': {
-    backgroundColor:
-      theme.palette.mode === 'dark'
-        ? theme.palette.background.default
-        : theme.palette.background.paper,
-    color: theme.palette.text.primary,
-    fontFamily: theme.typography.h1.fontFamily,
-    fontSize: '1.75rem',
-    padding: theme.spacing(2, 3),
-    borderRadius: '0.6rem',
-    boxShadow: `0 2px 8px rgba(0, 0, 0, 0.15)`,
-  },
-  '& .MuiTooltip-arrow': {
-    color:
-      theme.palette.mode === 'dark'
-        ? theme.palette.background.default
-        : theme.palette.background.paper,
-  },
 }));
 
 const ProjectMetaItem = styled(InlineItem)(({ theme }) => ({

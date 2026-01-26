@@ -74,7 +74,7 @@ const Photography = () => {
       <Container>
         <SectionHeader>
           <MetaText>11</MetaText>
-          <SectionTitle variant="h2">&lt;photography&gt;</SectionTitle>
+          <SectionTitle variant="h2">Photography</SectionTitle>
           <PhotoLead>
             Things I find interesting. Updated as I travel more.
           </PhotoLead>

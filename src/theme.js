@@ -7,8 +7,8 @@ export const colors = {
   grayDark: '#222222',
   gray: '#888888',
   grayLight: '#E0E0E0',
-  offWhite: '#F6F6F6',
-  white: '#FFFFFF',
+  offWhite: '#F1F0EC',
+  white: '#F1F0EC',
 };
 
 // TODO - figure out access toggle for colors in the future
@@ -21,24 +21,40 @@ export const accentColors = {
   crimsonHighlight: '#E63946',
 }
 
+const titleFont = '"Crimson Pro", "Times New Roman", Times, serif';
+const bodyFont =
+  '"Voyager-Thin", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif';
+
 const baseTypography = {
-  fontFamily: '"Geist", "Helvetica Neue", Arial, sans-serif',
+  fontFamily: bodyFont,
   h1: {
     fontSize: '2.9rem',
     fontWeight: 600,
     letterSpacing: '-0.02em',
     lineHeight: 1.1,
+    fontFamily: titleFont,
   },
   h2: {
     fontSize: '2rem',
     fontWeight: 600,
     letterSpacing: '-0.015em',
     lineHeight: 1.2,
+    fontFamily: titleFont,
   },
   h3: {
     fontSize: '1.35rem',
     fontWeight: 600,
     lineHeight: 1.3,
+    fontFamily: titleFont,
+  },
+  h4: {
+    fontFamily: titleFont,
+  },
+  h5: {
+    fontFamily: titleFont,
+  },
+  h6: {
+    fontFamily: titleFont,
   },
   body1: {
     fontSize: '1rem',
@@ -76,7 +92,7 @@ const lightPalette = {
   },
   background: {
     default: colors.offWhite,
-    paper: colors.white,
+    paper: colors.offWhite,
   },
   divider: colors.grayLight,
 };
@@ -100,25 +116,6 @@ const darkPalette = {
   divider: colors.grayDark,
 };
 
-const colorPallete = {
-  mode: 'color ',
-  primary: {
-    main: colors.o,
-  },
-  secondary: {
-    main: colors.grayLight,
-  },
-  text: {
-    primary: colors.offWhite,
-    secondary: colors.grayLight,
-  },
-  background: {
-    default: colors.black,
-    paper: colors.nearBlack,
-  },
-  divider: colors.grayDark,
-}
-
 export const buildTheme = (mode = 'light') => {
   const baseTheme = createTheme({
     palette: mode === 'dark' ? darkPalette : lightPalette,
@@ -140,7 +137,7 @@ export const buildTheme = (mode = 'light') => {
               fontDisplay: 'swap',
               fontWeight: '100 900',
               src: "url('/fonts/geist-sans/Geist-Variable.woff2') format('woff2')",
-            }, 
+            },
             {
               fontFamily: 'Junicode',
               fontStyle: 'normal',
@@ -161,6 +158,13 @@ export const buildTheme = (mode = 'light') => {
               fontDisplay: 'swap',
               fontWeight: 700,
               src: "url('/fonts/Boska/Boska-Bold.woff2') format('woff2')",
+            },
+            {
+              fontFamily: 'Crimson Pro',
+              fontStyle: 'normal',
+              fontDisplay: 'swap',
+              fontWeight: 300,
+              src: "url('/fonts/CrimsonPro_Complete/Fonts/OTF/CrimsonPro-Light.otf') format('opentype')",
             },
           ],
           '*': {

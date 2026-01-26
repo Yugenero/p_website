@@ -1,7 +1,9 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
+import Starfield from '../global/starfield';
+
 import {
   Container,
   InlineItem,
@@ -19,6 +21,7 @@ const skills = [
   'Java',
   'C#',
   'MongoDB',
+  'Firebase',
   'Snowflake',
   'AWS',
   'Docker',
@@ -26,49 +29,75 @@ const skills = [
 ];
 
 export const AboutSection = () => {
+  const theme = useTheme();
+
   return (
-    <Section id="about">
-      <Container>
+    <AboutWrap id="about">
+      <Starfield
+        density={15}
+        color={theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.text.secondary}
+        backgroundStops={['transparent', 'transparent']}
+        maxDrift={0.6}
+        ultraSubtle
+        style={{ opacity: theme.palette.mode === 'dark' ? 0.5 : 0.25 }}
+        forceWhite={true}
+      />
+      <AboutContent>
         <SectionHeader>
           <MetaText className='h6'>00</MetaText>
-          <SectionTitle variant="h2">/About</SectionTitle>
+          <SectionTitle variant="h2">About</SectionTitle>
         </SectionHeader>
         <AboutGrid>
           <Box>
-            <LeadText>
-              I build software that turns complex operational data into clear,
-              reliable tools that people trust.
-            </LeadText>
+            <AboutLead>
+              I enjoy computers and building software that brings clarity to complexity through performance & great user experience :)
+            </AboutLead>
           </Box>
           <Box>
-            <Typography variant="body1" paragraph>
-              Over the past year I led full-stack delivery on internal finance and
-              asset management systems serving 20,000+ ABM contractors at{' '}
-              <Link href="https://civicdx.com" target="_blank" rel="noopener noreferrer">
-                Civic DX
+            <AboutParagraph variant="body1" paragraph>
+              These days I’m a Solutions Engineer with a technical + software focus at{' '}
+              <Link
+                href="https://www.fullstory.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{ fontWeight: 700 }}
+              >
+                Fullstory
               </Link>
-              . I focused on clean information design, scalable data filtering, and
-              dependable APIs with React, C#/.NET, MongoDB, and Snowflake.
-            </Typography>
-            <Typography variant="body1" paragraph>
-              I hold a B.S. in Computer Science from{' '}
-              <Link href="https://www.gatech.edu" target="_blank" rel="noopener noreferrer">
-                Georgia Tech
-              </Link>
-              , where I focused on algorithms, networks, and systems.
-            </Typography>
-            <MetaText>Core stack</MetaText>
-            <InlineList>
+              , helping our specialist team ship mobile AI + SDK integrations across iOS, Android, and
+              React Native in real-world applications. Over the past year I’ve contributed to full-stack
+              delivery as a Software Engineer on internal finance and asset management tools, focusing on clean
+              information design, scalable data filtering, and dependable APIs.
+            </AboutParagraph>
+            <AboutParagraph variant="body1" paragraph>
+              I also hold a B.S. in Computer Science from the {' '}
+              <GeorgiaTechLink href="https://www.gatech.edu" target="_blank" rel="noopener noreferrer">
+                Georgia Institute of Technology
+              </GeorgiaTechLink>
+              ,{' '} where I focused on algorithms, networks, and systems.
+            </AboutParagraph>
+            <CoreStackLabel>Core stack</CoreStackLabel>
+            <SkillsList>
               {skills.map((skill) => (
                 <InlineItem key={skill}>{skill}</InlineItem>
               ))}
-            </InlineList>
+            </SkillsList>
           </Box>
         </AboutGrid>
-      </Container>
-    </Section>
+      </AboutContent>
+    </AboutWrap>
   );
 };
+
+const AboutWrap = styled(Section)(() => ({
+  position: 'relative',
+  overflow: 'hidden',
+}));
+
+const AboutContent = styled(Container)(() => ({
+  position: 'relative',
+  zIndex: 1,
+}));
 
 const AboutGrid = styled(Box)(({ theme }) => ({
   display: 'grid',
@@ -76,5 +105,30 @@ const AboutGrid = styled(Box)(({ theme }) => ({
   gap: theme.spacing(6),
   [theme.breakpoints.down('md')]: {
     gridTemplateColumns: '1fr',
+    gap: theme.spacing(4),
   },
+}));
+
+const AboutLead = styled(LeadText)(({ theme }) => ({
+  fontSize: '1.2rem',
+  color: theme.palette.mode === 'light' ? theme.palette.text.primary : theme.palette.text.secondary,
+}));
+
+const AboutParagraph = styled(Typography)(() => ({
+  fontSize: '1.2rem',
+}));
+
+const CoreStackLabel = styled(MetaText)(({ theme }) => ({
+  marginBottom: theme.spacing(2),
+  display: 'block',
+}));
+
+const SkillsList = styled(InlineList)(({ theme }) => ({
+  gap: theme.spacing(1),
+  rowGap: theme.spacing(0.5),
+}));
+
+const GeorgiaTechLink = styled(Link)(() => ({
+  fontFamily: '"Roboto Slab", serif',
+  fontWeight: 600,
 }));

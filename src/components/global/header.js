@@ -1,8 +1,13 @@
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
+import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
+import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import { ThemeToggle } from '../animations/themeToggle';
 import { styled } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
 import { Container } from '../ui/primitives';
@@ -22,19 +27,36 @@ const HeaderInner = styled(Container)(({ theme }) => ({
   paddingTop: theme.spacing(2),
   paddingBottom: theme.spacing(2),
   flexWrap: 'wrap',
+  maxWidth: '100%',
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: theme.spacing(2),
+    paddingTop: theme.spacing(1.5),
+    paddingBottom: theme.spacing(1.5),
+  },
 }));
 
-const BrandLink = styled(NavLink)(({ theme }) => ({
-  color: theme.palette.text.primary,
+const SocialList = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(2.5),
+}));
+
+const SocialLink = styled('a')(({ theme }) => ({
+  color: theme.palette.text.disabled,
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   textDecoration: 'none',
-  textTransform: 'uppercase',
-  letterSpacing: '0.2em',
-  fontWeight: 600,
-  fontSize: '0.75rem',
-}));
-
-const BrandMeta = styled(Typography)(({ theme }) => ({
-  color: theme.palette.text.secondary,
+  transition: 'color 0.2s ease, transform 0.2s ease',
+  '&:hover': {
+    color: theme.palette.text.primary,
+    transform: 'translateY(-1px)',
+  },
+  '& svg': {
+    fontSize: '1.6rem',
+  },
 }));
 
 const NavGroup = styled(Box)(({ theme }) => ({
@@ -42,6 +64,10 @@ const NavGroup = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   gap: theme.spacing(3),
   flexWrap: 'wrap',
+  [theme.breakpoints.down('md')]: {
+    gap: theme.spacing(2),
+    rowGap: theme.spacing(1),
+  },
 }));
 
 const NavItem = styled(NavLink)(({ theme }) => ({
@@ -52,7 +78,8 @@ const NavItem = styled(NavLink)(({ theme }) => ({
   fontSize: '0.72rem',
   fontWeight: 600,
   position: 'relative',
-  '&[aria-current="page"]::after': {
+  transition: 'color 0.2s ease',
+  '&::after': {
     content: '""',
     position: 'absolute',
     left: 0,
@@ -60,6 +87,18 @@ const NavItem = styled(NavLink)(({ theme }) => ({
     width: '100%',
     height: 2,
     backgroundColor: theme.palette.text.primary,
+    transform: 'scaleX(0)',
+    transformOrigin: 'left',
+    transition: 'transform 0.2s ease',
+  },
+  '&:hover': {
+    color: theme.palette.text.secondary,
+  },
+  '&:hover::after, &[aria-current="page"]::after': {
+    transform: 'scaleX(1)',
+  },
+  '&[aria-current="page"]': {
+    color: theme.palette.text.primary,
   },
 }));
 
@@ -70,47 +109,89 @@ const ExternalLink = styled('a')(({ theme }) => ({
   letterSpacing: '0.14em',
   fontSize: '0.72rem',
   fontWeight: 600,
-}));
-
-const ThemeToggle = styled(Button)(({ theme }) => ({
-  padding: `${theme.spacing(0.75)} ${theme.spacing(1.5)}`,
-  minWidth: 'auto',
-  fontSize: '0.7rem',
-  borderRadius: '0.5rem',
+  position: 'relative',
+  transition: 'color 0.2s ease',
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    left: 0,
+    bottom: -6,
+    width: '100%',
+    height: 2,
+    backgroundColor: theme.palette.text.primary,
+    transform: 'scaleX(0)',
+    transformOrigin: 'left',
+    transition: 'transform 0.2s ease',
+  },
+  '&:hover': {
+    color: theme.palette.text.secondary,
+  },
+  '&:hover::after': {
+    transform: 'scaleX(1)',
+  },
 }));
 
 export const Header = ({ mode, onToggleTheme }) => {
-  const nextModeLabel = mode === 'light' ? 'Dark' : 'Light';
+  const nextModeLabel = mode === 'light' ? 'dark' : 'light';
 
   return (
     <HeaderBar position="sticky" elevation={0}>
       <Toolbar disableGutters>
         <HeaderInner>
-          <Box>
-            <BrandLink to="/">Nelson Rodriguez</BrandLink>
-            <BrandMeta variant="body2">Software Engineer &amp; Systems Builder</BrandMeta>
-          </Box>
+          <SocialList>
+            <SocialLink href="mailto:neroxv1313@gmail.com" aria-label="Email">
+              <EmailRoundedIcon />
+            </SocialLink>
+            <SocialLink
+              href="https://www.linkedin.com/in/nelson-rodriguez13/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <LinkedInIcon />
+            </SocialLink>
+            <SocialLink
+              href="https://github.com/Yugenero"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <GitHubIcon />
+            </SocialLink>
+            <SocialLink
+              href="https://www.instagram.com/ne.ro.x/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <InstagramIcon />
+            </SocialLink>
+          </SocialList>
           <NavGroup>
             <NavItem to="/" end>
               Home
             </NavItem>
             <NavItem to="/about">About</NavItem>
-            <NavItem to="/work">Work</NavItem>
+            <NavItem to="/work">Experience</NavItem>
             <NavItem to="/projects">Projects</NavItem>
             <NavItem to="/photography">Photography</NavItem>
             <ExternalLink
-              href="/documents/NelsonRodriguez2025.pdf"
+              href="/documents/NelsonRodriguez.pdf"
               target="_blank"
               rel="noopener noreferrer"
             >
               Resume
             </ExternalLink>
             <ThemeToggle
-              variant="outlined"
               onClick={onToggleTheme}
-              aria-label={`Switch to ${nextModeLabel.toLowerCase()} mode`}
+              aria-label={`Switch to ${nextModeLabel} mode`}
+              aria-pressed={mode === 'dark'}
+              data-mode={mode}
             >
-              {nextModeLabel}
+              <span className="toggle-track" aria-hidden="true" />
+              <span className="toggle-thumb" aria-hidden="true">
+                {mode === 'light' ? <LightModeRoundedIcon /> : <DarkModeRoundedIcon />}
+              </span>
             </ThemeToggle>
           </NavGroup>
         </HeaderInner>

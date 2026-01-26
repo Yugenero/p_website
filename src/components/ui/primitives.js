@@ -17,7 +17,7 @@ export const Main = styled('main')(() => ({
 
 export const Container = styled(Box)(({ theme }) => ({
   width: '100%',
-  maxWidth: 1120,
+  maxWidth: '100%',
   margin: '0 auto',
   paddingLeft: theme.spacing(3),
   paddingRight: theme.spacing(3),
@@ -25,15 +25,26 @@ export const Container = styled(Box)(({ theme }) => ({
     paddingLeft: theme.spacing(5),
     paddingRight: theme.spacing(5),
   },
+  [theme.breakpoints.down('md')]: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+  },
 }));
 
 export const Section = styled('section')(({ theme }) => ({
   paddingTop: theme.spacing(10),
   paddingBottom: theme.spacing(10),
+  [theme.breakpoints.down('md')]: {
+    paddingTop: theme.spacing(6),
+    paddingBottom: theme.spacing(6),
+  },
 }));
 
 export const SectionHeader = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(4),
+  [theme.breakpoints.down('md')]: {
+    marginBottom: theme.spacing(3),
+  },
 }));
 
 export const MetaText = styled(Typography)(({ theme }) => ({
@@ -45,8 +56,10 @@ export const MetaText = styled(Typography)(({ theme }) => ({
 }));
 
 export const SectionTitle = styled(Typography)(({ theme }) => ({
-  fontWeight: 600,
+  fontWeight: 300,
   marginTop: theme.spacing(1),
+  fontFamily: theme.typography.h1.fontFamily,
+  fontSize: '3rem',
 }));
 
 export const LeadText = styled(Typography)(({ theme }) => ({
@@ -70,6 +83,6 @@ export const InlineItem = styled(Typography)(({ theme }) => ({
   alignItems: 'center',
 }));
 
-InlineItem.defaultProps = {
-  component: 'span',
-};
+// InlineItem.defaultProps = {
+//   component: 'span',
+// };

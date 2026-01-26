@@ -2,6 +2,30 @@ html, body, #root {
   height: 100%;
 }
 
+html {
+  font-size: 106.25%;
+}
+
+@media (min-width: 2560px) {
+  html {
+    font-size: 125%;
+  }
+}
+
 body {
   margin: 0;
+}
+
+.page-fade {
+  animation: page-fade-in 320ms ease-out;
+  will-change: opacity;
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

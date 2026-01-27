@@ -82,7 +82,3 @@ export const InlineItem = styled(Typography)(({ theme }) => ({
   display: 'inline-flex',
   alignItems: 'center',
 }));
-
-// InlineItem.defaultProps = {
-//   component: 'span',
-// };

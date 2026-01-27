@@ -1,6 +1,7 @@
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
@@ -35,6 +36,21 @@ const HeaderInner = styled(Container)(({ theme }) => ({
     paddingTop: theme.spacing(1.5),
     paddingBottom: theme.spacing(1.5),
   },
+}));
+
+const HeaderLeft = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(2.5),
+  flexWrap: 'wrap',
+}));
+
+const NameMark = styled(Typography)(({ theme }) => ({
+  fontFamily: theme.typography.h1.fontFamily,
+  fontWeight: 400,
+  letterSpacing: '0.04em',
+  fontSize: '1.2rem',
+  color: 'offWhite',
 }));
 
 const SocialList = styled(Box)(({ theme }) => ({
@@ -138,35 +154,38 @@ export const Header = ({ mode, onToggleTheme }) => {
     <HeaderBar position="sticky" elevation={0}>
       <Toolbar disableGutters>
         <HeaderInner>
-          <SocialList>
-            <SocialLink href="mailto:neroxv1313@gmail.com" aria-label="Email">
-              <EmailRoundedIcon />
-            </SocialLink>
-            <SocialLink
-              href="https://www.linkedin.com/in/nelson-rodriguez13/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-            >
-              <LinkedInIcon />
-            </SocialLink>
-            <SocialLink
-              href="https://github.com/Yugenero"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-            >
-              <GitHubIcon />
-            </SocialLink>
-            <SocialLink
-              href="https://www.instagram.com/ne.ro.x/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-            >
-              <InstagramIcon />
-            </SocialLink>
-          </SocialList>
+          <HeaderLeft>
+            <NameMark component="span">Nelson Rodriguez</NameMark>
+            <SocialList>
+              <SocialLink href="mailto:neroxv1313@gmail.com" aria-label="Email">
+                <EmailRoundedIcon />
+              </SocialLink>
+              <SocialLink
+                href="https://www.linkedin.com/in/nelson-rodriguez13/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
+                <LinkedInIcon />
+              </SocialLink>
+              <SocialLink
+                href="https://github.com/Yugenero"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
+                <GitHubIcon />
+              </SocialLink>
+              <SocialLink
+                href="https://www.instagram.com/ne.ro.x/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
+                <InstagramIcon />
+              </SocialLink>
+            </SocialList>
+          </HeaderLeft>
           <NavGroup>
             <NavItem to="/" end>
               Home

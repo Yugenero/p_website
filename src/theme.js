@@ -117,6 +117,7 @@ const darkPalette = {
 };
 
 export const buildTheme = (mode = 'light') => {
+  // TODO - figure out where this is coming from
   const baseTheme = createTheme({
     palette: mode === 'dark' ? darkPalette : lightPalette,
     shape: {

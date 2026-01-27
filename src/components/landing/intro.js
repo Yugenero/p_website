@@ -1,8 +1,7 @@
 import { ReactTyped } from 'react-typed';
 import Box from '@mui/material/Box';
-import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
-import { keyframes, styled, useTheme } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import { Container, LeadText, Section } from '../ui/primitives';
 import Starfield from '../global/starfield';
 
@@ -24,32 +23,9 @@ export const Intro = () => {
         <HeroContent>
           <HeroLayout>
             <HeroMain>
-              <HeroHeadline>
-              <HeroName variant="h1" component="h1">
-                Nelson Rodriguez
-              </HeroName>
-              <TypedLine variant="h2" component="p">
-                <TypedSlot>
-                  <ReactTyped
-                    strings={[
-                      'Algorithms pracitioner, intentional problem solver.',
-                      'Humanistic, design-minded software engineer.',
-                      'Georgia Tech CS alum, information networks focus.',
-                      'Car enthusaist, hybrid athelete, iced coffee enjoyer',
-                      "Kaizen as a practice - 1% better every day",
-                    ]}
-                    typeSpeed={40}
-                    backDelay={2600}
-                    cursorChar="|"
-                    loop
-                    className="typed-text"
-                  />
-                </TypedSlot>
-              </TypedLine>
-            </HeroHeadline>
               <HeroBody>
                 <HeroLead>
-                  Hey, I’m Nelson, a software engineer with a genuine love for and technology, among other things.
+                  I’m a software engineer with a genuine love for technology, thoughtful design, and the details that make products feel effortless.
                 </HeroLead>
                 <HeroSubText variant="body2" color="text.secondary">
                     I’m currently working on mobile SDKs, seamless integrations, and making complex product data easier 
@@ -59,12 +35,35 @@ export const Intro = () => {
               </HeroBody>
             </HeroMain>
             <HeroMedia>
-              <HeroImage
-               src="/files/images/me.jpg"
-                alt="Nelson Rodriguez portrait"
-                loading="lazy"
-                decoding="async"
-              />
+              <HeroMediaFrame>
+                <HeroImage
+                  src="/files/images/me.jpg"
+                  alt="Nelson Rodriguez portrait"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <HeroOverlay>
+                  <TypedLine variant="h2" component="p">
+                    <TypedSlot>
+                      <ReactTyped strings={[""]} cursorChar=">" className="typed-text" />
+                      <ReactTyped
+                        strings={[
+                          'Algorithms pracitioner, intentional problem solver.',
+                          'Humanistic, design-minded software engineer.',
+                          'Georgia Tech CS alum, information networks focus.',
+                          'Car enthusaist, hybrid athelete, iced coffee enjoyer',
+                          'Kaizen as a practice - 1% better every day',
+                        ]}
+                        typeSpeed={40}
+                        backDelay={2600}
+                        cursorChar="|"
+                        loop
+                        className="typed-text"
+                      />
+                    </TypedSlot>
+                  </TypedLine>
+                </HeroOverlay>
+              </HeroMediaFrame>
             </HeroMedia>
           </HeroLayout>
         </HeroContent>
@@ -109,7 +108,8 @@ const HeroContent = styled(Box)(({ theme }) => ({
 const HeroLayout = styled(Box)(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: 'minmax(0, 0.85fr) minmax(0, 1.15fr)',
-  alignItems: 'flex-start',
+  alignItems: 'center',
+  justifyContent: 'center',
   gap: theme.spacing(6),
   width: '100%',
   '@media (min-width: 1440px) and (max-width: 1599.98px)': {
@@ -144,61 +144,39 @@ const HeroMain = styled(Box)(({ theme }) => ({
   zIndex: 2,
 }));
 
-const HeroHeadline = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: theme.spacing(1),
-  '@media (min-width: 1600px)': {
-    alignItems: 'flex-start',
-    textAlign: 'left',
-  },
-}));
-
-const HeroName = styled(Typography)(({ theme }) => ({
-  fontSize: 'clamp(2.6rem, 5.2vw, 4.4rem)',
-  fontFamily: theme.typography.h1.fontFamily,
-  fontWeight: 300,
-  letterSpacing: '-0.02em',
-  fontStyle: 'normal',
-  '@media (min-width: 1440px)': {
+const TypedLine = styled(Typography)(({ theme }) => ({
+  margin: 0,
+  overflow: 'visible',
+  fontSize: 'clamp(1.05rem, 2.1vw, 1.6rem)',
+  lineHeight: 1.35,
+  position: 'relative',
+  display: 'inline-flex',
+  alignItems: 'center',
+  whiteSpace: 'nowrap',
+  color: theme.palette.mode === 'dark' ? theme.palette.common.white : theme.palette.text.primary,
+  '& .typed-text': {
+    fontWeight: 500,
+    fontFamily: theme.typography.h1.fontFamily,
+    display: 'inline-block',
     whiteSpace: 'nowrap',
   },
+  '& .typed-cursor': {
+    display: 'inline-block',
+  },
   '@media (min-width: 1600px)': {
-    fontSize: 'clamp(2.75rem, 4.1vw, 4.4rem)',
+    fontSize: 'clamp(1.1rem, 1.8vw, 1.7rem)',
   },
   '@media (min-width: 1920px)': {
-    fontSize: 'clamp(3rem, 3.6vw, 4.8rem)',
+    fontSize: 'clamp(1.2rem, 1.6vw, 1.85rem)',
   },
 }));
 
-const TypedLine = styled(Typography)(({ theme }) => ({
-  marginBottom: theme.spacing(1.5),
-  minHeight: '3.2em',
-  overflow: 'visible',
-  fontSize: 'clamp(1.15rem, 2.6vw, 1.85rem)',
-  lineHeight: 1.25,
+const TypedSlot = styled('span')(({ theme }) => ({
   position: 'relative',
-  display: 'block',
-  zIndex: 2,
-  '& .typed-text': {
-    fontWeight: 400,
-    fontFamily: theme.typography.fontFamily,
-    display: 'block',
-  },
-  '@media (min-width: 1600px)': {
-    fontSize: 'clamp(1.2rem, 1.9vw, 1.85rem)',
-    minHeight: '3.3em',
-  },
-  '@media (min-width: 1920px)': {
-    fontSize: 'clamp(1.3rem, 1.7vw, 2.05rem)',
-    minHeight: '3.4em',
-  },
-}));
-
-const TypedSlot = styled('span')(() => ({
-  position: 'relative',
-  display: 'inline-block',
-  width: '100%',
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: theme.spacing(0.5),
+  width: 'fit-content',
   zIndex: 2,
 }));
 
@@ -258,20 +236,50 @@ const HeroMedia = styled(Box)(({ theme }) => ({
   },
 }));
 
-const HeroImage = styled('img')(({ theme }) => ({
+const HeroMediaFrame = styled(Box)(({ theme }) => ({
+  position: 'relative',
   width: 'min(100%, 48rem)',
-  aspectRatio: '5 / 3',
-  objectFit: 'cover',
-  borderRadius: 18,
-  border: `1px solid ${theme.palette.divider}`,
-  filter: 'grayscale(100%) contrast(1.05)',
+  margin: '0 auto',
   '@media (min-width: 1600px)': {
     width: 'min(100%, 66rem)',
   },
   '@media (min-width: 1920px)': {
     width: 'min(100%, 76rem)',
   },
+}));
+
+const HeroImage = styled('img')(({ theme }) => ({
+  width: '100%',
+  aspectRatio: '5 / 3',
+  objectFit: 'cover',
+  borderRadius: 18,
+  border: `1px solid ${theme.palette.divider}`,
+  filter: 'grayscale(88%) contrast(1.05)',
+  boxShadow: theme.palette.mode === 'dark' ? '0 24px 60px rgba(0, 0, 0, 0.45)' : '0 18px 40px rgba(0, 0, 0, 0.15)',
   [theme.breakpoints.down('md')]: {
     borderRadius: 16,
+  },
+}));
+
+const HeroOverlay = styled(Box)(({ theme }) => ({
+  position: 'relative',
+  marginTop: theme.spacing(3),
+  width: '100%',
+  maxWidth: '100%',
+  padding: theme.spacing(2, 3),
+  borderRadius: 16,
+  backgroundColor:
+    theme.palette.mode === 'dark' ? 'rgba(10, 10, 12, 0.65)' : 'rgba(255, 255, 255, 0.72)',
+  border: `1px solid ${theme.palette.divider}`,
+  backdropFilter: 'blur(10px)',
+  boxShadow: theme.palette.mode === 'dark' ? '0 16px 40px rgba(0, 0, 0, 0.35)' : '0 10px 30px rgba(0, 0, 0, 0.12)',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  textAlign: 'center',
+  [theme.breakpoints.down('md')]: {
+    marginTop: theme.spacing(2),
+    padding: theme.spacing(1.5, 2.5),
+    borderRadius: 14,
   },
 }));

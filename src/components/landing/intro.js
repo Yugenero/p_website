@@ -112,8 +112,11 @@ const HeroLayout = styled(Box)(({ theme }) => ({
   alignItems: 'flex-start',
   gap: theme.spacing(6),
   width: '100%',
-  '@media (min-width: 1440px)': {
-    gap: theme.spacing(200),
+  '@media (min-width: 1440px) and (max-width: 1599.98px)': {
+    gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.1fr)',
+    gap: theme.spacing(8),
+    width: 'min(100%, 1360px)',
+    margin: '0 auto',
   },
   '@media (min-width: 1600px)': {
     gridTemplateColumns: 'minmax(520px, 0.9fr) minmax(640px, 1.25fr)',

@@ -9,14 +9,6 @@ import Starfield from '../global/starfield';
 export const Intro = () => {
   const theme = useTheme();
 
-  const handleScrollToAbout = () => {
-    const aboutSection = document.querySelector('#about');
-    if (!aboutSection) {
-      return;
-    }
-    aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
   return (
     <HeroSection>
       <Starfield
@@ -120,17 +112,20 @@ const HeroLayout = styled(Box)(({ theme }) => ({
   alignItems: 'flex-start',
   gap: theme.spacing(6),
   width: '100%',
+  '@media (min-width: 1440px)': {
+    gap: theme.spacing(200),
+  },
   '@media (min-width: 1600px)': {
-    gridTemplateColumns: 'minmax(520px, 1fr) minmax(520px, 1fr)',
+    gridTemplateColumns: 'minmax(520px, 0.9fr) minmax(640px, 1.25fr)',
     alignItems: 'center',
-    gap: theme.spacing(4),
-    width: 'min(100%, 1400px)',
+    gap: theme.spacing(12),
+    width: 'min(100%, 1520px)',
     margin: '0 auto',
   },
   '@media (min-width: 1920px)': {
-    gridTemplateColumns: 'minmax(600px, 1fr) minmax(600px, 1fr)',
-    gap: theme.spacing(4),
-    width: 'min(100%, 1600px)',
+    gridTemplateColumns: 'minmax(600px, 0.9fr) minmax(760px, 1.25fr)',
+    gap: theme.spacing(14),
+    width: 'min(100%, 1680px)',
   },
   [theme.breakpoints.down('md')]: {
     gridTemplateColumns: '1fr',
@@ -142,6 +137,8 @@ const HeroMain = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(3),
+  position: 'relative',
+  zIndex: 2,
 }));
 
 const HeroHeadline = styled(Box)(({ theme }) => ({
@@ -160,41 +157,46 @@ const HeroName = styled(Typography)(({ theme }) => ({
   fontWeight: 300,
   letterSpacing: '-0.02em',
   fontStyle: 'normal',
+  '@media (min-width: 1440px)': {
+    whiteSpace: 'nowrap',
+  },
   '@media (min-width: 1600px)': {
-    fontSize: 'clamp(3rem, 4.8vw, 5rem)',
+    fontSize: 'clamp(2.75rem, 4.1vw, 4.4rem)',
   },
   '@media (min-width: 1920px)': {
-    fontSize: 'clamp(3.4rem, 4.2vw, 5.4rem)',
+    fontSize: 'clamp(3rem, 3.6vw, 4.8rem)',
   },
 }));
 
 const TypedLine = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(1.5),
-  height: '3.2em',
-  overflow: 'hidden',
+  minHeight: '3.2em',
+  overflow: 'visible',
   fontSize: 'clamp(1.15rem, 2.6vw, 1.85rem)',
   lineHeight: 1.25,
   position: 'relative',
   display: 'block',
+  zIndex: 2,
   '& .typed-text': {
     fontWeight: 400,
     fontFamily: theme.typography.fontFamily,
     display: 'block',
   },
   '@media (min-width: 1600px)': {
-    fontSize: 'clamp(1.35rem, 2.2vw, 2.1rem)',
-    height: '3.6em',
+    fontSize: 'clamp(1.2rem, 1.9vw, 1.85rem)',
+    minHeight: '3.3em',
   },
   '@media (min-width: 1920px)': {
-    fontSize: 'clamp(1.5rem, 2vw, 2.35rem)',
-    height: '3.8em',
+    fontSize: 'clamp(1.3rem, 1.7vw, 2.05rem)',
+    minHeight: '3.4em',
   },
 }));
 
 const TypedSlot = styled('span')(() => ({
-  position: 'absolute',
-  inset: 0,
-  display: 'block',
+  position: 'relative',
+  display: 'inline-block',
+  width: '100%',
+  zIndex: 2,
 }));
 
 const HeroBody = styled(Box)(({ theme }) => ({
@@ -215,26 +217,26 @@ const HeroBody = styled(Box)(({ theme }) => ({
 const HeroLead = styled(LeadText)(() => ({
   fontSize: '1.2rem',
   '@media (min-width: 1440px)': {
-    fontSize: '1.35rem',
+    fontSize: '1.1rem',
   },
   '@media (min-width: 1600px)': {
-    fontSize: '1.55rem',
+    fontSize: '1.2rem',
   },
   '@media (min-width: 1920px)': {
-    fontSize: '1.7rem',
+    fontSize: '1.3rem',
   },
 }));
 
 const HeroSubText = styled(Typography)(() => ({
   fontSize: '1.2rem',
   '@media (min-width: 1440px)': {
-    fontSize: '1.3rem',
+    fontSize: '1.05rem',
   },
   '@media (min-width: 1600px)': {
-    fontSize: '1.4rem',
+    fontSize: '1.2rem',
   },
   '@media (min-width: 1920px)': {
-    fontSize: '1.5rem',
+    fontSize: '1.3rem',
   },
 }));
 
@@ -243,6 +245,8 @@ const HeroMedia = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   padding: theme.spacing(1, 0),
+  position: 'relative',
+  zIndex: 1,
   '@media (min-width: 1600px)': {
     justifyContent: 'center',
   },
@@ -259,10 +263,10 @@ const HeroImage = styled('img')(({ theme }) => ({
   border: `1px solid ${theme.palette.divider}`,
   filter: 'grayscale(100%) contrast(1.05)',
   '@media (min-width: 1600px)': {
-    width: 'min(100%, 60rem)',
+    width: 'min(100%, 66rem)',
   },
   '@media (min-width: 1920px)': {
-    width: 'min(100%, 70rem)',
+    width: 'min(100%, 76rem)',
   },
   [theme.breakpoints.down('md')]: {
     borderRadius: 16,

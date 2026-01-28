@@ -275,8 +275,8 @@ const HeroOverlay = styled(Box)(({ theme }) => ({
   boxShadow: theme.palette.mode === 'dark' ? '0 16px 40px rgba(0, 0, 0, 0.35)' : '0 10px 30px rgba(0, 0, 0, 0.12)',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
-  textAlign: 'center',
+  justifyContent: 'flex-start',
+  textAlign: 'left',
   [theme.breakpoints.down('md')]: {
     marginTop: theme.spacing(2),
     padding: theme.spacing(1.5, 2.5),

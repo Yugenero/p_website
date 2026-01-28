@@ -11,7 +11,6 @@ export const colors = {
   white: '#F1F0EC',
 };
 
-// TODO - figure out access toggle for colors in the future
 export const accentColors = {
   crimsonPrimary: '#8B0000',
   crimson: '#B11226',

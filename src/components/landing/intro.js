@@ -48,7 +48,7 @@ export const Intro = () => {
                       <ReactTyped strings={[""]} cursorChar=">" className="typed-text" />
                       <ReactTyped
                         strings={[
-                          'Algorithms pracitioner, intentional problem solver.',
+                          'Algorithms practitioner, intentional problem solver.',
                           'Humanistic, design-minded software engineer.',
                           'Georgia Tech CS alum, information networks focus.',
                           'Car enthusaist, hybrid athelete, iced coffee enjoyer',

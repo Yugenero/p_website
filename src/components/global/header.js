@@ -49,7 +49,7 @@ const NameMark = styled(Typography)(({ theme }) => ({
   fontFamily: theme.typography.h1.fontFamily,
   fontWeight: 400,
   letterSpacing: '0.04em',
-  fontSize: '1.2rem',
+  fontSize: '1.5rem',
   color: 'offWhite',
 }));
 
@@ -68,7 +68,7 @@ const SocialLink = styled('a')(({ theme }) => ({
   transition: 'color 0.2s ease, transform 0.2s ease',
   '&:hover': {
     color: theme.palette.text.primary,
-    transform: 'translateY(-1px)',
+    // transform: 'translateY(-1px)',
   },
   '& svg': {
     fontSize: '1.6rem',

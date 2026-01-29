@@ -95,7 +95,6 @@ const Photography = () => {
             <LoadingOverlay>
               <LoadingStack>
                 <LoadingSpinner aria-hidden="true" />
-                <PhotoStatus variant="body2">Loading photography archive…</PhotoStatus>
               </LoadingStack>
             </LoadingOverlay>
           )}

@@ -47,7 +47,7 @@ const HeaderLeft = styled(Box)(({ theme }) => ({
 
 const NameMark = styled(Typography)(({ theme }) => ({
   fontFamily: theme.typography.h1.fontFamily,
-  fontWeight: 400,
+  fontWeight: 300,
   letterSpacing: '0.04em',
   fontSize: '1.5rem',
   color: 'offWhite',

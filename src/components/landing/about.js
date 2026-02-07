@@ -44,7 +44,7 @@ export const AboutSection = () => {
       />
       <AboutContent>
         <SectionHeader>
-          <MetaText className='h6'>00</MetaText>
+          <MetaText className='h6'>0000</MetaText>
           <SectionTitle variant="h2">About</SectionTitle>
         </SectionHeader>
         <AboutGrid>
@@ -109,9 +109,8 @@ const AboutGrid = styled(Box)(({ theme }) => ({
   },
 }));
 
-const AboutLead = styled(LeadText)(({ theme }) => ({
+const AboutLead = styled(LeadText)(() => ({
   fontSize: '1.2rem',
-  color: theme.palette.mode === 'light' ? theme.palette.text.primary : theme.palette.text.secondary,
 }));
 
 const AboutParagraph = styled(Typography)(() => ({

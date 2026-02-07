@@ -101,7 +101,7 @@ export const WorkSection = () => {
       />
       <WorkContent>
         <SectionHeader>
-          <MetaText>01</MetaText>
+          <MetaText>0001</MetaText>
           <SectionTitle variant="h2">Experience</SectionTitle>
         </SectionHeader>
         <WorkList>

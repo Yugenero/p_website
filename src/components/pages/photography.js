@@ -84,7 +84,7 @@ const Photography = () => {
       />
       <PhotoContent>
         <SectionHeader>
-          <MetaText>11</MetaText>
+          <MetaText>0011</MetaText>
           <SectionTitle variant="h2">Photography</SectionTitle>
           <PhotoLead>
             Stuff I find interesting. Updated as I travel more.

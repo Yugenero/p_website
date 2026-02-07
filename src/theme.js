@@ -20,29 +20,30 @@ export const accentColors = {
   crimsonHighlight: '#E63946',
 }
 
-const titleFont = '"Crimson Pro", "Times New Roman", Times, serif';
+const titleFont =
+  '"Geist", "Aeonik-Regular", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif';
 const bodyFont =
-  '"Voyager-Thin", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif';
+  '"Aeonik-Regular", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif';
 
 const baseTypography = {
   fontFamily: bodyFont,
   h1: {
-    fontSize: '2.9rem',
-    fontWeight: 600,
+    fontSize: '3.3rem',
+    fontWeight: 700,
     letterSpacing: '-0.02em',
     lineHeight: 1.1,
     fontFamily: titleFont,
   },
   h2: {
-    fontSize: '2rem',
-    fontWeight: 600,
+    fontSize: '2.35rem',
+    fontWeight: 700,
     letterSpacing: '-0.015em',
     lineHeight: 1.2,
     fontFamily: titleFont,
   },
   h3: {
-    fontSize: '1.35rem',
-    fontWeight: 600,
+    fontSize: '1.55rem',
+    fontWeight: 700,
     lineHeight: 1.3,
     fontFamily: titleFont,
   },
@@ -132,6 +133,20 @@ export const buildTheme = (mode = 'light') => {
         styleOverrides: {
           '@font-face': [
             {
+              fontFamily: 'Aeonik-Regular',
+              fontStyle: 'normal',
+              fontDisplay: 'swap',
+              fontWeight: 400,
+              src: "local('Aeonik-Regular'), local('Aeonik Regular')",
+            },
+            {
+              fontFamily: 'Voyager-Thin',
+              fontStyle: 'normal',
+              fontDisplay: 'swap',
+              fontWeight: 200,
+              src: "local('Voyager-Thin'), local('Voyager Thin')",
+            },
+            {
               fontFamily: 'Geist',
               fontStyle: 'normal',
               fontDisplay: 'swap',
@@ -158,13 +173,6 @@ export const buildTheme = (mode = 'light') => {
               fontDisplay: 'swap',
               fontWeight: 700,
               src: "url('/fonts/Boska/Boska-Bold.woff2') format('woff2')",
-            },
-            {
-              fontFamily: 'Crimson Pro',
-              fontStyle: 'normal',
-              fontDisplay: 'swap',
-              fontWeight: 300,
-              src: "url('/fonts/CrimsonPro_Complete/Fonts/OTF/CrimsonPro-Light.otf') format('opentype')",
             },
           ],
           '*': {

@@ -74,7 +74,7 @@ const Projects = () => {
       />
       <ProjectsContent>
         <SectionHeader>
-          <MetaText>10</MetaText>
+          <MetaText>0010</MetaText>
           <SectionTitle variant="h2">Projects</SectionTitle>
         </SectionHeader>
         <ProjectGrid>
@@ -118,7 +118,8 @@ const ProjectsContent = styled(Container)(() => ({
 
 const ProjectGrid = styled(Box)(({ theme }) => ({
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+  alignItems: 'stretch',
   gap: theme.spacing(3),
   [theme.breakpoints.down('md')]: {
     gap: theme.spacing(2),
@@ -126,18 +127,21 @@ const ProjectGrid = styled(Box)(({ theme }) => ({
 }));
 
 const ProjectCard = styled(Link)(({ theme }) => ({
+  position: 'relative',
   aspectRatio: '1 / 1',
   width: '100%',
+  minHeight: 0,
+  overflow: 'hidden',
   backgroundColor: theme.palette.text.primary,
   color: theme.palette.background.default,
-  padding: theme.spacing(4),
+  padding: theme.spacing(3),
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
   minHeight: 'auto',
   border: `1px solid ${theme.palette.divider}`,
   borderRadius: '0.5rem',
-  gap: theme.spacing(3),
+  gap: theme.spacing(2),
   textDecoration: 'none',
   cursor: 'pointer',
   transition: 'transform 0.2s ease, box-shadow 0.2s ease',
@@ -145,8 +149,11 @@ const ProjectCard = styled(Link)(({ theme }) => ({
     transform: 'translateY(-2px)',
     boxShadow: `0 4px 12px rgba(0, 0, 0, 0.15)`,
   },
+  '& > *': {
+    minWidth: 0,
+  },
   [theme.breakpoints.down('md')]: {
-    padding: theme.spacing(3),
+    padding: theme.spacing(2.5),
     minHeight: 'auto',
   },
 }));
@@ -156,15 +163,19 @@ const ProjectHeader = styled(Box)(({ theme }) => ({
 }));
 
 const ProjectTitle = styled(Typography)(({ theme }) => ({
-  marginBottom: theme.spacing(2),
-  fontSize: '1.5rem',
+  marginBottom: theme.spacing(1.5),
+  fontSize: '1.25rem',
+  lineHeight: 1.25,
 }));
 
 const ProjectDescription = styled(Typography)(() => ({
-  fontSize: '1rem',
+  fontSize: '0.95rem',
+  lineHeight: 1.45,
 }));
 
 const ProjectMetaItem = styled(InlineItem)(({ theme }) => ({
+  fontSize: '0.62rem',
+  letterSpacing: '0.12em',
   color: theme.palette.mode === 'light' 
     ? theme.palette.background.default 
     : '#AAAAAA',

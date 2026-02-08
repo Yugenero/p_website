@@ -7,7 +7,7 @@ import Starfield from '../global/starfield';
 
 const introSerif = '"Junicode", "Crimson Pro", "Times New Roman", Times, serif';
 
-export const Intro = () => {
+export const Intro = ({ nameFontFamily }) => {
   const theme = useTheme();
 
   return (
@@ -25,7 +25,7 @@ export const Intro = () => {
         <HeroContent>
           <HeroLayout>
             <HeroHeadline>
-              <HeroTitle variant="h1" component="h1">
+              <HeroTitle nameFontFamily={nameFontFamily} variant="h1" component="h1">
                 hi, i&apos;m Nelson Rodriguez.
               </HeroTitle>
               <TypedLine variant="body1" component="p">
@@ -101,8 +101,10 @@ const HeroHeadline = styled(Box)(() => ({
   width: '100%',
 }));
 
-const HeroTitle = styled(Typography)(({ theme }) => ({
-  fontFamily: introSerif,
+const HeroTitle = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== 'nameFontFamily',
+})(({ theme, nameFontFamily }) => ({
+  fontFamily: nameFontFamily || introSerif,
   fontWeight: 400,
   letterSpacing: '-0.02em',
   lineHeight: 1.05,

@@ -116,6 +116,8 @@ const darkPalette = {
   divider: colors.grayDark,
 };
 
+// --
+
 export const buildTheme = (mode = 'light') => {
   // TODO - figure out where this is coming from
   const baseTheme = createTheme({

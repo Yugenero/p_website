@@ -13,6 +13,7 @@ import { AboutPage } from './components/pages/about';
 import { WorkPage } from './components/pages/work';
 import Photography from './components/pages/photography';
 import { ProjectsPage } from './components/pages/projects';
+import { BlogPage, BlogPostPage } from './components/pages/blog';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -24,6 +25,8 @@ const AnimatedRoutes = () => {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/work" element={<WorkPage />} />
         <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/photography" element={<Photography />} />
       </Routes>
     </div>

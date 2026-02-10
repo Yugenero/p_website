@@ -1,0 +1,12 @@
+<svg width="1600" height="720" viewBox="0 0 1600 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="720" fill="#E0E0E0"/>
+  <rect x="80" y="80" width="1440" height="560" stroke="#222222" stroke-width="2" fill="none"/>
+  <circle cx="220" cy="200" r="42" fill="#888888"/>
+  <rect x="300" y="170" width="980" height="24" fill="#888888"/>
+  <rect x="300" y="218" width="720" height="20" fill="#888888"/>
+  <rect x="220" y="320" width="1160" height="14" fill="#888888"/>
+  <rect x="220" y="352" width="980" height="14" fill="#888888"/>
+  <rect x="220" y="384" width="1020" height="14" fill="#888888"/>
+  <rect x="220" y="416" width="840" height="14" fill="#888888"/>
+  <text x="220" y="520" fill="#111111" font-family="Arial, sans-serif" font-size="42">Placeholder Image</text>
+</svg>

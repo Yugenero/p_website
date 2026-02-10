@@ -193,6 +193,7 @@ export const Header = ({ mode, onToggleTheme }) => {
             <NavItem to="/about">About</NavItem>
             <NavItem to="/work">Experience</NavItem>
             <NavItem to="/projects">Projects</NavItem>
+            <NavItem to="/blog">Blog</NavItem>
             <NavItem to="/photography">Photography</NavItem>
             <ExternalLink
               href="/documents/NelsonRodriguez.pdf"

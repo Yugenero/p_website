@@ -5,8 +5,6 @@ import { styled, useTheme } from '@mui/material/styles';
 import { Container, Section } from '../ui/primitives';
 import Starfield from '../global/starfield';
 
-const introSerif = '"Junicode", "Crimson Pro", "Times New Roman", Times, serif';
-
 export const Intro = ({ nameFontFamily }) => {
   const theme = useTheme();
 
@@ -25,30 +23,32 @@ export const Intro = ({ nameFontFamily }) => {
         <HeroContent>
           <HeroLayout>
             <HeroHeadline>
-              <HeroTitle nameFontFamily={nameFontFamily} variant="h1" component="h1">
-                hi, i&apos;m Nelson Rodriguez.
-              </HeroTitle>
-              <TypedLine variant="body1" component="p">
-                <TypedSlot>
-                  <ReactTyped
-                    strings={[
-                      'Algorithms practitioner, Intentional problem solver.',
-                      'Humanistic, design-minded software engineer.',
-                      'Georgia Tech CS alum, information networks focus.',
-                      'Car enthusiast, Hybrid athlete, Iced coffee enjoyer.',
-                      'Kaizen as a practice - 1% better every day.',
-                    ]}
-                    typeSpeed={40}
-                    backDelay={2600}
-                    cursorChar="|"
-                    loop
-                    className="typed-text"
-                  />
-                </TypedSlot>
-              </TypedLine>
+              <HeroTitleBlock>
+                <HeroTitle nameFontFamily={nameFontFamily} variant="h1" component="h1">
+                  <HeroTitleLead>Hey, I&apos;m</HeroTitleLead>
+                  <HeroTitleName>Nelson Rodriguez</HeroTitleName>
+                </HeroTitle>
+                <TypedLine variant="body1" component="p">
+                  <TypedSlot>
+                    <ReactTyped
+                      strings={[
+                        'Algorithms practitioner, Intentional problem solver.',
+                        'Humanistic, design-minded software engineer.',
+                        'Georgia Tech CS alum, information networks focus.',
+                        'Car enthusiast, Hybrid athlete, Iced coffee enjoyer.',
+                        'Kaizen as a practice - 1% better every day.',
+                      ]}
+                      typeSpeed={40}
+                      backDelay={2600}
+                      cursorChar="|"
+                      loop
+                      className="typed-text"
+                    />
+                  </TypedSlot>
+                </TypedLine>
+              </HeroTitleBlock>
               <HeroDescription variant="body1">
-                I build mobile SDKs, integrations, and product data experiences that make complex workflows feel
-                clear, dependable, and easy to use.
+                I build software, work with integrations, and help architect solutions for software systems. 
               </HeroDescription>
             </HeroHeadline>
           </HeroLayout>
@@ -101,10 +101,19 @@ const HeroHeadline = styled(Box)(() => ({
   width: '100%',
 }));
 
+const HeroTitleBlock = styled(Box)(({ theme }) => ({
+  position: 'relative',
+  width: '100%',
+  paddingBottom: 'clamp(3.25rem, 6vw, 4.95rem)',
+  [theme.breakpoints.down('md')]: {
+    paddingBottom: 'clamp(2.8rem, 8.8vw, 4.2rem)',
+  },
+}));
+
 const HeroTitle = styled(Typography, {
   shouldForwardProp: (prop) => prop !== 'nameFontFamily',
 })(({ theme, nameFontFamily }) => ({
-  fontFamily: nameFontFamily || introSerif,
+  fontFamily: nameFontFamily || theme.typography.h1.fontFamily,
   fontWeight: 400,
   letterSpacing: '-0.02em',
   lineHeight: 1.05,
@@ -114,22 +123,52 @@ const HeroTitle = styled(Typography, {
   color: theme.palette.text.primary,
 }));
 
+const HeroTitleLead = styled('span')(({ theme }) => ({
+  display: 'inline',
+  marginRight: '0.25ch',
+  [theme.breakpoints.down('sm')]: {
+    display: 'block',
+    marginRight: 0,
+  },
+}));
+
+const HeroTitleName = styled('span')(({ theme }) => ({
+  display: 'inline',
+  [theme.breakpoints.down('sm')]: {
+    display: 'block',
+  },
+}));
+
 const TypedLine = styled(Typography)(({ theme }) => ({
-  marginTop: theme.spacing(1.5),
-  fontSize: 'clamp(1.2rem, 2.3vw, 1.55rem)',
-  lineHeight: 1.5,
+  position: 'absolute',
+  left: 0,
+  bottom: 0,
+  margin: 0,
+  fontSize: 'clamp(2.2rem, 4.1vw, 3rem)',
+  lineHeight: 1.05,
+  maxWidth: '34ch',
   color: theme.palette.text.primary,
   '& .typed-text': {
     fontWeight: 400,
     fontFamily: theme.typography.fontFamily,
+    whiteSpace: 'nowrap',
   },
   '& .typed-cursor': {
     fontFamily: theme.typography.fontFamily,
+    fontSize: 'inherit',
+    lineHeight: 1,
+  },
+  [theme.breakpoints.down('md')]: {
+    fontSize: 'clamp(1.35rem, 5.2vw, 2rem)',
+    maxWidth: '100%',
   },
 }));
 
 const TypedSlot = styled('span')(() => ({
   display: 'inline-block',
+  width: '34ch',
+  maxWidth: '100%',
+  overflow: 'hidden',
 }));
 
 const HeroDescription = styled(Typography)(({ theme }) => ({

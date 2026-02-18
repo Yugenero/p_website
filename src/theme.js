@@ -21,7 +21,7 @@ export const accentColors = {
 }
 
 const titleFont =
-  '"Geist", "Aeonik-Regular", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif';
+  'Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif';
 const bodyFont =
   '"Aeonik-Regular", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif';
 
@@ -115,8 +115,6 @@ const darkPalette = {
   },
   divider: colors.grayDark,
 };
-
-// --
 
 export const buildTheme = (mode = 'light') => {
   // TODO - figure out where this is coming from

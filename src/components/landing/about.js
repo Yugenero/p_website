@@ -14,6 +14,7 @@ import {
   SectionHeader,
   SectionTitle,
 } from '../ui/primitives';
+import { BinaryMetaText } from '../ui/binaryMetaText';
 
 const skills = [
   'React',
@@ -44,7 +45,7 @@ export const AboutSection = () => {
       />
       <AboutContent>
         <SectionHeader>
-          <MetaText className='h6'>0000</MetaText>
+          <BinaryMetaText value="0000" />
           <SectionTitle variant="h2">About</SectionTitle>
         </SectionHeader>
         <AboutGrid>

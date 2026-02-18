@@ -41,25 +41,42 @@ const SocialList = styled(Box)(({ theme }) => ({
   gap: theme.spacing(2),
 }));
 
-const SocialLink = styled('a')(({ theme }) => ({
-  width: 'auto',
-  height: 'auto',
-  borderRadius: 0,
-  border: 'none',
-  color: theme.palette.mode === 'dark' ? theme.palette.text.disabled : theme.palette.text.secondary,
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  textDecoration: 'none',
-  transition: 'transform 0.2s ease, background-color 0.2s ease, color 0.2s ease',
-  '&:hover': {
-    transform: 'translateY(-2px)',
-    color: theme.palette.text.primary,
-  },
-  '& svg': {
-    fontSize: '2rem',
-  },
-}));
+const SocialLink = styled('a')(({ theme }) => {
+  const hoverBorderColor =
+    theme.palette.mode === 'dark' ? theme.palette.common.white : theme.palette.common.black;
+
+  return {
+    width: '2.7rem',
+    height: '2.7rem',
+    borderRadius: '5px',
+    border: '1px solid transparent',
+    color: theme.palette.mode === 'dark' ? theme.palette.text.disabled : theme.palette.text.secondary,
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textDecoration: 'none',
+    transition: 'border-color 0.2s ease, color 0.2s ease',
+    '&:hover': {
+      borderColor: hoverBorderColor,
+      color: hoverBorderColor,
+    },
+    '&:focus-visible': {
+      borderColor: hoverBorderColor,
+      color: hoverBorderColor,
+      outlineOffset: '2px',
+    },
+    '& svg': {
+      fontSize: '2rem',
+    },
+    [theme.breakpoints.down('md')]: {
+      width: '3rem',
+      height: '3rem',
+      '& svg': {
+        fontSize: '2.15rem',
+      },
+    },
+  };
+});
 
 const Footer = () => {
   const theme = useTheme();
@@ -79,7 +96,7 @@ const Footer = () => {
           <Box>
             <FooterName variant="body2">© 2026 Nelson Rodriguez</FooterName>
             <Typography variant="body2" color="text.secondary">
-              Currently Atlanta, GA · nelsonrodriguez.me
+              Atlanta, GA · nelsonrodriguez.me
             </Typography>
           </Box>
           <SocialList>

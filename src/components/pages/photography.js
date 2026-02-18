@@ -5,12 +5,12 @@ import { alpha, styled, useTheme } from '@mui/material/styles';
 import {
   Container,
   LeadText,
-  MetaText,
   Section,
   SectionHeader,
   SectionTitle,
 } from '../ui/primitives';
 import Starfield from '../global/starfield';
+import { BinaryMetaText } from '../ui/binaryMetaText';
 
 const PhotoCard = ({ photo, index }) => {
   const [loaded, setLoaded] = useState(false);
@@ -84,7 +84,7 @@ const Photography = () => {
       />
       <PhotoContent>
         <SectionHeader>
-          <MetaText>0011</MetaText>
+          <BinaryMetaText value="0011" />
           <SectionTitle variant="h2">Photography</SectionTitle>
           <PhotoLead>
             Stuff I find interesting. Updated as I travel more.

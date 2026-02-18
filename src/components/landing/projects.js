@@ -6,12 +6,12 @@ import {
   Container,
   InlineItem,
   InlineList,
-  MetaText,
   Section,
   SectionHeader,
   SectionTitle,
 } from '../ui/primitives';
 import Starfield from '../global/starfield';
+import { BinaryMetaText } from '../ui/binaryMetaText';
 
 const projects = [
   {
@@ -74,7 +74,7 @@ const Projects = () => {
       />
       <ProjectsContent>
         <SectionHeader>
-          <MetaText>0010</MetaText>
+          <BinaryMetaText value="0010" />
           <SectionTitle variant="h2">Projects</SectionTitle>
         </SectionHeader>
         <ProjectGrid>
@@ -164,6 +164,8 @@ const ProjectHeader = styled(Box)(({ theme }) => ({
 
 const ProjectTitle = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(1.5),
+  fontFamily: theme.typography.fontFamily,
+  fontWeight: 500,
   fontSize: '1.25rem',
   lineHeight: 1.25,
 }));

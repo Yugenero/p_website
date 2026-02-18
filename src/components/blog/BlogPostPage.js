@@ -6,42 +6,14 @@ import { styled } from '@mui/material/styles';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 import {
   Container,
+  MetaText,
   Section,
   SectionHeader,
   SectionTitle,
 } from '../ui/primitives';
-import { BinaryMetaText } from '../ui/binaryMetaText';
-
-const blogEntries = [
-  {
-    slug: 'shipping-calm-product-systems',
-    path: '/blog/shipping-calm-product-systems.md',
-    imageUrl: '/images/blog-placeholder.svg',
-  },
-  {
-    slug: 'what-i-am-optimizing-for',
-    path: '/blog/what-i-am-optimizing-for.md',
-    imageUrl: '/images/blog-placeholder.svg',
-  },
-  {
-    slug: 'lorem-ipsum-playbook',
-    path: '/blog/lorem-ipsum-playbook.md',
-    imageUrl: 'https://cataas.com/cat?width=1400&height=700',
-  },
-];
+import { blogEntries, extractTitleFromMarkdown } from './blogData';
 
 const inlinePattern = /(\*\*[^*]+\*\*|`[^`]+`|\[[^\]]+\]\([^)]+\)|\*[^*]+\*)/g;
-
-const extractTitleFromMarkdown = (markdown, index) => {
-  const lines = markdown.trim().split('\n');
-  const headingLine = lines.find((line) => /^#{1,6}\s+/.test(line.trim()));
-
-  if (headingLine) {
-    return headingLine.replace(/^#{1,6}\s+/, '').trim();
-  }
-
-  return `Untitled Post ${index + 1}`;
-};
 
 const parseInlineMarkdown = (text, keyPrefix) => {
   const segments = text.split(inlinePattern).filter(Boolean);
@@ -168,75 +140,6 @@ const renderMarkdown = (markdown, entryKey) => {
   return blocks;
 };
 
-const BlogPage = () => {
-  const [entries, setEntries] = useState([]);
-
-  useEffect(() => {
-    let isMounted = true;
-
-    const loadEntries = async () => {
-      const loadedEntries = await Promise.all(
-        blogEntries.map(async (entry, index) => {
-          try {
-            const response = await fetch(entry.path);
-            if (!response.ok) {
-              throw new Error(`Failed to load ${entry.path}`);
-            }
-
-            const markdown = await response.text();
-            return {
-              ...entry,
-              title: extractTitleFromMarkdown(markdown, index),
-            };
-          } catch (error) {
-            return {
-              ...entry,
-              title: `Untitled Post ${index + 1}`,
-            };
-          }
-        })
-      );
-
-      if (isMounted) {
-        setEntries(loadedEntries);
-      }
-    };
-
-    loadEntries();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
-  return (
-    <BlogWrap>
-      <BlogContent>
-        <SectionHeader>
-          <BinaryMetaText value="0100" />
-          <SectionTitle variant="h2">Writing</SectionTitle>
-        </SectionHeader>
-
-        <SubstackLine variant="body1">
-          Checkout my{' '}
-          <SubstackLink href="https://placeholder.substack.com" target="_blank" rel="noopener noreferrer">
-            Substack
-          </SubstackLink>
-          .
-        </SubstackLine>
-
-        <EntryStack>
-          {entries.map((entry) => (
-            <EntryCardLink key={entry.slug} component={RouterLink} to={`/blog/${entry.slug}`}>
-              <EntryTitle variant="h3">{entry.title}</EntryTitle>
-            </EntryCardLink>
-          ))}
-        </EntryStack>
-      </BlogContent>
-    </BlogWrap>
-  );
-};
-
 const BlogPostPage = () => {
   const { slug } = useParams();
   const [markdown, setMarkdown] = useState('');
@@ -288,7 +191,7 @@ const BlogPostPage = () => {
       <BlogWrap>
         <BlogContent>
           <SectionHeader>
-            <BinaryMetaText value="0101" />
+            <MetaText>Blog</MetaText>
             <SectionTitle variant="h2">Post not found</SectionTitle>
           </SectionHeader>
           <BackLink component={RouterLink} to="/blog">
@@ -303,7 +206,7 @@ const BlogPostPage = () => {
     <BlogWrap>
       <BlogContent>
         <SectionHeader>
-          <BinaryMetaText value="0101" />
+          <MetaText>Blog Post</MetaText>
           <SectionTitle variant="h2">
             {isLoading ? 'Loading...' : extractTitleFromMarkdown(markdown || '', 0)}
           </SectionTitle>
@@ -333,42 +236,6 @@ const BlogWrap = styled(Section)(() => ({
 
 const BlogContent = styled(Container)(() => ({
   position: 'relative',
-}));
-
-const SubstackLine = styled(Typography)(({ theme }) => ({
-  color: theme.palette.text.secondary,
-  marginBottom: theme.spacing(4),
-}));
-
-const SubstackLink = styled(Link)(({ theme }) => ({
-  color: theme.palette.text.primary,
-  fontWeight: 600,
-}));
-
-const EntryStack = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: theme.spacing(2),
-}));
-
-const EntryCardLink = styled(Link)(({ theme }) => ({
-  display: 'block',
-  border: `1px solid ${theme.palette.divider}`,
-  padding: theme.spacing(2.5),
-  textDecoration: 'none',
-  transition: 'background-color 0.2s ease, border-color 0.2s ease',
-  '&:hover': {
-    backgroundColor: theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)',
-    borderColor: theme.palette.text.primary,
-  },
-}));
-
-const EntryTitle = styled(Typography)(({ theme }) => ({
-  fontFamily: theme.typography.h3.fontFamily,
-  fontSize: '1.3rem',
-  fontWeight: 600,
-  color: theme.palette.text.primary,
-  margin: 0,
 }));
 
 const PostImage = styled('img')(({ theme }) => ({
@@ -453,4 +320,4 @@ const InlineAnchor = styled('a')(({ theme }) => ({
   color: theme.palette.text.primary,
 }));
 
-export { BlogPage, BlogPostPage };
+export { BlogPostPage };

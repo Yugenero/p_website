@@ -11,6 +11,10 @@ import {
   SectionTitle,
 } from '../ui/primitives';
 import Starfield from '../global/starfield';
+import { BinaryMetaText } from '../ui/binaryMetaText';
+
+const companyTitleFont =
+  '"Geist", "Aeonik-Regular", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif';
 
 const workExperience = [
   {
@@ -101,7 +105,7 @@ export const WorkSection = () => {
       />
       <WorkContent>
         <SectionHeader>
-          <MetaText>0001</MetaText>
+          <BinaryMetaText value="0001" />
           <SectionTitle variant="h2">Experience</SectionTitle>
         </SectionHeader>
         <WorkList>
@@ -161,6 +165,7 @@ const WorkItem = styled(Box)(({ theme }) => ({
 }));
 
 const WorkTitle = styled(Typography)(() => ({
+  fontFamily: companyTitleFont,
   fontSize: '1.6rem',
   fontWeight: '300',
 }));

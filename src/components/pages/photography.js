@@ -49,7 +49,7 @@ const TileLayout = ({ photos }) => {
   );
 };
 
-const Photography = () => {
+const Stuff = () => {
   const theme = useTheme();
   const [photos, setPhotos] = useState([]);
   const [error, setError] = useState(null);
@@ -85,9 +85,9 @@ const Photography = () => {
       <PhotoContent>
         <SectionHeader>
           <BinaryMetaText value="0011" />
-          <SectionTitle variant="h2">Photography</SectionTitle>
+          <SectionTitle variant="h2">Stuff</SectionTitle>
           <PhotoLead>
-            Stuff I find interesting. Updated as I travel more.
+            Stuff I find interesting.
           </PhotoLead>
         </SectionHeader>
         <MasonryStage aria-busy={loading}>
@@ -112,7 +112,7 @@ const Photography = () => {
   );
 };
 
-export default Photography;
+export default Stuff;
 
 const MasonryGrid = styled(Box)(({ theme }) => ({
   columnCount: 4,
@@ -181,22 +181,28 @@ const LoadingSpinner = styled('div')(({ theme }) => ({
 
 const PhotoCardFrame = styled('div')(({ theme }) => ({
   position: 'relative',
-  display: 'block',
+  display: 'inline-block',
+  verticalAlign: 'top',
   width: '100%',
   marginBottom: theme.spacing(3),
   breakInside: 'avoid',
+  WebkitColumnBreakInside: 'avoid',
+  pageBreakInside: 'avoid',
   border: `1px solid ${theme.palette.divider}`,
   borderRadius: '0.6rem',
   overflow: 'hidden',
   backgroundColor: alpha(theme.palette.text.primary, 0.04),
-  minHeight: 200,
   opacity: 0.2,
   transform: 'translateY(10px)',
   transitionProperty: 'opacity, transform',
   transitionDuration: '520ms',
   transitionTimingFunction: 'cubic-bezier(0.2, 0.6, 0.2, 1)',
   transitionDelay: 'var(--photo-delay, 0ms)',
+  '&[data-loaded="false"]': {
+    minHeight: 200,
+  },
   '&[data-loaded="true"]': {
+    minHeight: 0,
     opacity: 1,
     transform: 'translateY(0)',
   },
@@ -204,7 +210,9 @@ const PhotoCardFrame = styled('div')(({ theme }) => ({
 
 const PhotoItem = styled('img')(() => ({
   width: '100%',
+  height: 'auto',
   display: 'block',
+  maxHeight: 'none',
   opacity: 0,
   transition: 'opacity 400ms ease',
   '[data-loaded="true"] &': {

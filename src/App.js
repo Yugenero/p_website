@@ -11,7 +11,7 @@ import buildTheme from './theme';
 // Page Imports
 import { AboutPage } from './components/pages/about';
 import { WorkPage } from './components/pages/work';
-import Photography from './components/pages/photography';
+import Stuff from './components/pages/photography';
 import { ProjectsPage } from './components/pages/projects';
 import { BlogPage, BlogPostPage } from './components/pages/blog';
 
@@ -27,7 +27,8 @@ const AnimatedRoutes = () => {
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
-        <Route path="/photography" element={<Photography />} />
+        <Route path="/photography" element={<Stuff />} />
+        <Route path="/stuff" element={<Stuff />} />
       </Routes>
     </div>
   );

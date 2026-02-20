@@ -146,12 +146,13 @@ const TypedLine = styled(Typography)(({ theme }) => ({
   margin: 0,
   fontSize: 'clamp(2.2rem, 4.1vw, 3rem)',
   lineHeight: 1.05,
-  maxWidth: '34ch',
+  maxWidth: '100%',
   color: theme.palette.text.primary,
   '& .typed-text': {
     fontWeight: 400,
     fontFamily: theme.typography.fontFamily,
-    whiteSpace: 'nowrap',
+    whiteSpace: 'normal',
+    overflowWrap: 'anywhere',
   },
   '& .typed-cursor': {
     fontFamily: theme.typography.fontFamily,
@@ -162,23 +163,27 @@ const TypedLine = styled(Typography)(({ theme }) => ({
     fontSize: 'clamp(1.35rem, 5.2vw, 2rem)',
     maxWidth: '100%',
   },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 'clamp(1rem, 4.5vw, 1.2rem)',
+  },
 }));
 
 const TypedSlot = styled('span')(() => ({
-  display: 'inline-block',
-  width: '34ch',
+  display: 'block',
+  width: '100%',
   maxWidth: '100%',
-  overflow: 'hidden',
+  overflow: 'visible',
 }));
 
 const HeroDescription = styled(Typography)(({ theme }) => ({
   marginTop: theme.spacing(2.5),
   fontFamily: theme.typography.fontFamily,
-  fontSize: '1rem',
+  fontSize: 'clamp(1.125rem, 1.5vw, 1.35rem)',
   lineHeight: 1.85,
   maxWidth: 860,
   color: theme.palette.text.secondary,
   marginBottom: 0,
+  whiteSpace: 'nowrap',
   [theme.breakpoints.down('md')]: {
     maxWidth: '100%',
   },

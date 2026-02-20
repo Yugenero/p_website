@@ -16,7 +16,7 @@ const HeaderBar = styled(AppBar)(({ theme }) => ({
   top: 0,
   zIndex: theme.zIndex.appBar,
   backgroundColor: theme.palette.background.default,
-  overflow: 'hidden',
+  overflow: 'visible',
 }));
 
 const HeaderToolbar = styled(Toolbar)(() => ({
@@ -76,7 +76,10 @@ const NameMark = styled('span')(({ theme }) => ({
 const SocialList = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  gap: theme.spacing(2.5),
+  gap: theme.spacing(1.2),
+  [theme.breakpoints.down('md')]: {
+    gap: theme.spacing(1),
+  },
 }));
 
 const SocialLink = styled('a')(({ theme }) => {
@@ -129,8 +132,8 @@ const NavGroup = styled(Box)(({ theme }) => ({
 }));
 
 const NavItem = styled(NavLink)(({ theme }) => {
-  const hoverBorderColor =
-    theme.palette.mode === 'dark' ? theme.palette.common.white : theme.palette.common.black;
+  const invertedBackground = theme.palette.text.primary;
+  const invertedColor = theme.palette.background.default;
 
   return {
     color: theme.palette.text.primary,
@@ -139,27 +142,28 @@ const NavItem = styled(NavLink)(({ theme }) => {
     justifyContent: 'center',
     textDecoration: 'none',
     fontFamily: theme.typography.fontFamily,
-    textTransform: 'uppercase',
-    letterSpacing: '0.14em',
-    fontSize: '0.72rem',
+    letterSpacing: '0.06em',
+    fontSize: '0.84rem',
     fontWeight: 600,
-    border: `1px solid transparent`,
+    border: 'none',
     borderRadius: '5px',
     padding: theme.spacing(0.7, 1.05),
-    transition: 'border-color 0.2s ease',
+    transition: 'background-color 0.2s ease, color 0.2s ease',
     '&:hover': {
-      borderColor: hoverBorderColor,
+      backgroundColor: invertedBackground,
+      color: invertedColor,
     },
     '&:focus-visible': {
-      borderColor: hoverBorderColor,
+      backgroundColor: invertedBackground,
+      color: invertedColor,
       outlineOffset: '2px',
     },
   };
 });
 
 const ExternalLink = styled('a')(({ theme }) => {
-  const hoverBorderColor =
-    theme.palette.mode === 'dark' ? theme.palette.common.white : theme.palette.common.black;
+  const invertedBackground = theme.palette.text.primary;
+  const invertedColor = theme.palette.background.default;
 
   return {
     color: theme.palette.text.primary,
@@ -168,23 +172,57 @@ const ExternalLink = styled('a')(({ theme }) => {
     justifyContent: 'center',
     textDecoration: 'none',
     fontFamily: theme.typography.fontFamily,
-    textTransform: 'uppercase',
-    letterSpacing: '0.14em',
-    fontSize: '0.72rem',
+    letterSpacing: '0.06em',
+    fontSize: '0.84rem',
     fontWeight: 600,
-    border: `1px solid transparent`,
+    border: 'none',
     borderRadius: '5px',
     padding: theme.spacing(0.7, 1.05),
-    transition: 'border-color 0.2s ease',
+    transition: 'background-color 0.2s ease, color 0.2s ease',
     '&:hover': {
-      borderColor: hoverBorderColor,
+      backgroundColor: invertedBackground,
+      color: invertedColor,
     },
     '&:focus-visible': {
-      borderColor: hoverBorderColor,
+      backgroundColor: invertedBackground,
+      color: invertedColor,
       outlineOffset: '2px',
     },
   };
 });
+
+const WritingItemWrap = styled(Box)(() => ({
+  position: 'relative',
+  display: 'inline-flex',
+  alignItems: 'center',
+  '&:hover [data-writing-popup], &:focus-within [data-writing-popup]': {
+    opacity: 1,
+    transform: 'translate(-50%, 0)',
+    pointerEvents: 'auto',
+  },
+}));
+
+const WritingPopup = styled(Box)(({ theme }) => ({
+  position: 'absolute',
+  top: `calc(100% + ${theme.spacing(1.4)})`,
+  left: '50%',
+  transform: 'translate(-50%, -6px)',
+  opacity: 0,
+  pointerEvents: 'none',
+  whiteSpace: 'nowrap',
+  border: `1px solid ${theme.palette.text.primary}`,
+  borderRadius: '5px',
+  padding: theme.spacing(0.9, 1.2),
+  fontFamily: theme.typography.fontFamily,
+  fontSize: '0.78rem',
+  letterSpacing: '0.05em',
+  fontWeight: 600,
+  color: theme.palette.background.default,
+  backgroundColor: theme.palette.text.primary,
+  boxShadow: `0 10px 24px ${theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.45)' : 'rgba(0,0,0,0.2)'}`,
+  transition: 'opacity 180ms ease, transform 180ms ease',
+  zIndex: theme.zIndex.tooltip,
+}));
 
 export const Header = ({ mode, onToggleTheme }) => {
   const nextModeLabel = mode === 'light' ? 'dark' : 'light';
@@ -246,8 +284,18 @@ export const Header = ({ mode, onToggleTheme }) => {
             <NavItem to="/about">About</NavItem>
             <NavItem to="/work">Experience</NavItem>
             <NavItem to="/projects">Projects</NavItem>
-            <NavItem to="/blog">Blog</NavItem>
-            <NavItem to="/photography">Photography</NavItem>
+            <WritingItemWrap>
+              <NavItem
+                to="/blog"
+                onClick={(event) => {
+                  event.preventDefault();
+                }}
+              >
+                Writing
+              </NavItem>
+              <WritingPopup data-writing-popup>page under construction</WritingPopup>
+            </WritingItemWrap>
+            <NavItem to="/photography">Stuff</NavItem>
             <ExternalLink
               href="/documents/NelsonRodriguez.pdf"
               target="_blank"

@@ -55,30 +55,12 @@ const HeaderLeft = styled(Box)(({ theme }) => ({
   flexWrap: 'wrap',
 }));
 
-const HomeButton = styled(NavLink)(({ theme }) => ({
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  textDecoration: 'none',
-  color: theme.palette.text.primary,
-  border: 'none',
-  padding: 0,
-}));
-
-const NameMark = styled('span')(({ theme }) => ({
-  fontFamily: theme.typography.h1.fontFamily,
-  fontWeight: 300,
-  letterSpacing: '0.04em',
-  fontSize: '1.5rem',
-  color: 'inherit',
-}));
-
 const SocialList = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  gap: theme.spacing(1.2),
+  gap: theme.spacing(0.35),
   [theme.breakpoints.down('md')]: {
-    gap: theme.spacing(1),
+    gap: theme.spacing(0.25),
   },
 }));
 
@@ -94,9 +76,9 @@ const SocialLink = styled('a')(({ theme }) => {
     textDecoration: 'none',
     border: `1px solid transparent`,
     borderRadius: '5px',
-    padding: theme.spacing(0.65),
-    minWidth: '2.5rem',
-    minHeight: '2.5rem',
+    padding: theme.spacing(0.2),
+    minWidth: '1.8rem',
+    minHeight: '1.8rem',
     transition: 'border-color 0.2s ease, color 0.2s ease',
     '&:hover': {
       borderColor: hoverBorderColor,
@@ -108,13 +90,13 @@ const SocialLink = styled('a')(({ theme }) => {
       outlineOffset: '2px',
     },
     '& svg': {
-      fontSize: '1.6rem',
+      fontSize: '1.1rem',
     },
     [theme.breakpoints.down('md')]: {
-      minWidth: '2.9rem',
-      minHeight: '2.9rem',
+      minWidth: '2rem',
+      minHeight: '2rem',
       '& svg': {
-        fontSize: '1.82rem',
+        fontSize: '1.2rem',
       },
     },
   };
@@ -123,10 +105,10 @@ const SocialLink = styled('a')(({ theme }) => {
 const NavGroup = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  gap: theme.spacing(3),
+  gap: theme.spacing(2),
   flexWrap: 'wrap',
   [theme.breakpoints.down('md')]: {
-    gap: theme.spacing(2),
+    gap: theme.spacing(1.5),
     rowGap: theme.spacing(1),
   },
 }));
@@ -139,12 +121,12 @@ const NavItem = styled(NavLink)(({ theme }) => ({
     position: 'relative',
     textDecoration: 'none',
     fontFamily: theme.typography.fontFamily,
-    letterSpacing: '0.06em',
-    fontSize: '0.84rem',
+    letterSpacing: '0.04em',
+    fontSize: '0.78rem',
     fontWeight: 600,
     border: 'none',
     borderRadius: '5px',
-    padding: theme.spacing(0.7, 1.05),
+    padding: theme.spacing(0.65, 0.9),
     transition: 'color 0.2s ease',
     '&::after': {
       content: '""',
@@ -184,12 +166,12 @@ const ExternalLink = styled('a')(({ theme }) => ({
     position: 'relative',
     textDecoration: 'none',
     fontFamily: theme.typography.fontFamily,
-    letterSpacing: '0.06em',
-    fontSize: '0.84rem',
+    letterSpacing: '0.04em',
+    fontSize: '0.78rem',
     fontWeight: 600,
     border: 'none',
     borderRadius: '5px',
-    padding: theme.spacing(0.7, 1.05),
+    padding: theme.spacing(0.65, 0.9),
     transition: 'color 0.2s ease',
     '&::after': {
       content: '""',
@@ -274,9 +256,6 @@ export const Header = ({ mode, onToggleTheme }) => {
       <HeaderToolbar disableGutters>
         <HeaderInner>
           <HeaderLeft>
-            <HomeButton to="/" aria-label="Go to home page">
-              <NameMark>NR</NameMark>
-            </HomeButton>
             <SocialList>
               <SocialLink href="mailto:neroxv1313@gmail.com" aria-label="Email">
                 <EmailRoundedIcon />

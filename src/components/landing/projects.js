@@ -36,19 +36,12 @@ const projects = [
     link: 'https://github.com/Yugenero/RodriguezNelson_Simulator',
   },
   {
-    title: 'eKlozet Sustainable Fashion',
+    title: 'Empty Card',
     description:
-      'Agile iOS app with outfit intelligence and wardrobe management, winning 2nd place at the GT Junior Design Expo.',
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500\s... ',
     stack: ['Swift', 'SQL', 'iOS'],
-    link: 'https://github.com/allisonfain08/team2120',
+    link: 'https://nelsonrodriguez.me',
   },
-  // {
-  //   title: 'Empty Card',
-  //   description:
-  //     'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500\s... ',
-  //   stack: ['Swift', 'SQL', 'iOS'],
-  //   link: 'https://nelsonrodriguez.me',
-  // },
   // {
   //   title: 'Empty Card',
   //   description:

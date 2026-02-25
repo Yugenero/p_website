@@ -38,7 +38,7 @@ const FooterName = styled(Typography)(({ theme }) => ({
 const SocialList = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  gap: theme.spacing(2),
+  gap: theme.spacing(0.5),
 }));
 
 const SocialLink = styled('a')(({ theme }) => {
@@ -46,8 +46,8 @@ const SocialLink = styled('a')(({ theme }) => {
     theme.palette.mode === 'dark' ? theme.palette.common.white : theme.palette.common.black;
 
   return {
-    width: '2.7rem',
-    height: '2.7rem',
+    width: '1.9rem',
+    height: '1.9rem',
     borderRadius: '5px',
     border: '1px solid transparent',
     color: theme.palette.mode === 'dark' ? theme.palette.text.disabled : theme.palette.text.secondary,
@@ -66,13 +66,13 @@ const SocialLink = styled('a')(({ theme }) => {
       outlineOffset: '2px',
     },
     '& svg': {
-      fontSize: '2rem',
+      fontSize: '1.15rem',
     },
     [theme.breakpoints.down('md')]: {
-      width: '3rem',
-      height: '3rem',
+      width: '2.05rem',
+      height: '2.05rem',
       '& svg': {
-        fontSize: '2.15rem',
+        fontSize: '1.2rem',
       },
     },
   };

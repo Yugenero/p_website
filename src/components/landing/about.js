@@ -51,7 +51,8 @@ export const AboutSection = () => {
         <AboutGrid>
           <Box>
             <AboutLead>
-              I enjoy computers and building software that brings clarity to complexity through performance & great user experience :)
+              I enjoy engineering, computers, and building software that brings clarity to complexity. 
+              Performance and great user experience guide my work.
             </AboutLead>
           </Box>
           <Box>

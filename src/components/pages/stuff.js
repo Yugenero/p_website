@@ -1,7 +1,7 @@
 import react from 'react';
 import { useEffect, useState } from 'react';
 
-const stuff = () => {
+const Photography = () => {
 
 	const [posts, setPosts] = useState(false);
 
@@ -17,9 +17,9 @@ const stuff = () => {
 
 	return (
 		<div>
-			<stuffPage/>
+			<PhotographyPage/>
 		</div>
 	)
 }
 
-export default stuff;
+export default Photography;

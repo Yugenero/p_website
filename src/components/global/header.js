@@ -131,15 +131,12 @@ const NavGroup = styled(Box)(({ theme }) => ({
   },
 }));
 
-const NavItem = styled(NavLink)(({ theme }) => {
-  const invertedBackground = theme.palette.text.primary;
-  const invertedColor = theme.palette.background.default;
-
-  return {
+const NavItem = styled(NavLink)(({ theme }) => ({
     color: theme.palette.text.primary,
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
+    position: 'relative',
     textDecoration: 'none',
     fontFamily: theme.typography.fontFamily,
     letterSpacing: '0.06em',
@@ -148,28 +145,43 @@ const NavItem = styled(NavLink)(({ theme }) => {
     border: 'none',
     borderRadius: '5px',
     padding: theme.spacing(0.7, 1.05),
-    transition: 'background-color 0.2s ease, color 0.2s ease',
+    transition: 'color 0.2s ease',
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      left: theme.spacing(1.05),
+      right: theme.spacing(1.05),
+      bottom: theme.spacing(0.45),
+      height: '1px',
+      backgroundColor: theme.palette.text.primary,
+      transform: 'scaleX(0)',
+      transformOrigin: 'left center',
+      transition: 'transform 0.22s ease',
+      opacity: 0.9,
+    },
     '&:hover': {
-      backgroundColor: invertedBackground,
-      color: invertedColor,
+      backgroundColor: 'transparent',
+      color: theme.palette.text.primary,
+      '&::after': {
+        transform: 'scaleX(1)',
+      },
     },
     '&:focus-visible': {
-      backgroundColor: invertedBackground,
-      color: invertedColor,
+      backgroundColor: 'transparent',
+      color: theme.palette.text.primary,
       outlineOffset: '2px',
+      '&::after': {
+        transform: 'scaleX(1)',
+      },
     },
-  };
-});
+}));
 
-const ExternalLink = styled('a')(({ theme }) => {
-  const invertedBackground = theme.palette.text.primary;
-  const invertedColor = theme.palette.background.default;
-
-  return {
+const ExternalLink = styled('a')(({ theme }) => ({
     color: theme.palette.text.primary,
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
+    position: 'relative',
     textDecoration: 'none',
     fontFamily: theme.typography.fontFamily,
     letterSpacing: '0.06em',
@@ -178,18 +190,36 @@ const ExternalLink = styled('a')(({ theme }) => {
     border: 'none',
     borderRadius: '5px',
     padding: theme.spacing(0.7, 1.05),
-    transition: 'background-color 0.2s ease, color 0.2s ease',
+    transition: 'color 0.2s ease',
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      left: theme.spacing(1.05),
+      right: theme.spacing(1.05),
+      bottom: theme.spacing(0.45),
+      height: '1px',
+      backgroundColor: theme.palette.text.primary,
+      transform: 'scaleX(0)',
+      transformOrigin: 'left center',
+      transition: 'transform 0.22s ease',
+      opacity: 0.9,
+    },
     '&:hover': {
-      backgroundColor: invertedBackground,
-      color: invertedColor,
+      backgroundColor: 'transparent',
+      color: theme.palette.text.primary,
+      '&::after': {
+        transform: 'scaleX(1)',
+      },
     },
     '&:focus-visible': {
-      backgroundColor: invertedBackground,
-      color: invertedColor,
+      backgroundColor: 'transparent',
+      color: theme.palette.text.primary,
       outlineOffset: '2px',
+      '&::after': {
+        transform: 'scaleX(1)',
+      },
     },
-  };
-});
+}));
 
 const WritingItemWrap = styled(Box)(() => ({
   position: 'relative',
@@ -284,18 +314,17 @@ export const Header = ({ mode, onToggleTheme }) => {
             <NavItem to="/about">About</NavItem>
             <NavItem to="/work">Experience</NavItem>
             <NavItem to="/projects">Projects</NavItem>
+            <NavItem to="/photography">Photography</NavItem>
             <WritingItemWrap>
               <NavItem
                 to="/blog"
                 onClick={(event) => {
                   event.preventDefault();
-                }}
-              >
+                }}>
                 Writing
               </NavItem>
               <WritingPopup data-writing-popup>page under construction</WritingPopup>
             </WritingItemWrap>
-            <NavItem to="/photography">Stuff</NavItem>
             <ExternalLink
               href="/documents/NelsonRodriguez.pdf"
               target="_blank"
@@ -306,8 +335,7 @@ export const Header = ({ mode, onToggleTheme }) => {
             <ThemeToggle
               onClick={onToggleTheme}
               aria-label={`Switch to ${nextModeLabel} mode`}
-              aria-pressed={mode === 'dark'}
-              data-mode={mode}
+               data-mode={mode}
             >
               <span className="toggle-thumb" aria-hidden="true" />
             </ThemeToggle>

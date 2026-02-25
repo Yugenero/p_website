@@ -49,7 +49,7 @@ const TileLayout = ({ photos }) => {
   );
 };
 
-const Stuff = () => {
+const PhotographyPage = () => {
   const theme = useTheme();
   const [photos, setPhotos] = useState([]);
   const [error, setError] = useState(null);
@@ -85,9 +85,9 @@ const Stuff = () => {
       <PhotoContent>
         <SectionHeader>
           <BinaryMetaText value="0011" />
-          <SectionTitle variant="h2">Stuff</SectionTitle>
+          <SectionTitle variant="h2">Photography</SectionTitle>
           <PhotoLead>
-            Stuff I find interesting.
+            Photography I find interesting.
           </PhotoLead>
         </SectionHeader>
         <MasonryStage aria-busy={loading}>
@@ -112,7 +112,7 @@ const Stuff = () => {
   );
 };
 
-export default Stuff;
+export default PhotographyPage;
 
 const MasonryGrid = styled(Box)(({ theme }) => ({
   columnCount: 4,

@@ -15,7 +15,7 @@ export const Intro = ({ nameFontFamily }) => {
     <HeroSection>
       <Starfield
         density={15}
-        color={theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.text.secondary}
+        color={theme.palette.s === 'dark' ? theme.palette.text.primary : theme.palette.text.secondary}
         backgroundStops={['transparent', 'transparent']}
         maxDrift={0.6}
         ultraSubtle
@@ -26,11 +26,19 @@ export const Intro = ({ nameFontFamily }) => {
         <HeroContent>
           <HeroBottomBand>
             <HeroLeftBlock>
-              <HeroTitleBlock>
-                <HeroTitle nameFontFamily={nameFontFamily} variant="h1" component="h1">
-                  <HeroTitleLead>Hey, I&apos;m</HeroTitleLead>
-                  <HeroTitleName>Nelson Rodriguez</HeroTitleName>
-                </HeroTitle>
+              <HeroWorkSummary variant="body1">
+                I work as a software engineer focused on building reliable applications, designing
+                integrations between systems, and helping architect solutions that are maintainable,
+                scalable, and useful to the people who depend on them.
+              </HeroWorkSummary>
+              <HeroRightParagraph variant="body1">
+                Outside of work, I care about design, cars, training, and travel. I like thoughtful
+                interfaces, learning how systems behave end to end, and improving incrementally over
+                time through curiosity and repetition.
+              </HeroRightParagraph>
+            </HeroLeftBlock>
+            <HeroRightBlock>
+              <HeroRightTypedFill>
                 <TypedLine variant="body1" component="p">
                   <TypedSlot>
                     <ReactTyped
@@ -49,24 +57,14 @@ export const Intro = ({ nameFontFamily }) => {
                     />
                   </TypedSlot>
                 </TypedLine>
-              </HeroTitleBlock>
-              <HeroWorkSummary variant="body1">
-                I build software, work with integrations, and help architect solutions for software systems.
-              </HeroWorkSummary>
-            </HeroLeftBlock>
-            <HeroRightBlock>
-              <HeroRightParagraph variant="body1">
-                I work as a software engineer focused on building reliable applications, designing
-                integrations between systems, and helping architect solutions that are maintainable,
-                scalable, and useful to the people who depend on them.
-              </HeroRightParagraph>
-              <HeroRightParagraph variant="body1">
-                Outside of work, I care about design, cars, training, and travel. I like thoughtful
-                interfaces, learning how systems behave end to end, and improving incrementally over
-                time through curiosity and repetition.
-              </HeroRightParagraph>
+              </HeroRightTypedFill>
             </HeroRightBlock>
           </HeroBottomBand>
+          <HeroNameStrip>
+            <HeroTitle nameFontFamily={nameFontFamily} variant="h1" component="h1">
+              hi, i&apos;m nelson rodriguez
+            </HeroTitle>
+          </HeroNameStrip>
         </HeroContent>
       </HeroContainer>
     </HeroSection>
@@ -97,6 +95,7 @@ const HeroContainer = styled(Container)(() => ({
 const HeroContent = styled(Box)(({ theme }) => ({
   flex: 1,
   minHeight: 'calc(100vh - 72px - 32px)',
+  position: 'relative',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-end',
@@ -113,80 +112,56 @@ const HeroContent = styled(Box)(({ theme }) => ({
 const HeroBottomBand = styled(Box)(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
-  gap: theme.spacing(4),
-  width: '100%',
+  gap: 0,
+  width: '100vw',
+  marginLeft: 'calc(50% - 50vw)',
+  marginBottom: 0,
+  minHeight: 'clamp(260px, 34vh, 420px)',
   alignItems: 'stretch',
-  paddingTop: theme.spacing(2),
-  paddingBottom: theme.spacing(2),
+  paddingTop: 0,
+  paddingBottom: 0,
   [theme.breakpoints.down('md')]: {
-    gridTemplateColumns: '1fr',
-    gap: theme.spacing(2.5),
-    paddingTop: theme.spacing(2),
+    gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
+    marginBottom: 0,
+    minHeight: 'clamp(220px, 30vh, 320px)',
   },
 }));
 
 const HeroLeftBlock = styled(Box)(({ theme }) => ({
   width: '100%',
-  minHeight: '100%',
+  height: '100%',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'flex-end',
-  gap: theme.spacing(1.4),
-}));
-
-const HeroTitleBlock = styled(Box)(({ theme }) => ({
-  position: 'relative',
-  width: '100%',
-  display: 'flex',
-  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'flex-start',
+  textAlign: 'left',
   gap: theme.spacing(1),
-  paddingTop: 'clamp(3.2rem, 7.8vw, 6.1rem)',
-  [theme.breakpoints.down('sm')]: {
-    paddingTop: 'clamp(4.6rem, 16vw, 5.8rem)',
-  },
+  padding: '5px',
 }));
 
 const HeroTitle = styled(Typography, {
   shouldForwardProp: (prop) => prop !== 'nameFontFamily',
 })(({ theme, nameFontFamily }) => ({
-  position: 'absolute',
-  top: 'clamp(-0.9rem, -1.2vw, -0.35rem)',
-  left: 0,
-  width: '100%',
   fontFamily: nameFontFamily || theme.typography.h1.fontFamily,
   fontWeight: 300,
   letterSpacing: '-0.02em',
-  lineHeight: 1.02,
-  fontSize: 'clamp(2.6rem, 7.2vw, 5.7rem)',
+  lineHeight: 1,
+  fontSize: 'clamp(1.55rem, 5.2vw, 3.6rem)',
   margin: 0,
   display: 'block',
+  width: '100%',
   color: theme.palette.text.primary,
-  [theme.breakpoints.down('sm')]: {
-    top: 'clamp(-0.35rem, -1.5vw, -0.1rem)',
-  },
-}));
-
-const HeroTitleLead = styled('span')(({ theme }) => ({
-  display: 'inline',
-  marginRight: '0.25ch',
-  [theme.breakpoints.down('sm')]: {
-    display: 'block',
-    marginRight: 0,
-  },
-}));
-
-const HeroTitleName = styled('span')(({ theme }) => ({
-  display: 'inline',
-  [theme.breakpoints.down('sm')]: {
-    display: 'block',
-  },
+  whiteSpace: 'nowrap',
+  textAlign: 'left',
 }));
 
 const TypedLine = styled(Typography)(({ theme }) => ({
   margin: 0,
-  fontSize: 'clamp(1.2rem, 2.45vw, 1.8rem)',
+  fontSize: 'clamp(1.05rem, 2.1vw, 1.5rem)',
   lineHeight: 1.05,
   maxWidth: '100%',
+  width: '100%',
+  textAlign: 'left',
   color: theme.palette.text.secondary,
   fontFamily: INTRO_BODY_FONT,
   '& .typed-text': {
@@ -201,11 +176,11 @@ const TypedLine = styled(Typography)(({ theme }) => ({
     lineHeight: 1,
   },
   [theme.breakpoints.down('md')]: {
-    fontSize: 'clamp(1.02rem, 4.2vw, 1.35rem)',
+    fontSize: 'clamp(0.95rem, 3.8vw, 1.2rem)',
     maxWidth: '100%',
   },
   [theme.breakpoints.down('sm')]: {
-    fontSize: 'clamp(0.95rem, 3.9vw, 1.1rem)',
+    fontSize: 'clamp(0.9rem, 3.5vw, 1rem)',
   },
 }));
 
@@ -222,6 +197,8 @@ const HeroWorkSummary = styled(Typography)(({ theme }) => ({
   fontSize: 'clamp(0.98rem, 1.08vw, 1.1rem)',
   lineHeight: 1.7,
   maxWidth: '100%',
+  width: '100%',
+  textAlign: 'left',
   color: theme.palette.text.secondary,
   marginBottom: 0,
   [theme.breakpoints.down('md')]: {
@@ -231,11 +208,9 @@ const HeroWorkSummary = styled(Typography)(({ theme }) => ({
 
 const HeroRightBlock = styled(Box)(({ theme }) => ({
   width: '100%',
-  minHeight: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'flex-end',
-  gap: theme.spacing(1.1),
+  height: '100%',
+  position: 'relative',
+  overflow: 'hidden',
 }));
 
 const HeroRightParagraph = styled(Typography)(({ theme }) => ({
@@ -244,5 +219,33 @@ const HeroRightParagraph = styled(Typography)(({ theme }) => ({
   fontSize: 'clamp(0.95rem, 1.02vw, 1.05rem)',
   lineHeight: 1.7,
   color: theme.palette.text.secondary,
-  maxWidth: 560,
+  maxWidth: '100%',
+  width: '100%',
+  textAlign: 'left',
+}));
+
+const HeroRightTypedFill = styled(Box)(() => ({
+  position: 'absolute',
+  inset: '5px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-start',
+}));
+
+const HeroNameStrip = styled(Box)(({ theme }) => ({
+  position: 'absolute',
+  left: '50%',
+  bottom: 'calc(clamp(260px, 34vh, 420px) + 8px)',
+  transform: 'translateX(-50%)',
+  width: '100vw',
+  minHeight: 'clamp(44px, 6vh, 64px)',
+  display: 'flex',
+  alignItems: 'flex-start',
+  justifyContent: 'flex-start',
+  padding: '5px',
+  zIndex: 2,
+  [theme.breakpoints.down('md')]: {
+    bottom: 'calc(clamp(220px, 30vh, 320px) + 8px)',
+    minHeight: 'clamp(40px, 5.5vh, 56px)',
+  },
 }));

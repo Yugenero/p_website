@@ -15,7 +15,7 @@ export const Intro = ({ nameFontFamily }) => {
     <HeroSection>
       <Starfield
         density={15}
-        color={theme.palette.s === 'dark' ? theme.palette.text.primary : theme.palette.text.secondary}
+        color={theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.text.secondary}
         backgroundStops={['transparent', 'transparent']}
         maxDrift={0.6}
         ultraSubtle
@@ -26,46 +26,32 @@ export const Intro = ({ nameFontFamily }) => {
         <HeroContent>
           <HeroBottomBand>
             <HeroLeftBlock>
-              <HeroLeftTopStack>
-                <HeroTopCell>
-                  <HeroTitle nameFontFamily={nameFontFamily} variant="h1" component="h1">
-                    hi, i&apos;m nelson rodriguez
-                  </HeroTitle>
-                </HeroTopCell>
-                <HeroTopCell>
-                  <TypedLine variant="body1" component="p">
-                    <TypedSlot>
-                      <ReactTyped
-                        strings={[
-                          'Algorithms practitioner, intentional problem solver.',
-                          'Humanistic, design-minded software engineer.',
-                          'Georgia Tech CS alum, information networks focus.',
-                          'Car enthusiast, hybrid athlete, iced coffee enjoyer.',
-                          'Kaizen as a practice - aiming to be 1% better every day.',
-                        ]}
-                        typeSpeed={40}
-                        backDelay={2600}
-                        cursorChar="|"
-                        loop
-                        className="typed-text"
-                      />
-                    </TypedSlot>
-                  </TypedLine>
-                </HeroTopCell>
-              </HeroLeftTopStack>
-              <HeroWorkSummary variant="body1">
-                I work as a software engineer focused on building reliable applications, designing
-                integrations between systems, and helping architect solutions that are maintainable,
-                scalable, and useful to the people who depend on them.
-              </HeroWorkSummary>
+              <HeroLeftTopCell>
+                <HeroTitle nameFontFamily={nameFontFamily} variant="h1" component="h1">
+                  hi, i&apos;m nelson
+                </HeroTitle>
+              </HeroLeftTopCell>
+              <HeroLeftBottomCell>
+                <TypedLine variant="body1" component="p">
+                  <TypedSlot>
+                    <ReactTyped
+                      strings={[
+                        'Algorithms practitioner, intentional problem solver.',
+                        'Humanistic, design-minded software engineer.',
+                        'Georgia Tech CS alum, information networks focus.',
+                        'Car enthusiast, hybrid athlete, iced coffee enjoyer.',
+                        'Kaizen as a practice - aiming to be 1% better every day.',
+                      ]}
+                      typeSpeed={40}
+                      backDelay={2600}
+                      cursorChar="|"
+                      loop
+                      className="typed-text"
+                    />
+                  </TypedSlot>
+                </TypedLine>
+              </HeroLeftBottomCell>
             </HeroLeftBlock>
-            <HeroRightBlock>
-              <HeroRightParagraph variant="body1">
-                Outside of work, I care about design, cars, training, and travel. I like thoughtful
-                interfaces, learning how systems behave end to end, and improving incrementally over
-                time through curiosity and repetition.
-              </HeroRightParagraph>
-            </HeroRightBlock>
           </HeroBottomBand>
         </HeroContent>
       </HeroContainer>
@@ -76,13 +62,12 @@ export const Intro = ({ nameFontFamily }) => {
 const HeroSection = styled(Section)(({ theme }) => ({
   minHeight: 'calc(100vh - 72px)',
   display: 'flex',
-  paddingTop: theme.spacing(2),
-  paddingBottom: theme.spacing(2),
+  paddingTop: 0,
+  paddingBottom: 0,
   position: 'relative',
   overflow: 'hidden',
   [theme.breakpoints.down('md')]: {
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
+    minHeight: 'calc(100svh - 72px)',
   },
 }));
 
@@ -96,61 +81,64 @@ const HeroContainer = styled(Container)(() => ({
 
 const HeroContent = styled(Box)(({ theme }) => ({
   flex: 1,
-  minHeight: 'calc(100vh - 72px - 32px)',
+  minHeight: 'calc(100vh - 72px)',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-end',
   alignItems: 'stretch',
-  padding: theme.spacing(0.5),
+  paddingBottom: theme.spacing(2.5),
   [theme.breakpoints.down('md')]: {
-    minHeight: 'calc(100vh - 72px - 24px)',
-    padding: '4px',
+    minHeight: 'calc(100svh - 72px)',
+    paddingBottom: theme.spacing(2),
   },
 }));
 
 const HeroBottomBand = styled(Box)(({ theme }) => ({
   display: 'grid',
-  gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
-  gap: 0,
+  gridTemplateColumns: 'minmax(0, 1fr)',
   width: '100vw',
   marginLeft: 'calc(50% - 50vw)',
-  marginBottom: 0,
-  minHeight: 'clamp(260px, 34vh, 420px)',
+  minHeight: 'clamp(260px, 36vh, 420px)',
   alignItems: 'stretch',
-  paddingTop: 0,
-  paddingBottom: 0,
+  padding: 0,
   [theme.breakpoints.down('md')]: {
-    gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
-    marginBottom: 0,
-    minHeight: 'clamp(220px, 30vh, 320px)',
+    gridTemplateColumns: 'minmax(0, 1fr)',
+    minHeight: 'clamp(220px, 34vh, 320px)',
   },
 }));
 
-const HeroLeftBlock = styled(Box)(() => ({
+const HeroLeftBlock = styled(Box)(({ theme }) => ({
   width: '100%',
   height: '100%',
   display: 'grid',
-  gridTemplateRows: '1fr 1fr',
-  alignItems: 'flex-start',
+  gridTemplateRows: 'minmax(0, 1fr) clamp(58px, 7.5vh, 98px)',
   textAlign: 'left',
-  gap: '4px',
-  padding: '4px',
+  padding: theme.spacing(3.25),
+  paddingTop: theme.spacing(4.25),
+  gap: theme.spacing(1.5),
+  [theme.breakpoints.down('md')]: {
+    padding: theme.spacing(2),
+    paddingTop: theme.spacing(3),
+    gap: theme.spacing(1),
+  },
 }));
 
-const HeroLeftTopStack = styled(Box)(() => ({
+const HeroLeftTopCell = styled(Box)(() => ({
   width: '100%',
   minHeight: 0,
-  display: 'grid',
-  gridTemplateRows: '1fr 1fr',
-  gap: '4px',
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'flex-end',
+  justifyContent: 'flex-start',
 }));
 
-const HeroTopCell = styled(Box)(() => ({
+const HeroLeftBottomCell = styled(Box)(() => ({
   width: '100%',
   minHeight: 0,
   display: 'flex',
-  alignItems: 'center',
+  alignItems: 'flex-end',
   justifyContent: 'flex-start',
+  overflow: 'hidden',
 }));
 
 const HeroTitle = styled(Typography, {
@@ -158,10 +146,13 @@ const HeroTitle = styled(Typography, {
 })(({ theme, nameFontFamily }) => ({
   fontFamily: nameFontFamily || theme.typography.h1.fontFamily,
   fontWeight: 300,
-  letterSpacing: '-0.02em',
-  lineHeight: 1.05,
-  fontSize: 'clamp(1.15rem, 2.25vw, 1.95rem)',
+  letterSpacing: '-0.025em',
+  lineHeight: 0.95,
+  fontSize: 'clamp(2.65rem, 6.8vw, 7.2rem)',
   margin: 0,
+  position: 'absolute',
+  left: 0,
+  bottom: 0,
   display: 'block',
   width: '100%',
   color: theme.palette.text.primary,
@@ -171,10 +162,13 @@ const HeroTitle = styled(Typography, {
 
 const TypedLine = styled(Typography)(({ theme }) => ({
   margin: 0,
-  fontSize: 'clamp(1.05rem, 2.05vw, 1.75rem)',
+  fontSize: 'clamp(1.2rem, 2.55vw, 2rem)',
   lineHeight: 1.1,
   maxWidth: '100%',
   width: '100%',
+  height: '100%',
+  display: 'flex',
+  alignItems: 'flex-end',
   textAlign: 'left',
   color: theme.palette.text.secondary,
   fontFamily: INTRO_BODY_FONT,
@@ -190,11 +184,10 @@ const TypedLine = styled(Typography)(({ theme }) => ({
     lineHeight: 1,
   },
   [theme.breakpoints.down('md')]: {
-    fontSize: 'clamp(0.95rem, 3.3vw, 1.25rem)',
-    maxWidth: '100%',
+    fontSize: 'clamp(1.05rem, 2.45vw, 1.5rem)',
   },
   [theme.breakpoints.down('sm')]: {
-    fontSize: 'clamp(0.9rem, 3.5vw, 1.05rem)',
+    fontSize: 'clamp(0.98rem, 4vw, 1.25rem)',
   },
 }));
 
@@ -202,46 +195,9 @@ const TypedSlot = styled('span')(() => ({
   display: 'block',
   width: '100%',
   maxWidth: '100%',
-  overflow: 'visible',
-}));
-
-const HeroWorkSummary = styled(Typography)(({ theme }) => ({
-  marginTop: 0,
-  fontFamily: INTRO_BODY_FONT,
-  fontSize: 'clamp(0.98rem, 1.08vw, 1.1rem)',
-  lineHeight: 1.7,
-  maxWidth: '100%',
-  width: '100%',
   height: '100%',
-  display: 'flex',
-  alignItems: 'center',
-  textAlign: 'left',
-  color: theme.palette.text.secondary,
-  marginBottom: 0,
-  [theme.breakpoints.down('md')]: {
-    maxWidth: '100%',
+  overflow: 'hidden',
+  '& .typed-text': {
+    display: 'block',
   },
-}));
-
-const HeroRightBlock = styled(Box)(() => ({
-  width: '100%',
-  height: '100%',
-  display: 'flex',
-  alignItems: 'stretch',
-  justifyContent: 'flex-start',
-  padding: '4px',
-}));
-
-const HeroRightParagraph = styled(Typography)(({ theme }) => ({
-  margin: 0,
-  fontFamily: INTRO_BODY_FONT,
-  fontSize: 'clamp(0.95rem, 1.02vw, 1.05rem)',
-  lineHeight: 1.7,
-  color: theme.palette.text.secondary,
-  maxWidth: '100%',
-  width: '100%',
-  height: '100%',
-  display: 'flex',
-  alignItems: 'center',
-  textAlign: 'left',
 }));

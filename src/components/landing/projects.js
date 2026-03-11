@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import { styled, useTheme } from '@mui/material/styles';
+import { alpha, styled, useTheme } from '@mui/material/styles';
 import {
   Container,
   InlineItem,
@@ -20,6 +20,11 @@ const projects = [
       'React Native product helping users map purpose using structured prompts and AI-assisted insights. Focused on onboarding and recommendation flows.',
     stack: ['React Native', 'Firebase', 'NativeWind', 'OpenAI Vector API'],
     link: 'https://github.com/Yugenero/Zenith',
+    image: 'https://cataas.com/cat?width=1200&height=1200&test=zenith',
+    // Add an optional image from /public to wrap the card:
+    // image: '/images/projects/zenith.jpg',
+    // imagePosition: 'center',
+    imagePosition: 'center',
   },
   {
     title: 'Nexus Blogging Platform',
@@ -27,6 +32,8 @@ const projects = [
       'Full-stack publishing app with React hooks and Context, Express APIs, and MongoDB-backed authentication.',
     stack: ['React', 'Node.js', 'MongoDB'],
     link: 'https://github.com/Yugenero/Nexus',
+    image: 'https://cataas.com/cat?width=1200&height=1200&test=nexus',
+    imagePosition: 'center',
   },
   {
     title: 'Running Sonification Simulator',
@@ -34,6 +41,8 @@ const projects = [
       'Research simulator that converts cadence and heart-rate streams into adaptive audio feedback for runners.',
     stack: ['JavaScript', 'Audio UX', 'Research'],
     link: 'https://github.com/Yugenero/RodriguezNelson_Simulator',
+    image: 'https://cataas.com/cat?width=1200&height=1200&test=simulator',
+    imagePosition: 'center',
   },
   {
     title: 'Empty Card',
@@ -41,6 +50,8 @@ const projects = [
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500\s... ',
     stack: ['Swift', 'SQL', 'iOS'],
     link: 'https://nelsonrodriguez.me',
+    image: 'https://cataas.com/cat?width=1200&height=1200&test=empty-card',
+    imagePosition: 'center',
   },
   // {
   //   title: 'Empty Card',
@@ -74,6 +85,8 @@ const Projects = () => {
           {projects.map((project) => (
             <ProjectCard
               key={project.title}
+              imageSrc={project.image}
+              imagePosition={project.imagePosition}
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
@@ -119,13 +132,21 @@ const ProjectGrid = styled(Box)(({ theme }) => ({
   },
 }));
 
-const ProjectCard = styled(Link)(({ theme }) => ({
+const ProjectCard = styled(Link, {
+  shouldForwardProp: (prop) => prop !== 'imageSrc' && prop !== 'imagePosition',
+})(({ theme, imageSrc, imagePosition }) => ({
   position: 'relative',
   aspectRatio: '1 / 1',
   width: '100%',
   minHeight: 0,
   overflow: 'hidden',
   backgroundColor: theme.palette.text.primary,
+  backgroundImage: imageSrc
+    ? `linear-gradient(${alpha(theme.palette.common.black, 0.28)}, ${alpha(theme.palette.common.black, 0.28)}), url(${imageSrc})`
+    : 'none',
+  backgroundSize: imageSrc ? 'cover' : 'auto',
+  backgroundPosition: imageSrc ? imagePosition || 'center' : 'initial',
+  backgroundRepeat: 'no-repeat',
   color: theme.palette.background.default,
   padding: theme.spacing(3),
   display: 'flex',

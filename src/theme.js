@@ -65,16 +65,16 @@ const baseTypography = {
     lineHeight: 1.7,
   },
   overline: {
-    fontSize: '0.72rem',
-    letterSpacing: '0.2em',
-    fontWeight: 600,
-    textTransform: 'uppercase',
+    fontSize: '0.82rem',
+    letterSpacing: '0.01em',
+    fontWeight: 500,
+    textTransform: 'none',
   },
   button: {
-    fontSize: '0.75rem',
-    letterSpacing: '0.12em',
-    fontWeight: 600,
-    textTransform: 'uppercase',
+    fontSize: '0.88rem',
+    letterSpacing: '0.01em',
+    fontWeight: 500,
+    textTransform: 'none',
   },
 };
 

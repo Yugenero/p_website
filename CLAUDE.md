@@ -90,8 +90,13 @@ Build on it; don't introduce a new visual language.
 ### Typography
 - Headings / display: Baskerville serif stack (`theme.typography.h1.fontFamily`), weight 300.
 - Body: Aeonik / system sans (`theme.typography.fontFamily`). Role titles use Geist.
-- Labels: `MetaText`, uppercase, `0.72rem`, `letter-spacing: 0.16–0.2em`, `text.secondary`.
-- Tech tags: `InlineItem` inside `InlineList` (uppercase, small, no pills/badges).
+- **No all-caps text, anywhere.** Never use `textTransform: 'uppercase'` (or CSS `text-transform: uppercase`),
+  and never type words in capitals for styling. Use sentence case for labels, buttons, links, and tags.
+  Real acronyms (SDK, SQL, iOS, .NET) are fine. MUI's `button` and `overline` variants are set to
+  `textTransform: 'none'` in `theme.js`; keep it that way.
+- Keep letter-spacing near normal (`0`–`0.02em`); the wide tracking that went with caps is gone too.
+- Labels: `MetaText`, sentence case, `0.82rem`, weight 500, `text.secondary`.
+- Tech tags: `InlineItem` inside `InlineList` (sentence case, small, no pills/badges).
 
 ### Layout & components
 - Square corners (`borderRadius: 0`) for buttons, panels, cards. Existing exceptions: the 5px header icon

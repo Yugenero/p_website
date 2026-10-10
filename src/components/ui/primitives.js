@@ -49,10 +49,9 @@ export const SectionHeader = styled(Box)(({ theme }) => ({
 }));
 
 export const MetaText = styled(Typography)(({ theme }) => ({
-  textTransform: 'uppercase',
-  letterSpacing: '0.18em',
-  fontWeight: 600,
-  fontSize: '0.72rem',
+  letterSpacing: '0.01em',
+  fontWeight: 500,
+  fontSize: '0.82rem',
   color: theme.palette.text.secondary,
 }));
 
@@ -76,23 +75,20 @@ export const InlineList = styled(Box)(({ theme }) => ({
 }));
 
 export const InlineItem = styled(Typography)(({ theme }) => ({
-  fontSize: '0.72rem',
-  textTransform: 'uppercase',
-  letterSpacing: '0.16em',
+  fontSize: '0.82rem',
+  letterSpacing: '0.01em',
   color: theme.palette.text.secondary,
   display: 'inline-flex',
   alignItems: 'center',
 }));
 
-// Small uppercase "go deeper" link, e.g. "Full experience →".
+// Small "go deeper" link, e.g. "Full experience →".
 export const ArrowLink = styled(Link)(({ theme }) => ({
   display: 'inline-flex',
   alignItems: 'center',
   gap: theme.spacing(1),
-  fontSize: '0.72rem',
-  fontWeight: 600,
-  letterSpacing: '0.16em',
-  textTransform: 'uppercase',
+  fontSize: '0.9rem',
+  fontWeight: 500,
   textDecoration: 'none',
   color: theme.palette.text.primary,
   '& .arrow': {

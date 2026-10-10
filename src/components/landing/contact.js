@@ -73,10 +73,6 @@ const Actions = styled(Box)(({ theme }) => ({
   flexWrap: 'wrap',
   gap: theme.spacing(1.5),
   marginTop: theme.spacing(3),
-  '& .MuiButton-root': {
-    textTransform: 'none',
-    letterSpacing: '0.02em',
-  },
 }));
 
 const Explore = styled(Box)(({ theme }) => ({
@@ -93,5 +89,5 @@ const ExploreLink = styled(ArrowLink)(({ theme }) => ({
   justifyContent: 'space-between',
   padding: theme.spacing(1.5, 0),
   borderTop: `1px solid ${theme.palette.divider}`,
-  fontSize: '0.78rem',
+  fontSize: '0.95rem',
 }));

@@ -142,8 +142,7 @@ const ProjectDescription = styled(Typography)(() => ({
 }));
 
 const ProjectMetaItem = styled(InlineItem)(({ theme }) => ({
-  fontSize: '0.62rem',
-  letterSpacing: '0.12em',
+  fontSize: '0.78rem',
   color: theme.palette.mode === 'light' 
     ? theme.palette.background.default 
     : '#AAAAAA',

@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 import { styled } from '@mui/material/styles';
 
 export const Page = styled(Box)(({ theme }) => ({
@@ -81,4 +82,48 @@ export const InlineItem = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.secondary,
   display: 'inline-flex',
   alignItems: 'center',
+}));
+
+// Small uppercase "go deeper" link, e.g. "Full experience →".
+export const ArrowLink = styled(Link)(({ theme }) => ({
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: theme.spacing(1),
+  fontSize: '0.72rem',
+  fontWeight: 600,
+  letterSpacing: '0.16em',
+  textTransform: 'uppercase',
+  textDecoration: 'none',
+  color: theme.palette.text.primary,
+  '& .arrow': {
+    transition: 'transform 0.2s ease',
+  },
+  '&:hover .arrow, &:focus-visible .arrow': {
+    transform: 'translateX(4px)',
+  },
+}));
+
+// Section header with an optional action aligned to the right.
+export const SectionHeaderRow = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'flex-end',
+  justifyContent: 'space-between',
+  gap: theme.spacing(2),
+  flexWrap: 'wrap',
+  marginBottom: theme.spacing(4),
+  [theme.breakpoints.down('md')]: {
+    marginBottom: theme.spacing(3),
+  },
+}));
+
+// Tight section spacing for the information-dense landing page.
+export const CompactSection = styled('section')(({ theme }) => ({
+  position: 'relative',
+  paddingTop: theme.spacing(8),
+  paddingBottom: theme.spacing(8),
+  borderTop: `1px solid ${theme.palette.divider}`,
+  [theme.breakpoints.down('md')]: {
+    paddingTop: theme.spacing(5),
+    paddingBottom: theme.spacing(5),
+  },
 }));

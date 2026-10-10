@@ -34,15 +34,13 @@ const AnimatedRoutes = () => {
 };
 
 const AppShell = ({ mode, onToggleTheme }) => {
-  const location = useLocation();
-
   return (
     <Page>
       <Header mode={mode} onToggleTheme={onToggleTheme} />
       <Main>
         <AnimatedRoutes />
       </Main>
-      {location.pathname !== '/' && <Footer />}
+      <Footer />
     </Page>
   );
 };

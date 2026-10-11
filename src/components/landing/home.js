@@ -1,20 +1,11 @@
 import { Intro } from './intro';
-import { ImpactStrip } from './impact';
-import { ExperienceSummary } from './experienceSummary';
-import { Toolkit } from './toolkit';
-import { FeaturedProjects } from './featuredProjects';
-import { ContactBand } from './contact';
 
-// Landing page: a dense, scannable overview that links into the deeper pages.
+// Landing page: a single screen with who Nelson is and how to reach him.
+// Deeper content lives on /about, /work, and /projects (linked from the header).
 const Home = () => {
   return (
     <div>
       <Intro />
-      <ImpactStrip />
-      <ExperienceSummary />
-      <Toolkit />
-      <FeaturedProjects />
-      <ContactBand />
     </div>
   );
 };

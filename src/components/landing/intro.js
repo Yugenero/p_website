@@ -90,12 +90,17 @@ const pulse = keyframes`
   100% { box-shadow: 0 0 0 0 rgba(46, 160, 67, 0); }
 `;
 
+// Fills the first screen so the landing page needs no scrolling on desktop.
 const HeroSection = styled('section')(({ theme }) => ({
   position: 'relative',
   overflow: 'hidden',
-  paddingTop: theme.spacing(10),
-  paddingBottom: theme.spacing(8),
+  display: 'flex',
+  alignItems: 'center',
+  minHeight: 'calc(100vh - 160px)',
+  paddingTop: theme.spacing(6),
+  paddingBottom: theme.spacing(6),
   [theme.breakpoints.down('md')]: {
+    minHeight: 0,
     paddingTop: theme.spacing(5),
     paddingBottom: theme.spacing(5),
   },
@@ -103,6 +108,7 @@ const HeroSection = styled('section')(({ theme }) => ({
 
 const HeroContainer = styled(Container)(() => ({
   position: 'relative',
+  width: '100%',
   zIndex: 1,
 }));
 

@@ -20,17 +20,9 @@ export const profile = {
 };
 
 export const quickFacts = [
-  { label: 'Currently', value: 'Forward Deployed Engineer · Fullstory' },
   { label: 'Focus', value: 'Mobile SDKs · Full-stack web · Data-heavy UI' },
   { label: 'Education', value: 'B.S. Computer Science · Georgia Tech' },
   { label: 'Based in', value: 'Atlanta, GA · English / Spanish' },
-];
-
-export const impactStats = [
-  { value: '6', label: 'Mobile stacks supported', detail: 'RN, Swift, SwiftUI, Java, Kotlin, Flutter' },
-  { value: '40%', label: 'Faster dataset filtering', detail: 'React + .NET + Snowflake pipeline' },
-  { value: '20K+', label: 'Contractors on platform', detail: 'Clean Architecture .NET services' },
-  { value: '<5ms', label: 'Recommendation retrieval', detail: 'SQL schema + ETL pipeline' },
 ];
 
 export const workExperience = [

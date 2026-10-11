@@ -45,7 +45,7 @@ src/
     ui/primitives.js     layout + type primitives (Container, Section, CompactSection, MetaText, SectionTitle, ArrowLink, …)
     ui/binaryMetaText.js typed binary section label ("0001|")
     global/              header, footer, starfield
-    landing/             landing-page sections + the full Experience/Projects/About sections reused by pages
+    landing/             landing hero (intro.js) + the full Experience/Projects/About sections reused by pages
     pages/               thin route wrappers (about, work, projects, photography, blog)
     styles/, pages/pageStyles/, animations/   legacy CSS + effects, mostly unused by current routes
 public/
@@ -57,7 +57,7 @@ public/
 
 | Path | Component | Notes |
 | --- | --- | --- |
-| `/` | `landing/home.js` | Dense overview: hero, impact strip, experience summary, toolkit, selected projects, contact |
+| `/` | `landing/home.js` | Single-screen hero only (name, role, pitch, quick facts, resume/contact buttons). No metrics, no below-the-fold sections |
 | `/about` | `landing/about.js` | Bio + core stack |
 | `/work` | `landing/work.js` | Full experience timeline with all bullets |
 | `/projects` | `landing/projects.js` | Project cards |
@@ -66,14 +66,15 @@ public/
 
 ## Content: `src/data/profile.js`
 
-All resume-derived content (role, experience, skills, projects, impact numbers, quick facts)
+All resume-derived content (role, experience, skills, projects, quick facts)
 lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/about` read from it.
 
 - When the resume changes, update **both** `public/documents/NelsonRodriguez.pdf` and `profile.js`.
 - Every number or claim on the site must be traceable to the resume. Don't invent metrics,
   titles, or availability promises.
 - `profile.openToWork` toggles the "Open to new roles" status line in the hero.
-- The landing page shows the first 3 jobs and first 3 projects (`limit` props); order the arrays by importance.
+- Keep the landing page uncluttered: it fits on one screen and shows no metrics/impact numbers.
+  Experience, projects, and skills belong on their own pages; order those arrays by importance.
 
 ## Design system & UI guardrails
 

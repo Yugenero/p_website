@@ -12,55 +12,7 @@ import {
 } from '../ui/primitives';
 import Starfield from '../global/starfield';
 import { BinaryMetaText } from '../ui/binaryMetaText';
-
-const projects = [
-  {
-    title: 'Zenith - iOS Application',
-    description:
-      'React Native product helping users map purpose using structured prompts and AI-assisted insights. Focused on onboarding and recommendation flows.',
-    stack: ['React Native', 'Firebase', 'NativeWind', 'OpenAI Vector API'],
-    link: 'https://github.com/Yugenero/Zenith',
-    image: 'https://cataas.com/cat?width=1200&height=1200&test=zenith',
-    // Add an optional image from /public to wrap the card:
-    // image: '/images/projects/zenith.jpg',
-    // imagePosition: 'center',
-    imagePosition: 'center',
-  },
-  {
-    title: 'Nexus Blogging Platform',
-    description:
-      'Full-stack publishing app with React hooks and Context, Express APIs, and MongoDB-backed authentication.',
-    stack: ['React', 'Node.js', 'MongoDB'],
-    link: 'https://github.com/Yugenero/Nexus',
-    image: 'https://cataas.com/cat?width=1200&height=1200&test=nexus',
-    imagePosition: 'center',
-  },
-  {
-    title: 'Running Sonification Simulator',
-    description:
-      'Research simulator that converts cadence and heart-rate streams into adaptive audio feedback for runners.',
-    stack: ['JavaScript', 'Audio UX', 'Research'],
-    link: 'https://github.com/Yugenero/RodriguezNelson_Simulator',
-    image: 'https://cataas.com/cat?width=1200&height=1200&test=simulator',
-    imagePosition: 'center',
-  },
-  {
-    title: 'Empty Card',
-    description:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500\s... ',
-    stack: ['Swift', 'SQL', 'iOS'],
-    link: 'https://nelsonrodriguez.me',
-    image: 'https://cataas.com/cat?width=1200&height=1200&test=empty-card',
-    imagePosition: 'center',
-  },
-  // {
-  //   title: 'Empty Card',
-  //   description:
-  //     'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500\s... ',
-  //   stack: ['Swift', 'SQL', 'iOS'],
-  //   link: 'https://nelsonrodriguez.me',
-  // },
-];
+import { projects } from '../../data/profile';
 
 const Projects = () => {
   const theme = useTheme();
@@ -190,8 +142,7 @@ const ProjectDescription = styled(Typography)(() => ({
 }));
 
 const ProjectMetaItem = styled(InlineItem)(({ theme }) => ({
-  fontSize: '0.62rem',
-  letterSpacing: '0.12em',
+  fontSize: '0.78rem',
   color: theme.palette.mode === 'light' 
     ? theme.palette.background.default 
     : '#AAAAAA',

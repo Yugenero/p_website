@@ -1,14 +1,17 @@
 import { ReactTyped } from 'react-typed';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import { styled, useTheme } from '@mui/material/styles';
-import { Container, Section } from '../ui/primitives';
+import { keyframes, styled, useTheme } from '@mui/material/styles';
+import { Container, MetaText } from '../ui/primitives';
 import Starfield from '../global/starfield';
+import { profile, quickFacts } from '../../data/profile';
 
 const INTRO_BODY_FONT =
   '"Inter", "Aeonik-Regular", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
 
-export const Intro = ({ nameFontFamily }) => {
+export const Intro = () => {
   const theme = useTheme();
 
   return (
@@ -23,181 +26,180 @@ export const Intro = ({ nameFontFamily }) => {
         forceWhite={true}
       />
       <HeroContainer>
-        <HeroContent>
-          <HeroBottomBand>
-            <HeroLeftBlock>
-              <HeroLeftTopCell>
-                <HeroTitle nameFontFamily={nameFontFamily} variant="h1" component="h1">
-                  hi, i&apos;m nelson
-                </HeroTitle>
-              </HeroLeftTopCell>
-              <HeroLeftBottomCell>
-                <TypedLine variant="body1" component="p">
-                  <TypedSlot>
-                    <ReactTyped
-                      strings={[
-                        'Algorithms practitioner, intentional problem solver.',
-                        'Humanistic, design-minded software engineer.',
-                        'Georgia Tech CS alum, information networks focus.',
-                        'Car enthusiast, hybrid athlete, iced coffee enjoyer.',
-                        'Kaizen as a practice - aiming to be 1% better every day.',
-                      ]}
-                      typeSpeed={40}
-                      backDelay={2600}
-                      cursorChar="|"
-                      loop
-                      className="typed-text"
-                    />
-                  </TypedSlot>
-                </TypedLine>
-              </HeroLeftBottomCell>
-            </HeroLeftBlock>
-          </HeroBottomBand>
-        </HeroContent>
+        <HeroGrid>
+          <HeroMain>
+            {profile.openToWork && (
+              <StatusLine component="p">
+                <StatusDot aria-hidden="true" />
+                Open to new roles · {profile.location}
+              </StatusLine>
+            )}
+            <HeroTitle variant="h1" component="h1">
+              hi, i&apos;m nelson
+            </HeroTitle>
+            <TypedLine variant="body1" component="p">
+              <ReactTyped
+                strings={[
+                  'Algorithms practitioner, intentional problem solver.',
+                  'Humanistic, design-minded software engineer.',
+                  'Georgia Tech CS alum, information networks focus.',
+                  'Car enthusiast, hybrid athlete, iced coffee enjoyer.',
+                  'Kaizen as a practice - aiming to be 1% better every day.',
+                ]}
+                typeSpeed={40}
+                backDelay={2600}
+                cursorChar="|"
+                loop
+                className="typed-text"
+              />
+            </TypedLine>
+            <HeroSummary variant="body1">
+              {profile.role} at{' '}
+              <Link href={profile.companyUrl} target="_blank" rel="noopener noreferrer" sx={{ fontWeight: 700 }}>
+                {profile.company}
+              </Link>
+              . {profile.pitch}
+            </HeroSummary>
+            <CtaRow>
+              <Button variant="contained" href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
+                View resume
+              </Button>
+              <Button variant="outlined" href={`mailto:${profile.email}`}>
+                Get in touch
+              </Button>
+            </CtaRow>
+          </HeroMain>
+
+          <FactsPanel component="dl" aria-label="Quick facts">
+            {quickFacts.map((fact) => (
+              <FactRow key={fact.label}>
+                <MetaText component="dt">{fact.label}</MetaText>
+                <FactValue component="dd">{fact.value}</FactValue>
+              </FactRow>
+            ))}
+          </FactsPanel>
+        </HeroGrid>
       </HeroContainer>
     </HeroSection>
   );
 };
 
-const HeroSection = styled(Section)(({ theme }) => ({
-  minHeight: 'calc(100vh - 72px)',
-  display: 'flex',
-  paddingTop: 0,
-  paddingBottom: 0,
+const pulse = keyframes`
+  0% { box-shadow: 0 0 0 0 rgba(46, 160, 67, 0.45); }
+  70% { box-shadow: 0 0 0 6px rgba(46, 160, 67, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 160, 67, 0); }
+`;
+
+const HeroSection = styled('section')(({ theme }) => ({
   position: 'relative',
   overflow: 'hidden',
+  paddingTop: theme.spacing(10),
+  paddingBottom: theme.spacing(8),
   [theme.breakpoints.down('md')]: {
-    minHeight: 'calc(100svh - 72px)',
+    paddingTop: theme.spacing(5),
+    paddingBottom: theme.spacing(5),
   },
 }));
 
 const HeroContainer = styled(Container)(() => ({
-  display: 'flex',
-  flexDirection: 'column',
-  flex: 1,
   position: 'relative',
   zIndex: 1,
 }));
 
-const HeroContent = styled(Box)(({ theme }) => ({
-  flex: 1,
-  minHeight: 'calc(100vh - 72px)',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'flex-end',
-  alignItems: 'stretch',
-  paddingBottom: theme.spacing(2.5),
-  [theme.breakpoints.down('md')]: {
-    minHeight: 'calc(100svh - 72px)',
-    paddingBottom: theme.spacing(2),
-  },
-}));
-
-const HeroBottomBand = styled(Box)(({ theme }) => ({
+const HeroGrid = styled(Box)(({ theme }) => ({
   display: 'grid',
-  gridTemplateColumns: 'minmax(0, 1fr)',
-  width: '100vw',
-  marginLeft: 'calc(50% - 50vw)',
-  minHeight: 'clamp(260px, 36vh, 420px)',
-  alignItems: 'stretch',
-  padding: 0,
+  gridTemplateColumns: 'minmax(0, 1.6fr) minmax(280px, 1fr)',
+  gap: theme.spacing(8),
+  alignItems: 'end',
   [theme.breakpoints.down('md')]: {
     gridTemplateColumns: 'minmax(0, 1fr)',
-    minHeight: 'clamp(220px, 34vh, 320px)',
+    gap: theme.spacing(5),
   },
 }));
 
-const HeroLeftBlock = styled(Box)(({ theme }) => ({
-  width: '100%',
-  height: '100%',
-  display: 'grid',
-  gridTemplateRows: 'minmax(0, 1fr) clamp(58px, 7.5vh, 98px)',
-  textAlign: 'left',
-  padding: theme.spacing(3.25),
-  paddingTop: theme.spacing(4.25),
-  gap: theme.spacing(1.5),
-  [theme.breakpoints.down('md')]: {
-    padding: theme.spacing(2),
-    paddingTop: theme.spacing(3),
-    gap: theme.spacing(1),
+const HeroMain = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing(2.5),
+  minWidth: 0,
+}));
+
+const StatusLine = styled(MetaText)(({ theme }) => ({
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: theme.spacing(1.25),
+  color: theme.palette.text.primary,
+}));
+
+const StatusDot = styled('span')(() => ({
+  width: 8,
+  height: 8,
+  borderRadius: '50%',
+  backgroundColor: '#2EA043',
+  animation: `${pulse} 2.4s ease-out infinite`,
+  '@media (prefers-reduced-motion: reduce)': {
+    animation: 'none',
   },
 }));
 
-const HeroLeftTopCell = styled(Box)(() => ({
-  width: '100%',
-  minHeight: 0,
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'flex-end',
-  justifyContent: 'flex-start',
-}));
-
-const HeroLeftBottomCell = styled(Box)(() => ({
-  width: '100%',
-  minHeight: 0,
-  display: 'flex',
-  alignItems: 'flex-end',
-  justifyContent: 'flex-start',
-  overflow: 'hidden',
-}));
-
-const HeroTitle = styled(Typography, {
-  shouldForwardProp: (prop) => prop !== 'nameFontFamily',
-})(({ theme, nameFontFamily }) => ({
-  fontFamily: nameFontFamily || theme.typography.h1.fontFamily,
+const HeroTitle = styled(Typography)(({ theme }) => ({
+  fontFamily: theme.typography.h1.fontFamily,
   fontWeight: 300,
   letterSpacing: '-0.025em',
   lineHeight: 0.95,
   fontSize: 'clamp(2.65rem, 6.8vw, 7.2rem)',
   margin: 0,
-  position: 'absolute',
-  left: 0,
-  bottom: 0,
-  display: 'block',
-  width: '100%',
   color: theme.palette.text.primary,
-  whiteSpace: 'normal',
-  textAlign: 'left',
 }));
 
 const TypedLine = styled(Typography)(({ theme }) => ({
   margin: 0,
-  fontSize: 'clamp(1.2rem, 2.55vw, 2rem)',
-  lineHeight: 1.1,
-  maxWidth: '100%',
-  width: '100%',
-  height: '100%',
-  display: 'flex',
-  alignItems: 'flex-end',
-  textAlign: 'left',
+  minHeight: '2.4em',
+  fontSize: 'clamp(1.05rem, 1.9vw, 1.5rem)',
+  lineHeight: 1.2,
   color: theme.palette.text.secondary,
   fontFamily: INTRO_BODY_FONT,
   '& .typed-text': {
     fontWeight: 500,
     fontFamily: INTRO_BODY_FONT,
-    whiteSpace: 'normal',
-    overflowWrap: 'anywhere',
-  },
-  '& .typed-cursor': {
-    fontFamily: INTRO_BODY_FONT,
-    fontSize: 'inherit',
-    lineHeight: 1,
-  },
-  [theme.breakpoints.down('md')]: {
-    fontSize: 'clamp(1.05rem, 2.45vw, 1.5rem)',
   },
   [theme.breakpoints.down('sm')]: {
-    fontSize: 'clamp(0.98rem, 4vw, 1.25rem)',
+    minHeight: '3.6em',
   },
 }));
 
-const TypedSlot = styled('span')(() => ({
-  display: 'block',
-  width: '100%',
-  maxWidth: '100%',
-  height: '100%',
-  overflow: 'hidden',
-  '& .typed-text': {
-    display: 'block',
+const HeroSummary = styled(Typography)(() => ({
+  fontSize: '1.1rem',
+  lineHeight: 1.6,
+  maxWidth: 640,
+}));
+
+const CtaRow = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: theme.spacing(1.5),
+  marginTop: theme.spacing(1),
+}));
+
+const FactsPanel = styled(Box)(({ theme }) => ({
+  margin: 0,
+  borderTop: `1px solid ${theme.palette.text.primary}`,
+}));
+
+const FactRow = styled(Box)(({ theme }) => ({
+  display: 'grid',
+  gridTemplateColumns: '7.5rem minmax(0, 1fr)',
+  alignItems: 'baseline',
+  gap: theme.spacing(2),
+  padding: theme.spacing(1.75, 0),
+  borderBottom: `1px solid ${theme.palette.divider}`,
+  '& dt': {
+    margin: 0,
   },
+}));
+
+const FactValue = styled(Typography)(() => ({
+  margin: 0,
+  fontSize: '0.98rem',
+  lineHeight: 1.45,
 }));

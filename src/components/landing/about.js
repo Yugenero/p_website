@@ -15,19 +15,9 @@ import {
   SectionTitle,
 } from '../ui/primitives';
 import { BinaryMetaText } from '../ui/binaryMetaText';
+import { skillGroups } from '../../data/profile';
 
-const skills = [
-  'React',
-  'JavaScript/TypeScript',
-  'Java',
-  'C#',
-  'MongoDB',
-  'Firebase',
-  'Snowflake',
-  'AWS',
-  'Docker',
-  'Node.js',
-];
+const skills = skillGroups.flatMap((group) => group.items).slice(0, 14);
 
 export const AboutSection = () => {
   const theme = useTheme();
@@ -57,7 +47,7 @@ export const AboutSection = () => {
           </Box>
           <Box>
             <AboutParagraph variant="body1" paragraph>
-              These days I’m a Solutions Engineer with a technical + software focus at{' '}
+              These days I’m a Forward Deployed Engineer at{' '}
               <Link
                 href="https://www.fullstory.com"
                 target="_blank"
@@ -66,10 +56,11 @@ export const AboutSection = () => {
               >
                 Fullstory
               </Link>
-              , helping our specialist team ship mobile AI + SDK integrations across iOS, Android, and
-              React Native in real-world applications. Over the past year I’ve contributed to full-stack
-              delivery as a Software Engineer on internal finance and asset management tools, focusing on clean
-              information design, scalable data filtering, and dependable APIs.
+              , implementing and debugging our Mobile SDK across React Native, iOS, and Android in
+              customers&apos; production apps, from minimal repro projects through validated fixes with
+              Engineering. Before that I was a Software Engineer at Civic Digital Experience, building
+              React + C#/.NET internal finance and asset-management tools with a focus on clean information
+              design, fast data filtering, and dependable APIs.
             </AboutParagraph>
             <AboutParagraph variant="body1" paragraph>
               I also hold a B.S. in Computer Science from the {' '}

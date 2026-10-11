@@ -35,7 +35,8 @@ export const Intro = () => {
               </StatusLine>
             )}
             <HeroTitle variant="h1" component="h1">
-              hi, i&apos;m nelson
+              {profile.name},{' '}
+              <HeroRole component="span">{profile.role}</HeroRole>
             </HeroTitle>
             <TypedLine variant="body1" component="p">
               <ReactTyped
@@ -54,7 +55,7 @@ export const Intro = () => {
               />
             </TypedLine>
             <HeroSummary variant="body1">
-              {profile.role} at{' '}
+              Currently at{' '}
               <Link href={profile.companyUrl} target="_blank" rel="noopener noreferrer" sx={{ fontWeight: 700 }}>
                 {profile.company}
               </Link>
@@ -152,10 +153,15 @@ const HeroTitle = styled(Typography)(({ theme }) => ({
   fontFamily: theme.typography.h1.fontFamily,
   fontWeight: 300,
   letterSpacing: '-0.025em',
-  lineHeight: 0.95,
-  fontSize: 'clamp(2.65rem, 6.8vw, 7.2rem)',
+  lineHeight: 1,
+  fontSize: 'clamp(2.4rem, 5.2vw, 5.4rem)',
   margin: 0,
   color: theme.palette.text.primary,
+}));
+
+const HeroRole = styled(Typography)(({ theme }) => ({
+  font: 'inherit',
+  color: theme.palette.text.secondary,
 }));
 
 const TypedLine = styled(Typography)(({ theme }) => ({

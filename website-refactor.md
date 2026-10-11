@@ -51,6 +51,15 @@ It is now a single scrollable overview, top to bottom:
 
 The footer now shows on the home page too; it used to be hidden there.
 
+### Update: landing page trimmed to the hero
+
+- `5966aea` (Nelson): removed the impact strip, experience summary, toolkit, selected projects and contact
+  sections. The landing page is now a single-screen hero; deeper content lives on its own pages.
+  The "Currently" quick fact and the impact metrics were removed as well.
+- Hero heading changed from "hi, i'm nelson" to **"Nelson Rodriguez, Forward Deployed Engineer"**
+  (the title comes from `profile.role`, shown in the secondary color). The typed tagline underneath
+  keeps all of its original lines. The summary now opens with "Currently at Fullstory."
+
 ### One source of truth for resume content
 
 - New file: `src/data/profile.js`. It holds the profile, quick facts, impact stats, work experience,

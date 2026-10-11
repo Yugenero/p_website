@@ -56,9 +56,10 @@ export const AboutSection = () => {
               >
                 Fullstory
               </Link>
-              , implementing and debugging our Mobile SDK across React Native, iOS, and Android in
-              customers&apos; production apps, from minimal repro projects through validated fixes with
-              Engineering. Before that I was a Software Engineer at Civic Digital Experience, building
+              , a customer-facing solutions engineering role. Most of my time goes to working with
+              customer engineering teams in their own codebases to implement the Fullstory Mobile SDK and
+              build proofs of concept, and on the side I engineer AI/automation workflows and internal
+              tools for the team. Before that I was a Software Engineer at Civic Digital Experience, building
               React + C#/.NET internal finance and asset-management tools with a focus on clean information
               design, fast data filtering, and dependable APIs.
             </AboutParagraph>

@@ -16,13 +16,13 @@ export const profile = {
   openToWork: true,
   // Shown after "<role> at <company>." in the landing hero.
   pitch:
-    'I work where product code meets production reality: shipping and debugging mobile SDK integrations across iOS, Android, and React Native, with a full-stack React + .NET background before that.',
+    "It's a customer-facing solutions engineering role: I work directly in customers' codebases to implement the Fullstory Mobile SDK and build proofs of concept, and on the side I build AI/automation workflows and internal tools. Before that, full-stack React + .NET.",
 };
 
 export const quickFacts = [
-  { label: 'Focus', value: 'Mobile SDKs · Full-stack web · Data-heavy UI' },
+  { label: 'Focus', value: 'AI workflows · MCPs · Integrations · Full-stack engineering' },
   { label: 'Education', value: 'B.S. Computer Science · Georgia Tech' },
-  { label: 'Based in', value: 'Atlanta, GA · English / Spanish' },
+  { label: 'Based in', value: 'Atlanta, GA · Open to relocation' },
 ];
 
 export const workExperience = [
@@ -33,14 +33,15 @@ export const workExperience = [
     date: 'Dec 2025 — Present',
     title: 'Forward Deployed Engineer',
     summary:
-      'Mobile SDK implementation and debugging across React Native, iOS, and Android in customer production apps.',
+      'Customer-facing solutions engineering: implementing the Fullstory Mobile SDK in customer codebases, building POCs, and engineering AI workflows and internal tools on the side.',
     highlights: [
-      'Contribute to Mobile SDK implementations across React Native, iOS, and Android, owning configuration, instrumentation, and framework-specific integration issues.',
-      'Validate SDK behavior hands-on across customer stacks with React Native, Swift, SwiftUI, Java, Kotlin, and Flutter demo and repro apps.',
-      'Reproduce customer-reported issues as minimal repro projects with logs and stack traces, then partner with Engineering to debug and verify fixes.',
-      'Work with Product Engineering and Sales to refine SDK functionality and document platform-specific limitations.',
+      'Meet with customer engineering teams and work hands-on in their React Native, iOS, and Android codebases to get the Fullstory Mobile SDK implemented when the documented setup does not land on its own.',
+      'Build customer proofs of concept and demo apps across React Native, Swift, SwiftUI, Java, Kotlin, and Flutter to validate SDK behavior on each customer stack.',
+      'Design and implement AI and automation workflows that take repetitive work off the solutions engineering team.',
+      'Build internal tools that make customer implementations and troubleshooting faster for the team.',
+      'Partner closely with Production Engineering, turning customer-reported issues into minimal repro projects with logs and stack traces, and verifying the fixes.',
     ],
-    stack: ['React Native', 'Swift / SwiftUI', 'Kotlin', 'Java', 'Flutter', 'TypeScript'],
+    stack: ['React Native', 'Swift / SwiftUI', 'Kotlin', 'Java', 'Flutter', 'TypeScript', 'AI workflows'],
   },
   {
     employer: 'Civic Digital Experience, Inc.',

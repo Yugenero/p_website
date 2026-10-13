@@ -100,8 +100,8 @@ Build on it; don't introduce a new visual language.
 - Tech tags: `InlineItem` inside `InlineList` (sentence case, small, no pills/badges).
 
 ### Layout & components
-- Square corners (`borderRadius: 0`) for buttons, panels, cards. Existing exceptions: the 5px header icon
-  hover boxes and the `/projects` cards.
+- Square corners (`borderRadius: 0`) for buttons, panels, cards. Existing exception: the `/projects` cards.
+  Header and footer social icon hover boxes are square too.
 - Structure with **1px hairlines**: `text.primary` for a section's top rule, `divider` between rows.
   No drop shadows except on hover lift.
 - Each section starts with a `BinaryMetaText` label + `SectionTitle`. Pages use fixed codes

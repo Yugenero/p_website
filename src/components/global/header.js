@@ -66,7 +66,8 @@ const SocialList = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   gap: theme.spacing(0.35),
   [theme.breakpoints.down('md')]: {
-    gap: theme.spacing(0.25),
+    gap: theme.spacing(0.75),
+    marginLeft: -10, // optically align the first icon with the page gutter
   },
 }));
 
@@ -81,7 +82,7 @@ const SocialLink = styled('a')(({ theme }) => {
     justifyContent: 'center',
     textDecoration: 'none',
     border: `1px solid transparent`,
-    borderRadius: '5px',
+    borderRadius: 0,
     padding: theme.spacing(0.2),
     minWidth: '1.8rem',
     minHeight: '1.8rem',
@@ -98,11 +99,12 @@ const SocialLink = styled('a')(({ theme }) => {
     '& svg': {
       fontSize: '1.1rem',
     },
+    // Larger icons and 44px tap targets on phones.
     [theme.breakpoints.down('md')]: {
-      minWidth: '2rem',
-      minHeight: '2rem',
+      minWidth: 44,
+      minHeight: 44,
       '& svg': {
-        fontSize: '1.2rem',
+        fontSize: '1.6rem',
       },
     },
   };
@@ -144,8 +146,8 @@ const navLinkStyles = (theme) => ({
   position: 'relative',
   textDecoration: 'none',
   fontFamily: theme.typography.fontFamily,
-  letterSpacing: '0.04em',
-  fontSize: '0.78rem',
+  letterSpacing: '0.02em',
+  fontSize: '0.92rem',
   fontWeight: 600,
   border: 'none',
   borderRadius: '5px',
@@ -250,6 +252,20 @@ export const Header = ({ mode, onToggleTheme }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const { pathname } = useLocation();
   const navRef = useRef(null);
+  const headerRef = useRef(null);
+
+  // Publish the header's height as --header-height so full-screen sections can size around it.
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return undefined;
+    const publish = () =>
+      document.documentElement.style.setProperty('--header-height', `${header.offsetHeight}px`);
+    publish();
+    if (typeof ResizeObserver === 'undefined') return undefined;
+    const observer = new ResizeObserver(publish);
+    observer.observe(header);
+    return () => observer.disconnect();
+  }, []);
 
   // Keep the current page's link in view inside the mobile scroll strip.
   useEffect(() => {
@@ -274,7 +290,7 @@ export const Header = ({ mode, onToggleTheme }) => {
   );
 
   return (
-    <HeaderBar position="sticky" elevation={0}>
+    <HeaderBar ref={headerRef} position="sticky" elevation={0}>
       {theme.palette.mode === 'dark' && (
         <HeaderStarfield
           density={4}

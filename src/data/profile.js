@@ -2,6 +2,11 @@
 // The landing page, /work, /projects, and /about all read from here, so update
 // this file (and public/documents/NelsonRodriguez.pdf) together.
 
+// Non-breaking spaces keep a name on one line when the surrounding text wraps on phones.
+const keepTogether = (text) => text.replace(/ /g, '\u00A0');
+
+const collegeOfComputingUrl = 'https://www.cc.gatech.edu';
+
 export const profile = {
   name: 'Nelson Rodriguez',
   role: 'Forward Deployed Engineer',
@@ -14,14 +19,23 @@ export const profile = {
   github: 'https://github.com/Yugenero',
   instagram: 'https://www.instagram.com/ne.ro.x/',
   openToWork: true,
+  // Hero portrait, e.g. '/images/nelson.jpg' (file in public/images/). Empty shows the bare frame.
+  photo: '',
+  // Photo width / height (e.g. 3 / 4); the frame takes this shape. Omit to span the column.
+  photoRatio: null,
   // Shown after "<role> at <company>." in the landing hero.
   pitch:
-    "It's a customer-facing solutions engineering role: I work directly in customers' codebases to implement the Fullstory Mobile SDK and build proofs of concept, and on the side I build AI/automation workflows and internal tools. Before that, full-stack React + .NET.",
+    "A technical + customer-facing solutions engineering role: I work directly in customers' codebases to implement Fullstory Mobile SDK and build proofs of concept. Part of my work includes building AI/automation workflows and internal tools. Before that, full-stack React + .NET.",
 };
 
 export const quickFacts = [
   { label: 'Focus', value: 'AI workflows · MCPs · Integrations · Full-stack engineering' },
-  { label: 'Education', value: 'B.S. Computer Science · Georgia Tech' },
+  // `link` renders after the value as " · <link>".
+  {
+    label: 'Education',
+    value: 'B.S. Computer Science',
+    link: { label: keepTogether('Georgia Tech'), href: collegeOfComputingUrl },
+  },
   { label: 'Based in', value: 'Atlanta, GA · Open to relocation' },
 ];
 
@@ -29,6 +43,10 @@ export const workExperience = [
   {
     employer: 'Fullstory, Inc.',
     url: 'https://www.fullstory.com',
+    // Logo replaces the employer name in the Experience title, as a monochrome silhouette.
+    // `ratio` = SVG viewBox width / height; optional `scale` (default 1) sizes it against the title;
+    // `descent` = share of its height below the text baseline.
+    logo: { src: '/images/logos/fullstory.svg', ratio: 130 / 25, descent: 0.24 },
     location: 'Atlanta, GA',
     date: 'Dec 2025 — Present',
     title: 'Forward Deployed Engineer',
@@ -67,7 +85,7 @@ export const workExperience = [
     highlights: [
       'Implemented item–item collaborative-filtering recommendations and bidirectional Google Calendar sync.',
       'Designed the SQL schema and ETL pipeline merging interaction logs, catalog, and preferences, with sub-5ms recommendation retrieval.',
-      'Ran Agile delivery with Git and Jira; placed 2nd of 30+ teams at the Fall 2022 Georgia Tech CS Capstone Expo.',
+      `Ran Agile delivery with Git and Jira; placed 2nd of 30+ teams at the Fall 2022 ${keepTogether('Georgia Tech')} CS Capstone Expo.`,
     ],
     stack: ['Swift', 'SQL', 'ETL', 'REST APIs'],
   },
@@ -86,8 +104,10 @@ export const workExperience = [
 ];
 
 export const education = {
-  school: 'Georgia Institute of Technology',
+  school: keepTogether('Georgia Institute of Technology'),
   url: 'https://www.gatech.edu',
+  collegeUrl: collegeOfComputingUrl,
+  logo: { src: '/images/logos/georgia-tech.svg', ratio: 720 / 162, scale: 1.6, descent: 0.26 },
   degree: 'B.S. Computer Science',
   date: 'Aug 2020 — Dec 2023',
   coursework: [

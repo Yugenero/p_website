@@ -57,7 +57,7 @@ public/
 
 | Path | Component | Notes |
 | --- | --- | --- |
-| `/` | `landing/home.js` | Single-screen hero only (name, role, pitch, quick facts, resume/contact buttons). No metrics, no below-the-fold sections |
+| `/` | `landing/home.js` | Framed hero (name, role, typed tagline, pitch, resume/contact buttons, code card, quick facts) + photography strip. No metrics |
 | `/about` | `landing/about.js` | Bio + core stack |
 | `/work` | `landing/work.js` | Full experience timeline with all bullets |
 | `/projects` | `landing/projects.js` | Project cards |
@@ -73,8 +73,16 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
 - Every number or claim on the site must be traceable to the resume. Don't invent metrics,
   titles, or availability promises.
 - `profile.openToWork` toggles the "Open to new roles" status line in the hero.
-- Keep the landing page uncluttered: it fits on one screen and shows no metrics/impact numbers.
+- Keep the landing page uncluttered: roughly one desktop screen, no metrics/impact numbers.
   Experience, projects, and skills belong on their own pages; order those arrays by importance.
+- Landing visuals (each in its own file under `components/landing/`):
+  - `heroFrame.js`: hairline rules that draw in on load, corner "+" marks, and labels for location and
+    live Atlanta local time.
+  - `codeCard.js`: a monochrome card that types out a short snippet of the **public** Fullstory React
+    Native SDK API. Keep it short (long lines wrap on phones) and real; never show private or employer-internal code.
+  - `photoStrip.js`: four of Nelson's photos (grayscale, color on hover) linking to `/photography`. It shares
+    `global/usePhotos.js` with the photography page and renders nothing if the photo service fails.
+- No headshot/portrait on the landing page for now (a picture version is parked separately).
 
 ## Design system & UI guardrails
 

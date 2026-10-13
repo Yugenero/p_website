@@ -60,6 +60,23 @@ The footer now shows on the home page too; it used to be hidden there.
   (the title comes from `profile.role`, shown in the secondary color). The typed tagline underneath
   keeps all of its original lines. The summary now opens with "Currently at Fullstory."
 
+### Update: richer landing page (frame, code card, photography strip)
+
+Goal: more visual fidelity without adding filler. Logos were considered and deliberately left out for now.
+
+- **Framed hero** (`landing/heroFrame.js`): top and bottom hairlines that draw in on load, corner "+" marks,
+  a location label (Atlanta, GA · 33.75° N, 84.39° W) and live Atlanta local time.
+- **Code card** (`landing/codeCard.js`): types out a short snippet of the public Fullstory React Native SDK
+  (`FullStory.identify`, `FullStory.event`). Monochrome highlighting; screen readers get the full text;
+  respects reduced motion.
+- **Photography strip** (`landing/photoStrip.js`): four photos from the existing photo service, grayscale at
+  rest and color on hover, linking to `/photography`. Hidden entirely if the service is unavailable.
+  The fetch moved into `global/usePhotos.js` and is shared with the photography page (one request per visit).
+- The job title in the heading is muted with opacity, so it reads as secondary in dark mode too.
+- **Picture:** Nelson's local version adds a photo of himself (`files/images/me-ny.jpg`) plus logos and
+  other edits. It's deployed to the live site but isn't on GitHub yet. Plan: push it as
+  `landing-picture-pending`, then merge its non-picture edits into this branch.
+
 ### One source of truth for resume content
 
 - New file: `src/data/profile.js`. It holds the profile, quick facts, impact stats, work experience,

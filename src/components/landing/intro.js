@@ -3,10 +3,13 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import { keyframes, styled, useTheme } from '@mui/material/styles';
+import { alpha, keyframes, styled, useTheme } from '@mui/material/styles';
 import { Container, MetaText } from '../ui/primitives';
 import Starfield from '../global/starfield';
 import { profile, quickFacts } from '../../data/profile';
+import { HeroFrame } from './heroFrame';
+import { CodeCard } from './codeCard';
+import { PhotoStrip } from './photoStrip';
 
 const INTRO_BODY_FONT =
   '"Inter", "Aeonik-Regular", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
@@ -26,60 +29,66 @@ export const Intro = () => {
         forceWhite={true}
       />
       <HeroContainer>
-        <HeroGrid>
-          <HeroMain>
-            {profile.openToWork && (
-              <StatusLine component="p">
-                <StatusDot aria-hidden="true" />
-                Open to new roles · {profile.location}
-              </StatusLine>
-            )}
-            <HeroTitle variant="h1" component="h1">
-              {profile.name},{' '}
-              <HeroRole component="span">{profile.role}</HeroRole>
-            </HeroTitle>
-            <TypedLine variant="body1" component="p">
-              <ReactTyped
-                strings={[
-                  'Algorithms practitioner, intentional problem solver.',
-                  'Humanistic, design-minded software engineer.',
-                  'Georgia Tech CS alum, information networks focus.',
-                  'Car enthusiast, hybrid athlete, iced coffee enjoyer.',
-                  'Kaizen as a practice - aiming to be 1% better every day.',
-                ]}
-                typeSpeed={40}
-                backDelay={2600}
-                cursorChar="|"
-                loop
-                className="typed-text"
-              />
-            </TypedLine>
-            <HeroSummary variant="body1">
-              Currently at{' '}
-              <Link href={profile.companyUrl} target="_blank" rel="noopener noreferrer" sx={{ fontWeight: 700 }}>
-                {profile.company}
-              </Link>
-              . {profile.pitch}
-            </HeroSummary>
-            <CtaRow>
-              <Button variant="contained" href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
-                View resume
-              </Button>
-              <Button variant="outlined" href={`mailto:${profile.email}`}>
-                Get in touch
-              </Button>
-            </CtaRow>
-          </HeroMain>
+        <HeroFrame>
+          <HeroGrid>
+            <HeroMain>
+              {profile.openToWork && (
+                <StatusLine component="p">
+                  <StatusDot aria-hidden="true" />
+                  Open to new roles · {profile.location}
+                </StatusLine>
+              )}
+              <HeroTitle variant="h1" component="h1">
+                {profile.name},{' '}
+                <HeroRole component="span">{profile.role}</HeroRole>
+              </HeroTitle>
+              <TypedLine variant="body1" component="p">
+                <ReactTyped
+                  strings={[
+                    'Algorithms practitioner, intentional problem solver.',
+                    'Humanistic, design-minded software engineer.',
+                    'Georgia Tech CS alum, information networks focus.',
+                    'Car enthusiast, hybrid athlete, iced coffee enjoyer.',
+                    'Kaizen as a practice - aiming to be 1% better every day.',
+                  ]}
+                  typeSpeed={40}
+                  backDelay={2600}
+                  cursorChar="|"
+                  loop
+                  className="typed-text"
+                />
+              </TypedLine>
+              <HeroSummary variant="body1">
+                Currently at{' '}
+                <Link href={profile.companyUrl} target="_blank" rel="noopener noreferrer" sx={{ fontWeight: 700 }}>
+                  {profile.company}
+                </Link>
+                . {profile.pitch}
+              </HeroSummary>
+              <CtaRow>
+                <Button variant="contained" href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
+                  View resume
+                </Button>
+                <Button variant="outlined" href={`mailto:${profile.email}`}>
+                  Get in touch
+                </Button>
+              </CtaRow>
+            </HeroMain>
 
-          <FactsPanel component="dl" aria-label="Quick facts">
-            {quickFacts.map((fact) => (
-              <FactRow key={fact.label}>
-                <MetaText component="dt">{fact.label}</MetaText>
-                <FactValue component="dd">{fact.value}</FactValue>
-              </FactRow>
-            ))}
-          </FactsPanel>
-        </HeroGrid>
+            <SideColumn>
+              <CodeCard />
+              <FactsPanel component="dl" aria-label="Quick facts">
+                {quickFacts.map((fact) => (
+                  <FactRow key={fact.label}>
+                    <MetaText component="dt">{fact.label}</MetaText>
+                    <FactValue component="dd">{fact.value}</FactValue>
+                  </FactRow>
+                ))}
+              </FactsPanel>
+            </SideColumn>
+          </HeroGrid>
+        </HeroFrame>
+        <PhotoStrip />
       </HeroContainer>
     </HeroSection>
   );
@@ -98,7 +107,7 @@ const HeroSection = styled('section')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   minHeight: 'calc(100vh - 160px)',
-  paddingTop: theme.spacing(6),
+  paddingTop: theme.spacing(4),
   paddingBottom: theme.spacing(6),
   [theme.breakpoints.down('md')]: {
     minHeight: 0,
@@ -159,9 +168,10 @@ const HeroTitle = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.primary,
 }));
 
+// Muted relative to the name in both themes (dark mode's text.secondary is nearly white).
 const HeroRole = styled(Typography)(({ theme }) => ({
   font: 'inherit',
-  color: theme.palette.text.secondary,
+  color: alpha(theme.palette.text.primary, 0.5),
 }));
 
 const TypedLine = styled(Typography)(({ theme }) => ({
@@ -191,6 +201,13 @@ const CtaRow = styled(Box)(({ theme }) => ({
   flexWrap: 'wrap',
   gap: theme.spacing(1.5),
   marginTop: theme.spacing(1),
+}));
+
+const SideColumn = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing(3),
+  minWidth: 0,
 }));
 
 const FactsPanel = styled(Box)(({ theme }) => ({

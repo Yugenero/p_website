@@ -2,6 +2,11 @@
 // The landing page, /work, /projects, and /about all read from here, so update
 // this file (and public/documents/NelsonRodriguez.pdf) together.
 
+// Non-breaking spaces keep a name on one line when the surrounding text wraps on phones.
+const keepTogether = (text) => text.replace(/ /g, '\u00A0');
+
+const collegeOfComputingUrl = 'https://www.cc.gatech.edu';
+
 export const profile = {
   name: 'Nelson Rodriguez',
   role: 'Forward Deployed Engineer',
@@ -16,31 +21,41 @@ export const profile = {
   openToWork: true,
   // Shown after "<role> at <company>." in the landing hero.
   pitch:
-    'I work where product code meets production reality: shipping and debugging mobile SDK integrations across iOS, Android, and React Native, with a full-stack React + .NET background before that.',
+    "A technical + customer-facing solutions engineering role: I work directly in customers' codebases to implement Fullstory Mobile SDK and build proofs of concept. Part of my work includes building AI/automation workflows and internal tools. Before that, full-stack React + .NET.",
 };
 
 export const quickFacts = [
-  { label: 'Focus', value: 'Mobile SDKs · Full-stack web · Data-heavy UI' },
-  { label: 'Education', value: 'B.S. Computer Science · Georgia Tech' },
-  { label: 'Based in', value: 'Atlanta, GA · English / Spanish' },
+  { label: 'Focus', value: 'AI workflows · MCPs · Integrations · Full-stack engineering' },
+  // `link` renders after the value as " · <link>".
+  {
+    label: 'Education',
+    value: 'B.S. Computer Science',
+    link: { label: keepTogether('Georgia Tech'), href: collegeOfComputingUrl },
+  },
+  { label: 'Based in', value: 'Atlanta, GA · Open to relocation' },
 ];
 
 export const workExperience = [
   {
     employer: 'Fullstory, Inc.',
     url: 'https://www.fullstory.com',
+    // Logo replaces the employer name in the Experience title, as a monochrome silhouette.
+    // `ratio` = SVG viewBox width / height; optional `scale` (default 1) sizes it against the title;
+    // `descent` = share of its height below the text baseline.
+    logo: { src: '/images/logos/fullstory.svg', ratio: 130 / 25, descent: 0.24 },
     location: 'Atlanta, GA',
     date: 'Dec 2025 — Present',
     title: 'Forward Deployed Engineer',
     summary:
-      'Mobile SDK implementation and debugging across React Native, iOS, and Android in customer production apps.',
+      'Customer-facing solutions engineering: implementing the Fullstory Mobile SDK in customer codebases, building POCs, and engineering AI workflows and internal tools on the side.',
     highlights: [
-      'Contribute to Mobile SDK implementations across React Native, iOS, and Android, owning configuration, instrumentation, and framework-specific integration issues.',
-      'Validate SDK behavior hands-on across customer stacks with React Native, Swift, SwiftUI, Java, Kotlin, and Flutter demo and repro apps.',
-      'Reproduce customer-reported issues as minimal repro projects with logs and stack traces, then partner with Engineering to debug and verify fixes.',
-      'Work with Product Engineering and Sales to refine SDK functionality and document platform-specific limitations.',
+      'Meet with customer engineering teams and work hands-on in their React Native, iOS, and Android codebases to get the Fullstory Mobile SDK implemented when the documented setup does not land on its own.',
+      'Build customer proofs of concept and demo apps across React Native, Swift, SwiftUI, Java, Kotlin, and Flutter to validate SDK behavior on each customer stack.',
+      'Design and implement AI and automation workflows that take repetitive work off the solutions engineering team.',
+      'Build internal tools that make customer implementations and troubleshooting faster for the team.',
+      'Partner closely with Production Engineering, turning customer-reported issues into minimal repro projects with logs and stack traces, and verifying the fixes.',
     ],
-    stack: ['React Native', 'Swift / SwiftUI', 'Kotlin', 'Java', 'Flutter', 'TypeScript'],
+    stack: ['React Native', 'Swift / SwiftUI', 'Kotlin', 'Java', 'Flutter', 'TypeScript', 'AI workflows'],
   },
   {
     employer: 'Civic Digital Experience, Inc.',
@@ -66,7 +81,7 @@ export const workExperience = [
     highlights: [
       'Implemented item–item collaborative-filtering recommendations and bidirectional Google Calendar sync.',
       'Designed the SQL schema and ETL pipeline merging interaction logs, catalog, and preferences, with sub-5ms recommendation retrieval.',
-      'Ran Agile delivery with Git and Jira; placed 2nd of 30+ teams at the Fall 2022 Georgia Tech CS Capstone Expo.',
+      `Ran Agile delivery with Git and Jira; placed 2nd of 30+ teams at the Fall 2022 ${keepTogether('Georgia Tech')} CS Capstone Expo.`,
     ],
     stack: ['Swift', 'SQL', 'ETL', 'REST APIs'],
   },
@@ -85,8 +100,10 @@ export const workExperience = [
 ];
 
 export const education = {
-  school: 'Georgia Institute of Technology',
+  school: keepTogether('Georgia Institute of Technology'),
   url: 'https://www.gatech.edu',
+  collegeUrl: collegeOfComputingUrl,
+  logo: { src: '/images/logos/georgia-tech.svg', ratio: 720 / 162, scale: 1.6, descent: 0.26 },
   degree: 'B.S. Computer Science',
   date: 'Aug 2020 — Dec 2023',
   coursework: [

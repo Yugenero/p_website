@@ -82,7 +82,7 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
     Native SDK API. Keep it short (long lines wrap on phones) and real; never show private or employer-internal code.
   - `photoStrip.js`: four of Nelson's photos (grayscale, color on hover) linking to `/photography`. It shares
     `global/usePhotos.js` with the photography page and renders nothing if the photo service fails.
-- No headshot/portrait on the landing page for now (a picture version is parked separately).
+- No headshot/portrait on the landing page for now. The picture version is saved on the `landing-picture-pending` branch.
 
 ## Design system & UI guardrails
 
@@ -108,8 +108,8 @@ Build on it; don't introduce a new visual language.
 - Tech tags: `InlineItem` inside `InlineList` (sentence case, small, no pills/badges).
 
 ### Layout & components
-- Square corners (`borderRadius: 0`) for buttons, panels, cards. Existing exceptions: the 5px header icon
-  hover boxes and the `/projects` cards.
+- Square corners (`borderRadius: 0`) for buttons, panels, cards. Existing exception: the `/projects` cards.
+  Header and footer social icon hover boxes are square too.
 - Structure with **1px hairlines**: `text.primary` for a section's top rule, `divider` between rows.
   No drop shadows except on hover lift.
 - Each section starts with a `BinaryMetaText` label + `SectionTitle`. Pages use fixed codes

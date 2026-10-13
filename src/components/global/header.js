@@ -6,8 +6,10 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { ThemeToggle } from '../animations/themeToggle';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useEffect, useRef } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { Container } from '../ui/primitives';
 import Starfield from './starfield';
 
@@ -41,10 +43,11 @@ const HeaderInner = styled(Container)(({ theme }) => ({
   maxWidth: '100%',
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column',
-    alignItems: 'flex-start',
-    gap: theme.spacing(2),
+    alignItems: 'stretch',
+    flexWrap: 'nowrap',
+    gap: theme.spacing(1),
     paddingTop: theme.spacing(1.5),
-    paddingBottom: theme.spacing(1.5),
+    paddingBottom: 0,
   },
 }));
 
@@ -53,6 +56,9 @@ const HeaderLeft = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   gap: theme.spacing(2.5),
   flexWrap: 'wrap',
+  [theme.breakpoints.down('md')]: {
+    justifyContent: 'space-between',
+  },
 }));
 
 const SocialList = styled(Box)(({ theme }) => ({
@@ -60,7 +66,8 @@ const SocialList = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   gap: theme.spacing(0.35),
   [theme.breakpoints.down('md')]: {
-    gap: theme.spacing(0.25),
+    gap: theme.spacing(0.75),
+    marginLeft: -10, // optically align the first icon with the page gutter
   },
 }));
 
@@ -75,7 +82,7 @@ const SocialLink = styled('a')(({ theme }) => {
     justifyContent: 'center',
     textDecoration: 'none',
     border: `1px solid transparent`,
-    borderRadius: '5px',
+    borderRadius: 0,
     padding: theme.spacing(0.2),
     minWidth: '1.8rem',
     minHeight: '1.8rem',
@@ -92,119 +99,122 @@ const SocialLink = styled('a')(({ theme }) => {
     '& svg': {
       fontSize: '1.1rem',
     },
+    // Larger icons and 44px tap targets on phones.
     [theme.breakpoints.down('md')]: {
-      minWidth: '2rem',
-      minHeight: '2rem',
+      minWidth: 44,
+      minHeight: 44,
       '& svg': {
-        fontSize: '1.2rem',
+        fontSize: '1.6rem',
       },
     },
   };
 });
 
+// On phones the nav becomes a full-bleed, horizontally swipeable strip with larger tap targets.
 const NavGroup = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   gap: theme.spacing(2),
   flexWrap: 'wrap',
   [theme.breakpoints.down('md')]: {
-    gap: theme.spacing(1.5),
-    rowGap: theme.spacing(1),
+    position: 'relative',
+    flexWrap: 'nowrap',
+    gap: theme.spacing(0.5),
+    overflowX: 'auto',
+    overflowY: 'hidden',
+    margin: theme.spacing(0, -2),
+    padding: theme.spacing(0.5, 2),
+    borderTop: `1px solid ${theme.palette.divider}`,
+    scrollSnapType: 'x proximity',
+    scrollPaddingInline: theme.spacing(2),
+    WebkitOverflowScrolling: 'touch',
+    scrollbarWidth: 'none',
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
+    // Fade the right edge so it reads as "more to swipe".
+    maskImage: 'linear-gradient(to right, #000 calc(100% - 40px), transparent 100%)',
+    WebkitMaskImage: 'linear-gradient(to right, #000 calc(100% - 40px), transparent 100%)',
   },
 }));
 
-const NavItem = styled(NavLink)(({ theme }) => ({
-    color: theme.palette.text.primary,
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-    textDecoration: 'none',
-    fontFamily: theme.typography.fontFamily,
-    letterSpacing: '0.04em',
-    fontSize: '0.78rem',
-    fontWeight: 600,
-    border: 'none',
-    borderRadius: '5px',
-    padding: theme.spacing(0.65, 0.9),
-    transition: 'color 0.2s ease',
-    '&::after': {
-      content: '""',
-      position: 'absolute',
-      left: theme.spacing(1.05),
-      right: theme.spacing(1.05),
-      bottom: theme.spacing(0.45),
-      height: '1px',
-      backgroundColor: theme.palette.text.primary,
-      transform: 'scaleX(0)',
-      transformOrigin: 'left center',
-      transition: 'transform 0.22s ease',
-      opacity: 0.9,
-    },
-    '&:hover': {
-      backgroundColor: 'transparent',
-      color: theme.palette.text.primary,
-      '&::after': {
-        transform: 'scaleX(1)',
-      },
-    },
-    '&:focus-visible': {
-      backgroundColor: 'transparent',
-      color: theme.palette.text.primary,
-      outlineOffset: '2px',
-      '&::after': {
-        transform: 'scaleX(1)',
-      },
-    },
-}));
-
-const ExternalLink = styled('a')(({ theme }) => ({
-    color: theme.palette.text.primary,
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-    textDecoration: 'none',
-    fontFamily: theme.typography.fontFamily,
-    letterSpacing: '0.04em',
-    fontSize: '0.78rem',
-    fontWeight: 600,
-    border: 'none',
-    borderRadius: '5px',
-    padding: theme.spacing(0.65, 0.9),
-    transition: 'color 0.2s ease',
-    '&::after': {
-      content: '""',
-      position: 'absolute',
-      left: theme.spacing(1.05),
-      right: theme.spacing(1.05),
-      bottom: theme.spacing(0.45),
-      height: '1px',
-      backgroundColor: theme.palette.text.primary,
-      transform: 'scaleX(0)',
-      transformOrigin: 'left center',
-      transition: 'transform 0.22s ease',
-      opacity: 0.9,
-    },
-    '&:hover': {
-      backgroundColor: 'transparent',
-      color: theme.palette.text.primary,
-      '&::after': {
-        transform: 'scaleX(1)',
-      },
-    },
-    '&:focus-visible': {
-      backgroundColor: 'transparent',
-      color: theme.palette.text.primary,
-      outlineOffset: '2px',
-      '&::after': {
-        transform: 'scaleX(1)',
-      },
-    },
-}));
-
-const WritingItemWrap = styled(Box)(() => ({
+const navLinkStyles = (theme) => ({
+  color: theme.palette.text.primary,
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   position: 'relative',
+  textDecoration: 'none',
+  fontFamily: theme.typography.fontFamily,
+  letterSpacing: '0.02em',
+  fontSize: '0.92rem',
+  fontWeight: 600,
+  border: 'none',
+  borderRadius: '5px',
+  padding: theme.spacing(0.65, 0.9),
+  transition: 'color 0.2s ease',
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    left: theme.spacing(1.05),
+    right: theme.spacing(1.05),
+    bottom: theme.spacing(0.45),
+    height: '1px',
+    backgroundColor: theme.palette.text.primary,
+    transform: 'scaleX(0)',
+    transformOrigin: 'left center',
+    transition: 'transform 0.22s ease',
+    opacity: 0.9,
+  },
+  '&:hover': {
+    backgroundColor: 'transparent',
+    color: theme.palette.text.primary,
+    '&::after': {
+      transform: 'scaleX(1)',
+    },
+  },
+  '&:focus-visible': {
+    backgroundColor: 'transparent',
+    color: theme.palette.text.primary,
+    outlineOffset: '2px',
+    '&::after': {
+      transform: 'scaleX(1)',
+    },
+  },
+  [theme.breakpoints.down('md')]: {
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+    scrollSnapAlign: 'start',
+    minHeight: 44,
+    padding: theme.spacing(1, 1.5),
+    fontSize: '1.05rem',
+    fontWeight: 500,
+    letterSpacing: '0.01em',
+    color: theme.palette.text.secondary,
+    '&::after': {
+      left: theme.spacing(1.5),
+      right: theme.spacing(1.5),
+      bottom: theme.spacing(0.75),
+    },
+    // Current page stays underlined so it's clear where you are in the strip.
+    '&.active': {
+      color: theme.palette.text.primary,
+      '&::after': {
+        transform: 'scaleX(1)',
+      },
+    },
+  },
+});
+
+const NavItem = styled(NavLink)(({ theme }) => navLinkStyles(theme));
+
+const ExternalLink = styled('a')(({ theme }) => navLinkStyles(theme));
+
+const WritingItemWrap = styled(Box)(({ theme }) => ({
+  position: 'relative',
+  [theme.breakpoints.down('md')]: {
+    display: 'none',
+  },
   display: 'inline-flex',
   alignItems: 'center',
   '&:hover [data-writing-popup], &:focus-within [data-writing-popup]': {
@@ -239,9 +249,48 @@ const WritingPopup = styled(Box)(({ theme }) => ({
 export const Header = ({ mode, onToggleTheme }) => {
   const nextModeLabel = mode === 'light' ? 'dark' : 'light';
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const { pathname } = useLocation();
+  const navRef = useRef(null);
+  const headerRef = useRef(null);
+
+  // Publish the header's height as --header-height so full-screen sections can size around it.
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return undefined;
+    const publish = () =>
+      document.documentElement.style.setProperty('--header-height', `${header.offsetHeight}px`);
+    publish();
+    if (typeof ResizeObserver === 'undefined') return undefined;
+    const observer = new ResizeObserver(publish);
+    observer.observe(header);
+    return () => observer.disconnect();
+  }, []);
+
+  // Keep the current page's link in view inside the mobile scroll strip.
+  useEffect(() => {
+    const nav = navRef.current;
+    const active = nav?.querySelector('a.active');
+    if (!isMobile || !nav || !active) return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    nav.scrollTo({
+      left: active.offsetLeft - (nav.clientWidth - active.offsetWidth) / 2,
+      behavior: reduceMotion ? 'auto' : 'smooth',
+    });
+  }, [pathname, isMobile]);
+
+  const themeToggle = (
+    <ThemeToggle
+      onClick={onToggleTheme}
+      aria-label={`Switch to ${nextModeLabel} mode`}
+      data-mode={mode}
+    >
+      <span className="toggle-thumb" aria-hidden="true" />
+    </ThemeToggle>
+  );
 
   return (
-    <HeaderBar position="sticky" elevation={0}>
+    <HeaderBar ref={headerRef} position="sticky" elevation={0}>
       {theme.palette.mode === 'dark' && (
         <HeaderStarfield
           density={4}
@@ -285,8 +334,9 @@ export const Header = ({ mode, onToggleTheme }) => {
                 <InstagramIcon />
               </SocialLink>
             </SocialList>
+            {isMobile && themeToggle}
           </HeaderLeft>
-          <NavGroup>
+          <NavGroup component="nav" aria-label="Main" ref={navRef}>
             <NavItem to="/" end>
               Home
             </NavItem>
@@ -311,13 +361,7 @@ export const Header = ({ mode, onToggleTheme }) => {
             >
               Resume
             </ExternalLink>
-            <ThemeToggle
-              onClick={onToggleTheme}
-              aria-label={`Switch to ${nextModeLabel} mode`}
-               data-mode={mode}
-            >
-              <span className="toggle-thumb" aria-hidden="true" />
-            </ThemeToggle>
+            {!isMobile && themeToggle}
           </NavGroup>
         </HeaderInner>
       </HeaderToolbar>

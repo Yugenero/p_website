@@ -73,9 +73,11 @@ Goal: more visual fidelity without adding filler. Logos were considered and deli
   rest and color on hover, linking to `/photography`. Hidden entirely if the service is unavailable.
   The fetch moved into `global/usePhotos.js` and is shared with the photography page (one request per visit).
 - The job title in the heading is muted with opacity, so it reads as secondary in dark mode too.
-- **Picture:** Nelson's local version adds a photo of himself (`files/images/me-ny.jpg`) plus logos and
-  other edits. It's deployed to the live site but isn't on GitHub yet. Plan: push it as
-  `landing-picture-pending`, then merge its non-picture edits into this branch.
+- **Picture:** Nelson's full local version (portrait frame, `me-ny.jpg`, logos and other edits) is saved on
+  `landing-picture-pending`. Everything except the portrait was merged into this branch: the title on its
+  own line, the new pitch and Fullstory bullets, "Open to relocation", the Georgia Tech link, work-page
+  logos, and the header/footer tweaks. The portrait frame, `profile.photo`/`photoRatio`, and `me-ny.jpg`
+  were left out here; the code card now sits where the portrait was.
 
 ### One source of truth for resume content
 

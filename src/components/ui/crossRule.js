@@ -1,8 +1,8 @@
 import { keyframes, styled } from '@mui/material/styles';
 
 // Hairline with small "+" marks at both ends, like crop marks on a print layout.
-// The line draws across once on mount, then the marks fade in. Used under the
-// header and under the landing hero.
+// The line grows out from the middle to both ends once on mount; when it reaches
+// the ends, the marks fade in. Used under the header and under the landing hero.
 export const CrossRule = ({ delay = 0, className }) => (
   <RuleRoot className={className} aria-hidden="true" style={{ '--rule-delay': `${delay}s` }}>
     <Line />
@@ -22,6 +22,7 @@ const fadeIn = keyframes`
 `;
 
 const TICK = 11;
+const DRAW_SECONDS = 1.1;
 
 const RuleRoot = styled('div')(() => ({
   position: 'relative',
@@ -32,8 +33,8 @@ const Line = styled('span')(({ theme }) => ({
   position: 'absolute',
   inset: 0,
   backgroundColor: theme.palette.divider,
-  transformOrigin: 'left center',
-  animation: `${drawX} 1.1s cubic-bezier(0.22, 1, 0.36, 1) var(--rule-delay) both`,
+  transformOrigin: 'center',
+  animation: `${drawX} ${DRAW_SECONDS}s cubic-bezier(0.22, 1, 0.36, 1) var(--rule-delay) both`,
   '@media (prefers-reduced-motion: reduce)': {
     animation: 'none',
   },
@@ -44,7 +45,8 @@ const Tick = styled('span')(({ theme }) => ({
   top: -(TICK - 1) / 2,
   width: TICK,
   height: TICK,
-  animation: `${fadeIn} 0.6s ease calc(var(--rule-delay) + 0.65s) both`,
+  // Starts as the line's ease-out arrives at the ends.
+  animation: `${fadeIn} 0.5s ease calc(var(--rule-delay) + ${DRAW_SECONDS * 0.75}s) both`,
   '&::before, &::after': {
     content: '""',
     position: 'absolute',

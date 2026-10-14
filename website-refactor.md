@@ -53,8 +53,8 @@ or give the page structure. Nothing is decoration for its own sake.
 
 ### Signature elements
 
-- **Cross rule** (`ui/crossRule.js`): a hairline with small "+" crop marks at both ends that draws across
-  once on load. It's the site's divider motif, used as the header's bottom edge and to close the landing
+- **Cross rule** (`ui/crossRule.js`): a hairline with small "+" crop marks at both ends. On load the line
+  grows out from the middle to both ends (1.1s, ease-out), and the marks fade in as it reaches them. It's the site's divider motif, used as the header's bottom edge and to close the landing
   hero under the buttons. Use it for any new divider; keep it bare (no labels or clocks).
 - **Name block**: serif name, with the job title on its own line underneath in a smaller sans and secondary
   color, then the typed tagline.
@@ -156,6 +156,11 @@ The top hairline and the location / local-time labels were removed as bloat. The
 marks became a reusable `CrossRule` and now also forms the header's bottom edge, so the header and the hero
 share one divider motif. `heroFrame.js` was deleted, and the hero got a little more top padding to make up
 for the removed labels row.
+
+### 9. Cross rule draws from the center
+
+The line now grows out from its middle to both ends, and the "+" marks fade in as it reaches them
+(about 0.8s in), on both the header and the hero.
 
 ### Content corrections along the way
 

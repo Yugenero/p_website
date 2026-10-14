@@ -89,7 +89,8 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
 - Keep the landing page uncluttered: roughly one desktop screen, no metrics/impact numbers.
   Experience, projects, and skills belong on their own pages; order those arrays by importance.
 - Landing visuals (each in its own file under `components/landing/`):
-  - Cross rule (`ui/crossRule.js`): a hairline with small "+" marks at both ends that draws in once on load.
+  - Cross rule (`ui/crossRule.js`): a hairline with small "+" marks at both ends. On load the line grows out
+    from the middle to both ends, then the marks fade in as it arrives.
     It's the site's divider motif: under the header and under the hero buttons. Reuse it for new dividers
     rather than inventing another. No labels or clocks on it (location/local-time labels were removed as bloat).
   - `codeCard.js`: a monochrome card that types out a short snippet of the **public** Fullstory React

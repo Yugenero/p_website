@@ -71,7 +71,7 @@ const HeaderLeft = styled(Box)(({ theme }) => ({
 const SocialList = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  gap: theme.spacing(0.35),
+  gap: theme.spacing(0.75),
   [theme.breakpoints.down('md')]: {
     gap: theme.spacing(0.75),
     marginLeft: -10, // optically align the first icon with the page gutter
@@ -103,8 +103,20 @@ const SocialLink = styled('a')(({ theme }) => {
       color: hoverBorderColor,
       outlineOffset: '2px',
     },
-    '& svg': {
-      fontSize: '1.1rem',
+    // Desktop sizes scale up with the screen; 1.1rem read as tiny on 1440px and Retina laptops.
+    [theme.breakpoints.up('md')]: {
+      minWidth: '2.35rem',
+      minHeight: '2.35rem',
+      '& svg': {
+        fontSize: '1.45rem',
+      },
+    },
+    [theme.breakpoints.up('lg')]: {
+      minWidth: '2.6rem',
+      minHeight: '2.6rem',
+      '& svg': {
+        fontSize: '1.65rem',
+      },
     },
     // Larger icons and 44px tap targets on phones.
     [theme.breakpoints.down('md')]: {

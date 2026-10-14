@@ -5,18 +5,22 @@ import { MetaText } from '../ui/primitives';
 
 const MONO_FONT = '"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
 
-// Public Fullstory React Native SDK calls: the kind of integration work Nelson does day to day.
-const SNIPPET = `import FullStory from '@fullstory/react-native';
+// A small, company-agnostic "about me" in code. Everything here comes from the hero tagline
+// and the site itself; keep lines under ~42 characters so they don't wrap on phones.
+const SNIPPET = `const nelson = {
+  base: 'Atlanta, GA',
+  fuel: 'iced coffee',
+  training: ['strength', 'endurance'],
+  offline: ['photography', 'cars'],
+};
 
-// Identify the signed-in user
-FullStory.identify(user.id, {
-  displayName: user.name,
-});
+// Kaizen: 1% better every day
+const kaizen = (days: number) =>
+  1.01 ** days;
 
-// Track what matters
-FullStory.event('Checkout Completed', { total });`;
+kaizen(365); // ≈ 37.8x`;
 
-const KEYWORDS = /\b(import|from|const|await|return)\b/g;
+const KEYWORDS = /\b(import|from|const|let|await|return)\b/g;
 
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' &&
@@ -37,13 +41,19 @@ const useTypewriter = (text, { speed = 14, startDelay = 600 } = {}) => {
 };
 
 // Monochrome highlighting: comments recede, keywords get weight. No accent colors.
+// Handles whole-line and trailing `//` comments (the snippet has no `//` inside strings).
 const renderLine = (line, key) => {
-  if (line.trimStart().startsWith('//')) {
-    return <Comment key={key}>{line}</Comment>;
-  }
-  const parts = line.split(KEYWORDS);
-  return parts.map((part, i) =>
-    i % 2 === 1 ? <Keyword key={`${key}-${i}`}>{part}</Keyword> : <span key={`${key}-${i}`}>{part}</span>
+  const commentAt = line.indexOf('//');
+  const code = commentAt === -1 ? line : line.slice(0, commentAt);
+  const comment = commentAt === -1 ? '' : line.slice(commentAt);
+  const parts = code.split(KEYWORDS);
+  return (
+    <>
+      {parts.map((part, i) =>
+        i % 2 === 1 ? <Keyword key={`${key}-${i}`}>{part}</Keyword> : <span key={`${key}-${i}`}>{part}</span>
+      )}
+      {comment && <Comment key={`${key}-c`}>{comment}</Comment>}
+    </>
   );
 };
 
@@ -54,10 +64,10 @@ export const CodeCard = () => {
   let remaining = visible;
 
   return (
-    <Card aria-label="Example: Fullstory React Native SDK integration">
+    <Card aria-label="Code snippet: a few things about Nelson">
       <CardHeader>
-        <FileName>App.tsx</FileName>
-        <MetaText component="span">React Native · Fullstory SDK</MetaText>
+        <FileName>nelson.ts</FileName>
+        <MetaText component="span">TypeScript</MetaText>
       </CardHeader>
       <Code aria-hidden="true">
         {lines.map((line, index) => {

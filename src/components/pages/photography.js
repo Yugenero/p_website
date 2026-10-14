@@ -172,7 +172,7 @@ const PhotoCardFrame = styled('div')(({ theme }) => ({
   WebkitColumnBreakInside: 'avoid',
   pageBreakInside: 'avoid',
   border: `1px solid ${theme.palette.divider}`,
-  borderRadius: '0.6rem',
+  borderRadius: 0,
   overflow: 'hidden',
   backgroundColor: alpha(theme.palette.text.primary, 0.04),
   opacity: 0.2,

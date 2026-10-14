@@ -30,7 +30,7 @@ or give the page structure. Nothing is decoration for its own sake.
    roles" dot is the only accent.
 2. **Hairlines for structure.** 1px rules replace boxes and shadows. A section's top rule uses
    `text.primary`; rows inside it are separated with `divider`.
-3. **Square geometry.** No rounded corners on buttons, cards, panels or social icon boxes. The `/projects`
+3. **Square geometry.** No rounded corners on buttons, cards, panels, photos or social icon boxes. The `/projects`
    cards are the one existing exception.
 4. **Type does the work.** A serif display face for names and section titles, a clean sans for everything you
    read, and a monospace face for anything "technical" (the code card, the status line).
@@ -58,9 +58,11 @@ or give the page structure. Nothing is decoration for its own sake.
   hero under the buttons. Use it for any new divider; keep it bare (no labels or clocks).
 - **Name block**: serif name, with the job title on its own line underneath in a smaller sans and secondary
   color, then the typed tagline.
-- **Code card** (`landing/codeCard.js`): a bordered card titled `App.tsx` that types out a short snippet of
-  the public Fullstory React Native SDK. It uses monochrome highlighting (italic grey comments, bold
-  keywords) and line numbers, and the cursor blinks once typing finishes.
+- **Code card** (`landing/codeCard.js`): a bordered card titled `nelson.ts` that types out a small "about me"
+  in TypeScript: base, fuel (iced coffee), training (strength and endurance), offline (photography and cars),
+  and `kaizen(365) // ≈ 37.8x`, since 1% better a day compounds to about 37.8 times in a year. It's company
+  agnostic on purpose. Monochrome highlighting (italic grey comments, including trailing ones, and bold
+  keywords) with line numbers; the cursor blinks once typing finishes.
 - **Quick facts**: a `dl` with a dark top rule and hairline rows (Focus, Education with a Georgia Tech link,
   Based in).
 - **Photography strip** (`landing/photoStrip.js`): four of Nelson's photos, grayscale at rest and color
@@ -161,6 +163,14 @@ for the removed labels row.
 
 The line now grows out from its middle to both ends, and the "+" marks fade in as it reaches them
 (about 0.8s in), on both the header and the hero.
+
+### 10. Personal code card, square photos, bigger header icons
+
+- The code card no longer shows Fullstory's SDK. It's now `nelson.ts`, a company-agnostic snippet built
+  from the interests in the hero tagline, with a working `kaizen()` (1.01^365 ≈ 37.78).
+- Photos on `/photography` lost their rounded corners (square, like the rest of the site).
+- Header social icons scale up on desktop: 1.45rem from the `md` breakpoint and 1.65rem from `lg`
+  (previously 1.1rem, which read as tiny on 1440px and Retina screens), with a slightly wider gap.
 
 ### Content corrections along the way
 

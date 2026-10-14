@@ -93,8 +93,10 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
     from the middle to both ends, then the marks fade in as it arrives.
     It's the site's divider motif: under the header and under the hero buttons. Reuse it for new dividers
     rather than inventing another. No labels or clocks on it (location/local-time labels were removed as bloat).
-  - `codeCard.js`: a monochrome card that types out a short snippet of the **public** Fullstory React
-    Native SDK API. Keep it short (long lines wrap on phones) and real; never show private or employer-internal code.
+  - `codeCard.js`: a monochrome card (`nelson.ts`) that types out a short, **company-agnostic** snippet about
+    Nelson: base, iced coffee, hybrid training, photography and cars, and a `kaizen()` that compounds 1% a day.
+    Keep it personal, truthful (only interests stated elsewhere on the site), and under ~38 characters a line so
+    nothing wraps on phones. No employer code or branding.
   - `photoStrip.js`: four of Nelson's photos (grayscale, color on hover) linking to `/photography`. It shares
     `global/usePhotos.js` with the photography page and renders nothing if the photo service fails.
 - No headshot/portrait on the landing page for now. The picture version is saved on the `landing-picture-pending` branch.

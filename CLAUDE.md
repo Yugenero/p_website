@@ -7,6 +7,19 @@ able to understand who Nelson is, what he has built, and how to reach him within
 
 This is a living document. Update it when the stack, design rules, or guardrails change.
 
+## Before making any changes: read `website-refactor.md`
+
+[`website-refactor.md`](./website-refactor.md) is the project log and the reference for the design language.
+Read it **before** editing anything. It explains why things look and work the way they do, which branch
+holds what, what's already been tried or rejected, and what's still open.
+
+- **Before:** read its *Design language*, *Landing page today*, *Branches*, and *Next steps* sections. Build on
+  what's there; don't reintroduce something the history says was removed (e.g. impact metrics, a logo row,
+  the portrait) unless Nelson asks.
+- **After:** update it in the same commit as the change. Add a numbered entry under *History*, refresh
+  *Landing page today* / *Design language* if the UI changed, and tick or add items in *Next steps*.
+- If this file and `website-refactor.md` disagree, this file's rules win. Fix the log so they match.
+
 ## Tech stack
 
 | Area | Choice |

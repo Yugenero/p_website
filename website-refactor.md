@@ -4,6 +4,8 @@ Running record of the nelsonrodriguez.me refresh: goals, design language, decisi
 still open. Hard rules and guardrails live in [`CLAUDE.md`](./CLAUDE.md); this file explains the thinking
 behind them and keeps the history.
 
+**Read this before making changes, and update it in the same commit** (see `CLAUDE.md`).
+
 ## Goals
 
 - Support an active job search: a recruiter should understand who Nelson is, what he's built, and how to
@@ -149,6 +151,11 @@ The hero frame, the code card and the photography strip were added. A logo row w
 - Empty Fullstory bullets were filled in, and project stacks were matched to the resume.
 - Removed the lorem-ipsum "Empty Card" project and the placeholder cat images on `/projects`.
 - Replaced the create-react-app default page description, and added Open Graph tags.
+
+### 7. Docs: design language and "read this first" rule (`e4c3419`, this commit)
+
+Added the *Design language* section here, and a `CLAUDE.md` rule to read this log before any change and
+update it alongside every change.
 
 ## Security incident: personal documents on the live site
 

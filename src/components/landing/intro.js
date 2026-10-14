@@ -5,9 +5,9 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { keyframes, styled, useTheme } from '@mui/material/styles';
 import { Container, MetaText } from '../ui/primitives';
+import { CrossRule } from '../ui/crossRule';
 import Starfield from '../global/starfield';
 import { profile, quickFacts } from '../../data/profile';
-import { HeroFrame } from './heroFrame';
 import { CodeCard } from './codeCard';
 import { PhotoStrip } from './photoStrip';
 
@@ -29,75 +29,74 @@ export const Intro = () => {
         forceWhite={true}
       />
       <HeroContainer>
-        <HeroFrame>
-          <HeroGrid>
-            <HeroMain>
-              <HeroTitle variant="h1" component="h1">
-                {profile.name}
-                <HeroRole component="span">{profile.role}</HeroRole>
-              </HeroTitle>
-              <TypedLine variant="body1" component="p">
-                <ReactTyped
-                  strings={[
-                    'Algorithms practitioner, intentional problem solver.',
-                    'Humanistic, design-minded software engineer.',
-                    'Georgia\u00A0Tech CS alum, information networks focus.',
-                    'Car enthusiast, hybrid athlete, iced coffee enjoyer.',
-                    'Kaizen as a practice - aiming to be 1% better every day.',
-                  ]}
-                  typeSpeed={40}
-                  backDelay={2600}
-                  cursorChar="|"
-                  loop
-                  className="typed-text"
-                />
-              </TypedLine>
-              <HeroSummary variant="body1">
-                Currently at{' '}
-                <Link href={profile.companyUrl} target="_blank" rel="noopener noreferrer" sx={{ fontWeight: 700 }}>
-                  {profile.company}
-                </Link>
-                . {profile.pitch}
-              </HeroSummary>
-              {profile.openToWork && (
-                <StatusLine component="p">
-                  <StatusDot aria-hidden="true" />
-                  Open to new roles
-                </StatusLine>
-              )}
-              <CtaRow>
-                <Button variant="contained" href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
-                  View resume
-                </Button>
-                <Button variant="outlined" href={`mailto:${profile.email}`}>
-                  Get in touch
-                </Button>
-              </CtaRow>
-            </HeroMain>
+        <HeroGrid>
+          <HeroMain>
+            <HeroTitle variant="h1" component="h1">
+              {profile.name}
+              <HeroRole component="span">{profile.role}</HeroRole>
+            </HeroTitle>
+            <TypedLine variant="body1" component="p">
+              <ReactTyped
+                strings={[
+                  'Algorithms practitioner, intentional problem solver.',
+                  'Humanistic, design-minded software engineer.',
+                  'Georgia\u00A0Tech CS alum, information networks focus.',
+                  'Car enthusiast, hybrid athlete, iced coffee enjoyer.',
+                  'Kaizen as a practice - aiming to be 1% better every day.',
+                ]}
+                typeSpeed={40}
+                backDelay={2600}
+                cursorChar="|"
+                loop
+                className="typed-text"
+              />
+            </TypedLine>
+            <HeroSummary variant="body1">
+              Currently at{' '}
+              <Link href={profile.companyUrl} target="_blank" rel="noopener noreferrer" sx={{ fontWeight: 700 }}>
+                {profile.company}
+              </Link>
+              . {profile.pitch}
+            </HeroSummary>
+            {profile.openToWork && (
+              <StatusLine component="p">
+                <StatusDot aria-hidden="true" />
+                Open to new roles
+              </StatusLine>
+            )}
+            <CtaRow>
+              <Button variant="contained" href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
+                View resume
+              </Button>
+              <Button variant="outlined" href={`mailto:${profile.email}`}>
+                Get in touch
+              </Button>
+            </CtaRow>
+          </HeroMain>
 
-            <HeroAside>
-              <CodeCard />
-              <FactsPanel component="dl" aria-label="Quick facts">
-                {quickFacts.map((fact) => (
-                  <FactRow key={fact.label}>
-                    <MetaText component="dt">{fact.label}</MetaText>
-                    <FactValue component="dd">
-                      {fact.value}
-                      {fact.link && (
-                        <>
-                          {' · '}
-                          <SchoolLink href={fact.link.href} target="_blank" rel="noopener noreferrer">
-                            {fact.link.label}
-                          </SchoolLink>
-                        </>
-                      )}
-                    </FactValue>
-                  </FactRow>
-                ))}
-              </FactsPanel>
-            </HeroAside>
-          </HeroGrid>
-        </HeroFrame>
+          <HeroAside>
+            <CodeCard />
+            <FactsPanel component="dl" aria-label="Quick facts">
+              {quickFacts.map((fact) => (
+                <FactRow key={fact.label}>
+                  <MetaText component="dt">{fact.label}</MetaText>
+                  <FactValue component="dd">
+                    {fact.value}
+                    {fact.link && (
+                      <>
+                        {' · '}
+                        <SchoolLink href={fact.link.href} target="_blank" rel="noopener noreferrer">
+                          {fact.link.label}
+                        </SchoolLink>
+                      </>
+                    )}
+                  </FactValue>
+                </FactRow>
+              ))}
+            </FactsPanel>
+          </HeroAside>
+        </HeroGrid>
+        <HeroRule delay={0.2} />
         <PhotoStrip />
       </HeroContainer>
     </HeroSection>
@@ -118,7 +117,7 @@ const HeroSection = styled('section')(({ theme }) => ({
   alignItems: 'center',
   minHeight: 'calc(100vh - var(--header-height, 72px))',
   // Extra bottom padding sits the centered content a little above the middle of the screen.
-  paddingTop: theme.spacing(4),
+  paddingTop: theme.spacing(8),
   paddingBottom: theme.spacing(14),
   [theme.breakpoints.down('md')]: {
     minHeight: 0,
@@ -145,6 +144,14 @@ const HeroGrid = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     gridTemplateColumns: 'minmax(0, 1fr)',
     gridTemplateAreas: '"main" "aside"',
+  },
+}));
+
+// Hairline with "+" marks closing the hero; the same rule sits under the header.
+const HeroRule = styled(CrossRule)(({ theme }) => ({
+  marginTop: theme.spacing(5),
+  [theme.breakpoints.down('md')]: {
+    marginTop: theme.spacing(4),
   },
 }));
 

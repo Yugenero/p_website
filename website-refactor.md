@@ -53,9 +53,9 @@ or give the page structure. Nothing is decoration for its own sake.
 
 ### Signature elements
 
-- **Hero frame** (`landing/heroFrame.js`): top and bottom hairlines that draw across on load, small "+" crop
-  marks at the corners, and two labels on the top rule, "Atlanta, GA · 33.75° N, 84.39° W" and a live
-  Atlanta local time. It makes the landing page feel composed rather than empty.
+- **Cross rule** (`ui/crossRule.js`): a hairline with small "+" crop marks at both ends that draws across
+  once on load. It's the site's divider motif, used as the header's bottom edge and to close the landing
+  hero under the buttons. Use it for any new divider; keep it bare (no labels or clocks).
 - **Name block**: serif name, with the job title on its own line underneath in a smaller sans and secondary
   color, then the typed tagline.
 - **Code card** (`landing/codeCard.js`): a bordered card titled `App.tsx` that types out a short snippet of
@@ -86,9 +86,9 @@ or give the page structure. Nothing is decoration for its own sake.
 
 | Piece | File | Contents |
 | --- | --- | --- |
-| Frame | `landing/heroFrame.js` | Drawn-in hairlines, corner marks, location and local-time labels |
 | Main column | `landing/intro.js` | Name, job title, typed tagline, "Currently at Fullstory" pitch, "Open to new roles" status, *View resume* and *Get in touch* buttons |
 | Side column | `landing/intro.js`, `landing/codeCard.js` | Typing code card, quick facts (Focus · Education · Based in) |
+| Cross rule | `ui/crossRule.js` | Closes the hero under the buttons (same rule as under the header) |
 | Photography strip | `landing/photoStrip.js` | Four photos linking to `/photography`; hidden if the photo service fails |
 
 All text content comes from `src/data/profile.js`. The photo fetch lives in `global/usePhotos.js` and is
@@ -145,17 +145,24 @@ The hero frame, the code card and the photography strip were added. A logo row w
 - The portrait frame, `profile.photo` / `photoRatio` and `me-ny.jpg` were left out of this branch and kept on
   `landing-picture-pending`. The code card took the portrait's place.
 
+### 7. Docs: design language and "read this first" rule (`e4c3419`, `4ce49d4`)
+
+Added the *Design language* section here, and a `CLAUDE.md` rule to read this log before any change and
+update it alongside every change.
+
+### 8. Cross rule replaces the hero frame
+
+The top hairline and the location / local-time labels were removed as bloat. The bottom line with "+"
+marks became a reusable `CrossRule` and now also forms the header's bottom edge, so the header and the hero
+share one divider motif. `heroFrame.js` was deleted, and the hero got a little more top padding to make up
+for the removed labels row.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.
 - Empty Fullstory bullets were filled in, and project stacks were matched to the resume.
 - Removed the lorem-ipsum "Empty Card" project and the placeholder cat images on `/projects`.
 - Replaced the create-react-app default page description, and added Open Graph tags.
-
-### 7. Docs: design language and "read this first" rule (`e4c3419`, this commit)
-
-Added the *Design language* section here, and a `CLAUDE.md` rule to read this log before any change and
-update it alongside every change.
 
 ## Security incident: personal documents on the live site
 

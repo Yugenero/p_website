@@ -70,7 +70,7 @@ public/
 
 | Path | Component | Notes |
 | --- | --- | --- |
-| `/` | `landing/home.js` | Framed hero (name, role, typed tagline, pitch, resume/contact buttons, code card, quick facts) + photography strip. No metrics |
+| `/` | `landing/home.js` | Hero (name, role, typed tagline, pitch, resume/contact buttons, code card, quick facts) closed by a cross rule, then the photography strip. No metrics |
 | `/about` | `landing/about.js` | Bio + core stack |
 | `/work` | `landing/work.js` | Full experience timeline with all bullets |
 | `/projects` | `landing/projects.js` | Project cards |
@@ -89,8 +89,9 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
 - Keep the landing page uncluttered: roughly one desktop screen, no metrics/impact numbers.
   Experience, projects, and skills belong on their own pages; order those arrays by importance.
 - Landing visuals (each in its own file under `components/landing/`):
-  - `heroFrame.js`: hairline rules that draw in on load, corner "+" marks, and labels for location and
-    live Atlanta local time.
+  - Cross rule (`ui/crossRule.js`): a hairline with small "+" marks at both ends that draws in once on load.
+    It's the site's divider motif: under the header and under the hero buttons. Reuse it for new dividers
+    rather than inventing another. No labels or clocks on it (location/local-time labels were removed as bloat).
   - `codeCard.js`: a monochrome card that types out a short snippet of the **public** Fullstory React
     Native SDK API. Keep it short (long lines wrap on phones) and real; never show private or employer-internal code.
   - `photoStrip.js`: four of Nelson's photos (grayscale, color on hover) linking to `/photography`. It shares

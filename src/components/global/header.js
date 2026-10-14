@@ -11,6 +11,7 @@ import { useEffect, useRef } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import { NavLink, useLocation } from 'react-router-dom';
 import { Container } from '../ui/primitives';
+import { CrossRule } from '../ui/crossRule';
 import Starfield from './starfield';
 
 const HeaderBar = styled(AppBar)(({ theme }) => ({
@@ -22,6 +23,12 @@ const HeaderBar = styled(AppBar)(({ theme }) => ({
 }));
 
 const HeaderToolbar = styled(Toolbar)(() => ({
+  position: 'relative',
+  zIndex: 1,
+}));
+
+// Bottom edge of the header: the same "+"-capped hairline that closes the landing hero.
+const HeaderRule = styled(Container)(() => ({
   position: 'relative',
   zIndex: 1,
 }));
@@ -365,6 +372,9 @@ export const Header = ({ mode, onToggleTheme }) => {
           </NavGroup>
         </HeaderInner>
       </HeaderToolbar>
+      <HeaderRule>
+        <CrossRule />
+      </HeaderRule>
     </HeaderBar>
   );
 };

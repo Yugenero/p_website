@@ -70,6 +70,9 @@ or give the page structure. Nothing is decoration for its own sake.
 - **Binary section labels** (`BinaryMetaText`): "0000", "0001" and so on type in above each page's title.
 - **Employer logos on `/work`**: monochrome silhouettes (an SVG mask over the text color) in place of
   employer names, so they follow light and dark mode.
+- **Theme toggle**: a square button with a half-filled circle (the contrast symbol) that turns 180° when the
+  theme flips. Hovering (or keyboard focus) shows "Switch to dark mode" / "Switch to light mode" in an inverted
+  label. It's 44px and bordered on phones, so it's easy to find and tap.
 - **Header**: square social icon boxes, 44px tap targets on phones, and a horizontally scrolling nav strip
   on mobile that keeps the current page underlined and in view.
 
@@ -171,6 +174,14 @@ The line now grows out from its middle to both ends, and the "+" marks fade in a
 - Photos on `/photography` lost their rounded corners (square, like the rest of the site).
 - Header social icons scale up on desktop: 1.45rem from the `md` breakpoint and 1.65rem from `lg`
   (previously 1.1rem, which read as tiny on 1440px and Retina screens), with a slightly wider gap.
+
+### 11. Simpler theme toggle
+
+The old toggle (rounded box, nested rings and a dot) was replaced with a square button and a half-filled
+circle that turns 180° on switch, plus a "Switch to … mode" hover label. The label shows only on
+hover-capable devices or keyboard focus, never stuck after a click. The button sizes are 2.35rem, 2.6rem
+from `lg`, and 44px on phones. The header toolbar was raised above the cross rule so the label isn't
+cut by the line.
 
 ### Content corrections along the way
 

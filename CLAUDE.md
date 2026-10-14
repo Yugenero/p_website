@@ -127,6 +127,9 @@ Build on it; don't introduce a new visual language.
 ### Layout & components
 - Square corners (`borderRadius: 0`) for buttons, panels, cards. Existing exception: the `/projects` cards.
   Header and footer social icon hover boxes are square too.
+- Theme toggle (`animations/themeToggle.js`): a square button with a half-filled circle that turns 180° when the
+  theme flips, and a "Switch to dark/light mode" label on hover (hover-capable devices) or keyboard focus.
+  It's 44px on phones. Any new header popup must stay above the header's cross rule (the toolbar is `zIndex: 2`).
 - Structure with **1px hairlines**: `text.primary` for a section's top rule, `divider` between rows.
   No drop shadows except on hover lift.
 - Each section starts with a `BinaryMetaText` label + `SectionTitle`. Pages use fixed codes

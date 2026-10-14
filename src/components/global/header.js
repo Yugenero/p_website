@@ -22,9 +22,10 @@ const HeaderBar = styled(AppBar)(({ theme }) => ({
   overflow: 'visible',
 }));
 
+// Above the header rule (zIndex 1) so popups like the theme toggle's label sit on top of the line.
 const HeaderToolbar = styled(Toolbar)(() => ({
   position: 'relative',
-  zIndex: 1,
+  zIndex: 2,
 }));
 
 // Bottom edge of the header: the same "+"-capped hairline that closes the landing hero.
@@ -266,7 +267,6 @@ const WritingPopup = styled(Box)(({ theme }) => ({
 }));
 
 export const Header = ({ mode, onToggleTheme }) => {
-  const nextModeLabel = mode === 'light' ? 'dark' : 'light';
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const { pathname } = useLocation();
@@ -298,15 +298,7 @@ export const Header = ({ mode, onToggleTheme }) => {
     });
   }, [pathname, isMobile]);
 
-  const themeToggle = (
-    <ThemeToggle
-      onClick={onToggleTheme}
-      aria-label={`Switch to ${nextModeLabel} mode`}
-      data-mode={mode}
-    >
-      <span className="toggle-thumb" aria-hidden="true" />
-    </ThemeToggle>
-  );
+  const themeToggle = <ThemeToggle mode={mode} onClick={onToggleTheme} />;
 
   return (
     <HeaderBar ref={headerRef} position="sticky" elevation={0}>

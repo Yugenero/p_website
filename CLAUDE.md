@@ -116,12 +116,13 @@ Build on it; don't introduce a new visual language.
   (About `0000`, Experience `0001`, Projects `0010`, Photography `0011`, Writing `0100`); the landing page
   numbers its own sections sequentially.
 - Buttons: MUI `Button` `contained` (filled) for the primary action, `outlined` for secondary.
-- Wrap content in `Container` (handles gutters); use `Section` for full pages and `CompactSection`
-  (tighter spacing + top divider) for landing sections.
+- Wrap content in `Container` (handles gutters); use `Section` for full pages. (`CompactSection` and
+  `SectionHeaderRow` in `primitives.js` are currently unused; they served the old overview sections.)
 - The `Starfield` background is optional texture; keep it `ultraSubtle` with low opacity.
 
 ### Responsiveness & accessibility
-- Must work from 390px phones to wide desktops with **no horizontal scroll**. Grids collapse to one
+- Must work from 360px phones to wide desktops with **no horizontal page scroll** (the mobile header nav
+  strip is the one intentional sideways scroller). Grids collapse to one
   column below the `md` breakpoint.
 - Use semantic elements (`section`, `nav`, `dl`, `h1`–`h3` in order) and `aria-label` on icon-only links.
 - Respect `prefers-reduced-motion` for any new looping animation.

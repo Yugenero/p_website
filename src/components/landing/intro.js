@@ -211,9 +211,8 @@ const CtaRow = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
   gap: theme.spacing(1.5),
-  // Pushed to the bottom of the column (level with the quick facts' last row) on desktop.
-  marginTop: 'auto',
-  paddingTop: theme.spacing(1),
+  // Sits right under the status line; the space left below is intentional negative space.
+  paddingTop: theme.spacing(2),
 }));
 
 const HeroAside = styled(Box)(({ theme }) => ({

@@ -105,7 +105,7 @@ shared with the photography page, so a visit makes one request.
 | Branch | Purpose |
 | --- | --- |
 | `landing-page-redesign` | Everything through entry 11, without the portrait; merged into `master` on Oct 15 |
-| `halftone-background` | Entries 12–19: halftone background, custom cursors, smaller text and name, no hero job title (ripples tried and removed) |
+| `halftone-background` | Entries 12–20: halftone background, custom cursors, smaller text and name, no hero job title (ripples tried and removed) |
 | `landing-picture-pending` | Nelson's full version with the portrait frame, saved for later |
 | `landing-picture-local` | Temporary copy used for the merge; safe to delete |
 | `master` | Source branch. [Yugenero/p_website#2](https://github.com/Yugenero/p_website/pull/2) merged the early redesign; later work needs a new PR |
@@ -245,6 +245,13 @@ hero's closing cross rule: 72px on desktop, 40px on phones (`HERO_GAP` / `HERO_G
 Before it was about 64px above and 40px below, and the hero also filled the screen height with its content
 centered vertically, so taller screens added extra space above. That vertical centering was removed, so the gaps stay equal
 at every screen height.
+
+### 20. Buttons under the status line
+
+The *View resume* / *Get in touch* buttons used to be pinned to the bottom of the left column (level with the
+last quick-fact row), which left a gap of about 200px under "Open to new roles" that read as leftover space.
+They now sit 36px under the status line, so the left column reads as one block and the open space collects
+in the lower-left corner as deliberate negative space.
 
 ### Content corrections along the way
 

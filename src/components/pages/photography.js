@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { alpha, styled, useTheme } from '@mui/material/styles';
@@ -11,6 +11,7 @@ import {
 } from '../ui/primitives';
 import Starfield from '../global/starfield';
 import { BinaryMetaText } from '../ui/binaryMetaText';
+import { usePhotos } from '../global/usePhotos';
 
 const PhotoCard = ({ photo, index }) => {
   const [loaded, setLoaded] = useState(false);
@@ -51,25 +52,7 @@ const TileLayout = ({ photos }) => {
 
 const PhotographyPage = () => {
   const theme = useTheme();
-  const [photos, setPhotos] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    fetch('https://us-central1-angelic-center-419421.cloudfunctions.net/getPhotos')
-      .then(res => {
-        if (!res.ok) throw new Error('Network response was not ok');
-        return res.json();
-      })
-      .then(data => {
-        setPhotos(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Fetch error:', error);
-        setError(error.message);
-        setLoading(false);
-      });
-  }, []);
+  const { photos, loading, error } = usePhotos();
 
   return (
     <PhotoWrap id="photography">
@@ -189,7 +172,7 @@ const PhotoCardFrame = styled('div')(({ theme }) => ({
   WebkitColumnBreakInside: 'avoid',
   pageBreakInside: 'avoid',
   border: `1px solid ${theme.palette.divider}`,
-  borderRadius: '0.6rem',
+  borderRadius: 0,
   overflow: 'hidden',
   backgroundColor: alpha(theme.palette.text.primary, 0.04),
   opacity: 0.2,

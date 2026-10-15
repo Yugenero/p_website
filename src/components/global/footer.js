@@ -39,6 +39,10 @@ const SocialList = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   gap: theme.spacing(0.5),
+  [theme.breakpoints.down('md')]: {
+    gap: theme.spacing(0.75),
+    marginLeft: -10, // optically align the first icon with the page gutter
+  },
 }));
 
 const SocialLink = styled('a')(({ theme }) => {
@@ -48,7 +52,7 @@ const SocialLink = styled('a')(({ theme }) => {
   return {
     width: '1.9rem',
     height: '1.9rem',
-    borderRadius: '5px',
+    borderRadius: 0,
     border: '1px solid transparent',
     color: theme.palette.mode === 'dark' ? theme.palette.text.disabled : theme.palette.text.secondary,
     display: 'inline-flex',
@@ -68,11 +72,12 @@ const SocialLink = styled('a')(({ theme }) => {
     '& svg': {
       fontSize: '1.15rem',
     },
+    // Larger icons and 44px tap targets on phones (matches the header).
     [theme.breakpoints.down('md')]: {
-      width: '2.05rem',
-      height: '2.05rem',
+      width: 44,
+      height: 44,
       '& svg': {
-        fontSize: '1.2rem',
+        fontSize: '1.6rem',
       },
     },
   };

@@ -1,73 +1,113 @@
 import ButtonBase from '@mui/material/ButtonBase';
 import { styled } from '@mui/material/styles';
 
-export const ThemeToggle = styled(ButtonBase)(({ theme }) => ({
+// Light/dark switch: a square button with a half-filled circle (the contrast symbol) that turns
+// 180° when the theme flips, plus a "Switch to … mode" label on hover / keyboard focus.
+export const ThemeToggle = ({ mode, onClick }) => {
+  const label = `Switch to ${mode === 'light' ? 'dark' : 'light'} mode`;
+
+  return (
+    <ToggleWrap>
+      <ToggleButton onClick={onClick} aria-label={label} data-mode={mode}>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="8.25" />
+          <path d="M12 3.75a8.25 8.25 0 0 1 0 16.5z" />
+        </svg>
+      </ToggleButton>
+      <Tip data-tip aria-hidden="true">
+        {label}
+      </Tip>
+    </ToggleWrap>
+  );
+};
+
+const ToggleWrap = styled('span')(() => ({
   position: 'relative',
-  minWidth: '1.95rem',
-  width: '1.95rem',
-  height: '1.95rem',
-  borderRadius: '5px',
-  border: `1px solid ${theme.palette.divider}`,
-  padding: 0,
-  backgroundColor: 'transparent',
-  color: theme.palette.text.primary,
   display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  overflow: 'hidden',
-  transition: 'none',
-  '& .toggle-thumb': {
-    position: 'absolute',
-    inset: '2px',
-    borderRadius: '999px',
-    border: `1px solid ${theme.palette.text.primary}`,
-    backgroundColor: 'transparent',
-    transform: 'scale(1)',
-    transformOrigin: 'center',
-    transition:
-      'transform 140ms cubic-bezier(0.22, 1, 0.36, 1), border-color 120ms ease',
-    willChange: 'transform',
-    '&::after': {
-      content: '""',
-      position: 'absolute',
-      inset: '22%',
-      borderRadius: '999px',
-      backgroundColor: theme.palette.text.primary,
-      transform: 'scale(1)',
-      transformOrigin: 'center',
-      transition: 'transform 140ms cubic-bezier(0.22, 1, 0.36, 1), opacity 120ms ease',
-      opacity: 0.95,
+  // Hover labels only where hovering exists; touch screens rely on the obvious icon + aria-label.
+  '@media (hover: hover)': {
+    '&:hover > [data-tip]': {
+      opacity: 1,
+      transform: 'translateY(0)',
     },
   },
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    inset: '5px',
-    borderRadius: '999px',
-    border: `1px solid ${theme.palette.divider}`,
-    opacity: 0.75,
-    pointerEvents: 'none',
-    transition: 'opacity 120ms ease, border-color 120ms ease',
+  // Keyboard focus only (MUI marks it .Mui-focusVisible), so a mouse click doesn't leave it showing.
+  '&:has(.Mui-focusVisible) > [data-tip]': {
+    opacity: 1,
+    transform: 'translateY(0)',
   },
-  '&[data-mode="dark"] .toggle-thumb': {
-    transform: 'scale(0.42)',
+}));
+
+const ToggleButton = styled(ButtonBase)(({ theme }) => ({
+  width: '2.35rem',
+  height: '2.35rem',
+  borderRadius: 0,
+  border: `1px solid ${theme.palette.divider}`,
+  color: theme.palette.text.primary,
+  transition: 'border-color 0.2s ease',
+  '& svg': {
+    width: '1.3rem',
+    height: '1.3rem',
+    transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)',
   },
-  '&[data-mode="dark"] .toggle-thumb::after': {
-    transform: 'scale(0.62)',
-    opacity: 0.9,
+  '& circle': {
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.5,
   },
-  '&[data-mode="dark"]::before': {
-    opacity: 0.5,
+  '& path': {
+    fill: 'currentColor',
   },
-  '&:hover': {
-    backgroundColor: 'transparent',
+  '&[data-mode="dark"] svg': {
+    transform: 'rotate(180deg)',
+  },
+  '&:hover, &:focus-visible': {
+    borderColor: theme.palette.text.primary,
   },
   '&:focus-visible': {
-    outlineOffset: '2px',
+    outline: `2px solid ${theme.palette.text.primary}`,
+    outlineOffset: 2,
   },
+  [theme.breakpoints.up('lg')]: {
+    width: '2.6rem',
+    height: '2.6rem',
+    '& svg': {
+      width: '1.45rem',
+      height: '1.45rem',
+    },
+  },
+  // Big, obvious tap target on phones.
   [theme.breakpoints.down('md')]: {
-    minWidth: '1.95rem',
-    width: '1.95rem',
-    height: '1.95rem',
+    width: 44,
+    height: 44,
+    '& svg': {
+      width: 24,
+      height: 24,
+    },
   },
+  '@media (prefers-reduced-motion: reduce)': {
+    '& svg': {
+      transition: 'none',
+    },
+  },
+}));
+
+// Right-aligned under the button so it never runs off the edge of the screen.
+const Tip = styled('span')(({ theme }) => ({
+  position: 'absolute',
+  top: `calc(100% + ${theme.spacing(1)})`,
+  right: 0,
+  whiteSpace: 'nowrap',
+  padding: theme.spacing(0.75, 1.25),
+  fontFamily: theme.typography.fontFamily,
+  fontSize: '0.8rem',
+  fontWeight: 500,
+  lineHeight: 1.2,
+  color: theme.palette.background.default,
+  backgroundColor: theme.palette.text.primary,
+  opacity: 0,
+  transform: 'translateY(-4px)',
+  transition: 'opacity 0.15s ease, transform 0.15s ease',
+  pointerEvents: 'none',
+  zIndex: theme.zIndex.tooltip,
 }));

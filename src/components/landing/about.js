@@ -15,7 +15,7 @@ import {
   SectionTitle,
 } from '../ui/primitives';
 import { BinaryMetaText } from '../ui/binaryMetaText';
-import { skillGroups } from '../../data/profile';
+import { education, skillGroups } from '../../data/profile';
 
 const skills = skillGroups.flatMap((group) => group.items).slice(0, 14);
 
@@ -56,15 +56,16 @@ export const AboutSection = () => {
               >
                 Fullstory
               </Link>
-              , implementing and debugging our Mobile SDK across React Native, iOS, and Android in
-              customers&apos; production apps, from minimal repro projects through validated fixes with
-              Engineering. Before that I was a Software Engineer at Civic Digital Experience, building
+              , a technical + customer-facing solutions engineering role. Most of my time goes to working with
+              customer engineering teams in their own codebases to implement the Fullstory Mobile SDK and
+              build proofs of concept as well as building out AI/automation workflows and internal
+              tools for our team. Before that I was a Software Engineer at Civic Digital Experience, building
               React + C#/.NET internal finance and asset-management tools with a focus on clean information
               design, fast data filtering, and dependable APIs.
             </AboutParagraph>
             <AboutParagraph variant="body1" paragraph>
               I also hold a B.S. in Computer Science from the {' '}
-              <GeorgiaTechLink href="https://www.gatech.edu" target="_blank" rel="noopener noreferrer">
+              <GeorgiaTechLink href={education.collegeUrl} target="_blank" rel="noopener noreferrer">
                 Georgia Institute of Technology
               </GeorgiaTechLink>
               ,{' '} where I focused on algorithms, networks, and systems.
@@ -121,6 +122,7 @@ const SkillsList = styled(InlineList)(({ theme }) => ({
 }));
 
 const GeorgiaTechLink = styled(Link)(() => ({
-  fontFamily: '"Roboto Slab", serif',
-  fontWeight: 600,
+  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  fontWeight: 700,
+  whiteSpace: 'nowrap',
 }));

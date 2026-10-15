@@ -7,6 +7,19 @@ able to understand who Nelson is, what he has built, and how to reach him within
 
 This is a living document. Update it when the stack, design rules, or guardrails change.
 
+## Before making any changes: read `website-refactor.md`
+
+[`website-refactor.md`](./website-refactor.md) is the project log and the reference for the design language.
+Read it **before** editing anything. It explains why things look and work the way they do, which branch
+holds what, what's already been tried or rejected, and what's still open.
+
+- **Before:** read its *Design language*, *Landing page today*, *Branches*, and *Next steps* sections. Build on
+  what's there; don't reintroduce something the history says was removed (e.g. impact metrics, a logo row,
+  the portrait) unless Nelson asks.
+- **After:** update it in the same commit as the change. Add a numbered entry under *History*, refresh
+  *Landing page today* / *Design language* if the UI changed, and tick or add items in *Next steps*.
+- If this file and `website-refactor.md` disagree, this file's rules win. Fix the log so they match.
+
 ## Tech stack
 
 | Area | Choice |
@@ -45,7 +58,7 @@ src/
     ui/primitives.js     layout + type primitives (Container, Section, CompactSection, MetaText, SectionTitle, ArrowLink, …)
     ui/binaryMetaText.js typed binary section label ("0001|")
     global/              header, footer, starfield
-    landing/             landing-page sections + the full Experience/Projects/About sections reused by pages
+    landing/             landing hero (intro.js) + the full Experience/Projects/About sections reused by pages
     pages/               thin route wrappers (about, work, projects, photography, blog)
     styles/, pages/pageStyles/, animations/   legacy CSS + effects, mostly unused by current routes
 public/
@@ -57,7 +70,7 @@ public/
 
 | Path | Component | Notes |
 | --- | --- | --- |
-| `/` | `landing/home.js` | Dense overview: hero, impact strip, experience summary, toolkit, selected projects, contact |
+| `/` | `landing/home.js` | Hero (name, role, typed tagline, pitch, resume/contact buttons, code card, quick facts) closed by a cross rule, then the photography strip. No metrics |
 | `/about` | `landing/about.js` | Bio + core stack |
 | `/work` | `landing/work.js` | Full experience timeline with all bullets |
 | `/projects` | `landing/projects.js` | Project cards |
@@ -66,14 +79,27 @@ public/
 
 ## Content: `src/data/profile.js`
 
-All resume-derived content (role, experience, skills, projects, impact numbers, quick facts)
+All resume-derived content (role, experience, skills, projects, quick facts)
 lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/about` read from it.
 
 - When the resume changes, update **both** `public/documents/NelsonRodriguez.pdf` and `profile.js`.
 - Every number or claim on the site must be traceable to the resume. Don't invent metrics,
   titles, or availability promises.
 - `profile.openToWork` toggles the "Open to new roles" status line in the hero.
-- The landing page shows the first 3 jobs and first 3 projects (`limit` props); order the arrays by importance.
+- Keep the landing page uncluttered: roughly one desktop screen, no metrics/impact numbers.
+  Experience, projects, and skills belong on their own pages; order those arrays by importance.
+- Landing visuals (each in its own file under `components/landing/`):
+  - Cross rule (`ui/crossRule.js`): a hairline with small "+" marks at both ends. On load the line grows out
+    from the middle to both ends, then the marks fade in as it arrives.
+    It's the site's divider motif: under the header and under the hero buttons. Reuse it for new dividers
+    rather than inventing another. No labels or clocks on it (location/local-time labels were removed as bloat).
+  - `codeCard.js`: a monochrome card (`nelson.ts`) that types out a short, **company-agnostic** snippet about
+    Nelson: base, iced coffee, hybrid training, photography and cars, and a `kaizen()` that compounds 1% a day.
+    Keep it personal, truthful (only interests stated elsewhere on the site), and under ~38 characters a line so
+    nothing wraps on phones. No employer code or branding.
+  - `photoStrip.js`: four of Nelson's photos (grayscale, color on hover) linking to `/photography`. It shares
+    `global/usePhotos.js` with the photography page and renders nothing if the photo service fails.
+- No headshot/portrait on the landing page for now. The picture version is saved on the `landing-picture-pending` branch.
 
 ## Design system & UI guardrails
 
@@ -99,20 +125,24 @@ Build on it; don't introduce a new visual language.
 - Tech tags: `InlineItem` inside `InlineList` (sentence case, small, no pills/badges).
 
 ### Layout & components
-- Square corners (`borderRadius: 0`) for buttons, panels, cards. Existing exceptions: the 5px header icon
-  hover boxes and the `/projects` cards.
+- Square corners (`borderRadius: 0`) for buttons, panels, cards. Existing exception: the `/projects` cards.
+  Header and footer social icon hover boxes are square too.
+- Theme toggle (`animations/themeToggle.js`): a square button with a half-filled circle that turns 180° when the
+  theme flips, and a "Switch to dark/light mode" label on hover (hover-capable devices) or keyboard focus.
+  It's 44px on phones. Any new header popup must stay above the header's cross rule (the toolbar is `zIndex: 2`).
 - Structure with **1px hairlines**: `text.primary` for a section's top rule, `divider` between rows.
   No drop shadows except on hover lift.
 - Each section starts with a `BinaryMetaText` label + `SectionTitle`. Pages use fixed codes
   (About `0000`, Experience `0001`, Projects `0010`, Photography `0011`, Writing `0100`); the landing page
   numbers its own sections sequentially.
 - Buttons: MUI `Button` `contained` (filled) for the primary action, `outlined` for secondary.
-- Wrap content in `Container` (handles gutters); use `Section` for full pages and `CompactSection`
-  (tighter spacing + top divider) for landing sections.
+- Wrap content in `Container` (handles gutters); use `Section` for full pages. (`CompactSection` and
+  `SectionHeaderRow` in `primitives.js` are currently unused; they served the old overview sections.)
 - The `Starfield` background is optional texture; keep it `ultraSubtle` with low opacity.
 
 ### Responsiveness & accessibility
-- Must work from 390px phones to wide desktops with **no horizontal scroll**. Grids collapse to one
+- Must work from 360px phones to wide desktops with **no horizontal page scroll** (the mobile header nav
+  strip is the one intentional sideways scroller). Grids collapse to one
   column below the `md` breakpoint.
 - Use semantic elements (`section`, `nav`, `dl`, `h1`–`h3` in order) and `aria-label` on icon-only links.
 - Respect `prefers-reduced-motion` for any new looping animation.

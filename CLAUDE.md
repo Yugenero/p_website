@@ -120,6 +120,8 @@ Build on it; don't introduce a new visual language.
   and never type words in capitals for styling. Use sentence case for labels, buttons, links, and tags.
   Real acronyms (SDK, SQL, iOS, .NET) are fine. MUI's `button` and `overline` variants are set to
   `textTransform: 'none'` in `theme.js`; keep it that way.
+- Base size: `html { font-size: 93.75% }` (15px; 110% from 2560px) in `src/index.css`. Text sizes are in `rem`, so
+  change the base to scale all text at once, rather than editing sizes one by one.
 - Keep letter-spacing near normal (`0`–`0.02em`); the wide tracking that went with caps is gone too.
 - Labels: `MetaText`, sentence case, `0.82rem`, weight 500, `text.secondary`.
 - Tech tags: `InlineItem` inside `InlineList` (sentence case, small, no pills/badges).

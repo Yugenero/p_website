@@ -180,7 +180,7 @@ const HeroTitle = styled(Typography)(({ theme }) => ({
   fontWeight: 300,
   letterSpacing: '-0.025em',
   lineHeight: 1,
-  fontSize: 'clamp(2.4rem, 5.2vw, 5.4rem)',
+  fontSize: 'clamp(2.4rem, 4.6vw, 5.4rem)',
   margin: 0,
   color: theme.palette.text.primary,
 }));
@@ -201,7 +201,7 @@ const HeroRole = styled(Typography)(({ theme }) => ({
 const TypedLine = styled(Typography)(({ theme }) => ({
   margin: 0,
   minHeight: '2.4em',
-  fontSize: 'clamp(1.05rem, 1.9vw, 1.5rem)',
+  fontSize: 'clamp(1.05rem, 1.7vw, 1.5rem)',
   lineHeight: 1.2,
   color: theme.palette.text.secondary,
   fontFamily: INTRO_BODY_FONT,

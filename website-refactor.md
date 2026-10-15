@@ -105,7 +105,7 @@ shared with the photography page, so a visit makes one request.
 | Branch | Purpose |
 | --- | --- |
 | `landing-page-redesign` | Everything through entry 11, without the portrait; merged into `master` on Oct 15 |
-| `halftone-background` | Entries 12–15: halftone background on every page, mouse ripples, custom cursors |
+| `halftone-background` | Entries 12–16: halftone background, mouse ripples, custom cursors, smaller text |
 | `landing-picture-pending` | Nelson's full version with the portrait frame, saved for later |
 | `landing-picture-local` | Temporary copy used for the merge; safe to delete |
 | `master` | Source branch. [Yugenero/p_website#2](https://github.com/Yugenero/p_website/pull/2) merged the early redesign; later work needs a new PR |
@@ -216,6 +216,15 @@ content. The `subtle` prop went with it.
   redraws every frame, then drops back to the 10fps cloud tick. Mouse only; off with reduced motion.
 - New cursors in `theme.js`: a thick near-black arrow with a white outline (like Figma's) and a matching hand
   (Material's PanToolAlt shape) on links and buttons. Only on fine pointers, so touch devices are unaffected.
+
+### 16. Smaller text, narrower experience bullets
+
+- All text is about 12% smaller: the root font size went from 106.25% (17px) to 93.75% (15px), and from
+  125% to 110% on 2560px+ screens. Sizes are in `rem`, so titles, body, labels, nav and the code card all
+  scaled together. The hero name and job title also scale with screen width, so their `vw` values were cut by
+  the same ratio (5.2vw → 4.6vw, 1.9vw → 1.7vw).
+- On `/work`, each role's summary and bullets stop at half the window width (`50vw`) from the `md`
+  breakpoint up, so lines stay a readable length on wide screens. Phones keep the full width.
 
 ### Content corrections along the way
 

@@ -410,8 +410,14 @@ const WorkLocation = styled(Typography)(() => ({
   fontSize: '0.98rem',
 }));
 
-const WorkSummary = styled(Typography)(() => ({
+// Summary and bullets stop at half the window width so lines stay readable on wide screens.
+const READING_WIDTH = '50vw';
+
+const WorkSummary = styled(Typography)(({ theme }) => ({
   fontSize: '1.06rem',
+  [theme.breakpoints.up('md')]: {
+    maxWidth: READING_WIDTH,
+  },
 }));
 
 const Highlights = styled(Box)(({ theme }) => ({
@@ -427,6 +433,9 @@ const HighlightItem = styled(Typography)(({ theme }) => ({
   position: 'relative',
   paddingLeft: theme.spacing(3),
   fontSize: '1rem',
+  [theme.breakpoints.up('md')]: {
+    maxWidth: READING_WIDTH,
+  },
   '&::before': {
     content: '"—"',
     position: 'absolute',

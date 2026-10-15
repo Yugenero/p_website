@@ -1,8 +1,8 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import { styled, useTheme } from '@mui/material/styles';
-import Starfield from '../global/starfield';
+import { styled } from '@mui/material/styles';
+import Halftone from '../global/halftone';
 
 import {
   Container,
@@ -20,19 +20,9 @@ import { education, skillGroups } from '../../data/profile';
 const skills = skillGroups.flatMap((group) => group.items).slice(0, 14);
 
 export const AboutSection = () => {
-  const theme = useTheme();
-
   return (
     <AboutWrap id="about">
-      <Starfield
-        density={15}
-        color={theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.text.secondary}
-        backgroundStops={['transparent', 'transparent']}
-        maxDrift={0.6}
-        ultraSubtle
-        style={{ opacity: theme.palette.mode === 'dark' ? 0.5 : 0.25 }}
-        forceWhite={true}
-      />
+      <Halftone />
       <AboutContent>
         <SectionHeader>
           <BinaryMetaText value="0000" />

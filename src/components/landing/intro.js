@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import { keyframes, styled, useTheme } from '@mui/material/styles';
+import { keyframes, styled } from '@mui/material/styles';
 import { Container, MetaText } from '../ui/primitives';
 import { CrossRule } from '../ui/crossRule';
 import Halftone from '../global/halftone';
@@ -15,14 +15,9 @@ const INTRO_BODY_FONT =
   '"Inter", "Aeonik-Regular", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
 
 export const Intro = () => {
-  const theme = useTheme();
-
   return (
     <HeroSection>
-      <Halftone
-        color={theme.palette.text.primary}
-        maxAlpha={theme.palette.mode === 'dark' ? 0.16 : 0.11}
-      />
+      <Halftone />
       <HeroContainer>
         <HeroGrid>
           <HeroMain>

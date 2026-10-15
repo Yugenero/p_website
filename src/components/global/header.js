@@ -12,7 +12,7 @@ import { styled, useTheme } from '@mui/material/styles';
 import { NavLink, useLocation } from 'react-router-dom';
 import { Container } from '../ui/primitives';
 import { CrossRule } from '../ui/crossRule';
-import Starfield from './starfield';
+import Halftone from './halftone';
 
 const HeaderBar = styled(AppBar)(({ theme }) => ({
   position: 'sticky',
@@ -34,7 +34,7 @@ const HeaderRule = styled(Container)(() => ({
   zIndex: 1,
 }));
 
-const HeaderStarfield = styled(Starfield)(() => ({
+const HeaderHalftone = styled(Halftone)(() => ({
   position: 'absolute',
   inset: 0,
   zIndex: 0,
@@ -302,17 +302,7 @@ export const Header = ({ mode, onToggleTheme }) => {
 
   return (
     <HeaderBar ref={headerRef} position="sticky" elevation={0}>
-      {theme.palette.mode === 'dark' && (
-        <HeaderStarfield
-          density={4}
-          color={theme.palette.text.primary}
-          backgroundStops={['transparent', 'transparent']}
-          maxDrift={0.35}
-          ultraSubtle
-          style={{ opacity: 0.24 }}
-          forceWhite={true}
-        />
-      )}
+      <HeaderHalftone subtle />
       <HeaderToolbar disableGutters>
         <HeaderInner>
           <HeaderLeft>

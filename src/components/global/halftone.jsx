@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 
 // Halftone cloud background: a grid of small squares whose opacity follows a
 // slowly drifting, domain-warped value-noise field, stepped into a few levels.
@@ -52,8 +52,15 @@ const cloud = (x, y, t) => {
   return smooth(v);
 };
 
-const Halftone = ({ color = '#000', maxAlpha = 0.16, className, style }) => {
+// Peak square opacity per theme; `subtle` tones it down behind small text (header, footer).
+const MAX_ALPHA = { light: 0.11, dark: 0.16 };
+const SUBTLE_SCALE = 0.7;
+
+const Halftone = ({ subtle = false, className, style }) => {
   const canvasRef = useRef(null);
+  const theme = useTheme();
+  const color = theme.palette.text.primary;
+  const maxAlpha = (MAX_ALPHA[theme.palette.mode] ?? MAX_ALPHA.light) * (subtle ? SUBTLE_SCALE : 1);
 
   useEffect(() => {
     const canvas = canvasRef.current;

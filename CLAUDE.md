@@ -28,7 +28,7 @@ holds what, what's already been tried or rejected, and what's still open.
 | Routing | `react-router-dom` v6, `BrowserRouter` (see `src/App.js`) |
 | Styling | MUI v5 (`@mui/material`) with `styled()` + theme tokens; Emotion under the hood |
 | Theme | `src/theme.js`, light/dark built by `buildTheme(mode)`, persisted in `localStorage.themeMode` |
-| Animation | CSS keyframes, `react-typed` (typewriter text), custom `Starfield` and `Halftone` (canvas) components |
+| Animation | CSS keyframes, `react-typed` (typewriter text), custom `Halftone` canvas background |
 | Icons | `@mui/icons-material` |
 | Photos | Fetched at runtime from a Google Cloud Function (`cloud-functions/`) backed by GCS |
 | Hosting | GitHub Pages via `npm run deploy` (`gh-pages -d build`) to the `gh-pages` branch, custom domain via `CNAME` |
@@ -57,7 +57,7 @@ src/
   components/
     ui/primitives.js     layout + type primitives (Container, Section, CompactSection, MetaText, SectionTitle, ArrowLink, …)
     ui/binaryMetaText.js typed binary section label ("0001|")
-    global/              header, footer, starfield, halftone
+    global/              header, footer, halftone background
     landing/             landing hero (intro.js) + the full Experience/Projects/About sections reused by pages
     pages/               thin route wrappers (about, work, projects, photography, blog)
     styles/, pages/pageStyles/, animations/   legacy CSS + effects, mostly unused by current routes
@@ -138,9 +138,10 @@ Build on it; don't introduce a new visual language.
 - Buttons: MUI `Button` `contained` (filled) for the primary action, `outlined` for secondary.
 - Wrap content in `Container` (handles gutters); use `Section` for full pages. (`CompactSection` and
   `SectionHeaderRow` in `primitives.js` are currently unused; they served the old overview sections.)
-- Background texture: the landing hero uses `Halftone` (`global/halftone.jsx`), a canvas grid of small squares
-  whose opacity follows slowly drifting cloud noise, in `text.primary` at low alpha (0.11 light, 0.16 dark).
-  Other pages still use the `Starfield`; keep it `ultraSubtle` with low opacity. Don't stack both on one section.
+- Background texture: every page section, the header and the footer use `<Halftone />` (`global/halftone.jsx`), a
+  canvas grid of small squares whose opacity follows slowly drifting cloud noise. It reads `text.primary` and the
+  peak opacity (0.11 light, 0.16 dark) from the theme; pass `subtle` behind small text (header, footer).
+  Its parent needs `position: relative` and `overflow: hidden`. The old `Starfield` was removed.
 
 ### Responsiveness & accessibility
 - Must work from 360px phones to wide desktops with **no horizontal page scroll** (the mobile header nav
@@ -168,6 +169,6 @@ Build on it; don't introduce a new visual language.
 - GitHub Pages has no SPA fallback, so a hard refresh on `/work`, `/projects`, etc. likely 404s.
   Fix with a `public/404.html` redirect or move to `HashRouter`.
 - Writing/blog page is disabled in the header; `blogData.js` / `blog.js` still reference a cat placeholder image.
-- Pre-existing lint warnings: `starfield.jsx` (missing `forceWhite` dep), `landing/projects.js` (duplicate `minHeight`).
+- Pre-existing lint warning: `landing/projects.js` (duplicate `minHeight`).
 - Legacy unused files: `components/styles/*.css`, `components/animations/*`, `landing/navigation.js`,
   `pages/stuff.js`, `global/signature.js`, `public/documents/Notes.txt`, and the stray `p_website.git/` directory.

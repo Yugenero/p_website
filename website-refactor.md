@@ -37,7 +37,7 @@ or give the page structure. Nothing is decoration for its own sake.
 5. **Sentence case, normal tracking.** No all-caps anywhere and no wide letter-spacing. Acronyms like SDK, iOS
    and .NET keep their real capitals.
 6. **Motion with a reason.** Things draw or type in once, on load, and then settle. Looping motion is limited
-   to a typing cursor, the status-dot pulse, the faint starfield and the hero's slow halftone drift. All of it respects `prefers-reduced-motion`.
+   to a typing cursor, the status-dot pulse, and the slow halftone drift in the background. All of it respects `prefers-reduced-motion`.
 7. **Real over illustrative.** Real numbers from the resume, a real public SDK snippet, and Nelson's own
    photographs. No placeholders, stock imagery, invented metrics or headshots (for now).
 
@@ -94,7 +94,7 @@ or give the page structure. Nothing is decoration for its own sake.
 | Main column | `landing/intro.js` | Name, job title, typed tagline, "Currently at Fullstory" pitch, "Open to new roles" status, *View resume* and *Get in touch* buttons |
 | Side column | `landing/intro.js`, `landing/codeCard.js` | Typing code card, quick facts (Focus · Education · Based in) |
 | Cross rule | `ui/crossRule.js` | Closes the hero under the buttons (same rule as under the header) |
-| Background | `global/halftone.jsx` | Halftone cloud texture behind the hero (replaced the starfield there) |
+| Background | `global/halftone.jsx` | Halftone cloud texture behind the hero (same as every other page) |
 | Photography strip | `landing/photoStrip.js` | Four photos linking to `/photography`; hidden if the photo service fails |
 
 All text content comes from `src/data/profile.js`. The photo fetch lives in `global/usePhotos.js` and is
@@ -105,7 +105,7 @@ shared with the photography page, so a visit makes one request.
 | Branch | Purpose |
 | --- | --- |
 | `landing-page-redesign` | Everything through entry 11, without the portrait; merged into `master` on Oct 15 |
-| `halftone-background` | Entry 12: halftone background in the landing hero |
+| `halftone-background` | Entries 12–13: halftone background across the site |
 | `landing-picture-pending` | Nelson's full version with the portrait frame, saved for later |
 | `landing-picture-local` | Temporary copy used for the merge; safe to delete |
 | `master` | Source branch. [Yugenero/p_website#2](https://github.com/Yugenero/p_website/pull/2) merged the early redesign; later work needs a new PR |
@@ -195,6 +195,13 @@ caps the canvas at about 1.8M pixels, and stops redrawing when off screen, in a 
 motion on (it then shows one still frame). The original's RGB-split glitch was left out to stay monochrome.
 It replaces the starfield in the landing hero only; other pages keep the starfield for now.
 
+### 13. Halftone on every page; starfield removed
+
+The halftone replaced the starfield everywhere: About, Experience, Projects, Photography, the footer, and
+the header (which now has it in light mode too, where the starfield was dark-only). `Halftone` now reads its
+color and opacity from the theme, so each use is just `<Halftone />`, or `<Halftone subtle />` (70% opacity)
+in the header and footer. `starfield.jsx` was deleted, which also cleared its old lint warning.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.
@@ -239,8 +246,7 @@ The live site only changes on `npm run deploy`, which runs the build for you (`p
 - **Photography strip:** only tested with stand-in images, because the build environment can't reach the photo
   service. Check it with real photos before deploying.
 - **Writing page:** disabled in the header, and its code still references a placeholder cat image.
-- **Lint warnings:** two existed before this work: `starfield.jsx` (missing `forceWhite` dependency)
-  and `landing/projects.js` (duplicate `minHeight`).
+- **Lint warnings:** one left from before this work: `landing/projects.js` (duplicate `minHeight`).
 - **Unused code and dependencies:** legacy CSS, animations, `navigation.js`, `stuff.js`, `signature.js`,
   `Notes.txt`, the stray `p_website.git/` directory, the `SectionHeaderRow` and `CompactSection` primitives
   (unused since the landing page was trimmed), and several installed but unused packages (see `CLAUDE.md`).
@@ -251,7 +257,7 @@ The live site only changes on `npm run deploy`, which runs the build for you (`p
 - [x] Save the portrait version on `landing-picture-pending`
 - [ ] Review the landing page locally with real photos
 - [x] Merge `landing-page-redesign` into `master` (Oct 15)
-- [ ] Decide whether the halftone should replace the starfield on the other pages too
+- [x] Use the halftone on every page instead of the starfield
 - [ ] Deploy (`npm run deploy`)
 - [ ] Fix deep-link 404s on GitHub Pages
 - [ ] Regenerate `package-lock.json`

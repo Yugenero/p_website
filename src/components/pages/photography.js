@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { alpha, styled, useTheme } from '@mui/material/styles';
+import { alpha, styled } from '@mui/material/styles';
 import {
   Container,
   LeadText,
@@ -9,7 +9,7 @@ import {
   SectionHeader,
   SectionTitle,
 } from '../ui/primitives';
-import Starfield from '../global/starfield';
+import Halftone from '../global/halftone';
 import { BinaryMetaText } from '../ui/binaryMetaText';
 import { usePhotos } from '../global/usePhotos';
 
@@ -51,20 +51,11 @@ const TileLayout = ({ photos }) => {
 };
 
 const PhotographyPage = () => {
-  const theme = useTheme();
   const { photos, loading, error } = usePhotos();
 
   return (
     <PhotoWrap id="photography">
-      <Starfield
-        density={0.9}
-        color={theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.text.secondary}
-        backgroundStops={['transparent', 'transparent']}
-        maxDrift={0.6}
-        ultraSubtle
-        style={{ opacity: theme.palette.mode === 'dark' ? 0.4 : 0.18 }}
-        forceWhite={true}
-      />
+      <Halftone />
       <PhotoContent>
         <SectionHeader>
           <BinaryMetaText value="0011" />

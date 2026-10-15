@@ -105,7 +105,7 @@ shared with the photography page, so a visit makes one request.
 | Branch | Purpose |
 | --- | --- |
 | `landing-page-redesign` | Everything through entry 11, without the portrait; merged into `master` on Oct 15 |
-| `halftone-background` | Entries 12–14: halftone background on every page (not the header or footer) |
+| `halftone-background` | Entries 12–15: halftone background on every page, mouse ripples, custom cursors |
 | `landing-picture-pending` | Nelson's full version with the portrait frame, saved for later |
 | `landing-picture-local` | Temporary copy used for the merge; safe to delete |
 | `master` | Source branch. [Yugenero/p_website#2](https://github.com/Yugenero/p_website/pull/2) merged the early redesign; later work needs a new PR |
@@ -206,6 +206,16 @@ in the header and footer. `starfield.jsx` was deleted, which also cleared its ol
 
 The halftone was taken back out of the header and footer at Nelson's request, so it only sits behind page
 content. The `subtle` prop went with it.
+
+### 15. Water ripples and chunky cursors
+
+- Moving the mouse over the halftone spawns ripples (every 60px of travel or 220ms). Each is a short train of
+  waves that spreads 220px over 1.6s and fades: crests push squares outward, grow them and light them
+  (white in dark mode, black in light), troughs shrink and dim them. A first version used blue/orange
+  colored rings; Nelson preferred colorless water, so color was dropped. While ripples are live the canvas
+  redraws every frame, then drops back to the 10fps cloud tick. Mouse only; off with reduced motion.
+- New cursors in `theme.js`: a thick near-black arrow with a white outline (like Figma's) and a matching hand
+  (Material's PanToolAlt shape) on links and buttons. Only on fine pointers, so touch devices are unaffected.
 
 ### Content corrections along the way
 

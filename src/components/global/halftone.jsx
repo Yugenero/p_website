@@ -52,15 +52,14 @@ const cloud = (x, y, t) => {
   return smooth(v);
 };
 
-// Peak square opacity per theme; `subtle` tones it down behind small text (header, footer).
+// Peak square opacity per theme.
 const MAX_ALPHA = { light: 0.11, dark: 0.16 };
-const SUBTLE_SCALE = 0.7;
 
-const Halftone = ({ subtle = false, className, style }) => {
+const Halftone = ({ className, style }) => {
   const canvasRef = useRef(null);
   const theme = useTheme();
   const color = theme.palette.text.primary;
-  const maxAlpha = (MAX_ALPHA[theme.palette.mode] ?? MAX_ALPHA.light) * (subtle ? SUBTLE_SCALE : 1);
+  const maxAlpha = MAX_ALPHA[theme.palette.mode] ?? MAX_ALPHA.light;
 
   useEffect(() => {
     const canvas = canvasRef.current;

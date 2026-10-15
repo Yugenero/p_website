@@ -138,9 +138,9 @@ Build on it; don't introduce a new visual language.
 - Buttons: MUI `Button` `contained` (filled) for the primary action, `outlined` for secondary.
 - Wrap content in `Container` (handles gutters); use `Section` for full pages. (`CompactSection` and
   `SectionHeaderRow` in `primitives.js` are currently unused; they served the old overview sections.)
-- Background texture: every page section, the header and the footer use `<Halftone />` (`global/halftone.jsx`), a
-  canvas grid of small squares whose opacity follows slowly drifting cloud noise. It reads `text.primary` and the
-  peak opacity (0.11 light, 0.16 dark) from the theme; pass `subtle` behind small text (header, footer).
+- Background texture: every page section uses `<Halftone />` (`global/halftone.jsx`), a canvas grid of small
+  squares whose opacity follows slowly drifting cloud noise. It reads `text.primary` and the peak opacity
+  (0.11 light, 0.16 dark) from the theme. The header and footer stay plain.
   Its parent needs `position: relative` and `overflow: hidden`. The old `Starfield` was removed.
 
 ### Responsiveness & accessibility

@@ -6,7 +6,6 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { Container } from '../ui/primitives';
-import Halftone from './halftone';
 
 const FooterWrap = styled('footer')(({ theme }) => ({
   paddingTop: theme.spacing(6),
@@ -86,7 +85,6 @@ const SocialLink = styled('a')(({ theme }) => {
 const Footer = () => {
   return (
     <FooterWrap>
-      <Halftone subtle />
       <FooterContent>
         <FooterInner>
           <Box>

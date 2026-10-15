@@ -105,7 +105,7 @@ shared with the photography page, so a visit makes one request.
 | Branch | Purpose |
 | --- | --- |
 | `landing-page-redesign` | Everything through entry 11, without the portrait; merged into `master` on Oct 15 |
-| `halftone-background` | Entries 12–13: halftone background across the site |
+| `halftone-background` | Entries 12–14: halftone background on every page (not the header or footer) |
 | `landing-picture-pending` | Nelson's full version with the portrait frame, saved for later |
 | `landing-picture-local` | Temporary copy used for the merge; safe to delete |
 | `master` | Source branch. [Yugenero/p_website#2](https://github.com/Yugenero/p_website/pull/2) merged the early redesign; later work needs a new PR |
@@ -201,6 +201,11 @@ The halftone replaced the starfield everywhere: About, Experience, Projects, Pho
 the header (which now has it in light mode too, where the starfield was dark-only). `Halftone` now reads its
 color and opacity from the theme, so each use is just `<Halftone />`, or `<Halftone subtle />` (70% opacity)
 in the header and footer. `starfield.jsx` was deleted, which also cleared its old lint warning.
+
+### 14. Plain header and footer
+
+The halftone was taken back out of the header and footer at Nelson's request, so it only sits behind page
+content. The `subtle` prop went with it.
 
 ### Content corrections along the way
 

@@ -12,7 +12,6 @@ import { styled, useTheme } from '@mui/material/styles';
 import { NavLink, useLocation } from 'react-router-dom';
 import { Container } from '../ui/primitives';
 import { CrossRule } from '../ui/crossRule';
-import Halftone from './halftone';
 
 const HeaderBar = styled(AppBar)(({ theme }) => ({
   position: 'sticky',
@@ -32,12 +31,6 @@ const HeaderToolbar = styled(Toolbar)(() => ({
 const HeaderRule = styled(Container)(() => ({
   position: 'relative',
   zIndex: 1,
-}));
-
-const HeaderHalftone = styled(Halftone)(() => ({
-  position: 'absolute',
-  inset: 0,
-  zIndex: 0,
 }));
 
 const HeaderInner = styled(Container)(({ theme }) => ({
@@ -302,7 +295,6 @@ export const Header = ({ mode, onToggleTheme }) => {
 
   return (
     <HeaderBar ref={headerRef} position="sticky" elevation={0}>
-      <HeaderHalftone subtle />
       <HeaderToolbar disableGutters>
         <HeaderInner>
           <HeaderLeft>

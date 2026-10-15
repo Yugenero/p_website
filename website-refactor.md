@@ -46,7 +46,7 @@ or give the page structure. Nothing is decoration for its own sake.
 | Role | Face | Where |
 | --- | --- | --- |
 | Display | Baskerville serif stack, weight 300 | Name in the hero, section titles (`SectionTitle`), footer name |
-| Body | Aeonik / system sans | Paragraphs, buttons, nav, quick-fact values; the job title under the name |
+| Body | Aeonik / system sans | Paragraphs, buttons, nav, quick-fact values |
 | Role titles | Geist | Job titles on `/work` |
 | Technical | IBM Plex Mono | Code card, "Open to new roles" status line |
 | Labels | `MetaText`: sans, `0.82rem`, weight 500, `text.secondary` | Fact labels, frame labels, dates, small headings |
@@ -56,8 +56,8 @@ or give the page structure. Nothing is decoration for its own sake.
 - **Cross rule** (`ui/crossRule.js`): a hairline with small "+" crop marks at both ends. On load the line
   grows out from the middle to both ends (1.1s, ease-out), and the marks fade in as it reaches them. It's the site's divider motif, used as the header's bottom edge and to close the landing
   hero under the buttons. Use it for any new divider; keep it bare (no labels or clocks).
-- **Name block**: serif name, with the job title on its own line underneath in a smaller sans and secondary
-  color, then the typed tagline.
+- **Name block**: serif name (`clamp(2.4rem, 3.6vw, 3.8rem)`), then the typed tagline. No job title; the
+  role shows in the pitch ("Currently at Fullstory") and on `/work`.
 - **Code card** (`landing/codeCard.js`): a bordered card titled `nelson.ts` that types out a small "about me"
   in TypeScript: base, fuel (iced coffee), training (strength and endurance), offline (photography and cars),
   and `kaizen(365) // ≈ 37.8x`, since 1% better a day compounds to about 37.8 times in a year. It's company
@@ -91,7 +91,7 @@ or give the page structure. Nothing is decoration for its own sake.
 
 | Piece | File | Contents |
 | --- | --- | --- |
-| Main column | `landing/intro.js` | Name, job title, typed tagline, "Currently at Fullstory" pitch, "Open to new roles" status, *View resume* and *Get in touch* buttons |
+| Main column | `landing/intro.js` | Name, typed tagline, "Currently at Fullstory" pitch, "Open to new roles" status, *View resume* and *Get in touch* buttons |
 | Side column | `landing/intro.js`, `landing/codeCard.js` | Typing code card, quick facts (Focus · Education · Based in) |
 | Cross rule | `ui/crossRule.js` | Closes the hero under the buttons (same rule as under the header) |
 | Background | `global/halftone.jsx` | Halftone cloud texture behind the hero (same as every other page) |
@@ -105,7 +105,7 @@ shared with the photography page, so a visit makes one request.
 | Branch | Purpose |
 | --- | --- |
 | `landing-page-redesign` | Everything through entry 11, without the portrait; merged into `master` on Oct 15 |
-| `halftone-background` | Entries 12–17: halftone background, custom cursors, smaller text (ripples tried and removed) |
+| `halftone-background` | Entries 12–18: halftone background, custom cursors, smaller text and name, no hero job title (ripples tried and removed) |
 | `landing-picture-pending` | Nelson's full version with the portrait frame, saved for later |
 | `landing-picture-local` | Temporary copy used for the merge; safe to delete |
 | `master` | Source branch. [Yugenero/p_website#2](https://github.com/Yugenero/p_website/pull/2) merged the early redesign; later work needs a new PR |
@@ -230,6 +230,13 @@ content. The `subtle` prop went with it.
 
 The mouse ripples from entry 15 were taken out at Nelson's request; `halftone.jsx` is back to the plain
 drifting clouds. The chunky cursors stay.
+
+### 18. No job title in the hero, smaller name
+
+The "Forward Deployed Engineer" line under the name was removed from the landing hero (it's still on
+`/work` and in `profile.role`). The name shrinks on wide screens: `clamp(2.4rem, 3.6vw, 3.8rem)`, down
+from `4.6vw` capped at `5.4rem`, so about 52px instead of 66px at 1440px. Phones are unchanged (the
+2.4rem floor).
 
 ### Content corrections along the way
 

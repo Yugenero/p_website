@@ -70,7 +70,7 @@ public/
 
 | Path | Component | Notes |
 | --- | --- | --- |
-| `/` | `landing/home.js` | Hero (name, role, typed tagline, pitch, resume/contact buttons, code card, quick facts) closed by a cross rule, then the photography strip. No metrics |
+| `/` | `landing/home.js` | Hero (name, typed tagline, pitch, resume/contact buttons, code card, quick facts) closed by a cross rule, then the photography strip. No metrics |
 | `/about` | `landing/about.js` | Bio + core stack |
 | `/work` | `landing/work.js` | Full experience timeline with all bullets |
 | `/projects` | `landing/projects.js` | Project cards |

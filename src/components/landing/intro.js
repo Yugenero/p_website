@@ -23,7 +23,6 @@ export const Intro = () => {
           <HeroMain>
             <HeroTitle variant="h1" component="h1">
               {profile.name}
-              <HeroRole component="span">{profile.role}</HeroRole>
             </HeroTitle>
             <TypedLine variant="body1" component="p">
               <ReactTyped
@@ -180,24 +179,12 @@ const HeroTitle = styled(Typography)(({ theme }) => ({
   fontWeight: 300,
   letterSpacing: '-0.025em',
   lineHeight: 1,
-  fontSize: 'clamp(2.4rem, 4.6vw, 5.4rem)',
+  fontSize: 'clamp(2.4rem, 3.6vw, 3.8rem)',
   margin: 0,
   color: theme.palette.text.primary,
 }));
 
 // Sits on its own line under the name, scaled down so the full title fits on one line.
-const HeroRole = styled(Typography)(({ theme }) => ({
-  display: 'block',
-  fontFamily: theme.typography.fontFamily, // sans-serif, against the serif name
-  fontWeight: 400,
-  fontSize: '0.5em',
-  lineHeight: 1.2,
-  letterSpacing: '-0.01em',
-  marginTop: '0.2em',
-  whiteSpace: 'nowrap',
-  color: theme.palette.text.secondary,
-}));
-
 const TypedLine = styled(Typography)(({ theme }) => ({
   margin: 0,
   minHeight: '2.4em',

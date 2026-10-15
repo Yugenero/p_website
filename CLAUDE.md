@@ -142,9 +142,8 @@ Build on it; don't introduce a new visual language.
   `SectionHeaderRow` in `primitives.js` are currently unused; they served the old overview sections.)
 - Background texture: every page section uses `<Halftone />` (`global/halftone.jsx`), a canvas grid of small
   squares whose opacity follows slowly drifting cloud noise. It reads `text.primary` and the peak opacity
-  (0.11 light, 0.16 dark) from the theme. The header and footer stay plain. Moving the mouse over it sends out
-  water-like ripples (monochrome: crests push, grow and brighten squares, white in dark mode, black in light);
-  mouse only, off with reduced motion. Keep ripples colorless.
+  (0.11 light, 0.16 dark) from the theme. The header and footer stay plain. No mouse
+  ripples (tried in entry 15 of the log and removed).
 - Cursors: chunky Figma-style arrow and hand (SVG data URIs in `theme.js`, `CURSOR_ARROW` / `CURSOR_HAND`),
   applied only on `pointer: fine` devices; the hand covers links, buttons and `role="button"`.
   Its parent needs `position: relative` and `overflow: hidden`. The old `Starfield` was removed.

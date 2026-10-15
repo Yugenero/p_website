@@ -105,7 +105,7 @@ shared with the photography page, so a visit makes one request.
 | Branch | Purpose |
 | --- | --- |
 | `landing-page-redesign` | Everything through entry 11, without the portrait; merged into `master` on Oct 15 |
-| `halftone-background` | Entries 12–16: halftone background, mouse ripples, custom cursors, smaller text |
+| `halftone-background` | Entries 12–17: halftone background, custom cursors, smaller text (ripples tried and removed) |
 | `landing-picture-pending` | Nelson's full version with the portrait frame, saved for later |
 | `landing-picture-local` | Temporary copy used for the merge; safe to delete |
 | `master` | Source branch. [Yugenero/p_website#2](https://github.com/Yugenero/p_website/pull/2) merged the early redesign; later work needs a new PR |
@@ -225,6 +225,11 @@ content. The `subtle` prop went with it.
   the same ratio (5.2vw → 4.6vw, 1.9vw → 1.7vw).
 - On `/work`, each role's summary and bullets stop at half the window width (`50vw`) from the `md`
   breakpoint up, so lines stay a readable length on wide screens. Phones keep the full width.
+
+### 17. Ripples removed
+
+The mouse ripples from entry 15 were taken out at Nelson's request; `halftone.jsx` is back to the plain
+drifting clouds. The chunky cursors stay.
 
 ### Content corrections along the way
 

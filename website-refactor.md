@@ -105,7 +105,7 @@ shared with the photography page, so a visit makes one request.
 | Branch | Purpose |
 | --- | --- |
 | `landing-page-redesign` | Everything through entry 11, without the portrait; merged into `master` on Oct 15 |
-| `halftone-background` | Entries 12–18: halftone background, custom cursors, smaller text and name, no hero job title (ripples tried and removed) |
+| `halftone-background` | Entries 12–19: halftone background, custom cursors, smaller text and name, no hero job title (ripples tried and removed) |
 | `landing-picture-pending` | Nelson's full version with the portrait frame, saved for later |
 | `landing-picture-local` | Temporary copy used for the merge; safe to delete |
 | `master` | Source branch. [Yugenero/p_website#2](https://github.com/Yugenero/p_website/pull/2) merged the early redesign; later work needs a new PR |
@@ -237,6 +237,14 @@ The "Forward Deployed Engineer" line under the name was removed from the landing
 `/work` and in `profile.role`). The name shrinks on wide screens: `clamp(2.4rem, 3.6vw, 3.8rem)`, down
 from `4.6vw` capped at `5.4rem`, so about 52px instead of 66px at 1440px. Phones are unchanged (the
 2.4rem floor).
+
+### 19. Even spacing between the hero's rules
+
+The hero content now has the same gap above and below it, measured from the header's cross rule and the
+hero's closing cross rule: 72px on desktop, 40px on phones (`HERO_GAP` / `HERO_GAP_MOBILE` in `intro.js`).
+Before it was about 64px above and 40px below, and the hero also filled the screen height with its content
+centered vertically, so taller screens added extra space above. That vertical centering was removed, so the gaps stay equal
+at every screen height.
 
 ### Content corrections along the way
 

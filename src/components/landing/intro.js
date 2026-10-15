@@ -99,18 +99,18 @@ const pulse = keyframes`
 `;
 
 // Fills the screen below the header on desktop, so the footer only appears once you scroll.
+// The hero's content sits between two cross rules (the header's and HeroRule) with the same gap above and
+// below: HERO_GAP on desktop, HERO_GAP_MOBILE on phones. Keep the two in sync.
+const HERO_GAP = 9; // theme spacing units (72px)
+const HERO_GAP_MOBILE = 5; // 40px
+
 const HeroSection = styled('section')(({ theme }) => ({
   position: 'relative',
   overflow: 'hidden',
-  display: 'flex',
-  alignItems: 'center',
-  minHeight: 'calc(100vh - var(--header-height, 72px))',
-  // Extra bottom padding sits the centered content a little above the middle of the screen.
-  paddingTop: theme.spacing(8),
+  paddingTop: theme.spacing(HERO_GAP),
   paddingBottom: theme.spacing(14),
   [theme.breakpoints.down('md')]: {
-    minHeight: 0,
-    paddingTop: theme.spacing(5),
+    paddingTop: theme.spacing(HERO_GAP_MOBILE),
     paddingBottom: theme.spacing(5),
   },
 }));
@@ -138,9 +138,9 @@ const HeroGrid = styled(Box)(({ theme }) => ({
 
 // Hairline with "+" marks closing the hero; the same rule sits under the header.
 const HeroRule = styled(CrossRule)(({ theme }) => ({
-  marginTop: theme.spacing(5),
+  marginTop: theme.spacing(HERO_GAP),
   [theme.breakpoints.down('md')]: {
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(HERO_GAP_MOBILE),
   },
 }));
 

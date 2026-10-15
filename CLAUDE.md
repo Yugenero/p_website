@@ -99,6 +99,8 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
     nothing wraps on phones. No employer code or branding.
   - `photoStrip.js`: four of Nelson's photos (grayscale, color on hover) linking to `/photography`. It shares
     `global/usePhotos.js` with the photography page and renders nothing if the photo service fails.
+- The hero has equal space above and below its content, between the two cross rules (`HERO_GAP` in
+  `intro.js`). Change both sides together.
 - No headshot/portrait on the landing page for now. The picture version is saved on the `landing-picture-pending` branch.
 
 ## Design system & UI guardrails

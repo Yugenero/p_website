@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import { keyframes, styled, useTheme } from '@mui/material/styles';
 import { Container, MetaText } from '../ui/primitives';
 import { CrossRule } from '../ui/crossRule';
-import Starfield from '../global/starfield';
+import Halftone from '../global/halftone';
 import { profile, quickFacts } from '../../data/profile';
 import { CodeCard } from './codeCard';
 import { PhotoStrip } from './photoStrip';
@@ -19,14 +19,9 @@ export const Intro = () => {
 
   return (
     <HeroSection>
-      <Starfield
-        density={15}
-        color={theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.text.secondary}
-        backgroundStops={['transparent', 'transparent']}
-        maxDrift={0.6}
-        ultraSubtle
-        style={{ opacity: theme.palette.mode === 'dark' ? 0.45 : 0.2 }}
-        forceWhite={true}
+      <Halftone
+        color={theme.palette.text.primary}
+        maxAlpha={theme.palette.mode === 'dark' ? 0.16 : 0.11}
       />
       <HeroContainer>
         <HeroGrid>

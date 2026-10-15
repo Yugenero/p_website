@@ -37,7 +37,7 @@ or give the page structure. Nothing is decoration for its own sake.
 5. **Sentence case, normal tracking.** No all-caps anywhere and no wide letter-spacing. Acronyms like SDK, iOS
    and .NET keep their real capitals.
 6. **Motion with a reason.** Things draw or type in once, on load, and then settle. Looping motion is limited
-   to a typing cursor, the status-dot pulse and the faint starfield. All of it respects `prefers-reduced-motion`.
+   to a typing cursor, the status-dot pulse, the faint starfield and the hero's slow halftone drift. All of it respects `prefers-reduced-motion`.
 7. **Real over illustrative.** Real numbers from the resume, a real public SDK snippet, and Nelson's own
    photographs. No placeholders, stock imagery, invented metrics or headshots (for now).
 
@@ -94,6 +94,7 @@ or give the page structure. Nothing is decoration for its own sake.
 | Main column | `landing/intro.js` | Name, job title, typed tagline, "Currently at Fullstory" pitch, "Open to new roles" status, *View resume* and *Get in touch* buttons |
 | Side column | `landing/intro.js`, `landing/codeCard.js` | Typing code card, quick facts (Focus · Education · Based in) |
 | Cross rule | `ui/crossRule.js` | Closes the hero under the buttons (same rule as under the header) |
+| Background | `global/halftone.jsx` | Halftone cloud texture behind the hero (replaced the starfield there) |
 | Photography strip | `landing/photoStrip.js` | Four photos linking to `/photography`; hidden if the photo service fails |
 
 All text content comes from `src/data/profile.js`. The photo fetch lives in `global/usePhotos.js` and is
@@ -103,7 +104,8 @@ shared with the photography page, so a visit makes one request.
 
 | Branch | Purpose |
 | --- | --- |
-| `landing-page-redesign` | The working branch: everything below, without the portrait |
+| `landing-page-redesign` | Everything through entry 11, without the portrait; merged into `master` on Oct 15 |
+| `halftone-background` | Entry 12: halftone background in the landing hero |
 | `landing-picture-pending` | Nelson's full version with the portrait frame, saved for later |
 | `landing-picture-local` | Temporary copy used for the merge; safe to delete |
 | `master` | Source branch. [Yugenero/p_website#2](https://github.com/Yugenero/p_website/pull/2) merged the early redesign; later work needs a new PR |
@@ -183,6 +185,16 @@ hover-capable devices or keyboard focus, never stuck after a click. The button s
 from `lg`, and 44px on phones. The header toolbar was raised above the cross rule so the label isn't
 cut by the line.
 
+### 12. Halftone background in the hero
+
+Inspired by the square "cloud halftone" background on nahiyan.codes (a hand-written 2D canvas, no library).
+`global/halftone.jsx` redraws the idea from scratch: 4px squares on a 7px grid, with opacity taken from
+domain-warped value noise and stepped into six levels, so it reads as banded clouds with empty gaps. It
+drifts slowly at about 10fps, uses `text.primary` so it flips with the theme (alpha 0.11 light, 0.16 dark),
+caps the canvas at about 1.8M pixels, and stops redrawing when off screen, in a hidden tab, or with reduced
+motion on (it then shows one still frame). The original's RGB-split glitch was left out to stay monochrome.
+It replaces the starfield in the landing hero only; other pages keep the starfield for now.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.
@@ -238,7 +250,8 @@ The live site only changes on `npm run deploy`, which runs the build for you (`p
 - [x] Remove the tax PDFs from the live site
 - [x] Save the portrait version on `landing-picture-pending`
 - [ ] Review the landing page locally with real photos
-- [ ] Open a new pull request from `landing-page-redesign` into `master`
+- [x] Merge `landing-page-redesign` into `master` (Oct 15)
+- [ ] Decide whether the halftone should replace the starfield on the other pages too
 - [ ] Deploy (`npm run deploy`)
 - [ ] Fix deep-link 404s on GitHub Pages
 - [ ] Regenerate `package-lock.json`

@@ -28,7 +28,7 @@ holds what, what's already been tried or rejected, and what's still open.
 | Routing | `react-router-dom` v6, `BrowserRouter` (see `src/App.js`) |
 | Styling | MUI v5 (`@mui/material`) with `styled()` + theme tokens; Emotion under the hood |
 | Theme | `src/theme.js`, light/dark built by `buildTheme(mode)`, persisted in `localStorage.themeMode` |
-| Animation | CSS keyframes, `react-typed` (typewriter text), custom `Starfield` component |
+| Animation | CSS keyframes, `react-typed` (typewriter text), custom `Starfield` and `Halftone` (canvas) components |
 | Icons | `@mui/icons-material` |
 | Photos | Fetched at runtime from a Google Cloud Function (`cloud-functions/`) backed by GCS |
 | Hosting | GitHub Pages via `npm run deploy` (`gh-pages -d build`) to the `gh-pages` branch, custom domain via `CNAME` |
@@ -57,7 +57,7 @@ src/
   components/
     ui/primitives.js     layout + type primitives (Container, Section, CompactSection, MetaText, SectionTitle, ArrowLink, …)
     ui/binaryMetaText.js typed binary section label ("0001|")
-    global/              header, footer, starfield
+    global/              header, footer, starfield, halftone
     landing/             landing hero (intro.js) + the full Experience/Projects/About sections reused by pages
     pages/               thin route wrappers (about, work, projects, photography, blog)
     styles/, pages/pageStyles/, animations/   legacy CSS + effects, mostly unused by current routes
@@ -138,7 +138,9 @@ Build on it; don't introduce a new visual language.
 - Buttons: MUI `Button` `contained` (filled) for the primary action, `outlined` for secondary.
 - Wrap content in `Container` (handles gutters); use `Section` for full pages. (`CompactSection` and
   `SectionHeaderRow` in `primitives.js` are currently unused; they served the old overview sections.)
-- The `Starfield` background is optional texture; keep it `ultraSubtle` with low opacity.
+- Background texture: the landing hero uses `Halftone` (`global/halftone.jsx`), a canvas grid of small squares
+  whose opacity follows slowly drifting cloud noise, in `text.primary` at low alpha (0.11 light, 0.16 dark).
+  Other pages still use the `Starfield`; keep it `ultraSubtle` with low opacity. Don't stack both on one section.
 
 ### Responsiveness & accessibility
 - Must work from 360px phones to wide desktops with **no horizontal page scroll** (the mobile header nav

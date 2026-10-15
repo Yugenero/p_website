@@ -105,7 +105,7 @@ shared with the photography page, so a visit makes one request.
 | Branch | Purpose |
 | --- | --- |
 | `landing-page-redesign` | Everything through entry 11, without the portrait; merged into `master` on Oct 15 |
-| `halftone-background` | Entries 12–20: halftone background, custom cursors, smaller text and name, no hero job title (ripples tried and removed) |
+| `halftone-background` | Entries 12–21: halftone background, custom cursors, smaller text and name, no hero job title (ripples tried and removed) |
 | `landing-picture-pending` | Nelson's full version with the portrait frame, saved for later |
 | `landing-picture-local` | Temporary copy used for the merge; safe to delete |
 | `master` | Source branch. [Yugenero/p_website#2](https://github.com/Yugenero/p_website/pull/2) merged the early redesign; later work needs a new PR |
@@ -252,6 +252,14 @@ The *View resume* / *Get in touch* buttons used to be pinned to the bottom of th
 last quick-fact row), which left a gap of about 200px under "Open to new roles" that read as leftover space.
 They now sit 36px under the status line, so the left column reads as one block and the open space collects
 in the lower-left corner as deliberate negative space.
+
+### 21. Serif header nav with hairline separators
+
+To make the header read more formal, the nav links now use the Baskerville serif (same as the name and section titles)
+at weight 400 instead of the bold sans, with no letter-spacing. Short 1px `divider` hairlines (1.1em tall)
+separate the items and the theme toggle, using a `::before` on each nav child after the first. The same
+treatment applies to the mobile swipe strip. Link padding grew to 14px a side to give the lines room, and
+the hover underline was re-aligned to match.
 
 ### Content corrections along the way
 

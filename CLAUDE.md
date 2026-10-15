@@ -118,6 +118,8 @@ Build on it; don't introduce a new visual language.
 ### Typography
 - Headings / display: Baskerville serif stack (`theme.typography.h1.fontFamily`), weight 300.
 - Body: Aeonik / system sans (`theme.typography.fontFamily`). Role titles use Geist.
+- Header nav: the serif at weight 400 (not bold), with 1px `divider` hairlines between items and before the theme
+  toggle, on desktop and in the mobile strip.
 - **No all-caps text, anywhere.** Never use `textTransform: 'uppercase'` (or CSS `text-transform: uppercase`),
   and never type words in capitals for styling. Use sentence case for labels, buttons, links, and tags.
   Real acronyms (SDK, SQL, iOS, .NET) are fine. MUI's `button` and `overline` variants are set to

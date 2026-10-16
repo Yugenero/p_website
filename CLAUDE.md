@@ -182,7 +182,8 @@ Build on it; don't introduce a new visual language.
   sidebar's social links **on hover only** (LinkedIn `#0A66C2` / `#70B5F9` in dark, GitHub green `#2DA44E` / `#7EE787` in dark,
   Instagram's gradient), the email link's light red on hover (`#D9473F` / `#FF8A80` in dark), Georgia Tech CS in Tech Gold on hover
   (`#857437` Tech Dark Gold / `#B3A369` Tech Gold in dark), Civic Digital Experience in light blue on hover
-  (`#2B8FD6` / `#8CCBFF` in dark), and Fullstory in a darker brand green, text and underline (`#047A5E` / `#11AB85` in dark). At rest
+  (`#2B8FD6` / `#8CCBFF` in dark), eKlozet rose (`#B5487A` / `#F29CC4`) and GT WebDev violet (`#6E56CF` / `#B4A6FF`)
+  on `/work` only (picked; neither has published brand colors), and Fullstory in a darker brand green, text and underline (`#047A5E` / `#11AB85` in dark). At rest
   they're the normal text colors.
   `accentColors` (crimson) in `theme.js` exists but is intentionally unused.
 - Every change must look right in **both** light and dark mode.
@@ -225,8 +226,9 @@ Build on it; don't introduce a new visual language.
   `AURA_TAIL` (140px) back to its peak at the tip (opacity 0.45 dark / 0.32 light), plus a faint pulsing halo on
   the tip. Jobs are small diamonds (`DIAMOND` 7px), hidden until the fill reaches them (then they scale in, and
   hide again if you scroll back above), and reaching a diamond highlights that job's date (`data-timeline-date`:
-  full strength, weight 600). No moving marker, no bends. The last job reached is also `data-active`: its employer
-  shows its hover look (brand color and/or underline; plain-text employers get just the underline), one job at a time.
+  full strength, weight 600). No moving marker, no bends. The fill starts empty, its tip at the very top of the line. Once the
+  fill passes a job's title, that job is `data-active`: its employer takes its `tone` color (and underline for text
+  names), one job at a time.
 - `/work` employer logos are one-color masks (`currentColor`); on hover they take the brand color set by
   `logo.tone` in `profile.js`: Fullstory dark green, Georgia Tech Tech Gold (same per-theme shades as the sidebar).
   Employers without a logo but with a `url` (Civic Digital Experience → LinkedIn) are `EmployerLink`s: no underline

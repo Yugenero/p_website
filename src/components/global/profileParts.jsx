@@ -41,6 +41,10 @@ export const TECH_GOLD = { light: '#857437', dark: '#B3A369' };
 export const FULLSTORY_GREEN = { light: '#047A5E', dark: '#11AB85' };
 // Civic Digital Experience turns light blue on hover (a deeper blue in light mode so it reads on off-white).
 export const CIVIC_BLUE = { light: '#2B8FD6', dark: '#8CCBFF' };
+// eKlozet and GT WebDev have no published brand colors; these are picked to sit apart from the others: a dusty
+// rose for the designer-consignment boutique and a violet for the web dev club. Deeper shades in light mode.
+export const EKLOZET_ROSE = { light: '#B5487A', dark: '#F29CC4' };
+export const WEBDEV_VIOLET = { light: '#6E56CF', dark: '#B4A6FF' };
 export const INSTAGRAM_GRADIENT = 'linear-gradient(90deg, #F58529, #DD2A7B 45%, #8134AF 75%, #515BD4)';
 
 const timeFormat = new Intl.DateTimeFormat('en-US', {

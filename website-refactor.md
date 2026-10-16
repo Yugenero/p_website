@@ -606,6 +606,15 @@ reached is highlighted (`data-active` on the item, set by `useScrollTimeline` ne
 moves down the list as you scroll and moves back up if you scroll back. Dates still stay lit for every job reached.
 Checked in the dev server in both themes.
 
+### 48. Timeline starts empty; employers light up past their titles, all in color
+
+- At the top of `/work` the fill is empty and its tip sits on the very top of the line (the first diamond). The
+  reading line starts on the first marker and eases down to its usual spot over the first half screen of scrolling.
+- A job becomes active only once the fill has gone past its title (the employer name), not its date.
+- eKlozet and GT WebDev have colors now too: rose (`#B5487A` light / `#F29CC4` dark) and violet (`#6E56CF` /
+  `#B4A6FF`). They have no published brand colors, so these are picks that sit apart from the others (`tone` in
+  `profile.js`, colors in `profileParts.jsx`). All tone colors live in one `TONES` map in `work.jsx`.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

@@ -102,6 +102,8 @@ export const workExperience = [
   },
   {
     employer: 'eKlozet Designer Consignment',
+    // `tone` picks the employer's highlight color on /work (rose; see profileParts.jsx).
+    tone: 'eklozet',
     location: 'Atlanta, GA',
     date: 'Jan 2022 — Dec 2022',
     title: 'Software Engineer Intern',
@@ -115,6 +117,7 @@ export const workExperience = [
   },
   {
     employer: 'GT WebDev',
+    tone: 'webdev',
     location: 'Atlanta, GA',
     date: 'Aug 2020 — May 2021',
     title: 'Web Developer',

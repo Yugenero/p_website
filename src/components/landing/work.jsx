@@ -13,7 +13,7 @@ import {
   SectionTitle,
 } from '../ui/primitives';
 import Halftone from '../global/halftone';
-import { CIVIC_BLUE, FULLSTORY_GREEN, TECH_GOLD } from '../global/profileParts';
+import { CIVIC_BLUE, EKLOZET_ROSE, FULLSTORY_GREEN, TECH_GOLD, WEBDEV_VIOLET } from '../global/profileParts';
 import { BinaryMetaText } from '../ui/binaryMetaText';
 import { education, workExperience } from '../../data/profile';
 
@@ -59,7 +59,9 @@ const useScrollTimeline = ({ listRef, railRef, fillRef, markerRefs }) => {
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let markerFractions = [];
+    let activeFractions = []; // where each job's title ends: passing it makes that job the active one
     let items = [];
+    let startReadY = 0; // page y of the first marker: where the reading line starts at the top of the page
     let railHeight = 0;
     let startY = 0; // first marker: where the line starts
     let endY = 0; // last marker: where the line ends
@@ -85,7 +87,12 @@ const useScrollTimeline = ({ listRef, railRef, fillRef, markerRefs }) => {
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       const pageProgress = maxScroll > 0 ? clamp01(window.scrollY / maxScroll) : 1;
       const readY = window.innerHeight * (READ_LINE + (1 - READ_LINE) * pageProgress);
-      return toFraction(readY - list.getBoundingClientRect().top);
+      // At the top of the page the reading line sits on the first marker, so the fill starts empty at the very top
+      // of the line; over the first half screen of scrolling it eases down to READ_LINE.
+      const ramp = Math.min(window.innerHeight * 0.5, maxScroll);
+      const t = ramp > 0 ? clamp01(window.scrollY / ramp) : 1;
+      const y = startReadY - window.scrollY + (readY - (startReadY - window.scrollY)) * t;
+      return toFraction(y - list.getBoundingClientRect().top);
     };
 
     const render = () => {
@@ -98,16 +105,18 @@ const useScrollTimeline = ({ listRef, railRef, fillRef, markerRefs }) => {
       auraGradient.setAttribute('y1', String(tip.y - AURA_TAIL));
       auraGradient.setAttribute('y2', String(tip.y));
       tipGlow.style.transform = `translate3d(${tip.x}px, ${tip.y}px, 0)`;
-      tipGlow.style.opacity = length > 0.5 ? '1' : '0';
+      tipGlow.style.opacity = '1';
       // A job counts as reached once the fill gets to its diamond: the diamond appears and the job's date lights up.
-      // The last job reached is the active one: its employer takes its hover look (brand color, underline).
-      let active = -1;
       markerFractions.forEach((fraction, i) => {
-        const isReached = current >= fraction - 0.001;
-        if (isReached) active = i;
-        const reached = String(isReached);
+        const reached = String(current >= fraction - 0.001);
         if (markerRefs.current[i]) markerRefs.current[i].dataset.reached = reached;
         if (items[i]) items[i].dataset.reached = reached;
+      });
+      // Once the fill has gone past a job's title, that job is the active one (the last such job wins): its employer
+      // takes its highlight color and underline.
+      let active = -1;
+      activeFractions.forEach((fraction, i) => {
+        if (current >= fraction) active = i;
       });
       items.forEach((item, i) => {
         item.dataset.active = String(i === active);
@@ -139,7 +148,13 @@ const useScrollTimeline = ({ listRef, railRef, fillRef, markerRefs }) => {
       railHeight = rail.offsetHeight;
       items = Array.from(list.querySelectorAll('[data-timeline-item]'));
       markerFractions = items.map((item) => toFraction(item.offsetTop + MARKER_Y));
+      // Titles' offsetTop is measured from the list too (the nearest positioned ancestor).
+      activeFractions = items.map((item) => {
+        const title = item.querySelector('h3');
+        return toFraction(title ? title.offsetTop + title.offsetHeight : item.offsetTop + MARKER_Y);
+      });
       if (!markerFractions.length) return;
+      startReadY = list.getBoundingClientRect().top + window.scrollY + items[0].offsetTop + MARKER_Y;
 
       // Rail line: straight down from the first marker to the last, so neither end has a stub past a marker.
       startY = markerFractions[0] * railHeight;
@@ -210,7 +225,7 @@ const Employer = ({ experience }) => {
       {employer}
     </EmployerLink>
   ) : (
-    <EmployerName>{employer}</EmployerName>
+    <EmployerName data-tone={tone}>{employer}</EmployerName>
   );
 };
 
@@ -496,12 +511,7 @@ const LogoLink = styled(Link)(({ theme }) => {
     textDecoration: 'none',
     transition: 'color 0.2s ease',
     // Also while its job is the active one on the timeline.
-    '&[data-tone="fullstory"]:hover, &[data-tone="fullstory"]:focus-visible, [data-active="true"] &[data-tone="fullstory"]': {
-      color: FULLSTORY_GREEN[mode] ?? FULLSTORY_GREEN.light,
-    },
-    '&[data-tone="school"]:hover, &[data-tone="school"]:focus-visible, [data-active="true"] &[data-tone="school"]': {
-      color: TECH_GOLD[mode] ?? TECH_GOLD.light,
-    },
+    ...toneRules(mode, { hover: true }),
     '&:not([data-tone]):hover': {
       opacity: 0.65,
     },
@@ -515,6 +525,26 @@ const LogoLink = styled(Link)(({ theme }) => {
 // rest; on hover a thin underline draws in from the left and the name takes its `tone` color (light blue for Civic,
 // as in the sidebar). The underline is a background line rather than a pseudo-element, so it follows the text
 // across a line break when a long title wraps on phones.
+// Each employer's highlight color, by its `tone` in profile.js.
+const TONES = {
+  fullstory: FULLSTORY_GREEN,
+  school: TECH_GOLD,
+  civic: CIVIC_BLUE,
+  eklozet: EKLOZET_ROSE,
+  webdev: WEBDEV_VIOLET,
+};
+
+// Color rules for every tone: while the job is active on the timeline, and on hover/focus for links.
+const toneRules = (mode, { hover }) =>
+  Object.fromEntries(
+    Object.entries(TONES).map(([tone, color]) => {
+      const self = `&[data-tone="${tone}"]`;
+      const selectors = [`[data-active="true"] ${self}`];
+      if (hover) selectors.unshift(`${self}:hover`, `${self}:focus-visible`);
+      return [selectors.join(', '), { color: color[mode] ?? color.light }];
+    }),
+  );
+
 // The same underline (and tone color) shows while the job is the active one on the timeline.
 const employerUnderline = {
   backgroundImage: 'linear-gradient(currentColor, currentColor)',
@@ -540,13 +570,14 @@ const EmployerLink = styled(Link)(({ theme }) => ({
   '&:hover, &:focus-visible': {
     backgroundSize: '100% 1px',
   },
-  '&[data-tone="civic"]:hover, &[data-tone="civic"]:focus-visible, [data-active="true"] &[data-tone="civic"]': {
-    color: CIVIC_BLUE[theme.palette.mode] ?? CIVIC_BLUE.light,
-  },
+  ...toneRules(theme.palette.mode, { hover: true }),
 }));
 
-// Employers without a link (eKlozet, GT WebDev): plain text that only gets the underline while active.
-const EmployerName = styled('span')(() => employerUnderline);
+// Employers without a link (eKlozet, GT WebDev): plain text that only takes its color and underline while active.
+const EmployerName = styled('span')(({ theme }) => ({
+  ...employerUnderline,
+  ...toneRules(theme.palette.mode, { hover: false }),
+}));
 
 const WorkLocation = styled(Typography)(() => ({
   fontSize: '0.98rem',

@@ -230,7 +230,8 @@ Build on it; don't introduce a new visual language.
   full strength, weight 600). No moving marker, no bends. The fill starts empty, its tip at the very top of the line. Once the
   fill passes a job's title, that job is `data-active`: its employer takes its `tone` color (and underline for text
   names), one job at a time.
-- `/work` employer logos are one-color masks (`currentColor`); on hover they take the brand color set by
+- `/work` employer logos are one-color masks (`currentColor`); on hover (and while their job is active) they get
+  the same thin underline as the text employers and take the brand color set by
   `logo.tone` in `profile.js`: Fullstory dark green, Georgia Tech Tech Gold (same per-theme shades as the sidebar).
   Employers without a logo but with a `url` (Civic Digital Experience → LinkedIn) are `EmployerLink`s: no underline
   at rest, a background-line underline that draws in on hover (it survives line wraps on phones) and the entry's

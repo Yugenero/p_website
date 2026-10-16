@@ -632,6 +632,12 @@ Checked in the dev server in both themes.
 - Bullets rewritten shorter in `profile.js`, same facts and numbers.
 - Summaries and bullets now stop at 60% of the job column (was `50vw`), full width on phones.
 
+### 51. Logos underline like the other employer links
+
+The Fullstory and Georgia Tech logos on `/work` now get the same thin underline as the text employers (Civic,
+eKlozet, GT WebDev), in their tone color, on hover and while their job is active: Fullstory green, Tech Gold.
+Before, the logos only changed color.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

@@ -25,6 +25,12 @@ import {
 
 export const SIDEBAR_WIDTH = 'clamp(300px, 26vw, 400px)';
 
+// Sidebar text scales with the window so the column fits without scrolling: it shrinks as the window narrows
+// (the column stops shrinking at 300px, so its text has to) and as it gets shorter, from 1rem down to 0.75rem.
+// Spacing is in em (8px steps at the 15px base) so gaps shrink along with the text.
+const SIDEBAR_FONT_SIZE = 'clamp(0.75rem, min(calc(0.6rem + 0.45vw), 1.85vh), 1rem)';
+const em = (n) => `${+((n * 8) / 15).toFixed(3)}em`;
+
 export const Sidebar = ({ mode, onToggleTheme }) => {
   return (
     <SidebarRoot>
@@ -98,7 +104,7 @@ export const Sidebar = ({ mode, onToggleTheme }) => {
               resume
             </Underlined>
           </Line>
-          <Socials>
+          <SidebarSocials>
             {SOCIALS.map((social) => (
               <SocialLink
                 key={social.label}
@@ -110,7 +116,7 @@ export const Sidebar = ({ mode, onToggleTheme }) => {
                 {social.label}
               </SocialLink>
             ))}
-          </Socials>
+          </SidebarSocials>
         </Block>
 
         <ClockRow>
@@ -146,15 +152,21 @@ const SidebarRoot = styled('aside')(({ theme }) => ({
   flexShrink: 0,
   width: SIDEBAR_WIDTH,
   height: '100vh',
+  // Fallback for very short windows, where even the smallest text doesn't fit: scroll, but without a bar
+  // (it showed up as a stripe between the sidebar and the page).
   overflowY: 'auto',
+  scrollbarWidth: 'none',
+  '&::-webkit-scrollbar': {
+    display: 'none',
+  },
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  gap: theme.spacing(5),
-  padding: theme.spacing(4),
+  gap: em(5),
+  padding: em(4),
   borderRight: `1px solid ${theme.palette.divider}`,
   backgroundColor: theme.palette.background.default,
-  fontSize: '1rem',
+  fontSize: SIDEBAR_FONT_SIZE,
   lineHeight: 1.55,
   color: theme.palette.text.secondary,
   zIndex: 2,
@@ -201,7 +213,7 @@ const NameLink = styled(NavLink)(({ theme }) => ({
   display: 'inline-block',
   fontFamily: theme.typography.h1.fontFamily,
   fontWeight: 400,
-  fontSize: '1.75rem',
+  fontSize: '1.75em',
   lineHeight: 1.1,
   letterSpacing: '-0.01em',
   // Room for the "g" descender, which gradient text would otherwise clip; the margin cancels it in layout.
@@ -253,26 +265,26 @@ const NameTip = styled('span')(({ theme }) => ({
 }));
 
 const Tagline = styled('p')(({ theme }) => ({
-  margin: theme.spacing(0.75, 0, 0),
+  margin: `${em(0.75)} 0 0`,
 }));
 
 const Bio = styled('p')(({ theme }) => ({
-  margin: theme.spacing(3, 0, 0),
+  margin: `${em(3)} 0 0`,
   maxWidth: '34ch',
 }));
 
 const Block = styled(Box)(({ theme }) => ({
-  marginTop: theme.spacing(3.5),
+  marginTop: em(3.5),
   display: 'flex',
   flexDirection: 'column',
-  gap: theme.spacing(0.5),
+  gap: em(0.5),
   '& + p': {
-    marginTop: theme.spacing(1.5),
+    marginTop: em(1.5),
   },
 }));
 
 const Label = styled('p')(({ theme }) => ({
-  margin: theme.spacing(0, 0, 0.5),
+  margin: `0 0 ${em(0.5)}`,
 }));
 
 const Line = styled('p')(() => ({
@@ -282,7 +294,7 @@ const Line = styled('p')(() => ({
 
 
 const ClockRow = styled(Box)(({ theme }) => ({
-  marginTop: theme.spacing(3.5),
+  marginTop: em(3.5),
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -298,9 +310,26 @@ const BottomRow = styled(Box)(({ theme }) => ({
   gap: theme.spacing(2),
 }));
 
-const Nav = styled('nav')(({ theme }) => ({
+const SidebarSocials = styled(Socials)(() => ({
+  gap: em(0.5),
+  marginTop: em(2),
+}));
+
+// The shared nav items are sized in rem for the phone menu; here they follow the sidebar's scaled text.
+const Nav = styled('nav')(() => ({
   display: 'flex',
   flexDirection: 'column',
-  gap: theme.spacing(0.75),
+  gap: em(0.75),
+  '& > a, & > span': {
+    fontSize: '1.05em',
+  },
+  '& > a > span': {
+    width: '0.6em',
+    height: '0.6em',
+    marginRight: em(1.5),
+  },
+  '& > span > span': {
+    fontSize: '0.69em',
+  },
 }));
 

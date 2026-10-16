@@ -597,6 +597,15 @@ from the left. The underline is a background line with `box-decoration-break: cl
 pseudo-element, because a job title can wrap on phones and a pseudo-element underline would break across lines.
 Checked on desktop in both themes and at 360px, where the name wraps to two lines and the underline follows both.
 
+### 47. Sidebar text scales so the column never scrolls
+
+On shorter or narrower windows (e.g. 992×795) the sidebar was taller than the screen, so it scrolled and the
+custom 10px scrollbar showed up as a light stripe between the sidebar and the page. The sidebar's text now
+scales with the window: `clamp(0.75rem, min(calc(0.6rem + 0.45vw), 1.85vh), 1rem)`, so it shrinks as the window
+narrows (the column stops at 300px, so the text has to) and as it gets shorter. Spacing, the name and the nav
+are in `em` now, so everything shrinks together. At 1440×900 and up it's unchanged (1rem). For very short windows
+the sidebar still scrolls as a fallback, but with its scrollbar hidden. Checked at 992×795, 1000×650 and 1440×900.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

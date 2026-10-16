@@ -108,6 +108,9 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
 ### Sidebar (`global/sidebar.jsx`) — the site's frame
 - Fixed left column on every page (`SIDEBAR_WIDTH = clamp(300px, 26vw, 400px)`, full height, `divider` hairline
   on its right edge). Content on the right scrolls; the sidebar doesn't.
+- Its text scales with the window (`SIDEBAR_FONT_SIZE`: 1rem down to 0.75rem as the window gets narrower or
+  shorter) so the column fits without scrolling; spacing inside it is in `em` (the `em()` helper) so it shrinks
+  too. Size new sidebar pieces in `em`, not `rem` or px. Its scrollbar is hidden (it read as a stripe).
 - Name hover (`NameLink` / `NameTip`): the name turns brushed chrome (grey-scale banded gradient clipped to the
   text, tuned per theme) and a bright streak sweeps across it once (1.1s); a "that's me :)" note appears to its
   right in the same style as the theme toggle's label. Hover-capable devices and keyboard focus only; with

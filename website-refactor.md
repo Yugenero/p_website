@@ -148,8 +148,8 @@ the **photo strip** (`landing/photoStrip.jsx`) and the old hero (`landing/intro.
   column scrolls beside it. Page content sits in `Container` (40px side gutters on desktop, 16px on phones).
 - Home feed: 24px padding, 12px gaps, lead tile `clamp(380px, 64vh, 680px)` tall, the rest
   `clamp(300px, 44vh, 460px)`.
-- Below the `md` breakpoint the sidebar stacks on top (full profile on `/`, just name + toggle + nav elsewhere),
-  and the feed and other grids become one column.
+- Below the `md` breakpoint a sticky bar (name, toggle, menu) replaces the sidebar, with a full-screen menu and a
+  typed intro above the feed on `/`; the feed and other grids become one column (entry 36).
 - No horizontal page scrolling at any width from 360px up (measured at 360px on `/`, `/work`, `/about` and
   `/projects` after entry 26).
 
@@ -482,6 +482,29 @@ turns Georgia Tech's Tech Gold on hover, underline included: `#B3A369` in dark m
 Fullstory now turns green on hover, text and underline together, in a darker green than entry 34's underline:
 `#11AB85` in dark mode (from fullstory.com's palette) and `#047A5E` in light mode (a deeper shade of their
 `#059573`, so it reads on off-white). The underline follows the text color.
+
+### 36. Phone layout: sticky bar, full-screen menu, typed intro
+
+On phones the sidebar used to stack on top and fill the first screen before any work showed. Phones now get
+their own layout, following content-first mobile patterns; desktop is unchanged.
+
+- **Sticky bar** (`global/mobileHeader.jsx`): name, theme toggle and a menu button (two bars → X), 56px tall.
+- **Full-screen menu**: large nav rows with hairlines and the square marker (locked pages greyed with "soon"),
+  then role / open to work, previously at, Georgia Tech CS, Email · Resume, LinkedIn · GitHub · Instagram,
+  and the clock. Closes on navigation, Escape or the button; locks page scroll; moves focus in and back out.
+- **Home intro** (`landing/mobileIntro.jsx`): brings back the typed tagline from the old hero, now cycling
+  "Solutions Engineer at Fullstory." (built from `profile.role`/`company`) and the five old lines
+  (`profile.typedLines`), so one line carries what the sidebar spreads over several blocks. Then the green-dot
+  status and two buttons, "Email me" and "Resume". Reduced motion shows the first line without typing.
+- **Shared pieces** moved to `global/profileParts.jsx` (nav list, socials, inline links with hover colors,
+  clock, status dot), used by both the sidebar and the phone menu. `sidebar.jsx` is now desktop-only.
+- **No sidebar flash:** `App.jsx` picks the layout on the first render (`useMediaQuery` with `noSsr`).
+- **Feed polish on phones:** tiles size to content instead of a tall min height; the meta row drops the date to
+  its own line instead of splitting "Research simulator"; the ↗ stays with the last stack item.
+- **Checked** with real phone emulation over Chrome DevTools (390×844 and 360px, 3× density, touch), light and
+  dark: no sidebar, typed line running, menu opens / locks scroll / focuses "Home", tapping Experience
+  navigates and closes it, no horizontal overflow, no console errors (the dev server only shows React Router's
+  existing v7 "future flag" notices). Desktop screenshot unchanged.
 
 ### Content corrections along the way
 

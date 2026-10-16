@@ -63,8 +63,9 @@ src/
   components/
     ui/primitives.js     layout + type primitives (Container, Section, CompactSection, MetaText, SectionTitle, ArrowLink, …)
     ui/binaryMetaText.jsx typed binary section label ("0001|")
-    global/              sidebar (identity, clock, nav), halftone background, usePhotos
-    landing/             home feed (projectFeed.jsx) + the full Experience/Projects/About sections reused by pages;
+    global/              sidebar.jsx (desktop frame), mobileHeader.jsx (phone bar + menu), profileParts.jsx
+                         (shared nav/links/socials/clock), halftone background, usePhotos
+    landing/             home feed (projectFeed.jsx), phone intro (mobileIntro.jsx) + the full Experience/Projects/About sections reused by pages;
                          intro.jsx / codeCard.jsx / photoStrip.jsx are the old hero, kept but not rendered
     pages/               thin route wrappers (about, work, projects, photography, blog)
     styles/, pages/pageStyles/, animations/   legacy CSS + effects, mostly unused by current routes
@@ -98,6 +99,7 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
   titles, or availability promises.
 - `profile.photographyOpen` locks or opens `/photography` everywhere (route and sidebar nav).
 - `profile.openToWork` toggles the "Open to new roles" line (green dot) in the sidebar's *now* block.
+- Phone intro copy: `profile.typedLines` (after the derived role line).
 - Sidebar copy also lives in `profile`: `tagline` (list, joined with ` · `), `school` (label + link), `bio` (two
   lines, truthful), `previously` (entries with `name`, optional `href` and `tone`), `timeZone`.
 - No metrics/impact numbers on the home page or sidebar. Experience, projects, and skills belong on their own
@@ -123,13 +125,29 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
   gets a small filled square before it. Locked pages show greyed out with a small mono "soon" and aren't links.
 - **Two-tone text** is the hierarchy: `text.secondary` for connecting words ("Previously at", "Reach out via"),
   `text.primary` for what matters (company names, links, the time). Almost no bold.
-- Phones: the sidebar becomes a block at the top with a bottom hairline. On `/` it shows everything; on other
-  pages only the name, theme toggle and nav, so content starts quickly. Locked items are hidden on phones.
+- Desktop only. `App.jsx` renders it from `md` up and `MobileHeader` below, chosen on the first render
+  (`useMediaQuery(..., { noSsr: true })`) so phones never flash the sidebar.
+- Pieces both layouts use (nav list, socials, inline links and their hover colors, clock, status dot, "soon")
+  live in `global/profileParts.jsx`. Change them there, not per layout.
+
+### Phones (below `md`): bar, menu, intro
+Content first, navigation one tap away. Don't bring the full sidebar back on top of the content.
+- **Sticky bar** (`global/mobileHeader.jsx`, 56px, bottom hairline): name in the serif (links home), theme toggle
+  and a menu button (two bars that cross into an X), both 44px squares.
+- **Full-screen menu** under the bar: big nav rows (56px, hairlines, square marker, locked items with "soon"),
+  then role/open-to-work, "Previously at", Georgia Tech CS, an Email/Resume row, a socials row, and the clock.
+  Closes on navigation, Escape or the button; locks page scroll while open; focus moves to the first link and
+  back to the button on Escape; hidden from screen readers and tab order when closed (`aria-hidden`, `inert`).
+- **Home intro** (`landing/mobileIntro.jsx`, phones only, above the feed): a typed line cycling
+  `"<role> at <company>."` then `profile.typedLines` (static first line with reduced motion), the green-dot
+  status, and two 44px buttons: "Email me" (contained) and "Resume" (outlined).
+- Feed tiles on phones size to their content (fixed gap under the meta row) rather than a min height.
 
 ### Home feed (`landing/projectFeed.jsx`)
 - One tile per project, each a link to its repo (new tab). The first tile spans the full width and is taller
   (`clamp(380px, 64vh, 680px)`); the rest pair up two to a row; a last tile without a partner spans the row.
-  One column on phones.
+  One column on phones. The meta row wraps the date onto its own line rather than breaking words, and the ↗
+  stays attached to the last stack item.
 - Tile anatomy: halftone texture behind; top row in mono (`01 :: <kind>` left, date right); bottom: big sans
   title (weight 400, tight tracking), then the description in small mono (`text.secondary`) and the stack in
   mono with a ↗ that nudges on hover. The lead tile puts description and stack side by side from `lg` up.
@@ -191,7 +209,7 @@ Build on it; don't introduce a new visual language.
   `/projects` cards.
 - Theme toggle (`animations/themeToggle.jsx`): a square button with a half-filled circle that turns 180° when the
   theme flips, and a "Switch to dark/light mode" label on hover (hover-capable devices) or keyboard focus.
-  It sits bottom-right of the sidebar, level with the nav (top right beside the name on phones). It's 44px on
+  It sits bottom-right of the sidebar, level with the nav (in the phone bar, beside the menu button). It's 44px on
   phones. Pass `tipPlacement="top"` when it's near the bottom of the screen.
 - Structure with **1px hairlines**: `text.primary` for a section's top rule, `divider` between rows.
   No drop shadows except on hover lift.
@@ -213,7 +231,8 @@ Build on it; don't introduce a new visual language.
 
 ### Responsiveness & accessibility
 - Must work from 360px phones to wide desktops with **no horizontal page scroll**. Below the `md` breakpoint
-  the sidebar stacks on top and grids collapse to one column.
+  the phone bar + menu replace the sidebar and grids collapse to one column. Check phones with real device
+  emulation (e.g. Chrome DevTools at 390×844 and 360px), not a narrow desktop window.
 - Use semantic elements (`section`, `nav`, `dl`, `h1`–`h3` in order) and `aria-label` on icon-only links.
 - Respect `prefers-reduced-motion` for any new looping animation.
 - External links get `target="_blank" rel="noopener noreferrer"`.

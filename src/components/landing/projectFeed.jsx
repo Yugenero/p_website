@@ -34,9 +34,13 @@ export const ProjectFeed = () => (
           <Details>
             <Description>{project.description}</Description>
             <Stack>
-              {project.stack.join(' · ')}
-              <span className="tile-arrow" aria-hidden="true">
-                ↗
+              {project.stack.slice(0, -1).map((item) => `${item} · `)}
+              {/* The last item and the arrow stay together so the arrow never wraps onto its own line. */}
+              <span className="tile-last">
+                {project.stack[project.stack.length - 1]}
+                <span className="tile-arrow" aria-hidden="true">
+                  ↗
+                </span>
               </span>
             </Stack>
           </Details>
@@ -106,11 +110,14 @@ const Tile = styled('a')(({ theme }) => ({
   [theme.breakpoints.up('lg')]: {
     padding: theme.spacing(4),
   },
+  // Phones: tiles size to their content (with a fixed gap under the meta row) so the feed isn't mostly blank.
   [theme.breakpoints.down('md')]: {
-    minHeight: 300,
+    minHeight: 0,
+    gap: theme.spacing(6),
     padding: theme.spacing(2.5),
     '&[data-lead]': {
-      minHeight: 360,
+      minHeight: 0,
+      gap: theme.spacing(9),
     },
   },
   '@media (prefers-reduced-motion: reduce)': {
@@ -120,13 +127,16 @@ const Tile = styled('a')(({ theme }) => ({
   },
 }));
 
+// Kind on the left, date on the right; on narrow tiles the date drops to its own line instead of breaking.
 const TileTop = styled(Box)(({ theme }) => ({
   display: 'flex',
+  flexWrap: 'wrap',
   justifyContent: 'space-between',
-  gap: theme.spacing(2),
+  gap: theme.spacing(0.5, 2),
 }));
 
 const Meta = styled('span')(({ theme }) => ({
+  whiteSpace: 'nowrap',
   fontFamily: MONO_FONT,
   fontSize: '0.78rem',
   color: theme.palette.text.secondary,
@@ -177,6 +187,9 @@ const Description = styled('p')(({ theme }) => ({
 
 const Stack = styled('p')(({ theme }) => ({
   margin: 0,
+  '& .tile-last': {
+    whiteSpace: 'nowrap',
+  },
   flexShrink: 0,
   fontFamily: MONO_FONT,
   fontSize: '0.78rem',

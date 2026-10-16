@@ -21,6 +21,14 @@ export const profile = {
   school: { label: 'Georgia Tech CS', href: collegeOfComputingUrl },
   bio: "I build across mobile SDKs, AI workflows and full-stack web, often working directly in customers' codebases.",
   // Sidebar "Previously at" line, newest first.
+  // Phone home page: a typed line cycling through "<role> at <company>." and then these (from the old hero).
+  typedLines: [
+    'Algorithms practitioner, intentional problem solver.',
+    'Humanistic, design-minded software engineer.',
+    'Georgia\u00A0Tech CS alum, information networks focus.',
+    'Car enthusiast, hybrid athlete, iced coffee enjoyer.',
+    'Kaizen as a practice - aiming to be 1% better every day.',
+  ],
   // `href` makes the name a link; `tone` picks its hover color in the sidebar.
   previously: [
     { name: 'Civic Digital Experience', href: 'https://www.linkedin.com/company/civicdx/home/', tone: 'civic' },

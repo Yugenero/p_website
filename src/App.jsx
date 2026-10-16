@@ -1,7 +1,9 @@
 import { Sidebar } from './components/global/sidebar';
+import { MobileHeader } from './components/global/mobileHeader';
 import Home from './components/landing/home';
 
 import { CssBaseline, ThemeProvider } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { BrowserRouter as Router, Navigate, Routes, Route, useLocation } from 'react-router-dom';
 import { Main, Page } from './components/ui/primitives';
 import { useEffect, useMemo, useState } from 'react';
@@ -37,9 +39,16 @@ const AnimatedRoutes = () => {
 };
 
 const AppShell = ({ mode, onToggleTheme }) => {
+  // Measured on the first render (noSsr; the app only runs in the browser), so phones never flash the sidebar.
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('md'), { noSsr: true });
+
   return (
     <Page>
-      <Sidebar mode={mode} onToggleTheme={onToggleTheme} />
+      {isMobile ? (
+        <MobileHeader mode={mode} onToggleTheme={onToggleTheme} />
+      ) : (
+        <Sidebar mode={mode} onToggleTheme={onToggleTheme} />
+      )}
       <Main>
         <AnimatedRoutes />
       </Main>

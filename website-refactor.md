@@ -398,6 +398,24 @@ identity and nav, and a feed of big tiles on the right.
 - **Checked:** build passes (same old `projects.jsx` warning); screenshots of home (light and dark),
   `/work` (dark) and the phone layouts; no horizontal overflow at 360px on four pages.
 
+### 27. Fix: blank page in the dev server
+
+`npm start` showed only the background color (black in dark mode) on every page. The browser console had
+`[astro-island] Error hydrating /src/App.jsx TypeError: createTheme_default is not a function`. Production builds
+were fine, which is why `npm run build` and the static-server checks in entries 25 and 26 didn't catch it; the
+dev server was only checked for HTTP 200, never rendered.
+
+- **Cause:** the dev server scans every file in `src/` for dependencies, including dead ones. The unused legacy
+  `landing/navigation.jsx` imported four `@mui/icons-material/<Icon>` files, which are CommonJS and `require()`
+  MUI's CommonJS build of `@mui/system`. Mixed with the ES-module MUI the site uses, esbuild wrapped the shared
+  modules in lazy initializers, and other chunks called `createTheme` before it was initialized.
+- **Fix:** deleted `landing/navigation.jsx` (nothing imported it). An `optimizeDeps.include` list was tried
+  first and didn't help, so it wasn't kept.
+- **Checked:** dev server renders `/`, `/work` and `/about` with no hydration errors (headless Chrome, console
+  captured), and a screenshot of `/` in dev.
+- **Rule added to `CLAUDE.md`:** load the dev server in a browser before pushing, and delete dead files rather
+  than leaving them in `src/`.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.
@@ -438,7 +456,7 @@ The live site only changes on `npm run deploy`, which runs the build for you (`p
 - **Pre-rendering (Astro stage 2):** pages render in the browser only; see entry 25.
 - **Writing page:** disabled in the header, and its code still references a placeholder cat image.
 - **Build warnings:** one left from before this work: `landing/projects.jsx` (duplicate `minHeight`).
-- **Unused code and dependencies:** legacy CSS, animations, `navigation.jsx`, `stuff.jsx`, `signature.jsx`,
+- **Unused code and dependencies:** legacy CSS, animations, `stuff.jsx`, `signature.jsx`,
   `Notes.txt`, the stray `p_website.git/` directory, the `SectionHeaderRow` and `CompactSection` primitives
   (unused since the landing page was trimmed), and several installed but unused packages (see `CLAUDE.md`).
 

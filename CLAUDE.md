@@ -210,7 +210,13 @@ Build on it; don't introduce a new visual language.
 - No placeholder content on production pages (lorem ipsum, cat images, "Empty Card").
 - Do work on a feature branch; `master` is the source branch and `gh-pages` is the deployed build. Don't run
   `npm run deploy` unless Nelson asks to ship.
-- `npm run build` must pass before pushing. Don't add new build warnings.
+- `npm run build` must pass before pushing. Don't add new build warnings. **Also load the dev server in a browser**
+  (`npm start`): the dev server pre-bundles dependencies differently, and a page can build fine but render blank
+  in dev.
+- Dead files in `src/` aren't harmless: the dev server scans every file there and pre-bundles whatever they import.
+  A legacy file importing `@mui/icons-material/<Icon>` (CommonJS) mixed MUI's CJS and ESM builds and blanked every
+  page with `createTheme_default is not a function` (entry 27). Delete unused files instead of leaving them, and
+  import icons from `@mui/icons-material` (the barrel) or `@mui/icons-material/esm/<Icon>` if you add one.
 - Keep new dependencies to a minimum; MUI + `styled()` covers almost everything.
 
 ## Known issues / backlog
@@ -221,5 +227,5 @@ Build on it; don't introduce a new visual language.
 - Writing/blog page is locked in the sidebar nav; `blogData.js` / `blog.js` still reference a cat placeholder image.
 - Pre-existing build warning: `landing/projects.jsx` (duplicate `minHeight`). There's no ESLint step since
   leaving CRA; treat new Vite/esbuild warnings in `npm run build` as the bar instead.
-- Legacy unused files: `components/styles/*.css`, `components/animations/*`, `landing/navigation.jsx`,
+- Legacy unused files: `components/styles/*.css`, `components/animations/*`,
   `pages/stuff.jsx`, `global/signature.jsx`, `public/documents/Notes.txt`, and the stray `p_website.git/` directory.

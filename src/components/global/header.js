@@ -1,16 +1,13 @@
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
-import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import InstagramIcon from '@mui/icons-material/Instagram';
 import { ThemeToggle } from '../animations/themeToggle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useEffect, useRef } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import { NavLink, useLocation } from 'react-router-dom';
 import { Container } from '../ui/primitives';
+import { profile } from '../../data/profile';
 import { CrossRule } from '../ui/crossRule';
 
 const HeaderBar = styled(AppBar)(({ theme }) => ({
@@ -62,66 +59,20 @@ const HeaderLeft = styled(Box)(({ theme }) => ({
   },
 }));
 
-const SocialList = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  gap: theme.spacing(0.75),
+// Name in the serif display face, linking home; the social links live in the footer.
+const NameLink = styled(NavLink)(({ theme }) => ({
+  fontFamily: theme.typography.h1.fontFamily,
+  fontWeight: 400,
+  fontSize: '1.45rem',
+  lineHeight: 1,
+  letterSpacing: '-0.01em',
+  color: theme.palette.text.primary,
+  textDecoration: 'none',
+  whiteSpace: 'nowrap',
   [theme.breakpoints.down('md')]: {
-    gap: theme.spacing(0.75),
-    marginLeft: -10, // optically align the first icon with the page gutter
+    fontSize: '1.35rem',
   },
 }));
-
-const SocialLink = styled('a')(({ theme }) => {
-  const hoverBorderColor =
-    theme.palette.mode === 'dark' ? theme.palette.common.white : theme.palette.common.black;
-
-  return {
-    color: theme.palette.text.disabled,
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textDecoration: 'none',
-    border: `1px solid transparent`,
-    borderRadius: 0,
-    padding: theme.spacing(0.2),
-    minWidth: '1.8rem',
-    minHeight: '1.8rem',
-    transition: 'border-color 0.2s ease, color 0.2s ease',
-    '&:hover': {
-      borderColor: hoverBorderColor,
-      color: hoverBorderColor,
-    },
-    '&:focus-visible': {
-      borderColor: hoverBorderColor,
-      color: hoverBorderColor,
-      outlineOffset: '2px',
-    },
-    // Desktop sizes scale up with the screen; 1.1rem read as tiny on 1440px and Retina laptops.
-    [theme.breakpoints.up('md')]: {
-      minWidth: '2.35rem',
-      minHeight: '2.35rem',
-      '& svg': {
-        fontSize: '1.45rem',
-      },
-    },
-    [theme.breakpoints.up('lg')]: {
-      minWidth: '2.6rem',
-      minHeight: '2.6rem',
-      '& svg': {
-        fontSize: '1.65rem',
-      },
-    },
-    // Larger icons and 44px tap targets on phones.
-    [theme.breakpoints.down('md')]: {
-      minWidth: 44,
-      minHeight: 44,
-      '& svg': {
-        fontSize: '1.6rem',
-      },
-    },
-  };
-});
 
 // On phones the nav becomes a full-bleed, horizontally swipeable strip with larger tap targets.
 const NavGroup = styled(Box)(({ theme }) => ({
@@ -178,9 +129,9 @@ const navLinkStyles = (theme) => ({
   justifyContent: 'center',
   position: 'relative',
   textDecoration: 'none',
-  fontFamily: theme.typography.h1.fontFamily, // serif, like the name and section titles
-  letterSpacing: 0,
-  fontSize: '1.08rem',
+  fontFamily: theme.typography.fontFamily,
+  letterSpacing: '0.01em',
+  fontSize: '0.95rem',
   fontWeight: 400,
   border: 'none',
   borderRadius: 0,
@@ -220,7 +171,7 @@ const navLinkStyles = (theme) => ({
     scrollSnapAlign: 'start',
     minHeight: 44,
     padding: theme.spacing(1, 1.75),
-    fontSize: '1.15rem',
+    fontSize: '1rem',
     fontWeight: 400,
     color: theme.palette.text.secondary,
     '&::after': {
@@ -317,35 +268,9 @@ export const Header = ({ mode, onToggleTheme }) => {
       <HeaderToolbar disableGutters>
         <HeaderInner>
           <HeaderLeft>
-            <SocialList>
-              <SocialLink href="mailto:neroxv1313@gmail.com" aria-label="Email">
-                <EmailRoundedIcon />
-              </SocialLink>
-              <SocialLink
-                href="https://www.linkedin.com/in/nelson-rodriguez13/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-              >
-                <LinkedInIcon />
-              </SocialLink>
-              <SocialLink
-                href="https://github.com/Yugenero"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-              >
-                <GitHubIcon />
-              </SocialLink>
-              <SocialLink
-                href="https://www.instagram.com/ne.ro.x/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-              >
-                <InstagramIcon />
-              </SocialLink>
-            </SocialList>
+            <NameLink to="/" aria-label={`${profile.name}, home`}>
+              {profile.name}
+            </NameLink>
             {isMobile && themeToggle}
           </HeaderLeft>
           <NavGroup component="nav" aria-label="Main" ref={navRef}>

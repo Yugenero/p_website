@@ -118,7 +118,8 @@ Build on it; don't introduce a new visual language.
 ### Typography
 - Headings / display: Baskerville serif stack (`theme.typography.h1.fontFamily`), weight 300.
 - Body: Aeonik / system sans (`theme.typography.fontFamily`). Role titles use Geist.
-- Header nav: the serif at weight 400 (not bold), with 1px `divider` hairlines between items and before the theme
+- Header: Nelson's name in the serif (weight 400) on the left, linking home; social links live only in the footer.
+  Nav links in the sans at weight 400 (not bold), with 1px `divider` hairlines between items and before the theme
   toggle, on desktop and in the mobile strip.
 - **No all-caps text, anywhere.** Never use `textTransform: 'uppercase'` (or CSS `text-transform: uppercase`),
   and never type words in capitals for styling. Use sentence case for labels, buttons, links, and tags.
@@ -132,7 +133,7 @@ Build on it; don't introduce a new visual language.
 
 ### Layout & components
 - Square corners (`borderRadius: 0`) for buttons, panels, cards. Existing exception: the `/projects` cards.
-  Header and footer social icon hover boxes are square too.
+  Footer social icon hover boxes are square too.
 - Theme toggle (`animations/themeToggle.js`): a square button with a half-filled circle that turns 180° when the
   theme flips, and a "Switch to dark/light mode" label on hover (hover-capable devices) or keyboard focus.
   It's 44px on phones. Any new header popup must stay above the header's cross rule (the toolbar is `zIndex: 2`).

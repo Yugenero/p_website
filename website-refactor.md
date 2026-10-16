@@ -105,7 +105,7 @@ shared with the photography page, so a visit makes one request.
 | Branch | Purpose |
 | --- | --- |
 | `landing-page-redesign` | Everything through entry 11, without the portrait; merged into `master` on Oct 15 |
-| `halftone-background` | Entries 12–21: halftone background, custom cursors, smaller text and name, no hero job title (ripples tried and removed) |
+| `halftone-background` | Entries 12–22: halftone background, custom cursors, smaller text and name, no hero job title (ripples tried and removed) |
 | `landing-picture-pending` | Nelson's full version with the portrait frame, saved for later |
 | `landing-picture-local` | Temporary copy used for the merge; safe to delete |
 | `master` | Source branch. [Yugenero/p_website#2](https://github.com/Yugenero/p_website/pull/2) merged the early redesign; later work needs a new PR |
@@ -260,6 +260,14 @@ at weight 400 instead of the bold sans, with no letter-spacing. Short 1px `divid
 separate the items and the theme toggle, using a `::before` on each nav child after the first. The same
 treatment applies to the mobile swipe strip. Link padding grew to 14px a side to give the lines room, and
 the hover underline was re-aligned to match.
+
+### 22. Name in the header; nav back to the sans
+
+- The social icons in the top left were replaced with Nelson's name in the serif (1.45rem, 1.35rem on
+  phones), linking to `/`. Email, LinkedIn, GitHub and Instagram are still in the footer.
+- The nav links went back to the sans (0.95rem, 1rem on phones) but stay at regular weight with the hairline
+  separators from entry 21. Serif for the name, sans for navigation.
+- On `/` the name now appears twice (header and hero).
 
 ### Content corrections along the way
 

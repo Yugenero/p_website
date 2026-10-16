@@ -36,6 +36,8 @@ const BRAND = {
   // GitHub's own greens: light green in dark mode; a deeper one in light mode so it stays readable on off-white.
   github: { light: '#2DA44E', dark: '#7EE787' },
 };
+// Email turns light red on hover (softer on black, deeper on off-white so it stays readable).
+const EMAIL_RED = { light: '#D9473F', dark: '#FF8A80' };
 const INSTAGRAM_GRADIENT = 'linear-gradient(90deg, #F58529, #DD2A7B 45%, #8134AF 75%, #515BD4)';
 
 const timeFormat = new Intl.DateTimeFormat('en-US', {
@@ -81,7 +83,12 @@ export const Sidebar = ({ mode, onToggleTheme }) => {
 
         {showProfile && (
           <>
-            <Tagline>{profile.tagline}</Tagline>
+            <Tagline>
+              {profile.tagline.join(' · ')} ·{' '}
+              <Underlined href={profile.school.href} target="_blank" rel="noopener noreferrer">
+                {profile.school.label}
+              </Underlined>
+            </Tagline>
             <Bio>{profile.bio}</Bio>
 
             <Block>
@@ -113,7 +120,10 @@ export const Sidebar = ({ mode, onToggleTheme }) => {
 
             <Block>
               <Line>
-                Reach out via <Underlined href={`mailto:${profile.email}`}>email</Underlined>, or read my{' '}
+                Reach out via{' '}
+                <Underlined href={`mailto:${profile.email}`} data-tone="email">
+                  email
+                </Underlined>, or read my{' '}
                 <Underlined href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
                   resume
                 </Underlined>
@@ -339,13 +349,36 @@ const StatusDot = styled('span')(() => ({
   verticalAlign: 'middle',
 }));
 
+// Inline links (school, email, resume): full-strength text with a thin underline that draws in from the left
+// on hover, like the socials. `data-tone="email"` also turns the link light red.
 const Underlined = styled('a')(({ theme }) => ({
+  position: 'relative',
+  // One line per link: the underline is drawn against the link's box, which breaks if the text wraps.
+  whiteSpace: 'nowrap',
   color: theme.palette.text.primary,
   textDecoration: 'none',
-  borderBottom: `1px solid ${theme.palette.divider}`,
-  transition: 'border-color 0.2s ease',
-  '&:hover': {
-    borderBottomColor: theme.palette.text.primary,
+  transition: 'color 0.2s ease',
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 1,
+    height: 1,
+    backgroundColor: 'currentColor',
+    transform: 'scaleX(0)',
+    transformOrigin: 'left center',
+    transition: 'transform 0.25s ease',
+  },
+  '&:hover::after, &:focus-visible::after': {
+    transform: 'scaleX(1)',
+  },
+  '&[data-tone="email"]:hover, &[data-tone="email"]:focus-visible': {
+    color: EMAIL_RED[theme.palette.mode] ?? EMAIL_RED.light,
+  },
+  '@media (prefers-reduced-motion: reduce)': {
+    transition: 'none',
+    '&::after': { transition: 'none' },
   },
 }));
 

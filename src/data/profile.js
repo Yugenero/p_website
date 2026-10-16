@@ -16,7 +16,9 @@ export const profile = {
   // IANA zone for the live clock in the sidebar ("Currently Atlanta, GA · 14:03:22").
   timeZone: 'America/New_York',
   // Sidebar: a short line under the name and a two-line bio.
-  tagline: 'Software engineer · Georgia Tech CS',
+  // Rendered as "Computer Enjoyer · Engineer · Georgia Tech CS"; the school links to the College of Computing.
+  tagline: ['Computer Enjoyer', 'Engineer'],
+  school: { label: 'Georgia Tech CS', href: collegeOfComputingUrl },
   bio: "I build across mobile SDKs, AI workflows and full-stack web, often working directly in customers' codebases.",
   // Sidebar "Previously at" line, newest first.
   previously: ['Civic Digital Experience', 'eKlozet', 'GT WebDev'],

@@ -567,6 +567,13 @@ Below the fill the rail is a plain line. Reduced motion shows them without the d
   stroke (5 → 4px), and a smaller, dimmer, gentler-pulsing tip halo.
 - Checked on desktop in both themes and an emulated phone, plus the dev server.
 
+### 43. No scrollbar on phones
+
+The custom scrollbar in `theme.js` (10px, solid thumb) applied everywhere, which on phones replaced the browser's
+own auto-hiding overlay bar with a permanent one. It's now scoped to mouse/trackpad devices, and touch screens
+(`pointer: coarse`) hide scrollbars entirely (`scrollbar-width: none` plus `::-webkit-scrollbar { display: none }`),
+including inside the phone menu. Measured with DevTools emulation: phone 0px scrollbar, desktop still 10px.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

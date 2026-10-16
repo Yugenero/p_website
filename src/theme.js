@@ -240,14 +240,26 @@ export const buildTheme = (mode = 'light') => {
             backgroundColor: baseTheme.palette.text.primary,
             color: baseTheme.palette.background.default,
           },
-          '::-webkit-scrollbar': {
-            width: '10px',
+          // Custom scrollbar for mouse/trackpad only. Touch screens scroll by swiping, so the page scrollbar is
+          // hidden there entirely (styling it would otherwise replace the phone's own auto-hiding overlay bar).
+          '@media (hover: hover) and (pointer: fine)': {
+            '::-webkit-scrollbar': {
+              width: '10px',
+            },
+            '::-webkit-scrollbar-track': {
+              backgroundColor: baseTheme.palette.background.default,
+            },
+            '::-webkit-scrollbar-thumb': {
+              backgroundColor: baseTheme.palette.text.primary,
+            },
           },
-          '::-webkit-scrollbar-track': {
-            backgroundColor: baseTheme.palette.background.default,
-          },
-          '::-webkit-scrollbar-thumb': {
-            backgroundColor: baseTheme.palette.text.primary,
+          '@media (pointer: coarse)': {
+            html: {
+              scrollbarWidth: 'none',
+            },
+            '::-webkit-scrollbar': {
+              display: 'none',
+            },
           },
           '*:focus-visible': {
             outline: `2px solid ${baseTheme.palette.text.primary}`,

@@ -234,6 +234,8 @@ Build on it; don't introduce a new visual language.
   (0.22 light, 0.25 dark) from the theme. Its parent needs `position: relative` and `overflow: hidden`, with
   content above it at `zIndex: 1`. Feed tiles each have their own. The sidebar stays plain. No mouse ripples (tried in entry 15 of the
   log and removed). The old `Starfield` was removed.
+- Scrollbar: the custom 10px scrollbar (`text.primary` thumb) applies only to mouse/trackpad devices
+  (`(hover: hover) and (pointer: fine)`); on touch screens (`pointer: coarse`) scrollbars are hidden entirely.
 - Cursors: chunky Figma-style arrow and hand (SVG data URIs in `theme.js`, `CURSOR_ARROW` / `CURSOR_HAND`),
   applied only on `pointer: fine` devices; the hand covers links, buttons and `role="button"`.
 

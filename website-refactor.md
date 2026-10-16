@@ -105,7 +105,7 @@ shared with the photography page, so a visit makes one request.
 | Branch | Purpose |
 | --- | --- |
 | `landing-page-redesign` | Everything through entry 11, without the portrait; merged into `master` on Oct 15 |
-| `halftone-background` | Entries 12–23: halftone background, custom cursors, smaller text and name, no hero job title (ripples tried and removed) |
+| `halftone-background` | Entries 12–24: halftone background, custom cursors, smaller text and name, no hero job title (ripples tried and removed) |
 | `landing-picture-pending` | Nelson's full version with the portrait frame, saved for later |
 | `landing-picture-local` | Temporary copy used for the merge; safe to delete |
 | `master` | Source branch. [Yugenero/p_website#2](https://github.com/Yugenero/p_website/pull/2) merged the early redesign; later work needs a new PR |
@@ -276,6 +276,11 @@ redirects to `/`, and the header link is disabled with a "coming soon" note on h
 Writing (now a shared `LockedNavItem`; both are hidden in the mobile strip). The landing photo strip
 still shows the four photos but drops "View all" and isn't a link. The locked-item note was made square
 with normal tracking to match the design rules. Set the flag to `true` to reopen everything.
+
+### 24. Stronger halftone
+
+The halftone's peak opacity went up about 55%: 0.11 → 0.17 in light mode (darker squares) and 0.16 → 0.25 in
+dark mode (brighter squares), so the texture reads clearly without competing with the text.
 
 ### Content corrections along the way
 

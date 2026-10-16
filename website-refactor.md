@@ -439,6 +439,11 @@ Chrome DevTools in both themes, plus the dev server.
   now opens upward there (`ThemeToggle tipPlacement="top"`). On phones it stays beside the name.
 - Checked with real mouse hovers via Chrome DevTools in both themes, plus the dev server.
 
+### 30. GitHub hover in green
+
+At Nelson's request, GitHub's hover color changed from plain black/white to GitHub's greens: `#7EE787` (light
+green) in dark mode and `#2DA44E` in light mode, where a paler green wouldn't read on the off-white page.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

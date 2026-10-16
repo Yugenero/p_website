@@ -33,8 +33,8 @@ const SOCIALS = [
 const BRAND = {
   // LinkedIn's lighter blue in dark mode; their #0A66C2 is too dim on black.
   linkedin: { light: '#0A66C2', dark: '#70B5F9' },
-  // GitHub's brand is black/white, so it simply goes full strength.
-  github: { light: '#181717', dark: '#FFFFFF' },
+  // GitHub's own greens: light green in dark mode; a deeper one in light mode so it stays readable on off-white.
+  github: { light: '#2DA44E', dark: '#7EE787' },
 };
 const INSTAGRAM_GRADIENT = 'linear-gradient(90deg, #F58529, #DD2A7B 45%, #8134AF 75%, #515BD4)';
 

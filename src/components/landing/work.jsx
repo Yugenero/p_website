@@ -563,11 +563,7 @@ const LogoLink = styled(Link)(({ theme }) => {
   return {
     color: 'inherit',
     textDecoration: 'none',
-    // Same underline as the text employers, drawn under the logo on hover and while its job is active.
-    ...employerUnderline,
-    '&:hover, &:focus-visible': {
-      backgroundSize: '100% 1px',
-    },
+    transition: 'color 0.2s ease',
     // Also while its job is the active one on the timeline.
     ...toneRules(mode, { hover: true }),
     '&:not([data-tone]):hover': {

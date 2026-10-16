@@ -193,21 +193,31 @@ const NavItem = styled(NavLink)(({ theme }) => navLinkStyles(theme));
 
 const ExternalLink = styled('a')(({ theme }) => navLinkStyles(theme));
 
-const WritingItemWrap = styled(Box)(({ theme }) => ({
+// A nav item for a page that isn't open yet: the link does nothing and a note shows on hover or focus.
+const LockedNavItem = ({ to, note, children }) => (
+  <LockedItemWrap>
+    <NavItem to={to} aria-disabled="true" onClick={(event) => event.preventDefault()}>
+      {children}
+    </NavItem>
+    <LockedPopup data-locked-popup>{note}</LockedPopup>
+  </LockedItemWrap>
+);
+
+const LockedItemWrap = styled(Box)(({ theme }) => ({
   position: 'relative',
   [theme.breakpoints.down('md')]: {
     display: 'none',
   },
   display: 'inline-flex',
   alignItems: 'center',
-  '&:hover [data-writing-popup], &:focus-within [data-writing-popup]': {
+  '&:hover [data-locked-popup], &:focus-within [data-locked-popup]': {
     opacity: 1,
     transform: 'translate(-50%, 0)',
     pointerEvents: 'auto',
   },
 }));
 
-const WritingPopup = styled(Box)(({ theme }) => ({
+const LockedPopup = styled(Box)(({ theme }) => ({
   position: 'absolute',
   top: `calc(100% + ${theme.spacing(1.4)})`,
   left: '50%',
@@ -216,11 +226,11 @@ const WritingPopup = styled(Box)(({ theme }) => ({
   pointerEvents: 'none',
   whiteSpace: 'nowrap',
   border: `1px solid ${theme.palette.text.primary}`,
-  borderRadius: '5px',
+  borderRadius: 0,
   padding: theme.spacing(0.9, 1.2),
   fontFamily: theme.typography.fontFamily,
   fontSize: '0.78rem',
-  letterSpacing: '0.05em',
+  letterSpacing: '0.01em',
   fontWeight: 600,
   color: theme.palette.background.default,
   backgroundColor: theme.palette.text.primary,
@@ -280,17 +290,16 @@ export const Header = ({ mode, onToggleTheme }) => {
             <NavItem to="/about">About</NavItem>
             <NavItem to="/work">Experience</NavItem>
             <NavItem to="/projects">Projects</NavItem>
-            <NavItem to="/photography">Photography</NavItem>
-            <WritingItemWrap>
-              <NavItem
-                to="/blog"
-                onClick={(event) => {
-                  event.preventDefault();
-                }}>
-                Writing
-              </NavItem>
-              <WritingPopup data-writing-popup>page under construction</WritingPopup>
-            </WritingItemWrap>
+            {profile.photographyOpen ? (
+              <NavItem to="/photography">Photography</NavItem>
+            ) : (
+              <LockedNavItem to="/photography" note="coming soon">
+                Photography
+              </LockedNavItem>
+            )}
+            <LockedNavItem to="/blog" note="page under construction">
+              Writing
+            </LockedNavItem>
             <ExternalLink
               href="/documents/NelsonRodriguez.pdf"
               target="_blank"

@@ -74,7 +74,7 @@ public/
 | `/about` | `landing/about.js` | Bio + core stack |
 | `/work` | `landing/work.js` | Full experience timeline with all bullets |
 | `/projects` | `landing/projects.js` | Project cards |
-| `/photography` | `pages/photography.js` | Masonry grid from the GCS cloud function |
+| `/photography` | `pages/photography.js` | Masonry grid from the GCS cloud function. **Locked** while `profile.photographyOpen` is `false`: redirects to `/`, header link disabled ("coming soon") |
 | `/blog`, `/blog/:slug` | `pages/blog.js` | Under construction; header link is disabled |
 
 ## Content: `src/data/profile.js`
@@ -85,6 +85,7 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
 - When the resume changes, update **both** `public/documents/NelsonRodriguez.pdf` and `profile.js`.
 - Every number or claim on the site must be traceable to the resume. Don't invent metrics,
   titles, or availability promises.
+- `profile.photographyOpen` locks or opens `/photography` everywhere (route, header link, landing strip links).
 - `profile.openToWork` toggles the "Open to new roles" status line in the hero.
 - Keep the landing page uncluttered: roughly one desktop screen, no metrics/impact numbers.
   Experience, projects, and skills belong on their own pages; order those arrays by importance.
@@ -97,7 +98,7 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
     Nelson: base, iced coffee, hybrid training, photography and cars, and a `kaizen()` that compounds 1% a day.
     Keep it personal, truthful (only interests stated elsewhere on the site), and under ~38 characters a line so
     nothing wraps on phones. No employer code or branding.
-  - `photoStrip.js`: four of Nelson's photos (grayscale, color on hover) linking to `/photography`. It shares
+  - `photoStrip.js`: four of Nelson's photos (grayscale, color on hover), linking to `/photography` only while it's open. It shares
     `global/usePhotos.js` with the photography page and renders nothing if the photo service fails.
 - The hero has equal space above and below its content, between the two cross rules (`HERO_GAP` in
   `intro.js`). Change both sides together.

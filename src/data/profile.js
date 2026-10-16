@@ -19,6 +19,8 @@ export const profile = {
   github: 'https://github.com/Yugenero',
   instagram: 'https://www.instagram.com/ne.ro.x/',
   openToWork: true,
+  // false locks /photography: the nav link is disabled, the route redirects home, the landing strip isn't a link.
+  photographyOpen: false,
   // Shown after "<role> at <company>." in the landing hero.
   pitch:
     "A technical + customer-facing solutions engineering role: I work directly in customers' codebases to implement Fullstory Mobile SDK and build proofs of concept. Part of my work includes building AI/automation workflows and internal tools. Before that, full-stack React + .NET.",

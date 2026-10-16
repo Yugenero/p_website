@@ -105,7 +105,7 @@ shared with the photography page, so a visit makes one request.
 | Branch | Purpose |
 | --- | --- |
 | `landing-page-redesign` | Everything through entry 11, without the portrait; merged into `master` on Oct 15 |
-| `halftone-background` | Entries 12–22: halftone background, custom cursors, smaller text and name, no hero job title (ripples tried and removed) |
+| `halftone-background` | Entries 12–23: halftone background, custom cursors, smaller text and name, no hero job title (ripples tried and removed) |
 | `landing-picture-pending` | Nelson's full version with the portrait frame, saved for later |
 | `landing-picture-local` | Temporary copy used for the merge; safe to delete |
 | `master` | Source branch. [Yugenero/p_website#2](https://github.com/Yugenero/p_website/pull/2) merged the early redesign; later work needs a new PR |
@@ -268,6 +268,14 @@ the hover underline was re-aligned to match.
 - The nav links went back to the sans (0.95rem, 1rem on phones) but stay at regular weight with the hairline
   separators from entry 21. Serif for the name, sans for navigation.
 - On `/` the name now appears twice (header and hero).
+
+### 23. Photography page locked
+
+`/photography` is locked behind one flag, `profile.photographyOpen` (now `false`). While it's locked, the route
+redirects to `/`, and the header link is disabled with a "coming soon" note on hover, using the same pattern as
+Writing (now a shared `LockedNavItem`; both are hidden in the mobile strip). The landing photo strip
+still shows the four photos but drops "View all" and isn't a link. The locked-item note was made square
+with normal tracking to match the design rules. Set the flag to `true` to reopen everything.
 
 ### Content corrections along the way
 

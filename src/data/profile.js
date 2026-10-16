@@ -9,7 +9,7 @@ const collegeOfComputingUrl = 'https://www.cc.gatech.edu';
 
 export const profile = {
   name: 'Nelson Rodriguez',
-  role: 'Forward Deployed Engineer',
+  role: 'Solutions Engineer',
   company: 'Fullstory',
   companyUrl: 'https://www.fullstory.com',
   location: 'Currently Atlanta, GA',
@@ -56,7 +56,7 @@ export const workExperience = [
     logo: { src: '/images/logos/fullstory.svg', ratio: 130 / 25, descent: 0.24 },
     location: 'Atlanta, GA',
     date: 'Dec 2025 — Present',
-    title: 'Forward Deployed Engineer',
+    title: 'Solutions Engineer',
     summary:
       'Customer-facing solutions engineering: implementing the Fullstory Mobile SDK in customer codebases, building POCs, and engineering AI workflows and internal tools on the side.',
     highlights: [

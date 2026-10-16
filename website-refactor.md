@@ -11,7 +11,7 @@ behind them and keeps the history.
 - Support an active job search: a recruiter should understand who Nelson is, what he's built, and how to
   reach him within ~30 seconds on the landing page.
 - Reflect the updated resume (`public/documents/NelsonRodriguez.pdf`), with the current role as
-  **Forward Deployed Engineer at Fullstory** (Dec 2025 – present).
+  **Solutions Engineer at Fullstory** (Dec 2025 – present; shown as Forward Deployed Engineer until entry 32).
 - Make the content easy to scan and make the technical depth obvious.
 - Give the landing page visual richness without filler; keep detail on the dedicated pages.
 - Keep the existing pages: About, Experience (`/work`), Projects, Photography.
@@ -124,7 +124,7 @@ tiles carry the energy.
 
 - **Sidebar** (`global/sidebar.jsx`): fixed left column with a hairline on its right edge. Name (serif; chrome
   sheen and a "that's me :)" note on hover),
-  tagline ("Computer Enjoyer · Engineer · Georgia Tech CS"), a two-line bio, a *now* block (`→ Forward Deployed Engineer at Fullstory`, green-dot "Open to new
+  tagline ("Computer Enjoyer · Engineer · Georgia Tech CS"), a two-line bio, a *now* block (`→ Solutions Engineer at Fullstory`, green-dot "Open to new
   roles"), "Previously at …", "Reach out via email, or read my resume", plain-text social links, and a live
   clock ("Currently Atlanta, GA · 17:03:30", Eastern time, mono figures). Socials stacked, brand-colored on hover.
   Nav pinned to the bottom with the theme toggle at its right; a filled square marks the current page, locked pages are greyed with a mono "soon".
@@ -454,6 +454,14 @@ green) in dark mode and `#2DA44E` in light mode, where a paler green wouldn't re
 - These links don't wrap mid-link: the underline is positioned against the link's box, which breaks across
   lines (it didn't show on "Georgia Tech CS" when it split), so at sidebar width the school moves to its own line.
 
+### 32. Title: Solutions Engineer at Fullstory
+
+At Nelson's request the Fullstory title changed from Forward Deployed Engineer to **Solutions Engineer**
+everywhere it appears: the sidebar's *now* line (`profile.role`), the `/work` entry (`workExperience[0].title`),
+the About paragraph, and the page meta description in `Base.astro`. Checked in the dev server: `/`, `/work`
+and `/about` show "Solutions Engineer" and no "Forward Deployed". **The resume PDF still says Forward Deployed
+Engineer**; Nelson will update it, then it should replace `public/documents/NelsonRodriguez.pdf`.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.
@@ -493,6 +501,8 @@ The live site only changes on `npm run deploy`, which runs the build for you (`p
 
 - **Pre-rendering (Astro stage 2):** pages render in the browser only; see entry 25.
 - **Writing page:** disabled in the header, and its code still references a placeholder cat image.
+- **Resume out of sync:** the site says Solutions Engineer (entry 32) but `NelsonRodriguez.pdf` still says
+  Forward Deployed Engineer. Replace the PDF when Nelson updates it.
 - **Build warnings:** one left from before this work: `landing/projects.jsx` (duplicate `minHeight`).
 - **Unused code and dependencies:** legacy CSS, animations, `stuff.jsx`, `signature.jsx`,
   `Notes.txt`, the stray `p_website.git/` directory, the `SectionHeaderRow` and `CompactSection` primitives

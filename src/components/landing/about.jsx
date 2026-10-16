@@ -37,7 +37,7 @@ export const AboutSection = () => {
           </Box>
           <Box>
             <AboutParagraph variant="body1" paragraph>
-              These days I’m a Forward Deployed Engineer at{' '}
+              These days I’m a Solutions Engineer at{' '}
               <Link
                 href="https://www.fullstory.com"
                 target="_blank"

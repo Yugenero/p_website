@@ -237,6 +237,9 @@ Build on it; don't introduce a new visual language.
 - Astro migration, stage 1 only: the whole React app still runs as one client-side island on every page, so
   pages ship no pre-rendered content (search engines and link previews see an empty body). Stage 2 is to
   convert sections to `.astro` progressively, keeping React only for interactive pieces.
+- The site's Fullstory title is **Solutions Engineer**, but `public/documents/NelsonRodriguez.pdf` still says Forward
+  Deployed Engineer. Nelson will update the resume; replace the PDF then (the one sanctioned exception to
+  "traceable to the resume" until it's done).
 - Writing/blog page is locked in the sidebar nav; `blogData.js` / `blog.js` still reference a cat placeholder image.
 - Pre-existing build warning: `landing/projects.jsx` (duplicate `minHeight`). There's no ESLint step since
   leaving CRA; treat new Vite/esbuild warnings in `npm run build` as the bar instead.

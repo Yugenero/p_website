@@ -506,6 +506,18 @@ their own layout, following content-first mobile patterns; desktop is unchanged.
   navigates and closes it, no horizontal overflow, no console errors (the dev server only shows React Router's
   existing v7 "future flag" notices). Desktop screenshot unchanged.
 
+### 37. Phone menu: link tiles and a chevron button
+
+- In the phone menu, email, resume and the socials became real tap targets: a grid of 48px square tiles with
+  hairline borders. Row one: **Email →** (filled, the primary action) and **Resume ↗**; row two: LinkedIn,
+  GitHub, Instagram. On press or hover the label and border take the brand color (email red, LinkedIn blue,
+  GitHub green, Instagram's gradient with a pink border). The color maps are now exported from
+  `profileParts.jsx` and shared with the desktop links.
+- The menu button's two-bar icon became a chevron: down when closed, flipping up when open (the button also
+  gets a full-strength border while open).
+- Checked with phone emulation at 390 and 360px in both themes (no overflow, menu behavior unchanged, no
+  errors) and captured pressed states for Email, LinkedIn and Instagram.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

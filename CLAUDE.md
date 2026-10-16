@@ -133,9 +133,10 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
 ### Phones (below `md`): bar, menu, intro
 Content first, navigation one tap away. Don't bring the full sidebar back on top of the content.
 - **Sticky bar** (`global/mobileHeader.jsx`, 56px, bottom hairline): name in the serif (links home), theme toggle
-  and a menu button (two bars that cross into an X), both 44px squares.
+  and a menu button (a chevron pointing down, flipping up when open), both 44px squares.
 - **Full-screen menu** under the bar: big nav rows (56px, hairlines, square marker, locked items with "soon"),
-  then role/open-to-work, "Previously at", Georgia Tech CS, an Email/Resume row, a socials row, and the clock.
+  then role/open-to-work, "Previously at", Georgia Tech CS, a grid of 48px link tiles (Email filled + Resume,
+  then LinkedIn · GitHub · Instagram; brand color on press/hover), and the clock.
   Closes on navigation, Escape or the button; locks page scroll while open; focus moves to the first link and
   back to the button on Escape; hidden from screen readers and tab order when closed (`aria-hidden`, `inert`).
 - **Home intro** (`landing/mobileIntro.jsx`, phones only, above the feed): a typed line cycling

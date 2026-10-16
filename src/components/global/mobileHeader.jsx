@@ -7,13 +7,15 @@ import { ThemeToggle } from '../animations/themeToggle';
 import { profile } from '../../data/profile';
 import {
   Arrow,
+  BRAND,
+  EMAIL_RED,
+  INSTAGRAM_GRADIENT,
   LocalClock,
   Marker,
   NAV,
   NavItem,
   NavItemLocked,
   SOCIALS,
-  SocialLink,
   Soon,
   StatusDot,
   Strong,
@@ -70,8 +72,9 @@ export const MobileHeader = ({ mode, onToggleTheme }) => {
             aria-label={open ? 'Close menu' : 'Open menu'}
             data-open={open || undefined}
           >
-            <span />
-            <span />
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M6 9.5l6 6 6-6" />
+            </svg>
           </MenuButton>
         </Actions>
       </Bar>
@@ -129,27 +132,27 @@ export const MobileHeader = ({ mode, onToggleTheme }) => {
           </Line>
         </Details>
 
-        <Contact>
-          <Underlined href={`mailto:${profile.email}`} data-tone="email">
-            Email
-          </Underlined>
-          <Underlined href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
-            Resume
-          </Underlined>
-        </Contact>
-        <Contact>
-          {SOCIALS.map((social) => (
-            <SocialLink
-              key={social.label}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-brand={social.brand}
-            >
-              {social.label}
-            </SocialLink>
-          ))}
-        </Contact>
+        <LinkGrid role="group" aria-label="Contact and profiles">
+          <LinkTile href={`mailto:${profile.email}`} data-tone="email" data-primary>
+            Email <span aria-hidden="true">→</span>
+          </LinkTile>
+          <LinkTile href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
+            Resume <span aria-hidden="true">↗</span>
+          </LinkTile>
+          <SocialRow>
+            {SOCIALS.map((social) => (
+              <LinkTile
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-tone={social.brand}
+              >
+                {social.label}
+              </LinkTile>
+            ))}
+          </SocialRow>
+        </LinkGrid>
 
         <LocalClock />
       </Menu>
@@ -188,40 +191,35 @@ const Actions = styled(Box)(({ theme }) => ({
   gap: theme.spacing(1),
 }));
 
-// Two bars that cross into an X when the menu is open. Same square, hairline look as the theme toggle.
+// A chevron that points down when the menu is closed and flips up when it's open. Same square, hairline look as
+// the theme toggle.
 const MenuButton = styled(ButtonBase)(({ theme }) => ({
-  position: 'relative',
   width: 44,
   height: 44,
   borderRadius: 0,
   border: `1px solid ${theme.palette.divider}`,
   color: theme.palette.text.primary,
-  '& > span': {
-    position: 'absolute',
-    left: 12,
-    right: 12,
-    height: 1.5,
-    backgroundColor: 'currentColor',
-    transition: 'transform 0.25s ease',
+  '& svg': {
+    width: 22,
+    height: 22,
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.6,
+    strokeLinecap: 'square',
+    transition: 'transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
   },
-  '& > span:first-of-type': {
-    transform: 'translateY(-4px)',
+  '&[data-open] svg': {
+    transform: 'rotate(180deg)',
   },
-  '& > span:last-of-type': {
-    transform: 'translateY(4px)',
-  },
-  '&[data-open] > span:first-of-type': {
-    transform: 'rotate(45deg)',
-  },
-  '&[data-open] > span:last-of-type': {
-    transform: 'rotate(-45deg)',
+  '&[data-open]': {
+    borderColor: theme.palette.text.primary,
   },
   '&:focus-visible': {
     outline: `2px solid ${theme.palette.text.primary}`,
     outlineOffset: 2,
   },
   '@media (prefers-reduced-motion: reduce)': {
-    '& > span': { transition: 'none' },
+    '& svg': { transition: 'none' },
   },
 }));
 
@@ -289,12 +287,70 @@ const Line = styled('p')(() => ({
   margin: 0,
 }));
 
-// One row for email + resume, one for the socials.
-const Contact = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexWrap: 'wrap',
-  gap: theme.spacing(1.5, 3),
-  '& + &': {
-    marginTop: theme.spacing(-2.5), // pull the socials row closer to the contact row than the Menu gap would
-  },
+// Contact and profiles as real tap targets: Email (filled, the primary action) and Resume side by side, then the
+// three socials in a row. 48px tall, square, hairline borders; on press or hover the label takes the brand color.
+const LinkGrid = styled(Box)(({ theme }) => ({
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  gap: theme.spacing(1),
 }));
+
+const SocialRow = styled(Box)(({ theme }) => ({
+  gridColumn: '1 / -1',
+  display: 'grid',
+  gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+  gap: theme.spacing(1),
+}));
+
+const LinkTile = styled('a')(({ theme }) => {
+  const { mode } = theme.palette;
+  const toned = (color) => ({ color, borderColor: color });
+
+  return {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: theme.spacing(1),
+    minHeight: 48,
+    padding: theme.spacing(0, 1),
+    border: `1px solid ${theme.palette.divider}`,
+    color: theme.palette.text.primary,
+    fontSize: '0.98rem',
+    textDecoration: 'none',
+    whiteSpace: 'nowrap',
+    WebkitTapHighlightColor: 'transparent',
+    transition: 'color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease',
+    '& > span': {
+      color: 'inherit',
+      opacity: 0.7,
+    },
+    '&[data-primary]': {
+      backgroundColor: theme.palette.text.primary,
+      borderColor: theme.palette.text.primary,
+      color: theme.palette.background.default,
+    },
+    '&:hover, &:active, &:focus-visible': {
+      borderColor: theme.palette.text.primary,
+      '&[data-tone="email"]': {
+        backgroundColor: 'transparent',
+        ...toned(EMAIL_RED[mode]),
+      },
+      '&[data-tone="linkedin"]': toned(BRAND.linkedin[mode]),
+      '&[data-tone="github"]': toned(BRAND.github[mode]),
+      '&[data-tone="instagram"]': {
+        color: 'transparent',
+        backgroundImage: INSTAGRAM_GRADIENT,
+        WebkitBackgroundClip: 'text',
+        backgroundClip: 'text',
+        borderColor: '#DD2A7B',
+      },
+    },
+    '&:focus-visible': {
+      outline: `2px solid ${theme.palette.text.primary}`,
+      outlineOffset: 2,
+    },
+    '@media (prefers-reduced-motion: reduce)': {
+      transition: 'none',
+    },
+  };
+});

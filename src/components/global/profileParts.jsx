@@ -26,14 +26,14 @@ export const SOCIALS = [
   { label: 'Instagram', href: profile.instagram, brand: 'instagram' },
 ];
 
-const BRAND = {
+export const BRAND = {
   // LinkedIn's lighter blue in dark mode; their #0A66C2 is too dim on black.
   linkedin: { light: '#0A66C2', dark: '#70B5F9' },
   // GitHub's own greens: light green in dark mode; a deeper one in light mode so it stays readable on off-white.
   github: { light: '#2DA44E', dark: '#7EE787' },
 };
 // Email turns light red on hover (softer on black, deeper on off-white so it stays readable).
-const EMAIL_RED = { light: '#D9473F', dark: '#FF8A80' };
+export const EMAIL_RED = { light: '#D9473F', dark: '#FF8A80' };
 // Georgia Tech CS turns Tech Gold on hover (GT's Tech Dark Gold in light mode; Tech Gold is too pale on off-white).
 const TECH_GOLD = { light: '#857437', dark: '#B3A369' };
 // Fullstory turns a darker green on hover, text and underline: their #11AB85 in dark mode, and a deeper shade of
@@ -41,7 +41,7 @@ const TECH_GOLD = { light: '#857437', dark: '#B3A369' };
 const FULLSTORY_GREEN = { light: '#047A5E', dark: '#11AB85' };
 // Civic Digital Experience turns light blue on hover (a deeper blue in light mode so it reads on off-white).
 const CIVIC_BLUE = { light: '#2B8FD6', dark: '#8CCBFF' };
-const INSTAGRAM_GRADIENT = 'linear-gradient(90deg, #F58529, #DD2A7B 45%, #8134AF 75%, #515BD4)';
+export const INSTAGRAM_GRADIENT = 'linear-gradient(90deg, #F58529, #DD2A7B 45%, #8134AF 75%, #515BD4)';
 
 const timeFormat = new Intl.DateTimeFormat('en-US', {
   timeZone: profile.timeZone,

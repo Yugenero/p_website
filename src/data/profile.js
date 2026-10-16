@@ -143,7 +143,7 @@ export const education = {
 export const skillGroups = [
   {
     label: 'Languages',
-    items: ['TypeScript', 'JavaScript', 'Java', 'C#', 'Python', 'Swift', 'Kotlin', 'SQL'],
+    items: ['TypeScript', 'JavaScript', 'Java', 'C#', 'Swift', 'Kotlin', 'SQL'],
   },
   {
     label: 'Mobile',

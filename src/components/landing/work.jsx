@@ -329,19 +329,25 @@ const RailPath = styled('svg')(({ theme }) => ({
   },
 }));
 
-// Each job is a thin horizontal tick across the rail: grey until passed, then full strength and a bit longer.
+// Each job is a thin horizontal tick across the rail, hidden until the fill reaches it; then it draws out from the
+// center at full strength (and hides again if you scroll back above it).
 const RailMarker = styled('span')(({ theme }) => ({
   position: 'absolute',
   top: 0,
   left: RAIL_X - TICK / 2,
   width: TICK,
   height: 1,
-  backgroundColor: theme.palette.text.secondary,
+  backgroundColor: theme.palette.text.primary,
   transformOrigin: 'center',
-  transition: 'background-color 0.3s ease, transform 0.3s ease',
+  opacity: 0,
+  transform: 'scaleX(0)',
+  transition: 'opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
   '&[data-reached="true"]': {
-    backgroundColor: theme.palette.text.primary,
+    opacity: 1,
     transform: 'scaleX(1.35)',
+  },
+  '@media (prefers-reduced-motion: reduce)': {
+    transition: 'none',
   },
 }));
 

@@ -221,7 +221,8 @@ Build on it; don't introduce a new visual language.
 - `/work` timeline (`landing/work.jsx`): a rail pinned beside the job list that maps the whole list (a mini-map).
   It's an SVG path from the first tick to the last (ticks cap both ends flush) with one abrupt S-bend (`JOG` 10px
   right, `JOG_RADIUS` 4px) halfway between the first two jobs; the fill draws along it (stroke-dashoffset). No
-  moving marker. Jobs are thin horizontal ticks (grey, then full strength and longer once the fill reaches them),
+  moving marker. Jobs are thin horizontal ticks, hidden until the fill reaches them (then they draw out from the
+  center at full strength, and hide again if you scroll back above),
   and reaching a tick highlights that job's date (`data-timeline-date`: full strength, weight 600). No dots.
 - Reading width: long text on wide pages stops at half the window. On `/work`, each role's summary and bullets
   are capped at `50vw` from `md` up (full width on phones).

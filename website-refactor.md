@@ -543,6 +543,12 @@ their own layout, following content-first mobile patterns; desktop is unchanged.
   reading position to path length from the first tick.
 - Checked on desktop and an emulated phone, scrolled top/mid/end, plus the dev server.
 
+### 40. Ticks appear only once reached
+
+Job ticks on the `/work` timeline are now hidden until the fill reaches them; then each draws out from the
+center (0.3s) at full strength, together with its date highlight, and hides again if you scroll back above it.
+Below the fill the rail is a plain line. Reduced motion shows them without the draw-in.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

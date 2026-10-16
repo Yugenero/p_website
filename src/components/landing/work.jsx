@@ -36,14 +36,18 @@ const timeline = [
 ];
 
 // Scroll timeline: a rail pinned to the viewport beside the job list. The rail maps the whole
-// list top-to-bottom; the dot tracks how far you've read and each job's marker fills once passed.
+// list top-to-bottom; a horizontal progress line rides it as you read, and each job's tick darkens once passed.
+// The rail is an SVG path with one abrupt S-bend (a sideways jog) between the first and second jobs, so the fill
+// and the progress line follow the path rather than a straight line.
 const READ_LINE = 0.45; // where the "reading line" sits in the viewport at the top of the page
 const MARKER_Y = 10; // px from an item's top to the point its marker represents (its date line)
 const RAIL_GUTTER = { desktop: 48, mobile: 30 };
-const RAIL_X = 5; // px from the gutter's left edge to the rail's center
+const RAIL_X = 5; // px from the gutter's left edge to the rail's center (above the jog)
 const RAIL_INSET = 24; // px of breathing room above and below the pinned rail
-const DOT_SIZE = 11;
-const MARKER_SIZE = 9;
+const JOG = 10; // px the rail shifts right at the bend
+const JOG_RADIUS = 4; // corner radius of the bend's two turns; small = abrupt
+const TICK = 11; // width of a job's tick
+const PROGRESS = 19; // width of the moving progress line
 const EASE = 0.14; // per-frame easing toward the scroll target; lower is smoother/slower
 
 const clamp01 = (n) => Math.min(Math.max(n, 0), 1);
@@ -57,6 +61,21 @@ const useScrollTimeline = ({ listRef, railRef, dotRef, fillRef, markerRefs }) =>
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let markerFractions = [];
     let railHeight = 0;
+    let jogY = null; // y of the bend, or null with fewer than two jobs
+    let pathLength = 0;
+    const track = rail.querySelector('[data-track]');
+    const fillPath = fillRef.current;
+
+    // The path only ever moves down, so its length up to a given height is that height plus the extra the bend
+    // adds once you're past it (interpolated through the bend itself).
+    const lengthAtY = (y) => {
+      if (jogY === null) return y;
+      const extra = pathLength - railHeight;
+      if (y <= jogY - JOG_RADIUS) return y;
+      if (y >= jogY + JOG_RADIUS) return y + extra;
+      return y + extra * ((y - (jogY - JOG_RADIUS)) / (2 * JOG_RADIUS));
+    };
+    const xAtY = (y) => (jogY !== null && y > jogY ? RAIL_X + JOG : RAIL_X);
     let current = null;
     let target = 0;
     let frame = 0;
@@ -73,8 +92,10 @@ const useScrollTimeline = ({ listRef, railRef, dotRef, fillRef, markerRefs }) =>
     };
 
     const render = () => {
-      dotRef.current.style.transform = `translate3d(0, ${current * railHeight}px, 0)`;
-      fillRef.current.style.transform = `scaleY(${current})`;
+      const length = lengthAtY(current * railHeight);
+      const point = track.getPointAtLength(Math.min(length, pathLength));
+      dotRef.current.style.transform = `translate3d(${point.x - PROGRESS / 2}px, ${point.y}px, 0)`;
+      fillPath.style.strokeDashoffset = String(Math.max(pathLength - length, 0));
       markerRefs.current.forEach((marker, i) => {
         if (marker) marker.dataset.reached = String(current >= markerFractions[i] - 0.001);
       });
@@ -105,9 +126,27 @@ const useScrollTimeline = ({ listRef, railRef, dotRef, fillRef, markerRefs }) =>
       railHeight = rail.offsetHeight;
       const items = list.querySelectorAll('[data-timeline-item]');
       markerFractions = Array.from(items, (item) => toFraction(item.offsetTop + MARKER_Y));
+
+      // Rail path: straight down, an abrupt S-bend halfway between the first two jobs, then straight down again.
+      const x0 = RAIL_X;
+      const x1 = RAIL_X + JOG;
+      const r = JOG_RADIUS;
+      jogY = markerFractions.length > 1 ? ((markerFractions[0] + markerFractions[1]) / 2) * railHeight : null;
+      const d =
+        jogY === null
+          ? `M ${x0} 0 V ${railHeight}`
+          : `M ${x0} 0 V ${jogY - r} Q ${x0} ${jogY} ${x0 + r} ${jogY} H ${x1 - r} Q ${x1} ${jogY} ${x1} ${jogY + r} V ${railHeight}`;
+      rail.querySelectorAll('path').forEach((path) => path.setAttribute('d', d));
+      pathLength = track.getTotalLength();
+      fillPath.style.strokeDasharray = String(pathLength);
+
       markerRefs.current.forEach((marker, i) => {
-        if (marker) marker.style.top = `${markerFractions[i] * 100}%`;
+        if (!marker) return;
+        const y = markerFractions[i] * railHeight;
+        marker.style.top = `${y}px`;
+        marker.style.left = `${xAtY(y) - TICK / 2}px`;
       });
+      current = null; // snap to the new layout instead of easing from the old one
       onScroll();
     };
 
@@ -179,7 +218,10 @@ export const WorkSection = () => {
         <Timeline>
           <RailGutter aria-hidden="true">
             <Rail ref={railRef}>
-              <RailFill ref={fillRef} />
+              <RailPath>
+                <path data-track />
+                <path ref={fillRef} data-fill />
+              </RailPath>
               {timeline.map((experience, i) => (
                 <RailMarker
                   key={experience.employer}
@@ -189,7 +231,7 @@ export const WorkSection = () => {
                   data-reached="false"
                 />
               ))}
-              <RailDot ref={dotRef} />
+              <RailProgress ref={dotRef} />
             </Rail>
           </RailGutter>
           <WorkList ref={listRef}>
@@ -251,68 +293,64 @@ const RailGutter = styled(Box)(({ theme }) => ({
 }));
 
 // Pinned to the viewport; top/height are set from the header height in useScrollTimeline.
-const Rail = styled('div')(({ theme }) => ({
+const Rail = styled('div')(() => ({
   position: 'sticky',
   top: 96,
   height: 'calc(100vh - 144px)',
-  width: RAIL_X * 2,
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    inset: 0,
-    left: RAIL_X,
-    width: 1,
-    transform: 'translateX(-50%)',
-    backgroundColor: theme.palette.divider,
+  width: RAIL_X + JOG + PROGRESS / 2,
+}));
+
+// Track (divider color) and fill (text color, drawn in with stroke-dashoffset as you scroll) share one path.
+// No viewBox: SVG units are CSS pixels, so the path lines up exactly with the ticks and progress line.
+const RailPath = styled('svg')(({ theme }) => ({
+  position: 'absolute',
+  inset: 0,
+  width: '100%',
+  height: '100%',
+  overflow: 'visible',
+  '& path': {
+    fill: 'none',
+    strokeWidth: 1,
+    vectorEffect: 'non-scaling-stroke',
+  },
+  '& [data-track]': {
+    stroke: theme.palette.divider,
+  },
+  '& [data-fill]': {
+    stroke: theme.palette.text.primary,
   },
 }));
 
-const RailFill = styled('span')(({ theme }) => ({
-  position: 'absolute',
-  top: 0,
-  bottom: 0,
-  left: RAIL_X,
-  width: 1,
-  marginLeft: -0.5,
-  transform: 'scaleY(0)',
-  transformOrigin: 'top center',
-  willChange: 'transform',
-  backgroundColor: theme.palette.text.primary,
-}));
-
+// Each job is a thin horizontal tick across the rail: grey until passed, then full strength and a bit longer.
 const RailMarker = styled('span')(({ theme }) => ({
   position: 'absolute',
   top: 0,
-  left: RAIL_X - MARKER_SIZE / 2,
-  width: MARKER_SIZE,
-  height: MARKER_SIZE,
-  marginTop: -MARKER_SIZE / 2,
-  boxSizing: 'border-box',
-  borderRadius: '50%',
-  border: `1px solid ${theme.palette.text.secondary}`,
-  backgroundColor: theme.palette.background.default,
-  transition: 'background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease',
+  left: RAIL_X - TICK / 2,
+  width: TICK,
+  height: 1,
+  backgroundColor: theme.palette.text.secondary,
+  transformOrigin: 'center',
+  transition: 'background-color 0.3s ease, transform 0.3s ease',
   '&[data-reached="true"]': {
-    borderColor: theme.palette.text.primary,
     backgroundColor: theme.palette.text.primary,
-    transform: 'scale(1.1)',
+    transform: 'scaleX(1.35)',
   },
 }));
 
 // The glow lives on a pseudo-element and pulses with opacity/scale only, so it stays on the
 // compositor instead of repainting a box-shadow every frame.
 const glowPulse = keyframes`
-  0%, 100% { opacity: 0.55; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.35); }
+  0%, 100% { opacity: 0.55; transform: scaleX(1); }
+  50% { opacity: 1; transform: scaleX(1.25); }
 `;
 
-const RailDot = styled('span')(({ theme }) => ({
+// The progress marker: a longer horizontal line that rides the path (including the bend) as you scroll.
+const RailProgress = styled('span')(({ theme }) => ({
   position: 'absolute',
-  top: -DOT_SIZE / 2,
-  left: RAIL_X - DOT_SIZE / 2,
-  width: DOT_SIZE,
-  height: DOT_SIZE,
-  borderRadius: '50%',
+  top: -1,
+  left: 0,
+  width: PROGRESS,
+  height: 2,
   zIndex: 1,
   willChange: 'transform',
   backgroundColor: theme.palette.text.primary,
@@ -320,8 +358,7 @@ const RailDot = styled('span')(({ theme }) => ({
     content: '""',
     position: 'absolute',
     inset: 0,
-    borderRadius: '50%',
-    boxShadow: `0 0 12px 3px ${alpha(theme.palette.text.primary, 0.6)}`,
+    boxShadow: `0 0 10px 2px ${alpha(theme.palette.text.primary, 0.55)}`,
     animation: `${glowPulse} 2.6s ease-in-out infinite`,
   },
   '@media (prefers-reduced-motion: reduce)': {

@@ -518,6 +518,21 @@ their own layout, following content-first mobile patterns; desktop is unchanged.
 - Checked with phone emulation at 390 and 360px in both themes (no overflow, menu behavior unchanged, no
   errors) and captured pressed states for Email, LinkedIn and Instagram.
 
+### 38. Experience timeline: ticks and a jog
+
+- The timeline's job markers changed from circles to thin horizontal ticks across the rail (grey until passed,
+  then full strength and 35% longer), and the glowing progress dot became a longer horizontal line with the
+  same soft pulse.
+- The rail now has one abrupt S-bend: it runs straight down, makes a tight sideways jog (4px corner radius,
+  10px to the right) halfway between the first two jobs, then continues. Nelson picked the mid-rail jog over
+  hooks at the top or bottom.
+- To make the fill and the progress line follow the bend, the rail became an SVG path (track + fill sharing one
+  `d`), rebuilt on resize. The fill draws with `stroke-dashoffset`; the progress line is placed with
+  `getPointAtLength`, mapping scroll progress to path length (the path only moves down, so length = height plus
+  the bend's extra once past it). No `viewBox`, so SVG units are CSS pixels and line up with the ticks.
+- Checked by scrolling `/work` via Chrome DevTools on desktop and an emulated phone (top, mid, end): fill and
+  progress follow the jog, ticks shift with it, no errors.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

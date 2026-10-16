@@ -218,6 +218,10 @@ Build on it; don't introduce a new visual language.
   (About `0000`, Experience `0001`, Projects `0010`, Photography `0011`, Writing `0100`). The home feed has
   no section label.
 - Buttons: MUI `Button` `contained` (filled) for the primary action, `outlined` for secondary.
+- `/work` timeline (`landing/work.jsx`): a rail pinned beside the job list that maps the whole list (a mini-map).
+  It's an SVG path with one abrupt S-bend (`JOG` 10px right, `JOG_RADIUS` 4px) halfway between the first two jobs;
+  the fill draws along the path (stroke-dashoffset) and a horizontal progress line rides it. Jobs are thin
+  horizontal ticks (grey, then full strength and longer once passed). No circles or dots.
 - Reading width: long text on wide pages stops at half the window. On `/work`, each role's summary and bullets
   are capped at `50vw` from `md` up (full width on phones).
 - Wrap content in `Container` (handles gutters); use `Section` for full pages. (`CompactSection` and

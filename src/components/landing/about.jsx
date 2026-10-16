@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
 import { Underlined } from '../global/profileParts';
 import { styled } from '@mui/material/styles';
 import Halftone from '../global/halftone';
@@ -39,14 +38,14 @@ export const AboutSection = () => {
           <Box>
             <AboutParagraph variant="body1" paragraph>
               These days I’m a Solutions Engineer at{' '}
-              <Link
+              <AboutLink
                 href="https://www.fullstory.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                sx={{ fontWeight: 700 }}
+                data-tone="fullstory"
               >
                 Fullstory
-              </Link>
+              </AboutLink>
               , a technical + customer-facing solutions engineering role. Most of my time goes to working with
               customer engineering teams in their own codebases to implement the Fullstory Mobile SDK and
               build proofs of concept as well as building out AI/automation workflows and internal
@@ -56,14 +55,14 @@ export const AboutSection = () => {
             </AboutParagraph>
             <AboutParagraph variant="body1" paragraph>
               I also hold a B.S. in Computer Science from the {' '}
-              <GeorgiaTechLink
+              <AboutLink
                 href={education.collegeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-tone="school"
               >
                 Georgia Institute of Technology
-              </GeorgiaTechLink>
+              </AboutLink>
               ,{' '} where I focused on algorithms, networks, and systems.
             </AboutParagraph>
             <CoreStackLabel>Core stack</CoreStackLabel>
@@ -117,9 +116,9 @@ const SkillsList = styled(InlineList)(({ theme }) => ({
   rowGap: theme.spacing(0.5),
 }));
 
-// Same link as the sidebar's "Georgia Tech CS": no underline at rest, Tech Gold and a thin underline drawing in
-// from the left on hover. Bold so it still reads as a link.
-const GeorgiaTechLink = styled(Underlined)(() => ({
+// Same links as the sidebar's: no underline at rest; on hover a thin underline draws in from the left and the
+// text takes its `data-tone` color (Fullstory dark green, Georgia Tech gold). Bold so they still read as links.
+const AboutLink = styled(Underlined)(() => ({
   fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
   fontWeight: 700,
   whiteSpace: 'nowrap',

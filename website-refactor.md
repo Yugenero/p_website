@@ -644,6 +644,13 @@ Below `md` the employer logo on `/work` was forced onto its own line under the t
 and kept in one piece (`nowrap`), so it only drops to the next line when it doesn't fit: Fullstory stays beside
 "Solutions Engineer" down to 360px; the wider Georgia Tech logo wraps on phones. No horizontal scroll at 360/390px.
 
+### 53. Logo underlines undone; Fullstory on /about animates instead
+
+Entry 51 was a misread: the logos on `/work` go back to color only (no underline). What was wanted was the
+"Fullstory" link on `/about`: it was a plain bold MUI link and now reuses the shared `Underlined` link with
+`data-tone="fullstory"`, like Georgia Tech next to it: no underline at rest; on hover dark green (`#047A5E` light /
+`#11AB85` dark) with a thin underline drawing in from the left.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

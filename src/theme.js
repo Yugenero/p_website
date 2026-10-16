@@ -11,6 +11,39 @@ export const colors = {
   white: '#F1F0EC',
 };
 
+// Cursors: near-black fill with a white outline, so they read on both themes.
+const svgCursor = (svg, x, y, fallback) =>
+  `url("data:image/svg+xml,${encodeURIComponent(svg)}") ${x} ${y}, ${fallback}`;
+
+const CURSOR_ARROW = svgCursor(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">' +
+    '<path d="M5 3v18.5l4.6-4.3 3 6.8 3.2-1.4-2.9-6.6 6.1-.2Z" fill="#111" stroke="#fff" ' +
+    'stroke-width="1.6" stroke-linejoin="round"/></svg>',
+  5,
+  3,
+  'auto',
+);
+
+// Material's PanToolAlt hand, outlined to match the arrow.
+const CURSOR_HAND = svgCursor(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="2 1 22 22">' +
+    '<path d="m19.98 14.82-.63 4.46c-.14.99-.99 1.72-1.98 1.72h-6.16c-.53 0-1.29-.21-1.66-.59L5 ' +
+    '15.62l.83-.84c.24-.24.58-.35.92-.28l3.25.74V4.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v6h.91c.31 ' +
+    '0 .62.07.89.21l4.09 2.04c.77.39 1.21 1.22 1.09 2.07" fill="#111" stroke="#fff" ' +
+    'stroke-width="1.3" stroke-linejoin="round"/></svg>',
+  12,
+  3,
+  'pointer',
+);
+
+const CLICKABLE = [
+  'a[href]',
+  'button:not(:disabled)',
+  '[role="button"]:not([aria-disabled="true"])',
+  'label[for]',
+  'summary',
+].join(', ');
+
 export const accentColors = {
   crimsonPrimary: '#8B0000',
   crimson: '#B11226',
@@ -218,6 +251,15 @@ export const buildTheme = (mode = 'light') => {
           '*:focus-visible': {
             outline: `2px solid ${baseTheme.palette.text.primary}`,
             outlineOffset: '3px',
+          },
+          // Chunky, Figma-style cursors (mouse only). !important beats the cursor rules MUI sets per component.
+          '@media (pointer: fine)': {
+            body: {
+              cursor: CURSOR_ARROW,
+            },
+            [CLICKABLE]: {
+              cursor: `${CURSOR_HAND} !important`,
+            },
           },
         },
       },

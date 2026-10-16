@@ -3,10 +3,10 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import { keyframes, styled, useTheme } from '@mui/material/styles';
+import { keyframes, styled } from '@mui/material/styles';
 import { Container, MetaText } from '../ui/primitives';
 import { CrossRule } from '../ui/crossRule';
-import Starfield from '../global/starfield';
+import Halftone from '../global/halftone';
 import { profile, quickFacts } from '../../data/profile';
 import { CodeCard } from './codeCard';
 import { PhotoStrip } from './photoStrip';
@@ -15,25 +15,14 @@ const INTRO_BODY_FONT =
   '"Inter", "Aeonik-Regular", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
 
 export const Intro = () => {
-  const theme = useTheme();
-
   return (
     <HeroSection>
-      <Starfield
-        density={15}
-        color={theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.text.secondary}
-        backgroundStops={['transparent', 'transparent']}
-        maxDrift={0.6}
-        ultraSubtle
-        style={{ opacity: theme.palette.mode === 'dark' ? 0.45 : 0.2 }}
-        forceWhite={true}
-      />
+      <Halftone />
       <HeroContainer>
         <HeroGrid>
           <HeroMain>
             <HeroTitle variant="h1" component="h1">
               {profile.name}
-              <HeroRole component="span">{profile.role}</HeroRole>
             </HeroTitle>
             <TypedLine variant="body1" component="p">
               <ReactTyped
@@ -110,18 +99,18 @@ const pulse = keyframes`
 `;
 
 // Fills the screen below the header on desktop, so the footer only appears once you scroll.
+// The hero's content sits between two cross rules (the header's and HeroRule) with the same gap above and
+// below: HERO_GAP on desktop, HERO_GAP_MOBILE on phones. Keep the two in sync.
+const HERO_GAP = 9; // theme spacing units (72px)
+const HERO_GAP_MOBILE = 5; // 40px
+
 const HeroSection = styled('section')(({ theme }) => ({
   position: 'relative',
   overflow: 'hidden',
-  display: 'flex',
-  alignItems: 'center',
-  minHeight: 'calc(100vh - var(--header-height, 72px))',
-  // Extra bottom padding sits the centered content a little above the middle of the screen.
-  paddingTop: theme.spacing(8),
+  paddingTop: theme.spacing(HERO_GAP),
   paddingBottom: theme.spacing(14),
   [theme.breakpoints.down('md')]: {
-    minHeight: 0,
-    paddingTop: theme.spacing(5),
+    paddingTop: theme.spacing(HERO_GAP_MOBILE),
     paddingBottom: theme.spacing(5),
   },
 }));
@@ -149,9 +138,9 @@ const HeroGrid = styled(Box)(({ theme }) => ({
 
 // Hairline with "+" marks closing the hero; the same rule sits under the header.
 const HeroRule = styled(CrossRule)(({ theme }) => ({
-  marginTop: theme.spacing(5),
+  marginTop: theme.spacing(HERO_GAP),
   [theme.breakpoints.down('md')]: {
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(HERO_GAP_MOBILE),
   },
 }));
 
@@ -190,28 +179,16 @@ const HeroTitle = styled(Typography)(({ theme }) => ({
   fontWeight: 300,
   letterSpacing: '-0.025em',
   lineHeight: 1,
-  fontSize: 'clamp(2.4rem, 5.2vw, 5.4rem)',
+  fontSize: 'clamp(2.4rem, 3.6vw, 3.8rem)',
   margin: 0,
   color: theme.palette.text.primary,
 }));
 
 // Sits on its own line under the name, scaled down so the full title fits on one line.
-const HeroRole = styled(Typography)(({ theme }) => ({
-  display: 'block',
-  fontFamily: theme.typography.fontFamily, // sans-serif, against the serif name
-  fontWeight: 400,
-  fontSize: '0.5em',
-  lineHeight: 1.2,
-  letterSpacing: '-0.01em',
-  marginTop: '0.2em',
-  whiteSpace: 'nowrap',
-  color: theme.palette.text.secondary,
-}));
-
 const TypedLine = styled(Typography)(({ theme }) => ({
   margin: 0,
   minHeight: '2.4em',
-  fontSize: 'clamp(1.05rem, 1.9vw, 1.5rem)',
+  fontSize: 'clamp(1.05rem, 1.7vw, 1.5rem)',
   lineHeight: 1.2,
   color: theme.palette.text.secondary,
   fontFamily: INTRO_BODY_FONT,
@@ -234,9 +211,8 @@ const CtaRow = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
   gap: theme.spacing(1.5),
-  // Pushed to the bottom of the column (level with the quick facts' last row) on desktop.
-  marginTop: 'auto',
-  paddingTop: theme.spacing(1),
+  // Sits right under the status line; the space left below is intentional negative space.
+  paddingTop: theme.spacing(2),
 }));
 
 const HeroAside = styled(Box)(({ theme }) => ({

@@ -4,10 +4,11 @@ import { styled } from '@mui/material/styles';
 import { Link as RouterLink } from 'react-router-dom';
 import { ArrowLink, MetaText } from '../ui/primitives';
 import { usePhotos } from '../global/usePhotos';
+import { profile } from '../../data/profile';
 
 const STRIP_SIZE = 4;
 
-// A thin row of Nelson's own photographs linking to /photography.
+// A thin row of Nelson's own photographs, linking to /photography while that page is open.
 // Renders nothing if the photo service is unavailable, so the hero never shows a broken state.
 export const PhotoStrip = () => {
   const { photos, error } = usePhotos();
@@ -22,11 +23,17 @@ export const PhotoStrip = () => {
     <Strip aria-label="Photography preview">
       <StripHeader>
         <MetaText component="p">Photography</MetaText>
-        <ArrowLink component={RouterLink} to="/photography">
-          View all <span className="arrow">→</span>
-        </ArrowLink>
+        {profile.photographyOpen && (
+          <ArrowLink component={RouterLink} to="/photography">
+            View all <span className="arrow">→</span>
+          </ArrowLink>
+        )}
       </StripHeader>
-      <StripGrid component={RouterLink} to="/photography" aria-label="Open the photography page">
+      <StripGrid
+        {...(profile.photographyOpen
+          ? { component: RouterLink, to: '/photography', 'aria-label': 'Open the photography page' }
+          : {})}
+      >
         {items.map((photo, index) => (
           <Thumb key={photo?.url || index} photo={photo} />
         ))}

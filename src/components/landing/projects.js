@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import { alpha, styled, useTheme } from '@mui/material/styles';
+import { alpha, styled } from '@mui/material/styles';
 import {
   Container,
   InlineItem,
@@ -10,24 +10,14 @@ import {
   SectionHeader,
   SectionTitle,
 } from '../ui/primitives';
-import Starfield from '../global/starfield';
+import Halftone from '../global/halftone';
 import { BinaryMetaText } from '../ui/binaryMetaText';
 import { projects } from '../../data/profile';
 
 const Projects = () => {
-  const theme = useTheme();
-
   return (
     <ProjectsWrap id="projects">
-      <Starfield
-        density={15}
-        color={theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.text.secondary}
-        backgroundStops={['transparent', 'transparent']}
-        maxDrift={0.6}
-        ultraSubtle
-        style={{ opacity: theme.palette.mode === 'dark' ? 0.4 : 0.18 }}
-        forceWhite={true}
-      />
+      <Halftone />
       <ProjectsContent>
         <SectionHeader>
           <BinaryMetaText value="0010" />

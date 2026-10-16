@@ -37,7 +37,7 @@ or give the page structure. Nothing is decoration for its own sake.
 5. **Sentence case, normal tracking.** No all-caps anywhere and no wide letter-spacing. Acronyms like SDK, iOS
    and .NET keep their real capitals.
 6. **Motion with a reason.** Things draw or type in once, on load, and then settle. Looping motion is limited
-   to a typing cursor, the status-dot pulse and the faint starfield. All of it respects `prefers-reduced-motion`.
+   to a typing cursor, the status-dot pulse, and the slow halftone drift in the background. All of it respects `prefers-reduced-motion`.
 7. **Real over illustrative.** Real numbers from the resume, a real public SDK snippet, and Nelson's own
    photographs. No placeholders, stock imagery, invented metrics or headshots (for now).
 
@@ -46,7 +46,7 @@ or give the page structure. Nothing is decoration for its own sake.
 | Role | Face | Where |
 | --- | --- | --- |
 | Display | Baskerville serif stack, weight 300 | Name in the hero, section titles (`SectionTitle`), footer name |
-| Body | Aeonik / system sans | Paragraphs, buttons, nav, quick-fact values; the job title under the name |
+| Body | Aeonik / system sans | Paragraphs, buttons, nav, quick-fact values |
 | Role titles | Geist | Job titles on `/work` |
 | Technical | IBM Plex Mono | Code card, "Open to new roles" status line |
 | Labels | `MetaText`: sans, `0.82rem`, weight 500, `text.secondary` | Fact labels, frame labels, dates, small headings |
@@ -56,8 +56,8 @@ or give the page structure. Nothing is decoration for its own sake.
 - **Cross rule** (`ui/crossRule.js`): a hairline with small "+" crop marks at both ends. On load the line
   grows out from the middle to both ends (1.1s, ease-out), and the marks fade in as it reaches them. It's the site's divider motif, used as the header's bottom edge and to close the landing
   hero under the buttons. Use it for any new divider; keep it bare (no labels or clocks).
-- **Name block**: serif name, with the job title on its own line underneath in a smaller sans and secondary
-  color, then the typed tagline.
+- **Name block**: serif name (`clamp(2.4rem, 3.6vw, 3.8rem)`), then the typed tagline. No job title; the
+  role shows in the pitch ("Currently at Fullstory") and on `/work`.
 - **Code card** (`landing/codeCard.js`): a bordered card titled `nelson.ts` that types out a small "about me"
   in TypeScript: base, fuel (iced coffee), training (strength and endurance), offline (photography and cars),
   and `kaizen(365) // ≈ 37.8x`, since 1% better a day compounds to about 37.8 times in a year. It's company
@@ -91,9 +91,10 @@ or give the page structure. Nothing is decoration for its own sake.
 
 | Piece | File | Contents |
 | --- | --- | --- |
-| Main column | `landing/intro.js` | Name, job title, typed tagline, "Currently at Fullstory" pitch, "Open to new roles" status, *View resume* and *Get in touch* buttons |
+| Main column | `landing/intro.js` | Name, typed tagline, "Currently at Fullstory" pitch, "Open to new roles" status, *View resume* and *Get in touch* buttons |
 | Side column | `landing/intro.js`, `landing/codeCard.js` | Typing code card, quick facts (Focus · Education · Based in) |
 | Cross rule | `ui/crossRule.js` | Closes the hero under the buttons (same rule as under the header) |
+| Background | `global/halftone.jsx` | Halftone cloud texture behind the hero (same as every other page) |
 | Photography strip | `landing/photoStrip.js` | Four photos linking to `/photography`; hidden if the photo service fails |
 
 All text content comes from `src/data/profile.js`. The photo fetch lives in `global/usePhotos.js` and is
@@ -103,7 +104,8 @@ shared with the photography page, so a visit makes one request.
 
 | Branch | Purpose |
 | --- | --- |
-| `landing-page-redesign` | The working branch: everything below, without the portrait |
+| `landing-page-redesign` | Everything through entry 11, without the portrait; merged into `master` on Oct 15 |
+| `halftone-background` | Entries 12–24: halftone background, custom cursors, smaller text and name, no hero job title (ripples tried and removed) |
 | `landing-picture-pending` | Nelson's full version with the portrait frame, saved for later |
 | `landing-picture-local` | Temporary copy used for the merge; safe to delete |
 | `master` | Source branch. [Yugenero/p_website#2](https://github.com/Yugenero/p_website/pull/2) merged the early redesign; later work needs a new PR |
@@ -183,6 +185,103 @@ hover-capable devices or keyboard focus, never stuck after a click. The button s
 from `lg`, and 44px on phones. The header toolbar was raised above the cross rule so the label isn't
 cut by the line.
 
+### 12. Halftone background in the hero
+
+Inspired by the square "cloud halftone" background on nahiyan.codes (a hand-written 2D canvas, no library).
+`global/halftone.jsx` redraws the idea from scratch: 4px squares on a 7px grid, with opacity taken from
+domain-warped value noise and stepped into six levels, so it reads as banded clouds with empty gaps. It
+drifts slowly at about 10fps, uses `text.primary` so it flips with the theme (alpha 0.11 light, 0.16 dark),
+caps the canvas at about 1.8M pixels, and stops redrawing when off screen, in a hidden tab, or with reduced
+motion on (it then shows one still frame). The original's RGB-split glitch was left out to stay monochrome.
+It replaces the starfield in the landing hero only; other pages keep the starfield for now.
+
+### 13. Halftone on every page; starfield removed
+
+The halftone replaced the starfield everywhere: About, Experience, Projects, Photography, the footer, and
+the header (which now has it in light mode too, where the starfield was dark-only). `Halftone` now reads its
+color and opacity from the theme, so each use is just `<Halftone />`, or `<Halftone subtle />` (70% opacity)
+in the header and footer. `starfield.jsx` was deleted, which also cleared its old lint warning.
+
+### 14. Plain header and footer
+
+The halftone was taken back out of the header and footer at Nelson's request, so it only sits behind page
+content. The `subtle` prop went with it.
+
+### 15. Water ripples and chunky cursors
+
+- Moving the mouse over the halftone spawns ripples (every 60px of travel or 220ms). Each is a short train of
+  waves that spreads 220px over 1.6s and fades: crests push squares outward, grow them and light them
+  (white in dark mode, black in light), troughs shrink and dim them. A first version used blue/orange
+  colored rings; Nelson preferred colorless water, so color was dropped. While ripples are live the canvas
+  redraws every frame, then drops back to the 10fps cloud tick. Mouse only; off with reduced motion.
+- New cursors in `theme.js`: a thick near-black arrow with a white outline (like Figma's) and a matching hand
+  (Material's PanToolAlt shape) on links and buttons. Only on fine pointers, so touch devices are unaffected.
+
+### 16. Smaller text, narrower experience bullets
+
+- All text is about 12% smaller: the root font size went from 106.25% (17px) to 93.75% (15px), and from
+  125% to 110% on 2560px+ screens. Sizes are in `rem`, so titles, body, labels, nav and the code card all
+  scaled together. The hero name and job title also scale with screen width, so their `vw` values were cut by
+  the same ratio (5.2vw → 4.6vw, 1.9vw → 1.7vw).
+- On `/work`, each role's summary and bullets stop at half the window width (`50vw`) from the `md`
+  breakpoint up, so lines stay a readable length on wide screens. Phones keep the full width.
+
+### 17. Ripples removed
+
+The mouse ripples from entry 15 were taken out at Nelson's request; `halftone.jsx` is back to the plain
+drifting clouds. The chunky cursors stay.
+
+### 18. No job title in the hero, smaller name
+
+The "Forward Deployed Engineer" line under the name was removed from the landing hero (it's still on
+`/work` and in `profile.role`). The name shrinks on wide screens: `clamp(2.4rem, 3.6vw, 3.8rem)`, down
+from `4.6vw` capped at `5.4rem`, so about 52px instead of 66px at 1440px. Phones are unchanged (the
+2.4rem floor).
+
+### 19. Even spacing between the hero's rules
+
+The hero content now has the same gap above and below it, measured from the header's cross rule and the
+hero's closing cross rule: 72px on desktop, 40px on phones (`HERO_GAP` / `HERO_GAP_MOBILE` in `intro.js`).
+Before it was about 64px above and 40px below, and the hero also filled the screen height with its content
+centered vertically, so taller screens added extra space above. That vertical centering was removed, so the gaps stay equal
+at every screen height.
+
+### 20. Buttons under the status line
+
+The *View resume* / *Get in touch* buttons used to be pinned to the bottom of the left column (level with the
+last quick-fact row), which left a gap of about 200px under "Open to new roles" that read as leftover space.
+They now sit 36px under the status line, so the left column reads as one block and the open space collects
+in the lower-left corner as deliberate negative space.
+
+### 21. Serif header nav with hairline separators
+
+To make the header read more formal, the nav links now use the Baskerville serif (same as the name and section titles)
+at weight 400 instead of the bold sans, with no letter-spacing. Short 1px `divider` hairlines (1.1em tall)
+separate the items and the theme toggle, using a `::before` on each nav child after the first. The same
+treatment applies to the mobile swipe strip. Link padding grew to 14px a side to give the lines room, and
+the hover underline was re-aligned to match.
+
+### 22. Name in the header; nav back to the sans
+
+- The social icons in the top left were replaced with Nelson's name in the serif (1.45rem, 1.35rem on
+  phones), linking to `/`. Email, LinkedIn, GitHub and Instagram are still in the footer.
+- The nav links went back to the sans (0.95rem, 1rem on phones) but stay at regular weight with the hairline
+  separators from entry 21. Serif for the name, sans for navigation.
+- On `/` the name now appears twice (header and hero).
+
+### 23. Photography page locked
+
+`/photography` is locked behind one flag, `profile.photographyOpen` (now `false`). While it's locked, the route
+redirects to `/`, and the header link is disabled with a "coming soon" note on hover, using the same pattern as
+Writing (now a shared `LockedNavItem`; both are hidden in the mobile strip). The landing photo strip
+still shows the four photos but drops "View all" and isn't a link. The locked-item note was made square
+with normal tracking to match the design rules. Set the flag to `true` to reopen everything.
+
+### 24. Stronger halftone
+
+The halftone's peak opacity went up about 55%: 0.11 → 0.17 in light mode (darker squares) and 0.16 → 0.25 in
+dark mode (brighter squares), so the texture reads clearly without competing with the text.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.
@@ -227,8 +326,7 @@ The live site only changes on `npm run deploy`, which runs the build for you (`p
 - **Photography strip:** only tested with stand-in images, because the build environment can't reach the photo
   service. Check it with real photos before deploying.
 - **Writing page:** disabled in the header, and its code still references a placeholder cat image.
-- **Lint warnings:** two existed before this work: `starfield.jsx` (missing `forceWhite` dependency)
-  and `landing/projects.js` (duplicate `minHeight`).
+- **Lint warnings:** one left from before this work: `landing/projects.js` (duplicate `minHeight`).
 - **Unused code and dependencies:** legacy CSS, animations, `navigation.js`, `stuff.js`, `signature.js`,
   `Notes.txt`, the stray `p_website.git/` directory, the `SectionHeaderRow` and `CompactSection` primitives
   (unused since the landing page was trimmed), and several installed but unused packages (see `CLAUDE.md`).
@@ -238,7 +336,8 @@ The live site only changes on `npm run deploy`, which runs the build for you (`p
 - [x] Remove the tax PDFs from the live site
 - [x] Save the portrait version on `landing-picture-pending`
 - [ ] Review the landing page locally with real photos
-- [ ] Open a new pull request from `landing-page-redesign` into `master`
+- [x] Merge `landing-page-redesign` into `master` (Oct 15)
+- [x] Use the halftone on every page instead of the starfield
 - [ ] Deploy (`npm run deploy`)
 - [ ] Fix deep-link 404s on GitHub Pages
 - [ ] Regenerate `package-lock.json`

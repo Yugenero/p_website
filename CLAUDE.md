@@ -28,7 +28,7 @@ holds what, what's already been tried or rejected, and what's still open.
 | Routing | `react-router-dom` v6, `BrowserRouter` (see `src/App.js`) |
 | Styling | MUI v5 (`@mui/material`) with `styled()` + theme tokens; Emotion under the hood |
 | Theme | `src/theme.js`, light/dark built by `buildTheme(mode)`, persisted in `localStorage.themeMode` |
-| Animation | CSS keyframes, `react-typed` (typewriter text), custom `Starfield` component |
+| Animation | CSS keyframes, `react-typed` (typewriter text), custom `Halftone` canvas background |
 | Icons | `@mui/icons-material` |
 | Photos | Fetched at runtime from a Google Cloud Function (`cloud-functions/`) backed by GCS |
 | Hosting | GitHub Pages via `npm run deploy` (`gh-pages -d build`) to the `gh-pages` branch, custom domain via `CNAME` |
@@ -57,7 +57,7 @@ src/
   components/
     ui/primitives.js     layout + type primitives (Container, Section, CompactSection, MetaText, SectionTitle, ArrowLink, …)
     ui/binaryMetaText.js typed binary section label ("0001|")
-    global/              header, footer, starfield
+    global/              header, footer, halftone background
     landing/             landing hero (intro.js) + the full Experience/Projects/About sections reused by pages
     pages/               thin route wrappers (about, work, projects, photography, blog)
     styles/, pages/pageStyles/, animations/   legacy CSS + effects, mostly unused by current routes
@@ -70,11 +70,11 @@ public/
 
 | Path | Component | Notes |
 | --- | --- | --- |
-| `/` | `landing/home.js` | Hero (name, role, typed tagline, pitch, resume/contact buttons, code card, quick facts) closed by a cross rule, then the photography strip. No metrics |
+| `/` | `landing/home.js` | Hero (name, typed tagline, pitch, resume/contact buttons, code card, quick facts) closed by a cross rule, then the photography strip. No metrics |
 | `/about` | `landing/about.js` | Bio + core stack |
 | `/work` | `landing/work.js` | Full experience timeline with all bullets |
 | `/projects` | `landing/projects.js` | Project cards |
-| `/photography` | `pages/photography.js` | Masonry grid from the GCS cloud function |
+| `/photography` | `pages/photography.js` | Masonry grid from the GCS cloud function. **Locked** while `profile.photographyOpen` is `false`: redirects to `/`, header link disabled ("coming soon") |
 | `/blog`, `/blog/:slug` | `pages/blog.js` | Under construction; header link is disabled |
 
 ## Content: `src/data/profile.js`
@@ -85,20 +85,28 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
 - When the resume changes, update **both** `public/documents/NelsonRodriguez.pdf` and `profile.js`.
 - Every number or claim on the site must be traceable to the resume. Don't invent metrics,
   titles, or availability promises.
+- `profile.photographyOpen` locks or opens `/photography` everywhere (route, header link, landing strip links).
 - `profile.openToWork` toggles the "Open to new roles" status line in the hero.
 - Keep the landing page uncluttered: roughly one desktop screen, no metrics/impact numbers.
   Experience, projects, and skills belong on their own pages; order those arrays by importance.
 - Landing visuals (each in its own file under `components/landing/`):
   - Cross rule (`ui/crossRule.js`): a hairline with small "+" marks at both ends. On load the line grows out
     from the middle to both ends, then the marks fade in as it arrives.
-    It's the site's divider motif: under the header and under the hero buttons. Reuse it for new dividers
+    It's the site's divider motif: the header's bottom edge, and the line that closes the hero (below both columns,
+    above the photo strip). Reuse it for new dividers
     rather than inventing another. No labels or clocks on it (location/local-time labels were removed as bloat).
   - `codeCard.js`: a monochrome card (`nelson.ts`) that types out a short, **company-agnostic** snippet about
     Nelson: base, iced coffee, hybrid training, photography and cars, and a `kaizen()` that compounds 1% a day.
     Keep it personal, truthful (only interests stated elsewhere on the site), and under ~38 characters a line so
     nothing wraps on phones. No employer code or branding.
-  - `photoStrip.js`: four of Nelson's photos (grayscale, color on hover) linking to `/photography`. It shares
+  - `photoStrip.js`: four of Nelson's photos (grayscale, color on hover), linking to `/photography` only while it's open. It shares
     `global/usePhotos.js` with the photography page and renders nothing if the photo service fails.
+- Hero layout: two columns (pitch on the left; code card and quick facts on the right). The buttons sit directly
+  under the status line, not pinned to the column bottom, so the leftover space collects in the lower-left
+  corner as deliberate negative space. Don't fill it.
+- The hero has equal space above and below its content, between the two cross rules (`HERO_GAP` in
+  `intro.js`: 72px desktop, 40px phones). Change both sides together. The hero doesn't stretch to the screen
+  height, so the spacing is the same on every screen.
 - No headshot/portrait on the landing page for now. The picture version is saved on the `landing-picture-pending` branch.
 
 ## Design system & UI guardrails
@@ -115,18 +123,29 @@ Build on it; don't introduce a new visual language.
 
 ### Typography
 - Headings / display: Baskerville serif stack (`theme.typography.h1.fontFamily`), weight 300.
-- Body: Aeonik / system sans (`theme.typography.fontFamily`). Role titles use Geist.
+- Body: Aeonik / system sans (`theme.typography.fontFamily`). Role titles on `/work` use Geist.
+- Technical: IBM Plex Mono for anything "code": the code card and the "Open to new roles" status line.
+- Hero name: the serif at weight 300, `clamp(2.4rem, 3.6vw, 3.8rem)`. No job title under it.
+- Header: Nelson's name in the serif (weight 400) on the left, linking home; social links live only in the footer.
+  Nav links in the sans at weight 400 (not bold), with 1px `divider` hairlines between items and before the theme
+  toggle, on desktop and in the mobile strip. On phones the name and theme toggle share the top row and the nav
+  becomes a swipeable strip underneath (current page underlined).
+- Locked pages (Writing, and Photography while `photographyOpen` is false) use `LockedNavItem` in `header.js`:
+  the link does nothing and a small square note (inverted colors, normal tracking) shows on hover or focus.
+  Locked items are hidden in the mobile strip.
 - **No all-caps text, anywhere.** Never use `textTransform: 'uppercase'` (or CSS `text-transform: uppercase`),
   and never type words in capitals for styling. Use sentence case for labels, buttons, links, and tags.
   Real acronyms (SDK, SQL, iOS, .NET) are fine. MUI's `button` and `overline` variants are set to
   `textTransform: 'none'` in `theme.js`; keep it that way.
+- Base size: `html { font-size: 93.75% }` (15px; 110% from 2560px) in `src/index.css`. Text sizes are in `rem`, so
+  change the base to scale all text at once, rather than editing sizes one by one.
 - Keep letter-spacing near normal (`0`–`0.02em`); the wide tracking that went with caps is gone too.
 - Labels: `MetaText`, sentence case, `0.82rem`, weight 500, `text.secondary`.
 - Tech tags: `InlineItem` inside `InlineList` (sentence case, small, no pills/badges).
 
 ### Layout & components
 - Square corners (`borderRadius: 0`) for buttons, panels, cards. Existing exception: the `/projects` cards.
-  Header and footer social icon hover boxes are square too.
+  Footer social icon hover boxes are square too.
 - Theme toggle (`animations/themeToggle.js`): a square button with a half-filled circle that turns 180° when the
   theme flips, and a "Switch to dark/light mode" label on hover (hover-capable devices) or keyboard focus.
   It's 44px on phones. Any new header popup must stay above the header's cross rule (the toolbar is `zIndex: 2`).
@@ -136,9 +155,17 @@ Build on it; don't introduce a new visual language.
   (About `0000`, Experience `0001`, Projects `0010`, Photography `0011`, Writing `0100`); the landing page
   numbers its own sections sequentially.
 - Buttons: MUI `Button` `contained` (filled) for the primary action, `outlined` for secondary.
+- Reading width: long text on wide pages stops at half the window. On `/work`, each role's summary and bullets
+  are capped at `50vw` from `md` up (full width on phones).
 - Wrap content in `Container` (handles gutters); use `Section` for full pages. (`CompactSection` and
   `SectionHeaderRow` in `primitives.js` are currently unused; they served the old overview sections.)
-- The `Starfield` background is optional texture; keep it `ultraSubtle` with low opacity.
+- Background texture: every page section uses `<Halftone />` (`global/halftone.jsx`), a canvas grid of small
+  squares whose opacity follows slowly drifting cloud noise. It reads `text.primary` and the peak opacity
+  (0.17 light, 0.25 dark) from the theme. Its parent needs `position: relative` and `overflow: hidden`, with
+  content above it at `zIndex: 1`. The header and footer stay plain. No mouse ripples (tried in entry 15 of the
+  log and removed). The old `Starfield` was removed.
+- Cursors: chunky Figma-style arrow and hand (SVG data URIs in `theme.js`, `CURSOR_ARROW` / `CURSOR_HAND`),
+  applied only on `pointer: fine` devices; the hand covers links, buttons and `role="button"`.
 
 ### Responsiveness & accessibility
 - Must work from 360px phones to wide desktops with **no horizontal page scroll** (the mobile header nav
@@ -166,6 +193,6 @@ Build on it; don't introduce a new visual language.
 - GitHub Pages has no SPA fallback, so a hard refresh on `/work`, `/projects`, etc. likely 404s.
   Fix with a `public/404.html` redirect or move to `HashRouter`.
 - Writing/blog page is disabled in the header; `blogData.js` / `blog.js` still reference a cat placeholder image.
-- Pre-existing lint warnings: `starfield.jsx` (missing `forceWhite` dep), `landing/projects.js` (duplicate `minHeight`).
+- Pre-existing lint warning: `landing/projects.js` (duplicate `minHeight`).
 - Legacy unused files: `components/styles/*.css`, `components/animations/*`, `landing/navigation.js`,
   `pages/stuff.js`, `global/signature.js`, `public/documents/Notes.txt`, and the stray `p_website.git/` directory.

@@ -1,12 +1,11 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { Container } from '../ui/primitives';
-import Starfield from './starfield';
 
 const FooterWrap = styled('footer')(({ theme }) => ({
   paddingTop: theme.spacing(6),
@@ -84,18 +83,8 @@ const SocialLink = styled('a')(({ theme }) => {
 });
 
 const Footer = () => {
-  const theme = useTheme();
-
   return (
     <FooterWrap>
-      <Starfield
-        density={5}
-        color={theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.text.secondary}
-        backgroundStops={['transparent', 'transparent']}
-        maxDrift={0.6}
-        ultraSubtle
-        style={{ opacity: theme.palette.mode === 'dark' ? 0.4 : 0.18 }}
-      />
       <FooterContent>
         <FooterInner>
           <Box>

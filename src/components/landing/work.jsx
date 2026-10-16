@@ -100,10 +100,17 @@ const useScrollTimeline = ({ listRef, railRef, fillRef, markerRefs }) => {
       tipGlow.style.transform = `translate3d(${tip.x}px, ${tip.y}px, 0)`;
       tipGlow.style.opacity = length > 0.5 ? '1' : '0';
       // A job counts as reached once the fill gets to its diamond: the diamond appears and the job's date lights up.
+      // The last job reached is the active one: its employer takes its hover look (brand color, underline).
+      let active = -1;
       markerFractions.forEach((fraction, i) => {
-        const reached = String(current >= fraction - 0.001);
+        const isReached = current >= fraction - 0.001;
+        if (isReached) active = i;
+        const reached = String(isReached);
         if (markerRefs.current[i]) markerRefs.current[i].dataset.reached = reached;
         if (items[i]) items[i].dataset.reached = reached;
+      });
+      items.forEach((item, i) => {
+        item.dataset.active = String(i === active);
       });
     };
 
@@ -203,7 +210,7 @@ const Employer = ({ experience }) => {
       {employer}
     </EmployerLink>
   ) : (
-    employer
+    <EmployerName>{employer}</EmployerName>
   );
 };
 
@@ -488,10 +495,11 @@ const LogoLink = styled(Link)(({ theme }) => {
     color: 'inherit',
     textDecoration: 'none',
     transition: 'color 0.2s ease',
-    '&[data-tone="fullstory"]:hover, &[data-tone="fullstory"]:focus-visible': {
+    // Also while its job is the active one on the timeline.
+    '&[data-tone="fullstory"]:hover, &[data-tone="fullstory"]:focus-visible, [data-active="true"] &[data-tone="fullstory"]': {
       color: FULLSTORY_GREEN[mode] ?? FULLSTORY_GREEN.light,
     },
-    '&[data-tone="school"]:hover, &[data-tone="school"]:focus-visible': {
+    '&[data-tone="school"]:hover, &[data-tone="school"]:focus-visible, [data-active="true"] &[data-tone="school"]': {
       color: TECH_GOLD[mode] ?? TECH_GOLD.light,
     },
     '&:not([data-tone]):hover': {
@@ -503,15 +511,12 @@ const LogoLink = styled(Link)(({ theme }) => {
   };
 });
 
-// Employer names link out when the entry has a `url` in profile.js.
 // Employer names link out when the entry has a `url` (Civic Digital Experience → its LinkedIn page). No underline at
 // rest; on hover a thin underline draws in from the left and the name takes its `tone` color (light blue for Civic,
 // as in the sidebar). The underline is a background line rather than a pseudo-element, so it follows the text
 // across a line break when a long title wraps on phones.
-const EmployerLink = styled(Link)(({ theme }) => ({
-  color: 'inherit',
-  font: 'inherit',
-  textDecoration: 'none',
+// The same underline (and tone color) shows while the job is the active one on the timeline.
+const employerUnderline = {
   backgroundImage: 'linear-gradient(currentColor, currentColor)',
   backgroundRepeat: 'no-repeat',
   backgroundPosition: '0 100%',
@@ -519,16 +524,29 @@ const EmployerLink = styled(Link)(({ theme }) => ({
   WebkitBoxDecorationBreak: 'clone',
   boxDecorationBreak: 'clone',
   transition: 'background-size 0.25s ease, color 0.2s ease',
-  '&:hover, &:focus-visible': {
+  '[data-active="true"] &': {
     backgroundSize: '100% 1px',
-  },
-  '&[data-tone="civic"]:hover, &[data-tone="civic"]:focus-visible': {
-    color: CIVIC_BLUE[theme.palette.mode] ?? CIVIC_BLUE.light,
   },
   '@media (prefers-reduced-motion: reduce)': {
     transition: 'none',
   },
+};
+
+const EmployerLink = styled(Link)(({ theme }) => ({
+  color: 'inherit',
+  font: 'inherit',
+  textDecoration: 'none',
+  ...employerUnderline,
+  '&:hover, &:focus-visible': {
+    backgroundSize: '100% 1px',
+  },
+  '&[data-tone="civic"]:hover, &[data-tone="civic"]:focus-visible, [data-active="true"] &[data-tone="civic"]': {
+    color: CIVIC_BLUE[theme.palette.mode] ?? CIVIC_BLUE.light,
+  },
 }));
+
+// Employers without a link (eKlozet, GT WebDev): plain text that only gets the underline while active.
+const EmployerName = styled('span')(() => employerUnderline);
 
 const WorkLocation = styled(Typography)(() => ({
   fontSize: '0.98rem',

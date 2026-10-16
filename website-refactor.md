@@ -597,6 +597,15 @@ from the left. The underline is a background line with `box-decoration-break: cl
 pseudo-element, because a job title can wrap on phones and a pseudo-element underline would break across lines.
 Checked on desktop in both themes and at 360px, where the name wraps to two lines and the underline follows both.
 
+### 47. Timeline: the current job's employer lights up
+
+As the timeline fill reaches each diamond on `/work`, that job's employer takes its hover look automatically:
+Fullstory's logo turns dark green, Civic Digital Experience turns light blue with its underline, Georgia Tech's
+logo turns Tech Gold, and eKlozet / GT WebDev (no link, no brand color) get the thin underline. Only the last job
+reached is highlighted (`data-active` on the item, set by `useScrollTimeline` next to `data-reached`), so it
+moves down the list as you scroll and moves back up if you scroll back. Dates still stay lit for every job reached.
+Checked in the dev server in both themes.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

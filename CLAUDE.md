@@ -219,12 +219,12 @@ Build on it; don't introduce a new visual language.
   no section label.
 - Buttons: MUI `Button` `contained` (filled) for the primary action, `outlined` for secondary.
 - `/work` timeline (`landing/work.jsx`): a rail pinned beside the job list that maps the whole list (a mini-map).
-  It's an SVG path from the first tick to the last (the end markers sit right on its ends) with one abrupt S-bend (`JOG` 10px
-  right, `JOG_RADIUS` 4px) halfway between the first two jobs; the fill draws along it (stroke-dashoffset), with
-  an aura: a blurred, wider stroke whose gradient fades from nothing `AURA_TAIL` (140px) back to full at the tip,
-  plus a soft pulsing halo on the tip itself. Jobs are small diamonds (`DIAMOND` 7px), hidden until the fill
-  reaches them (then they scale in at full strength, and hide again if you scroll back above),
-  and reaching a diamond highlights that job's date (`data-timeline-date`: full strength, weight 600). No dots.
+  It's a straight SVG line from the first job marker to the last (markers sit right on its ends). The fill draws
+  along it (stroke-dashoffset) with a soft aura: a blurred, wider stroke whose gradient fades from nothing
+  `AURA_TAIL` (140px) back to its peak at the tip (opacity 0.45 dark / 0.32 light), plus a faint pulsing halo on
+  the tip. Jobs are small diamonds (`DIAMOND` 7px), hidden until the fill reaches them (then they scale in, and
+  hide again if you scroll back above), and reaching a diamond highlights that job's date (`data-timeline-date`:
+  full strength, weight 600). No moving marker, no bends.
 - Reading width: long text on wide pages stops at half the window. On `/work`, each role's summary and bullets
   are capped at `50vw` from `md` up (full width on phones).
 - Wrap content in `Container` (handles gutters); use `Section` for full pages. (`CompactSection` and

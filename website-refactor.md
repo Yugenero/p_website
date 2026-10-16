@@ -559,6 +559,14 @@ Below the fill the rail is a plain line. Reduced motion shows them without the d
   reaches them; they scale in with the date highlight.
 - Checked on desktop (light) and an emulated phone (dark), scrolled top/mid/end, plus the dev server.
 
+### 42. Timeline straight again, softer aura
+
+- The jog from entry 38 was removed at Nelson's request: the rail is a straight line from the first diamond to
+  the last again (the bend code was deleted, not zeroed, since a zero-size bend would draw backwards).
+- The aura was toned down about 40%: tip opacity 0.75 → 0.45 (dark) and 0.55 → 0.32 (light), a thinner glow
+  stroke (5 → 4px), and a smaller, dimmer, gentler-pulsing tip halo.
+- Checked on desktop in both themes and an emulated phone, plus the dev server.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

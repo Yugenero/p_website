@@ -35,17 +35,15 @@ const timeline = [
   },
 ];
 
-// Scroll timeline: a rail pinned to the viewport beside the job list. The rail maps the whole
-// list top-to-bottom and fills in as you read, with a soft glow that brightens toward the leading tip; when the
-// fill reaches a job's diamond, the diamond appears and that job's date is highlighted. The rail is an SVG path that runs from the first tick to the last (so the ticks cap it
-// flush) with one abrupt S-bend (a sideways jog) between the first and second jobs; the fill follows the path.
+// Scroll timeline: a rail pinned to the viewport beside the job list. The rail maps the whole list top-to-bottom
+// and fills in as you read, with a soft glow that brightens toward the leading tip; when the fill reaches a job's
+// diamond, the diamond appears and that job's date is highlighted. The rail is a straight SVG line from the first
+// marker to the last, so the markers sit right on its ends.
 const READ_LINE = 0.45; // where the "reading line" sits in the viewport at the top of the page
 const MARKER_Y = 10; // px from an item's top to the point its marker represents (its date line)
 const RAIL_GUTTER = { desktop: 48, mobile: 30 };
-const RAIL_X = 5; // px from the gutter's left edge to the rail's center (above the jog)
+const RAIL_X = 5; // px from the gutter's left edge to the rail's center
 const RAIL_INSET = 24; // px of breathing room above and below the pinned rail
-const JOG = 10; // px the rail shifts right at the bend
-const JOG_RADIUS = 4; // corner radius of the bend's two turns; small = abrupt
 const DIAMOND = 7; // side of a job's diamond marker (before the 45° turn)
 const AURA_TAIL = 140; // px of glow behind the tip, fading from the tip back to nothing
 const EASE = 0.14; // per-frame easing toward the scroll target; lower is smoother/slower
@@ -62,9 +60,8 @@ const useScrollTimeline = ({ listRef, railRef, fillRef, markerRefs }) => {
     let markerFractions = [];
     let items = [];
     let railHeight = 0;
-    let startY = 0; // first tick: where the path starts
-    let endY = 0; // last tick: where the path ends
-    let jogY = null; // y of the bend, or null with fewer than two jobs
+    let startY = 0; // first marker: where the line starts
+    let endY = 0; // last marker: where the line ends
     let pathLength = 0;
     const track = rail.querySelector('[data-track]');
     const fillPath = fillRef.current;
@@ -72,19 +69,9 @@ const useScrollTimeline = ({ listRef, railRef, fillRef, markerRefs }) => {
     const auraGradient = rail.querySelector('linearGradient');
     const tipGlow = rail.querySelector('[data-tip]');
 
-    // How much of the path is filled when the reading position is at height y. The path only ever moves down, so
-    // that's the height covered since the first tick, plus the extra the bend adds once you're past it
-    // (interpolated through the bend itself).
-    const lengthAtY = (rawY) => {
-      const y = Math.min(Math.max(rawY, startY), endY);
-      const straight = y - startY;
-      if (jogY === null) return straight;
-      const extra = pathLength - (endY - startY);
-      if (y <= jogY - JOG_RADIUS) return straight;
-      if (y >= jogY + JOG_RADIUS) return straight + extra;
-      return straight + extra * ((y - (jogY - JOG_RADIUS)) / (2 * JOG_RADIUS));
-    };
-    const xAtY = (y) => (jogY !== null && y > jogY ? RAIL_X + JOG : RAIL_X);
+    // How much of the line is filled when the reading position is at height y: the height covered since the first
+    // marker, clamped to the line.
+    const lengthAtY = (y) => Math.min(Math.max(y, startY), endY) - startY;
     let current = null;
     let target = 0;
     let frame = 0;
@@ -92,7 +79,7 @@ const useScrollTimeline = ({ listRef, railRef, fillRef, markerRefs }) => {
     const toFraction = (offsetInList) => clamp01(offsetInList / list.offsetHeight);
 
     // The reading line slides from READ_LINE to the bottom of the viewport as the page scrolls,
-    // so the fill always reaches the last tick even when the page can't scroll that far.
+    // so the fill always reaches the last marker even when the page can't scroll that far.
     const computeTarget = () => {
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       const pageProgress = maxScroll > 0 ? clamp01(window.scrollY / maxScroll) : 1;
@@ -111,7 +98,7 @@ const useScrollTimeline = ({ listRef, railRef, fillRef, markerRefs }) => {
       auraGradient.setAttribute('y2', String(tip.y));
       tipGlow.style.transform = `translate3d(${tip.x}px, ${tip.y}px, 0)`;
       tipGlow.style.opacity = length > 0.5 ? '1' : '0';
-      // A job counts as reached once the fill gets to its tick: the tick darkens and the job's date lights up.
+      // A job counts as reached once the fill gets to its diamond: the diamond appears and the job's date lights up.
       markerFractions.forEach((fraction, i) => {
         const reached = String(current >= fraction - 0.001);
         if (markerRefs.current[i]) markerRefs.current[i].dataset.reached = reached;
@@ -146,18 +133,10 @@ const useScrollTimeline = ({ listRef, railRef, fillRef, markerRefs }) => {
       markerFractions = items.map((item) => toFraction(item.offsetTop + MARKER_Y));
       if (!markerFractions.length) return;
 
-      // Rail path: from the first tick straight down, an abrupt S-bend halfway between the first two jobs, then
-      // straight down to the last tick. Starting and ending on ticks keeps both ends flush (no stub past a tick).
-      const x0 = RAIL_X;
-      const x1 = RAIL_X + JOG;
-      const r = JOG_RADIUS;
+      // Rail line: straight down from the first marker to the last, so neither end has a stub past a marker.
       startY = markerFractions[0] * railHeight;
       endY = markerFractions.length > 1 ? markerFractions[markerFractions.length - 1] * railHeight : railHeight;
-      jogY = markerFractions.length > 1 ? ((markerFractions[0] + markerFractions[1]) / 2) * railHeight : null;
-      const d =
-        jogY === null
-          ? `M ${x0} ${startY} V ${endY}`
-          : `M ${x0} ${startY} V ${jogY - r} Q ${x0} ${jogY} ${x0 + r} ${jogY} H ${x1 - r} Q ${x1} ${jogY} ${x1} ${jogY + r} V ${endY}`;
+      const d = `M ${RAIL_X} ${startY} V ${endY}`;
       rail.querySelectorAll('path').forEach((path) => path.setAttribute('d', d));
       pathLength = track.getTotalLength();
       fillPath.style.strokeDasharray = String(pathLength);
@@ -167,7 +146,7 @@ const useScrollTimeline = ({ listRef, railRef, fillRef, markerRefs }) => {
         if (!marker) return;
         const y = markerFractions[i] * railHeight;
         marker.style.top = `${y}px`;
-        marker.style.left = `${xAtY(y)}px`;
+        marker.style.left = `${RAIL_X}px`;
       });
       current = null; // snap to the new layout instead of easing from the old one
       onScroll();
@@ -329,7 +308,7 @@ const Rail = styled('div')(() => ({
   position: 'sticky',
   top: 96,
   height: 'calc(100vh - 144px)',
-  width: RAIL_X + JOG + DIAMOND * 2,
+  width: RAIL_X + DIAMOND * 2,
 }));
 
 // Track (divider color), aura and fill (drawn in with stroke-dashoffset as you scroll) share one path. The aura is
@@ -354,7 +333,7 @@ const RailPath = styled('svg')(({ theme }) => ({
   },
   '& [data-aura]': {
     stroke: 'url(#timeline-aura)',
-    strokeWidth: 5,
+    strokeWidth: 4,
     strokeLinecap: 'round',
     filter: 'url(#timeline-aura-blur)',
   },
@@ -364,13 +343,13 @@ const RailPath = styled('svg')(({ theme }) => ({
   },
   '& [data-stop="tip"]': {
     stopColor: theme.palette.text.primary,
-    stopOpacity: theme.palette.mode === 'dark' ? 0.75 : 0.55,
+    stopOpacity: theme.palette.mode === 'dark' ? 0.45 : 0.32,
   },
 }));
 
 const tipPulse = keyframes`
-  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.85; transform: translate(-50%, -50%) scale(1.2); }
 `;
 
 // The brightest point of the aura: a soft halo sitting on the tip of the fill, pulsing gently.
@@ -386,11 +365,11 @@ const RailTip = styled('span')(({ theme }) => ({
   '&::after': {
     content: '""',
     position: 'absolute',
-    width: 10,
-    height: 10,
+    width: 8,
+    height: 8,
     borderRadius: '50%',
-    backgroundColor: alpha(theme.palette.text.primary, 0.85),
-    boxShadow: `0 0 10px 4px ${alpha(theme.palette.text.primary, theme.palette.mode === 'dark' ? 0.55 : 0.4)}`,
+    backgroundColor: alpha(theme.palette.text.primary, 0.55),
+    boxShadow: `0 0 8px 3px ${alpha(theme.palette.text.primary, theme.palette.mode === 'dark' ? 0.32 : 0.22)}`,
     filter: 'blur(1.5px)',
     transform: 'translate(-50%, -50%)',
     animation: `${tipPulse} 2.6s ease-in-out infinite`,
@@ -440,7 +419,7 @@ const WorkItem = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(1.5),
-  // The date lights up once the timeline's fill reaches this job's tick (set by useScrollTimeline).
+  // The date lights up once the timeline's fill reaches this job's diamond (set by useScrollTimeline).
   '& [data-timeline-date]': {
     transition: 'color 0.3s ease',
   },

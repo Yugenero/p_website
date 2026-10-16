@@ -99,7 +99,7 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
 - `profile.photographyOpen` locks or opens `/photography` everywhere (route and sidebar nav).
 - `profile.openToWork` toggles the "Open to new roles" line (green dot) in the sidebar's *now* block.
 - Sidebar copy also lives in `profile`: `tagline` (list, joined with ` · `), `school` (label + link), `bio` (two
-  lines, truthful), `previously`, `timeZone`.
+  lines, truthful), `previously` (entries with `name`, optional `href` and `tone`), `timeZone`.
 - No metrics/impact numbers on the home page or sidebar. Experience, projects, and skills belong on their own
   pages; order those arrays by importance. The home feed shows `projects` in array order (first = lead tile).
 
@@ -115,9 +115,9 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
   "Open to new roles") · "Previously at …" · "Reach out via email, or read my resume" · LinkedIn / GitHub /
   Instagram stacked as plain text (on hover: brand color and a thin underline drawing in from the left) · live clock "Currently Atlanta, GA · HH:MM:SS" (`profile.location` + Nelson's base time zone, `profile.timeZone`; the time in
   mono, tabular figures).
-- Inline links (school, email, resume) are full-strength text with a thin underline drawing in from the left on
+- Inline links (Fullstory, Civic Digital Experience, school, email, resume) are full-strength text with a thin underline drawing in from the left on
   hover (`Underlined`, kept on one line so the underline never breaks); email also turns light red, the school
-  Tech Gold (`data-tone`).
+  Tech Gold, Civic light blue, and Fullstory gets a green underline (`data-tone`).
 - Nav pinned to the bottom, stacked: Home, About, Experience, Projects, Photography, Writing, with the theme toggle
   bottom-right on the same row (its label opens upward, `tipPlacement="top"`). The current page
   gets a small filled square before it. Locked pages show greyed out with a small mono "soon" and aren't links.
@@ -160,8 +160,9 @@ Build on it; don't introduce a new visual language.
   secondary `#A3A3A3` (`colors.grayMid`; was `#E0E0E0`, which was too close to white for the two-tone text).
 - No new accent colors. Exceptions: the green status dot (`#2EA043`) in the sidebar, and brand colors on the
   sidebar's social links **on hover only** (LinkedIn `#0A66C2` / `#70B5F9` in dark, GitHub green `#2DA44E` / `#7EE787` in dark,
-  Instagram's gradient), the email link's light red on hover (`#D9473F` / `#FF8A80` in dark), and Georgia Tech CS in Tech Gold on hover
-  (`#857437` Tech Dark Gold / `#B3A369` Tech Gold in dark). At rest
+  Instagram's gradient), the email link's light red on hover (`#D9473F` / `#FF8A80` in dark), Georgia Tech CS in Tech Gold on hover
+  (`#857437` Tech Dark Gold / `#B3A369` Tech Gold in dark), Civic Digital Experience in light blue on hover
+  (`#2B8FD6` / `#8CCBFF` in dark), and Fullstory's underline (only) in its brand green (`#059573` / `#07C799`). At rest
   they're the normal text colors.
   `accentColors` (crimson) in `theme.js` exists but is intentionally unused.
 - Every change must look right in **both** light and dark mode.

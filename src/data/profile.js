@@ -21,7 +21,12 @@ export const profile = {
   school: { label: 'Georgia Tech CS', href: collegeOfComputingUrl },
   bio: "I build across mobile SDKs, AI workflows and full-stack web, often working directly in customers' codebases.",
   // Sidebar "Previously at" line, newest first.
-  previously: ['Civic Digital Experience', 'eKlozet', 'GT WebDev'],
+  // `href` makes the name a link; `tone` picks its hover color in the sidebar.
+  previously: [
+    { name: 'Civic Digital Experience', href: 'https://www.linkedin.com/company/civicdx/home/', tone: 'civic' },
+    { name: 'eKlozet' },
+    { name: 'GT WebDev' },
+  ],
   email: 'neroxv1313@gmail.com',
   resumeUrl: '/documents/NelsonRodriguez.pdf',
   linkedin: 'https://www.linkedin.com/in/nelson-rodriguez13/',

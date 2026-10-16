@@ -468,6 +468,15 @@ Engineer**; Nelson will update it, then it should replace `public/documents/Nels
 turns Georgia Tech's Tech Gold on hover, underline included: `#B3A369` in dark mode and GT's Tech Dark Gold
 `#857437` in light mode, where the standard gold is too pale on the off-white page.
 
+### 34. Fullstory and Civic links
+
+- **Fullstory** in the *now* line uses the animated underline, drawn in Fullstory's brand green (`#07C799`
+  in dark mode, their darker `#059573` in light mode, both taken from fullstory.com). Only the underline is
+  green; the word keeps its normal color.
+- **Civic Digital Experience** in "Previously at" now links to its LinkedIn company page and turns light blue
+  on hover (`#8CCBFF` dark, `#2B8FD6` light). `profile.previously` became a list of `{ name, href?, tone? }`.
+- Checked both with real mouse hovers in light and dark mode, plus the dev server.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

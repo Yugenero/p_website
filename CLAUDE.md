@@ -105,6 +105,10 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
 ### Sidebar (`global/sidebar.jsx`) — the site's frame
 - Fixed left column on every page (`SIDEBAR_WIDTH = clamp(300px, 26vw, 400px)`, full height, `divider` hairline
   on its right edge). Content on the right scrolls; the sidebar doesn't.
+- Name hover (`NameLink` / `NameTip`): the name turns brushed chrome (grey-scale banded gradient clipped to the
+  text, tuned per theme) and a bright streak sweeps across it once (1.1s); a "that's me :)" note appears to its
+  right in the same style as the theme toggle's label. Hover-capable devices and keyboard focus only; with
+  reduced motion the chrome shows without the sweep.
 - Top to bottom: name (serif, links home) · tagline · bio · *now* block (`→ <role> at <company>`, green-dot
   "Open to new roles") · "Previously at …" · "Reach out via email, or read my resume" · LinkedIn / GitHub /
   Instagram as plain text · live clock "Currently Atlanta, GA · HH:MM:SS" (`profile.location` + Nelson's base time zone, `profile.timeZone`; the time in

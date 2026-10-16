@@ -122,7 +122,8 @@ tiles carry the energy.
 
 ### Signature elements
 
-- **Sidebar** (`global/sidebar.jsx`): fixed left column with a hairline on its right edge. Name (serif),
+- **Sidebar** (`global/sidebar.jsx`): fixed left column with a hairline on its right edge. Name (serif; chrome
+  sheen and a "that's me :)" note on hover),
   tagline, a two-line bio, a *now* block (`→ Forward Deployed Engineer at Fullstory`, green-dot "Open to new
   roles"), "Previously at …", "Reach out via email, or read my resume", plain-text social links, and a live
   clock ("Currently Atlanta, GA · 17:03:30", Eastern time, mono figures) with the theme toggle beside it. Nav pinned to the
@@ -415,6 +416,16 @@ dev server was only checked for HTTP 200, never rendered.
   captured), and a screenshot of `/` in dev.
 - **Rule added to `CLAUDE.md`:** load the dev server in a browser before pushing, and delete dead files rather
   than leaving them in `src/`.
+
+### 28. Chrome name hover
+
+Hovering Nelson's name in the sidebar turns it brushed chrome and sweeps a bright streak across it once, and a
+small "that's me :)" note appears beside it (styled like the theme toggle's label). The metal is grey-scale
+only: banded light/dark reflections with a narrow specular streak, as a gradient clipped to the text, with
+separate stops for light and dark mode (light mode tops out at mid-grey so letters don't vanish into the
+page). A first, softer gradient read as a plain fade, so the bands and streak were strengthened. Mouse and
+keyboard focus only; reduced motion shows the chrome without the sweep. Checked with real mouse hovers via
+Chrome DevTools in both themes, plus the dev server.
 
 ### Content corrections along the way
 

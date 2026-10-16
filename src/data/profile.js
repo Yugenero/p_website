@@ -13,7 +13,7 @@ export const profile = {
   company: 'Fullstory',
   companyUrl: 'https://www.fullstory.com',
   location: 'Currently Atlanta, GA',
-  // IANA zone for the live clock in the sidebar ("Atlanta, GA · 14:03:22").
+  // IANA zone for the live clock in the sidebar ("Currently Atlanta, GA · 14:03:22").
   timeZone: 'America/New_York',
   // Sidebar: a short line under the name and a two-line bio.
   tagline: 'Software engineer · Georgia Tech CS',

@@ -125,7 +125,7 @@ tiles carry the energy.
 - **Sidebar** (`global/sidebar.jsx`): fixed left column with a hairline on its right edge. Name (serif),
   tagline, a two-line bio, a *now* block (`→ Forward Deployed Engineer at Fullstory`, green-dot "Open to new
   roles"), "Previously at …", "Reach out via email, or read my resume", plain-text social links, and a live
-  clock ("Atlanta, GA · 17:03:30", Eastern time, mono figures) with the theme toggle beside it. Nav pinned to the
+  clock ("Currently Atlanta, GA · 17:03:30", Eastern time, mono figures) with the theme toggle beside it. Nav pinned to the
   bottom; a filled square marks the current page, locked pages are greyed with a mono "soon".
 - **Project tiles** (`landing/projectFeed.jsx`): each project is a tile with its own halftone texture, a mono
   top row (`01 :: iOS application` · date), a big sans title, and the description and stack in small mono.
@@ -169,11 +169,11 @@ All text content comes from `src/data/profile.js` (sidebar copy: `tagline`, `bio
 | `landing-page-redesign` | Everything through entry 11, without the portrait; merged into `master` on Oct 15 |
 | `halftone-background` | Entries 12–24: halftone background, custom cursors, smaller text and name, no hero job title (ripples tried and removed); merged into `master` on Oct 16 |
 | `react-back-up-branch` | Snapshot of `master` right before the Astro migration (`dc471b5`): the last Create React App version |
-| `website-migration` | Entry 25: the Astro port |
-| `sidebar-redesign` | Entry 26: sidebar + project feed layout (branched from `website-migration`) |
+| `website-migration` | Entry 25: the Astro port; merged into `master` on Oct 16 (via `sidebar-redesign`) |
+| `sidebar-redesign` | Entry 26: sidebar + project feed layout; merged into `master` on Oct 16 |
 | `landing-picture-pending` | Nelson's full version with the portrait frame, saved for later |
 | `landing-picture-local` | Temporary copy used for the merge; safe to delete |
-| `master` | Source branch. [Yugenero/p_website#2](https://github.com/Yugenero/p_website/pull/2) merged the early redesign; later work was merged directly |
+| `master` | Source branch, now on Astro with the sidebar layout. [Yugenero/p_website#2](https://github.com/Yugenero/p_website/pull/2) merged the early redesign; later work was merged directly |
 | `gh-pages` | The deployed build. Last deployed Oct 12, before the frame, code card and photo strip |
 
 The working branch was first created as `claude/confident-johnson-s9lfcl`, then renamed to
@@ -393,6 +393,7 @@ identity and nav, and a feed of big tiles on the right.
 - **Code card kept but not shown**, per Nelson; same for the old hero, cross rule and photo strip.
 - **Dark mode's secondary text** changed from `#E0E0E0` to `#A3A3A3`. The old value was nearly white, so
   the grey/white two-tone hierarchy (and labels and dates everywhere in dark mode) barely read.
+- Nelson then changed the clock's label to "Currently Atlanta, GA" (`profile.location`, `16a7534`).
 - **Checked:** build passes (same old `projects.jsx` warning); screenshots of home (light and dark),
   `/work` (dark) and the phone layouts; no horizontal overflow at 360px on four pages.
 
@@ -422,7 +423,7 @@ as-is, so they were downloadable from the live site.
 
 ```bash
 git fetch origin
-git switch website-migration    # or master
+git switch master
 git pull
 npm ci
 npm start                       # Astro dev server, http://localhost:4321
@@ -451,10 +452,9 @@ The live site only changes on `npm run deploy`, which runs the build for you (`p
 - [x] Fix deep-link 404s on GitHub Pages (Astro static pages, entry 25)
 - [x] Regenerate `package-lock.json` (entry 25)
 - [x] Save the CRA version on `react-back-up-branch`
-- [ ] Review `website-migration` locally, then merge into `master`
 - [ ] Astro stage 2: convert static sections to `.astro` so pages ship real HTML (the sidebar is a good first
       candidate: static text plus a small clock/toggle island)
-- [ ] Review `sidebar-redesign`, then merge it (into `website-migration` or `master`)
+- [x] Merge `website-migration` and `sidebar-redesign` into `master` (Oct 16)
 - [ ] Decide whether the code card comes back (e.g. as a feed tile)
 - [ ] Give project tiles real visuals (screenshots or covers) when available
 - [ ] Delete `landing-picture-local`

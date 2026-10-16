@@ -107,7 +107,7 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
   on its right edge). Content on the right scrolls; the sidebar doesn't.
 - Top to bottom: name (serif, links home) · tagline · bio · *now* block (`→ <role> at <company>`, green-dot
   "Open to new roles") · "Previously at …" · "Reach out via email, or read my resume" · LinkedIn / GitHub /
-  Instagram as plain text · live clock "Atlanta, GA · HH:MM:SS" (Nelson's base, `profile.timeZone`; the time in
+  Instagram as plain text · live clock "Currently Atlanta, GA · HH:MM:SS" (`profile.location` + Nelson's base time zone, `profile.timeZone`; the time in
   mono, tabular figures) with the theme toggle beside it.
 - Nav pinned to the bottom, stacked: Home, About, Experience, Projects, Photography, Writing. The current page
   gets a small filled square before it. Locked pages show greyed out with a small mono "soon" and aren't links.

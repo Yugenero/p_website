@@ -105,10 +105,12 @@ shared with the photography page, so a visit makes one request.
 | Branch | Purpose |
 | --- | --- |
 | `landing-page-redesign` | Everything through entry 11, without the portrait; merged into `master` on Oct 15 |
-| `halftone-background` | Entries 12–24: halftone background, custom cursors, smaller text and name, no hero job title (ripples tried and removed) |
+| `halftone-background` | Entries 12–24: halftone background, custom cursors, smaller text and name, no hero job title (ripples tried and removed); merged into `master` on Oct 16 |
+| `react-back-up-branch` | Snapshot of `master` right before the Astro migration (`dc471b5`): the last Create React App version |
+| `website-migration` | Entry 25: the Astro port |
 | `landing-picture-pending` | Nelson's full version with the portrait frame, saved for later |
 | `landing-picture-local` | Temporary copy used for the merge; safe to delete |
-| `master` | Source branch. [Yugenero/p_website#2](https://github.com/Yugenero/p_website/pull/2) merged the early redesign; later work needs a new PR |
+| `master` | Source branch. [Yugenero/p_website#2](https://github.com/Yugenero/p_website/pull/2) merged the early redesign; later work was merged directly |
 | `gh-pages` | The deployed build. Last deployed Oct 12, before the frame, code card and photo strip |
 
 The working branch was first created as `claude/confident-johnson-s9lfcl`, then renamed to
@@ -304,29 +306,51 @@ as-is, so they were downloadable from the live site.
   for an explicit decision.
 - Request an IRS Identity Protection PIN as a precaution.
 
+### 25. Astro migration, stage 1 (`website-migration`)
+
+Moved the build from Create React App (deprecated, unmaintained) to **Astro 5** without changing how the site
+looks. Before starting, `halftone-background` was merged into `master`, and `react-back-up-branch` saves that
+exact CRA state.
+
+- **How it works:** every route has its own `src/pages/*.astro` file that renders the existing React app as a
+  `client:only="react"` island inside `src/layouts/Base.astro`. The build writes a real HTML file per route
+  (`dist/work/index.html`, …), so **opening or refreshing a deep link no longer 404s** on GitHub Pages.
+  Inside the island, `react-router` still handles navigation, so moving between pages stays instant.
+- **Per-page titles and canonical URLs**, e.g. "Experience · Nelson Rodriguez". Blog post pages come from
+  `blogData.js` via `getStaticPaths`; unknown URLs get a real `404.html`.
+- **No dark-mode flash:** a tiny inline script in `Base.astro` paints the saved theme's background before
+  React loads.
+- **Cleanup that came with it:** files containing JSX were renamed `.js` → `.jsx` (Vite only parses JSX
+  in `.jsx`); CRA's `index.js`, `reportWebVitals.js`, `setupTests.js`, the default failing `App.test.js`,
+  `public/index.html`, `react-scripts`, the testing libraries and `web-vitals` were removed; `CNAME` moved into
+  `public/` so every deploy carries the custom domain; `package-lock.json` was regenerated and `npm ci` works
+  again. Deploy now publishes `dist/` instead of `build/`.
+- **Checked:** `npm run build` passes (same single `projects.jsx` warning as before); every route returns 200
+  from a plain static server with no SPA rewrites, `/nope` returns 404; the home page (light) and `/work`
+  (dark, loaded directly) look the same as the CRA build; `npm start` serves all routes.
+- **Not done yet (stage 2):** the pages are still rendered entirely in the browser, so the HTML has no
+  content for search engines or link previews. Next is converting static sections (About, Experience,
+  Projects, footer) to `.astro` with real HTML, keeping React only for the theme toggle, typed text,
+  halftone, code card and photos.
+
 ## Working locally
 
 ```bash
 git fetch origin
-git switch landing-page-redesign
+git switch website-migration    # or master
 git pull
-npm install --no-package-lock   # the lockfile is out of sync, so npm ci fails
-npm start                       # http://localhost:3000
+npm ci
+npm start                       # Astro dev server, http://localhost:4321
 ```
 
 The live site only changes on `npm run deploy`, which runs the build for you (`predeploy`) and publishes
-`build/` to `gh-pages`.
+`dist/` to `gh-pages`.
 
 ## Known issues / backlog
 
-- **Lockfile:** `package-lock.json` is out of sync with `package.json` (`npm ci` fails: missing `yaml@2.9.1`).
-  Regenerate it in its own commit.
-- **Deep links:** GitHub Pages has no SPA fallback, so refreshing or opening a direct link like
-  `/work` probably returns a 404. Fix with a `public/404.html` redirect or by switching to `HashRouter`.
-- **Photography strip:** only tested with stand-in images, because the build environment can't reach the photo
-  service. Check it with real photos before deploying.
+- **Pre-rendering (Astro stage 2):** pages render in the browser only; see entry 25.
 - **Writing page:** disabled in the header, and its code still references a placeholder cat image.
-- **Lint warnings:** one left from before this work: `landing/projects.js` (duplicate `minHeight`).
+- **Build warnings:** one left from before this work: `landing/projects.jsx` (duplicate `minHeight`).
 - **Unused code and dependencies:** legacy CSS, animations, `navigation.js`, `stuff.js`, `signature.js`,
   `Notes.txt`, the stray `p_website.git/` directory, the `SectionHeaderRow` and `CompactSection` primitives
   (unused since the landing page was trimmed), and several installed but unused packages (see `CLAUDE.md`).
@@ -335,10 +359,13 @@ The live site only changes on `npm run deploy`, which runs the build for you (`p
 
 - [x] Remove the tax PDFs from the live site
 - [x] Save the portrait version on `landing-picture-pending`
-- [ ] Review the landing page locally with real photos
+- [x] Review the landing page locally with real photos (they load in local builds; seen in screenshots)
 - [x] Merge `landing-page-redesign` into `master` (Oct 15)
 - [x] Use the halftone on every page instead of the starfield
 - [ ] Deploy (`npm run deploy`)
-- [ ] Fix deep-link 404s on GitHub Pages
-- [ ] Regenerate `package-lock.json`
+- [x] Fix deep-link 404s on GitHub Pages (Astro static pages, entry 25)
+- [x] Regenerate `package-lock.json` (entry 25)
+- [x] Save the CRA version on `react-back-up-branch`
+- [ ] Review `website-migration` locally, then merge into `master`
+- [ ] Astro stage 2: convert static sections to `.astro` so pages ship real HTML
 - [ ] Delete `landing-picture-local`

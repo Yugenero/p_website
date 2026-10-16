@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import App from '../../App.jsx';
+import { blogEntries } from '../../components/blog/blogData.js';
+
+// One static page per post; the React app reads the slug from the URL.
+export function getStaticPaths() {
+  return blogEntries.map((entry) => ({ params: { slug: entry.slug } }));
+}
+---
+
+<Base title="Writing · Nelson Rodriguez">
+  <App client:only="react" />
+</Base>

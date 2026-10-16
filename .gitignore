@@ -35,3 +35,6 @@ out/
 .vercel/
 *.pack
 EOL
+
+# Astro
+.astro/

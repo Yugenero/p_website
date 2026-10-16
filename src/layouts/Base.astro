@@ -1,0 +1,58 @@
+---
+// HTML shell for every page (ported from CRA's public/index.html).
+import '../index.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Nelson Rodriguez',
+  description = 'Nelson Rodriguez: Forward Deployed Engineer at Fullstory working across mobile SDKs (iOS, Android, React Native) and full-stack web. Georgia Tech CS.',
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#000000" />
+
+    <meta property="og:title" content="Nelson Rodriguez · Software Engineer" />
+    <meta
+      property="og:description"
+      content="Experience, projects, and photography from Nelson Rodriguez, a software engineer in Atlanta, GA."
+    />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=Roboto:wght@400;500;700&family=Roboto+Slab:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Paint the saved theme's background before the React island loads, so dark mode doesn't flash white.
+         Colors match background.default in src/theme.js. -->
+    <script is:inline>
+      try {
+        var dark = localStorage.getItem('themeMode') === 'dark';
+        document.documentElement.style.backgroundColor = dark ? '#000000' : '#F1F0EC';
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to view this site.</noscript>
+    <slot />
+  </body>
+</html>

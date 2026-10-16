@@ -24,15 +24,16 @@ holds what, what's already been tried or rejected, and what's still open.
 
 | Area | Choice |
 | --- | --- |
-| Framework | React 18, Create React App (`react-scripts` 5) |
-| Routing | `react-router-dom` v6, `BrowserRouter` (see `src/App.js`) |
+| Framework | Astro 5 (static output) hosting the React 18 app as a `client:only` island (`@astrojs/react`); built with Vite |
+| Pages | `src/pages/*.astro`: one HTML file per route, each with its own `<title>`, all wrapped in `src/layouts/Base.astro` |
+| Routing | `react-router-dom` v6, `BrowserRouter` inside the island (see `src/App.jsx`), so in-app navigation stays client-side |
 | Styling | MUI v5 (`@mui/material`) with `styled()` + theme tokens; Emotion under the hood |
 | Theme | `src/theme.js`, light/dark built by `buildTheme(mode)`, persisted in `localStorage.themeMode` |
 | Animation | CSS keyframes, `react-typed` (typewriter text), custom `Halftone` canvas background |
 | Icons | `@mui/icons-material` |
 | Photos | Fetched at runtime from a Google Cloud Function (`cloud-functions/`) backed by GCS |
-| Hosting | GitHub Pages via `npm run deploy` (`gh-pages -d build`) to the `gh-pages` branch, custom domain via `CNAME` |
-| Language | JavaScript (`.js` / `.jsx`); TypeScript is installed but unused |
+| Hosting | GitHub Pages via `npm run deploy` (`gh-pages -d dist`) to the `gh-pages` branch; custom domain via `public/CNAME` |
+| Language | JavaScript; **any file containing JSX must be `.jsx`** (Vite won't parse JSX in `.js`). TypeScript is installed but unused |
 
 Installed but **not reachable from any route** (only imported by legacy files, if at all): Tailwind helpers (`tailwind-merge`, `clsx`, `src/utils/cn.js`),
 `framer-motion` / `motion`, `animejs`, `@tsparticles/*`, `react-animated-cursor`, `react-pdf`, `devicon`,
@@ -41,27 +42,33 @@ Installed but **not reachable from any route** (only imported by legacy files, i
 ### Commands
 
 ```bash
-npm install --no-package-lock   # package-lock.json is currently out of sync (npm ci fails); see Known issues
-npm start                       # dev server on :3000
-npm run build                   # production build to /build (must pass before pushing)
-npm run deploy                  # build + publish to gh-pages (production!)
+npm ci                          # install exactly what package-lock.json pins
+npm start                       # Astro dev server on :4321 (same as npm run dev)
+npm run build                   # static build to /dist (must pass before pushing)
+npm run preview                 # serve /dist locally
+npm run deploy                  # build + publish dist/ to gh-pages (production!)
 ```
 
 ## Project structure
 
 ```
+astro.config.mjs         Astro config: static output, React integration, site URL
 src/
-  App.js                 routes + app shell (Header, Main, Footer)
+  layouts/Base.astro     HTML shell: meta/OG tags, fonts, index.css, pre-paint theme background script
+  pages/                 one .astro file per route (index, about, work, projects, photography, blog, blog/[slug], 404);
+                         each renders <App client:only="react" />
+  App.jsx                routes + app shell (Header, Main, Footer)
   theme.js               palette, typography, MUI component overrides
   data/profile.js        SINGLE SOURCE OF TRUTH for resume content (see below)
   components/
     ui/primitives.js     layout + type primitives (Container, Section, CompactSection, MetaText, SectionTitle, ArrowLink, …)
-    ui/binaryMetaText.js typed binary section label ("0001|")
+    ui/binaryMetaText.jsx typed binary section label ("0001|")
     global/              header, footer, halftone background
-    landing/             landing hero (intro.js) + the full Experience/Projects/About sections reused by pages
+    landing/             landing hero (intro.jsx) + the full Experience/Projects/About sections reused by pages
     pages/               thin route wrappers (about, work, projects, photography, blog)
     styles/, pages/pageStyles/, animations/   legacy CSS + effects, mostly unused by current routes
-public/
+public/                           copied verbatim into dist/ (and so deployed)
+  CNAME                           custom domain (nelsonrodriguez.me)
   documents/NelsonRodriguez.pdf   resume linked from the header and hero
   blog/*.md                       markdown posts for the (hidden) Writing page
 ```
@@ -70,12 +77,15 @@ public/
 
 | Path | Component | Notes |
 | --- | --- | --- |
-| `/` | `landing/home.js` | Hero (name, typed tagline, pitch, resume/contact buttons, code card, quick facts) closed by a cross rule, then the photography strip. No metrics |
-| `/about` | `landing/about.js` | Bio + core stack |
-| `/work` | `landing/work.js` | Full experience timeline with all bullets |
-| `/projects` | `landing/projects.js` | Project cards |
-| `/photography` | `pages/photography.js` | Masonry grid from the GCS cloud function. **Locked** while `profile.photographyOpen` is `false`: redirects to `/`, header link disabled ("coming soon") |
-| `/blog`, `/blog/:slug` | `pages/blog.js` | Under construction; header link is disabled |
+| `/` | `landing/home.jsx` | Hero (name, typed tagline, pitch, resume/contact buttons, code card, quick facts) closed by a cross rule, then the photography strip. No metrics |
+| `/about` | `landing/about.jsx` | Bio + core stack |
+| `/work` | `landing/work.jsx` | Full experience timeline with all bullets |
+| `/projects` | `landing/projects.jsx` | Project cards |
+| `/photography` | `pages/photography.jsx` | Masonry grid from the GCS cloud function. **Locked** while `profile.photographyOpen` is `false`: redirects to `/`, header link disabled ("coming soon") |
+| `/blog`, `/blog/:slug` | `pages/blog.jsx` | Under construction; header link is disabled. Post pages come from `blogData.js` (`getStaticPaths` in `src/pages/blog/[slug].astro`) |
+
+**Adding a route:** add the `<Route>` in `App.jsx` *and* a matching `src/pages/<name>.astro` (copy an existing one),
+or a direct visit to that URL will 404.
 
 ## Content: `src/data/profile.js`
 
@@ -90,22 +100,22 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
 - Keep the landing page uncluttered: roughly one desktop screen, no metrics/impact numbers.
   Experience, projects, and skills belong on their own pages; order those arrays by importance.
 - Landing visuals (each in its own file under `components/landing/`):
-  - Cross rule (`ui/crossRule.js`): a hairline with small "+" marks at both ends. On load the line grows out
+  - Cross rule (`ui/crossRule.jsx`): a hairline with small "+" marks at both ends. On load the line grows out
     from the middle to both ends, then the marks fade in as it arrives.
     It's the site's divider motif: the header's bottom edge, and the line that closes the hero (below both columns,
     above the photo strip). Reuse it for new dividers
     rather than inventing another. No labels or clocks on it (location/local-time labels were removed as bloat).
-  - `codeCard.js`: a monochrome card (`nelson.ts`) that types out a short, **company-agnostic** snippet about
+  - `codeCard.jsx`: a monochrome card (`nelson.ts`) that types out a short, **company-agnostic** snippet about
     Nelson: base, iced coffee, hybrid training, photography and cars, and a `kaizen()` that compounds 1% a day.
     Keep it personal, truthful (only interests stated elsewhere on the site), and under ~38 characters a line so
     nothing wraps on phones. No employer code or branding.
-  - `photoStrip.js`: four of Nelson's photos (grayscale, color on hover), linking to `/photography` only while it's open. It shares
+  - `photoStrip.jsx`: four of Nelson's photos (grayscale, color on hover), linking to `/photography` only while it's open. It shares
     `global/usePhotos.js` with the photography page and renders nothing if the photo service fails.
 - Hero layout: two columns (pitch on the left; code card and quick facts on the right). The buttons sit directly
   under the status line, not pinned to the column bottom, so the leftover space collects in the lower-left
   corner as deliberate negative space. Don't fill it.
 - The hero has equal space above and below its content, between the two cross rules (`HERO_GAP` in
-  `intro.js`: 72px desktop, 40px phones). Change both sides together. The hero doesn't stretch to the screen
+  `intro.jsx`: 72px desktop, 40px phones). Change both sides together. The hero doesn't stretch to the screen
   height, so the spacing is the same on every screen.
 - No headshot/portrait on the landing page for now. The picture version is saved on the `landing-picture-pending` branch.
 
@@ -130,7 +140,7 @@ Build on it; don't introduce a new visual language.
   Nav links in the sans at weight 400 (not bold), with 1px `divider` hairlines between items and before the theme
   toggle, on desktop and in the mobile strip. On phones the name and theme toggle share the top row and the nav
   becomes a swipeable strip underneath (current page underlined).
-- Locked pages (Writing, and Photography while `photographyOpen` is false) use `LockedNavItem` in `header.js`:
+- Locked pages (Writing, and Photography while `photographyOpen` is false) use `LockedNavItem` in `header.jsx`:
   the link does nothing and a small square note (inverted colors, normal tracking) shows on hover or focus.
   Locked items are hidden in the mobile strip.
 - **No all-caps text, anywhere.** Never use `textTransform: 'uppercase'` (or CSS `text-transform: uppercase`),
@@ -146,7 +156,7 @@ Build on it; don't introduce a new visual language.
 ### Layout & components
 - Square corners (`borderRadius: 0`) for buttons, panels, cards. Existing exception: the `/projects` cards.
   Footer social icon hover boxes are square too.
-- Theme toggle (`animations/themeToggle.js`): a square button with a half-filled circle that turns 180° when the
+- Theme toggle (`animations/themeToggle.jsx`): a square button with a half-filled circle that turns 180° when the
   theme flips, and a "Switch to dark/light mode" label on hover (hover-capable devices) or keyboard focus.
   It's 44px on phones. Any new header popup must stay above the header's cross rule (the toolbar is `zIndex: 2`).
 - Structure with **1px hairlines**: `text.primary` for a section's top rule, `divider` between rows.
@@ -183,16 +193,16 @@ Build on it; don't introduce a new visual language.
 - No placeholder content on production pages (lorem ipsum, cat images, "Empty Card").
 - Do work on a feature branch; `master` is the source branch and `gh-pages` is the deployed build. Don't run
   `npm run deploy` unless Nelson asks to ship.
-- `npm run build` must pass before pushing. Don't add new ESLint warnings.
+- `npm run build` must pass before pushing. Don't add new build warnings.
 - Keep new dependencies to a minimum; MUI + `styled()` covers almost everything.
 
 ## Known issues / backlog
 
-- `package-lock.json` is out of sync with `package.json` (`npm ci` fails: missing `yaml@2.9.1`).
-  Regenerate it with `npm install` in a dedicated commit.
-- GitHub Pages has no SPA fallback, so a hard refresh on `/work`, `/projects`, etc. likely 404s.
-  Fix with a `public/404.html` redirect or move to `HashRouter`.
+- Astro migration, stage 1 only: the whole React app still runs as one client-side island on every page, so
+  pages ship no pre-rendered content (search engines and link previews see an empty body). Stage 2 is to
+  convert sections to `.astro` progressively, keeping React only for interactive pieces.
 - Writing/blog page is disabled in the header; `blogData.js` / `blog.js` still reference a cat placeholder image.
-- Pre-existing lint warning: `landing/projects.js` (duplicate `minHeight`).
-- Legacy unused files: `components/styles/*.css`, `components/animations/*`, `landing/navigation.js`,
-  `pages/stuff.js`, `global/signature.js`, `public/documents/Notes.txt`, and the stray `p_website.git/` directory.
+- Pre-existing build warning: `landing/projects.jsx` (duplicate `minHeight`). There's no ESLint step since
+  leaving CRA; treat new Vite/esbuild warnings in `npm run build` as the bar instead.
+- Legacy unused files: `components/styles/*.css`, `components/animations/*`, `landing/navigation.jsx`,
+  `pages/stuff.jsx`, `global/signature.jsx`, `public/documents/Notes.txt`, and the stray `p_website.git/` directory.

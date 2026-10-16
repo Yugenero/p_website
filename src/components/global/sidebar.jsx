@@ -38,6 +38,8 @@ const BRAND = {
 };
 // Email turns light red on hover (softer on black, deeper on off-white so it stays readable).
 const EMAIL_RED = { light: '#D9473F', dark: '#FF8A80' };
+// Georgia Tech CS turns Tech Gold on hover (GT's Tech Dark Gold in light mode; Tech Gold is too pale on off-white).
+const TECH_GOLD = { light: '#857437', dark: '#B3A369' };
 const INSTAGRAM_GRADIENT = 'linear-gradient(90deg, #F58529, #DD2A7B 45%, #8134AF 75%, #515BD4)';
 
 const timeFormat = new Intl.DateTimeFormat('en-US', {
@@ -84,8 +86,14 @@ export const Sidebar = ({ mode, onToggleTheme }) => {
         {showProfile && (
           <>
             <Tagline>
-              {profile.tagline.join(' · ')} ·{' '}
-              <Underlined href={profile.school.href} target="_blank" rel="noopener noreferrer">
+              {profile.tagline.join(' · ')}
+              <br />
+              <Underlined
+                href={profile.school.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-tone="school"
+              >
                 {profile.school.label}
               </Underlined>
             </Tagline>
@@ -375,6 +383,9 @@ const Underlined = styled('a')(({ theme }) => ({
   },
   '&[data-tone="email"]:hover, &[data-tone="email"]:focus-visible': {
     color: EMAIL_RED[theme.palette.mode] ?? EMAIL_RED.light,
+  },
+  '&[data-tone="school"]:hover, &[data-tone="school"]:focus-visible': {
+    color: TECH_GOLD[theme.palette.mode] ?? TECH_GOLD.light,
   },
   '@media (prefers-reduced-motion: reduce)': {
     transition: 'none',

@@ -124,7 +124,7 @@ tiles carry the energy.
 
 - **Sidebar** (`global/sidebar.jsx`): fixed left column with a hairline on its right edge. Name (serif; chrome
   sheen and a "that's me :)" note on hover),
-  tagline ("Computer Enjoyer · Engineer · Georgia Tech CS"), a two-line bio, a *now* block (`→ Solutions Engineer at Fullstory`, green-dot "Open to new
+  tagline ("Computer Enjoyer · Engineer", then "Georgia Tech CS" below, gold on hover), a two-line bio, a *now* block (`→ Solutions Engineer at Fullstory`, green-dot "Open to new
   roles"), "Previously at …", "Reach out via email, or read my resume", plain-text social links, and a live
   clock ("Currently Atlanta, GA · 17:03:30", Eastern time, mono figures). Socials stacked, brand-colored on hover.
   Nav pinned to the bottom with the theme toggle at its right; a filled square marks the current page, locked pages are greyed with a mono "soon".
@@ -461,6 +461,12 @@ everywhere it appears: the sidebar's *now* line (`profile.role`), the `/work` en
 the About paragraph, and the page meta description in `Base.astro`. Checked in the dev server: `/`, `/work`
 and `/about` show "Solutions Engineer" and no "Forward Deployed". **The resume PDF still says Forward Deployed
 Engineer**; Nelson will update it, then it should replace `public/documents/NelsonRodriguez.pdf`.
+
+### 33. Georgia Tech CS on its own line, in Tech Gold
+
+"Georgia Tech CS" moved to its own line under "Computer Enjoyer · Engineer" (always, not only when it wraps), and
+turns Georgia Tech's Tech Gold on hover, underline included: `#B3A369` in dark mode and GT's Tech Dark Gold
+`#857437` in light mode, where the standard gold is too pale on the off-white page.
 
 ### Content corrections along the way
 

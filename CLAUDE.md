@@ -110,13 +110,14 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
   text, tuned per theme) and a bright streak sweeps across it once (1.1s); a "that's me :)" note appears to its
   right in the same style as the theme toggle's label. Hover-capable devices and keyboard focus only; with
   reduced motion the chrome shows without the sweep.
-- Top to bottom: name (serif, links home) · tagline "Computer Enjoyer · Engineer · Georgia Tech CS" (the school
-  links to the College of Computing) · bio · *now* block (`→ <role> at <company>`, green-dot
+- Top to bottom: name (serif, links home) · tagline "Computer Enjoyer · Engineer" with "Georgia Tech CS" on the
+  line below (links to the College of Computing) · bio · *now* block (`→ <role> at <company>`, green-dot
   "Open to new roles") · "Previously at …" · "Reach out via email, or read my resume" · LinkedIn / GitHub /
   Instagram stacked as plain text (on hover: brand color and a thin underline drawing in from the left) · live clock "Currently Atlanta, GA · HH:MM:SS" (`profile.location` + Nelson's base time zone, `profile.timeZone`; the time in
   mono, tabular figures).
 - Inline links (school, email, resume) are full-strength text with a thin underline drawing in from the left on
-  hover (`Underlined`, kept on one line so the underline never breaks); email also turns light red.
+  hover (`Underlined`, kept on one line so the underline never breaks); email also turns light red, the school
+  Tech Gold (`data-tone`).
 - Nav pinned to the bottom, stacked: Home, About, Experience, Projects, Photography, Writing, with the theme toggle
   bottom-right on the same row (its label opens upward, `tipPlacement="top"`). The current page
   gets a small filled square before it. Locked pages show greyed out with a small mono "soon" and aren't links.
@@ -159,7 +160,8 @@ Build on it; don't introduce a new visual language.
   secondary `#A3A3A3` (`colors.grayMid`; was `#E0E0E0`, which was too close to white for the two-tone text).
 - No new accent colors. Exceptions: the green status dot (`#2EA043`) in the sidebar, and brand colors on the
   sidebar's social links **on hover only** (LinkedIn `#0A66C2` / `#70B5F9` in dark, GitHub green `#2DA44E` / `#7EE787` in dark,
-  Instagram's gradient), and the email link's light red on hover (`#D9473F` / `#FF8A80` in dark). At rest
+  Instagram's gradient), the email link's light red on hover (`#D9473F` / `#FF8A80` in dark), and Georgia Tech CS in Tech Gold on hover
+  (`#857437` Tech Dark Gold / `#B3A369` Tech Gold in dark). At rest
   they're the normal text colors.
   `accentColors` (crimson) in `theme.js` exists but is intentionally unused.
 - Every change must look right in **both** light and dark mode.

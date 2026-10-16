@@ -92,7 +92,8 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
 - Landing visuals (each in its own file under `components/landing/`):
   - Cross rule (`ui/crossRule.js`): a hairline with small "+" marks at both ends. On load the line grows out
     from the middle to both ends, then the marks fade in as it arrives.
-    It's the site's divider motif: under the header and under the hero buttons. Reuse it for new dividers
+    It's the site's divider motif: the header's bottom edge, and the line that closes the hero (below both columns,
+    above the photo strip). Reuse it for new dividers
     rather than inventing another. No labels or clocks on it (location/local-time labels were removed as bloat).
   - `codeCard.js`: a monochrome card (`nelson.ts`) that types out a short, **company-agnostic** snippet about
     Nelson: base, iced coffee, hybrid training, photography and cars, and a `kaizen()` that compounds 1% a day.
@@ -100,8 +101,12 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
     nothing wraps on phones. No employer code or branding.
   - `photoStrip.js`: four of Nelson's photos (grayscale, color on hover), linking to `/photography` only while it's open. It shares
     `global/usePhotos.js` with the photography page and renders nothing if the photo service fails.
+- Hero layout: two columns (pitch on the left; code card and quick facts on the right). The buttons sit directly
+  under the status line, not pinned to the column bottom, so the leftover space collects in the lower-left
+  corner as deliberate negative space. Don't fill it.
 - The hero has equal space above and below its content, between the two cross rules (`HERO_GAP` in
-  `intro.js`). Change both sides together.
+  `intro.js`: 72px desktop, 40px phones). Change both sides together. The hero doesn't stretch to the screen
+  height, so the spacing is the same on every screen.
 - No headshot/portrait on the landing page for now. The picture version is saved on the `landing-picture-pending` branch.
 
 ## Design system & UI guardrails
@@ -118,10 +123,16 @@ Build on it; don't introduce a new visual language.
 
 ### Typography
 - Headings / display: Baskerville serif stack (`theme.typography.h1.fontFamily`), weight 300.
-- Body: Aeonik / system sans (`theme.typography.fontFamily`). Role titles use Geist.
+- Body: Aeonik / system sans (`theme.typography.fontFamily`). Role titles on `/work` use Geist.
+- Technical: IBM Plex Mono for anything "code": the code card and the "Open to new roles" status line.
+- Hero name: the serif at weight 300, `clamp(2.4rem, 3.6vw, 3.8rem)`. No job title under it.
 - Header: Nelson's name in the serif (weight 400) on the left, linking home; social links live only in the footer.
   Nav links in the sans at weight 400 (not bold), with 1px `divider` hairlines between items and before the theme
-  toggle, on desktop and in the mobile strip.
+  toggle, on desktop and in the mobile strip. On phones the name and theme toggle share the top row and the nav
+  becomes a swipeable strip underneath (current page underlined).
+- Locked pages (Writing, and Photography while `photographyOpen` is false) use `LockedNavItem` in `header.js`:
+  the link does nothing and a small square note (inverted colors, normal tracking) shows on hover or focus.
+  Locked items are hidden in the mobile strip.
 - **No all-caps text, anywhere.** Never use `textTransform: 'uppercase'` (or CSS `text-transform: uppercase`),
   and never type words in capitals for styling. Use sentence case for labels, buttons, links, and tags.
   Real acronyms (SDK, SQL, iOS, .NET) are fine. MUI's `button` and `overline` variants are set to
@@ -144,15 +155,17 @@ Build on it; don't introduce a new visual language.
   (About `0000`, Experience `0001`, Projects `0010`, Photography `0011`, Writing `0100`); the landing page
   numbers its own sections sequentially.
 - Buttons: MUI `Button` `contained` (filled) for the primary action, `outlined` for secondary.
+- Reading width: long text on wide pages stops at half the window. On `/work`, each role's summary and bullets
+  are capped at `50vw` from `md` up (full width on phones).
 - Wrap content in `Container` (handles gutters); use `Section` for full pages. (`CompactSection` and
   `SectionHeaderRow` in `primitives.js` are currently unused; they served the old overview sections.)
 - Background texture: every page section uses `<Halftone />` (`global/halftone.jsx`), a canvas grid of small
   squares whose opacity follows slowly drifting cloud noise. It reads `text.primary` and the peak opacity
-  (0.17 light, 0.25 dark) from the theme. The header and footer stay plain. No mouse
-  ripples (tried in entry 15 of the log and removed).
+  (0.17 light, 0.25 dark) from the theme. Its parent needs `position: relative` and `overflow: hidden`, with
+  content above it at `zIndex: 1`. The header and footer stay plain. No mouse ripples (tried in entry 15 of the
+  log and removed). The old `Starfield` was removed.
 - Cursors: chunky Figma-style arrow and hand (SVG data URIs in `theme.js`, `CURSOR_ARROW` / `CURSOR_HAND`),
   applied only on `pointer: fine` devices; the hand covers links, buttons and `role="button"`.
-  Its parent needs `position: relative` and `overflow: hidden`. The old `Starfield` was removed.
 
 ### Responsiveness & accessibility
 - Must work from 360px phones to wide desktops with **no horizontal page scroll** (the mobile header nav

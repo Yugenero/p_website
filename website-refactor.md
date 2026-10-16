@@ -533,6 +533,16 @@ their own layout, following content-first mobile patterns; desktop is unchanged.
 - Checked by scrolling `/work` via Chrome DevTools on desktop and an emulated phone (top, mid, end): fill and
   progress follow the jog, ticks shift with it, no errors.
 
+### 39. Timeline: line only, dates light up, flush ends
+
+- Removed the moving progress line; the rail's fill is the only thing that moves.
+- When the fill reaches a job's tick, that job's date turns full strength and weight 600 (`data-reached` on the
+  job item, set by the same check that darkens the tick).
+- The rail path now starts at the first tick and ends at the last, so the top tick caps the line like a "T"
+  instead of having a short stub of rail sticking out above it (and the same at the bottom). The fill math maps
+  reading position to path length from the first tick.
+- Checked on desktop and an emulated phone, scrolled top/mid/end, plus the dev server.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { useEffect, useRef } from 'react';
-import { alpha, keyframes, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import {
   Container,
   InlineItem,
@@ -36,9 +36,9 @@ const timeline = [
 ];
 
 // Scroll timeline: a rail pinned to the viewport beside the job list. The rail maps the whole
-// list top-to-bottom; a horizontal progress line rides it as you read, and each job's tick darkens once passed.
-// The rail is an SVG path with one abrupt S-bend (a sideways jog) between the first and second jobs, so the fill
-// and the progress line follow the path rather than a straight line.
+// list top-to-bottom and fills in as you read; when the fill reaches a job's tick, the tick darkens and that job's
+// date is highlighted. The rail is an SVG path that runs from the first tick to the last (so the ticks cap it
+// flush) with one abrupt S-bend (a sideways jog) between the first and second jobs; the fill follows the path.
 const READ_LINE = 0.45; // where the "reading line" sits in the viewport at the top of the page
 const MARKER_Y = 10; // px from an item's top to the point its marker represents (its date line)
 const RAIL_GUTTER = { desktop: 48, mobile: 30 };
@@ -47,12 +47,11 @@ const RAIL_INSET = 24; // px of breathing room above and below the pinned rail
 const JOG = 10; // px the rail shifts right at the bend
 const JOG_RADIUS = 4; // corner radius of the bend's two turns; small = abrupt
 const TICK = 11; // width of a job's tick
-const PROGRESS = 19; // width of the moving progress line
 const EASE = 0.14; // per-frame easing toward the scroll target; lower is smoother/slower
 
 const clamp01 = (n) => Math.min(Math.max(n, 0), 1);
 
-const useScrollTimeline = ({ listRef, railRef, dotRef, fillRef, markerRefs }) => {
+const useScrollTimeline = ({ listRef, railRef, fillRef, markerRefs }) => {
   useEffect(() => {
     const list = listRef.current;
     const rail = railRef.current;
@@ -60,20 +59,26 @@ const useScrollTimeline = ({ listRef, railRef, dotRef, fillRef, markerRefs }) =>
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let markerFractions = [];
+    let items = [];
     let railHeight = 0;
+    let startY = 0; // first tick: where the path starts
+    let endY = 0; // last tick: where the path ends
     let jogY = null; // y of the bend, or null with fewer than two jobs
     let pathLength = 0;
     const track = rail.querySelector('[data-track]');
     const fillPath = fillRef.current;
 
-    // The path only ever moves down, so its length up to a given height is that height plus the extra the bend
-    // adds once you're past it (interpolated through the bend itself).
-    const lengthAtY = (y) => {
-      if (jogY === null) return y;
-      const extra = pathLength - railHeight;
-      if (y <= jogY - JOG_RADIUS) return y;
-      if (y >= jogY + JOG_RADIUS) return y + extra;
-      return y + extra * ((y - (jogY - JOG_RADIUS)) / (2 * JOG_RADIUS));
+    // How much of the path is filled when the reading position is at height y. The path only ever moves down, so
+    // that's the height covered since the first tick, plus the extra the bend adds once you're past it
+    // (interpolated through the bend itself).
+    const lengthAtY = (rawY) => {
+      const y = Math.min(Math.max(rawY, startY), endY);
+      const straight = y - startY;
+      if (jogY === null) return straight;
+      const extra = pathLength - (endY - startY);
+      if (y <= jogY - JOG_RADIUS) return straight;
+      if (y >= jogY + JOG_RADIUS) return straight + extra;
+      return straight + extra * ((y - (jogY - JOG_RADIUS)) / (2 * JOG_RADIUS));
     };
     const xAtY = (y) => (jogY !== null && y > jogY ? RAIL_X + JOG : RAIL_X);
     let current = null;
@@ -83,7 +88,7 @@ const useScrollTimeline = ({ listRef, railRef, dotRef, fillRef, markerRefs }) =>
     const toFraction = (offsetInList) => clamp01(offsetInList / list.offsetHeight);
 
     // The reading line slides from READ_LINE to the bottom of the viewport as the page scrolls,
-    // so the dot always reaches the last marker even when the page can't scroll that far.
+    // so the fill always reaches the last tick even when the page can't scroll that far.
     const computeTarget = () => {
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       const pageProgress = maxScroll > 0 ? clamp01(window.scrollY / maxScroll) : 1;
@@ -93,11 +98,12 @@ const useScrollTimeline = ({ listRef, railRef, dotRef, fillRef, markerRefs }) =>
 
     const render = () => {
       const length = lengthAtY(current * railHeight);
-      const point = track.getPointAtLength(Math.min(length, pathLength));
-      dotRef.current.style.transform = `translate3d(${point.x - PROGRESS / 2}px, ${point.y}px, 0)`;
       fillPath.style.strokeDashoffset = String(Math.max(pathLength - length, 0));
-      markerRefs.current.forEach((marker, i) => {
-        if (marker) marker.dataset.reached = String(current >= markerFractions[i] - 0.001);
+      // A job counts as reached once the fill gets to its tick: the tick darkens and the job's date lights up.
+      markerFractions.forEach((fraction, i) => {
+        const reached = String(current >= fraction - 0.001);
+        if (markerRefs.current[i]) markerRefs.current[i].dataset.reached = reached;
+        if (items[i]) items[i].dataset.reached = reached;
       });
     };
 
@@ -124,18 +130,22 @@ const useScrollTimeline = ({ listRef, railRef, dotRef, fillRef, markerRefs }) =>
       rail.style.top = `${headerHeight + RAIL_INSET}px`;
       rail.style.height = `${Math.max(window.innerHeight - headerHeight - RAIL_INSET * 2, 120)}px`;
       railHeight = rail.offsetHeight;
-      const items = list.querySelectorAll('[data-timeline-item]');
-      markerFractions = Array.from(items, (item) => toFraction(item.offsetTop + MARKER_Y));
+      items = Array.from(list.querySelectorAll('[data-timeline-item]'));
+      markerFractions = items.map((item) => toFraction(item.offsetTop + MARKER_Y));
+      if (!markerFractions.length) return;
 
-      // Rail path: straight down, an abrupt S-bend halfway between the first two jobs, then straight down again.
+      // Rail path: from the first tick straight down, an abrupt S-bend halfway between the first two jobs, then
+      // straight down to the last tick. Starting and ending on ticks keeps both ends flush (no stub past a tick).
       const x0 = RAIL_X;
       const x1 = RAIL_X + JOG;
       const r = JOG_RADIUS;
+      startY = markerFractions[0] * railHeight;
+      endY = markerFractions.length > 1 ? markerFractions[markerFractions.length - 1] * railHeight : railHeight;
       jogY = markerFractions.length > 1 ? ((markerFractions[0] + markerFractions[1]) / 2) * railHeight : null;
       const d =
         jogY === null
-          ? `M ${x0} 0 V ${railHeight}`
-          : `M ${x0} 0 V ${jogY - r} Q ${x0} ${jogY} ${x0 + r} ${jogY} H ${x1 - r} Q ${x1} ${jogY} ${x1} ${jogY + r} V ${railHeight}`;
+          ? `M ${x0} ${startY} V ${endY}`
+          : `M ${x0} ${startY} V ${jogY - r} Q ${x0} ${jogY} ${x0 + r} ${jogY} H ${x1 - r} Q ${x1} ${jogY} ${x1} ${jogY + r} V ${endY}`;
       rail.querySelectorAll('path').forEach((path) => path.setAttribute('d', d));
       pathLength = track.getTotalLength();
       fillPath.style.strokeDasharray = String(pathLength);
@@ -161,7 +171,7 @@ const useScrollTimeline = ({ listRef, railRef, dotRef, fillRef, markerRefs }) =>
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', measure);
     };
-  }, [listRef, railRef, dotRef, fillRef, markerRefs]);
+  }, [listRef, railRef, fillRef, markerRefs]);
 };
 
 // Employer shown in a job title: its logo when there is one, otherwise the name; linked when
@@ -202,10 +212,9 @@ const Employer = ({ experience }) => {
 export const WorkSection = () => {
   const listRef = useRef(null);
   const railRef = useRef(null);
-  const dotRef = useRef(null);
   const fillRef = useRef(null);
   const markerRefs = useRef([]);
-  useScrollTimeline({ listRef, railRef, dotRef, fillRef, markerRefs });
+  useScrollTimeline({ listRef, railRef, fillRef, markerRefs });
 
   return (
     <WorkWrap id="work">
@@ -231,13 +240,12 @@ export const WorkSection = () => {
                   data-reached="false"
                 />
               ))}
-              <RailProgress ref={dotRef} />
             </Rail>
           </RailGutter>
           <WorkList ref={listRef}>
             {timeline.map((experience) => (
               <WorkItem key={experience.employer} data-timeline-item>
-                <MetaText>{experience.date}</MetaText>
+                <MetaText data-timeline-date>{experience.date}</MetaText>
                 <WorkTitle variant="h3">
                   {experience.title}
                   {'\u00A0· '}
@@ -297,7 +305,7 @@ const Rail = styled('div')(() => ({
   position: 'sticky',
   top: 96,
   height: 'calc(100vh - 144px)',
-  width: RAIL_X + JOG + PROGRESS / 2,
+  width: RAIL_X + JOG + TICK,
 }));
 
 // Track (divider color) and fill (text color, drawn in with stroke-dashoffset as you scroll) share one path.
@@ -337,38 +345,6 @@ const RailMarker = styled('span')(({ theme }) => ({
   },
 }));
 
-// The glow lives on a pseudo-element and pulses with opacity/scale only, so it stays on the
-// compositor instead of repainting a box-shadow every frame.
-const glowPulse = keyframes`
-  0%, 100% { opacity: 0.55; transform: scaleX(1); }
-  50% { opacity: 1; transform: scaleX(1.25); }
-`;
-
-// The progress marker: a longer horizontal line that rides the path (including the bend) as you scroll.
-const RailProgress = styled('span')(({ theme }) => ({
-  position: 'absolute',
-  top: -1,
-  left: 0,
-  width: PROGRESS,
-  height: 2,
-  zIndex: 1,
-  willChange: 'transform',
-  backgroundColor: theme.palette.text.primary,
-  '&::after': {
-    content: '""',
-    position: 'absolute',
-    inset: 0,
-    boxShadow: `0 0 10px 2px ${alpha(theme.palette.text.primary, 0.55)}`,
-    animation: `${glowPulse} 2.6s ease-in-out infinite`,
-  },
-  '@media (prefers-reduced-motion: reduce)': {
-    '&::after': {
-      animation: 'none',
-      opacity: 0.8,
-    },
-  },
-}));
-
 const WorkList = styled(Box)(({ theme }) => ({
   position: 'relative', // items' offsetTop is measured from here
   flex: 1,
@@ -385,6 +361,17 @@ const WorkItem = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(1.5),
+  // The date lights up once the timeline's fill reaches this job's tick (set by useScrollTimeline).
+  '& [data-timeline-date]': {
+    transition: 'color 0.3s ease',
+  },
+  '&[data-reached="true"] [data-timeline-date]': {
+    color: theme.palette.text.primary,
+    fontWeight: 600,
+  },
+  '@media (prefers-reduced-motion: reduce)': {
+    '& [data-timeline-date]': { transition: 'none' },
+  },
 }));
 
 const WorkTitle = styled(Typography)(({ theme }) => ({

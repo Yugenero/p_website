@@ -37,7 +37,7 @@ migration (entry 25): Astro owns the build, routing files and HTML shell, React 
 | Cursors | SVG data-URI arrow and hand in `theme.js` | Mouse/trackpad only (`pointer: fine`) |
 | Content | `src/data/profile.js` | Single source of truth for resume content and site flags (`openToWork`, `photographyOpen`) |
 | Photos | Google Cloud Function (`cloud-functions/`, Node) listing a Cloud Storage bucket; fetched by `global/usePhotos.js` | Shared by the landing strip and the (locked) photography page |
-| Hosting | GitHub Pages, `gh-pages` branch, custom domain from `public/CNAME` | `npm run deploy` builds and publishes `dist/` |
+| Hosting | GitHub Pages, `gh-pages` branch, custom domain from `public/CNAME` | `npm run deploy` builds and publishes `dist/` with a `.nojekyll` file, so GitHub's Jekyll step doesn't drop the `_astro/` folder |
 | Language | JavaScript; files with JSX are `.jsx` | TypeScript is installed but unused |
 
 ### How a page loads
@@ -365,7 +365,8 @@ exact CRA state.
   in `.jsx`); CRA's `index.js`, `reportWebVitals.js`, `setupTests.js`, the default failing `App.test.js`,
   `public/index.html`, `react-scripts`, the testing libraries and `web-vitals` were removed; `CNAME` moved into
   `public/` so every deploy carries the custom domain; `package-lock.json` was regenerated and `npm ci` works
-  again. Deploy now publishes `dist/` instead of `build/`.
+  again. Deploy now publishes `dist/` instead of `build/`, with `--nojekyll` (added before the first Astro
+  deploy: GitHub Pages' Jekyll step ignores `_` folders, which would have dropped `_astro/` and all the JS).
 - **Checked:** `npm run build` passes (same single `projects.jsx` warning as before); every route returns 200
   from a plain static server with no SPA rewrites, `/nope` returns 404; the home page (light) and `/work`
   (dark, loaded directly) look the same as the CRA build; `npm start` serves all routes.

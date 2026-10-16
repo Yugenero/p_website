@@ -32,7 +32,7 @@ holds what, what's already been tried or rejected, and what's still open.
 | Animation | CSS keyframes, `react-typed` (typewriter text), custom `Halftone` canvas background |
 | Icons | `@mui/icons-material` |
 | Photos | Fetched at runtime from a Google Cloud Function (`cloud-functions/`) backed by GCS |
-| Hosting | GitHub Pages via `npm run deploy` (`gh-pages -d dist`) to the `gh-pages` branch; custom domain via `public/CNAME` |
+| Hosting | GitHub Pages via `npm run deploy` (`gh-pages -d dist --nojekyll`) to the `gh-pages` branch; custom domain via `public/CNAME`. `--nojekyll` is required: Jekyll would drop Astro's `_astro/` folder (all the JS) |
 | Language | JavaScript; **any file containing JSX must be `.jsx`** (Vite won't parse JSX in `.js`). TypeScript is installed but unused |
 
 Installed but **not reachable from any route** (only imported by legacy files, if at all): Tailwind helpers (`tailwind-merge`, `clsx`, `src/utils/cn.js`),
@@ -46,7 +46,7 @@ npm ci                          # install exactly what package-lock.json pins
 npm start                       # Astro dev server on :4321 (same as npm run dev)
 npm run build                   # static build to /dist (must pass before pushing)
 npm run preview                 # serve /dist locally
-npm run deploy                  # build + publish dist/ to gh-pages (production!)
+npm run deploy                  # build + publish dist/ to gh-pages (production!), with .nojekyll
 ```
 
 ## Project structure

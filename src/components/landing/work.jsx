@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { useEffect, useRef } from 'react';
-import { styled } from '@mui/material/styles';
+import { alpha, keyframes, styled } from '@mui/material/styles';
 import {
   Container,
   InlineItem,
@@ -36,8 +36,8 @@ const timeline = [
 ];
 
 // Scroll timeline: a rail pinned to the viewport beside the job list. The rail maps the whole
-// list top-to-bottom and fills in as you read; when the fill reaches a job's tick, the tick darkens and that job's
-// date is highlighted. The rail is an SVG path that runs from the first tick to the last (so the ticks cap it
+// list top-to-bottom and fills in as you read, with a soft glow that brightens toward the leading tip; when the
+// fill reaches a job's diamond, the diamond appears and that job's date is highlighted. The rail is an SVG path that runs from the first tick to the last (so the ticks cap it
 // flush) with one abrupt S-bend (a sideways jog) between the first and second jobs; the fill follows the path.
 const READ_LINE = 0.45; // where the "reading line" sits in the viewport at the top of the page
 const MARKER_Y = 10; // px from an item's top to the point its marker represents (its date line)
@@ -46,7 +46,8 @@ const RAIL_X = 5; // px from the gutter's left edge to the rail's center (above 
 const RAIL_INSET = 24; // px of breathing room above and below the pinned rail
 const JOG = 10; // px the rail shifts right at the bend
 const JOG_RADIUS = 4; // corner radius of the bend's two turns; small = abrupt
-const TICK = 11; // width of a job's tick
+const DIAMOND = 7; // side of a job's diamond marker (before the 45° turn)
+const AURA_TAIL = 140; // px of glow behind the tip, fading from the tip back to nothing
 const EASE = 0.14; // per-frame easing toward the scroll target; lower is smoother/slower
 
 const clamp01 = (n) => Math.min(Math.max(n, 0), 1);
@@ -67,6 +68,9 @@ const useScrollTimeline = ({ listRef, railRef, fillRef, markerRefs }) => {
     let pathLength = 0;
     const track = rail.querySelector('[data-track]');
     const fillPath = fillRef.current;
+    const auraPath = rail.querySelector('[data-aura]');
+    const auraGradient = rail.querySelector('linearGradient');
+    const tipGlow = rail.querySelector('[data-tip]');
 
     // How much of the path is filled when the reading position is at height y. The path only ever moves down, so
     // that's the height covered since the first tick, plus the extra the bend adds once you're past it
@@ -98,7 +102,15 @@ const useScrollTimeline = ({ listRef, railRef, fillRef, markerRefs }) => {
 
     const render = () => {
       const length = lengthAtY(current * railHeight);
-      fillPath.style.strokeDashoffset = String(Math.max(pathLength - length, 0));
+      const offset = String(Math.max(pathLength - length, 0));
+      fillPath.style.strokeDashoffset = offset;
+      auraPath.style.strokeDashoffset = offset;
+      // The aura's gradient runs from transparent AURA_TAIL px above the tip to full strength at the tip.
+      const tip = track.getPointAtLength(Math.min(Math.max(length, 0), pathLength));
+      auraGradient.setAttribute('y1', String(tip.y - AURA_TAIL));
+      auraGradient.setAttribute('y2', String(tip.y));
+      tipGlow.style.transform = `translate3d(${tip.x}px, ${tip.y}px, 0)`;
+      tipGlow.style.opacity = length > 0.5 ? '1' : '0';
       // A job counts as reached once the fill gets to its tick: the tick darkens and the job's date lights up.
       markerFractions.forEach((fraction, i) => {
         const reached = String(current >= fraction - 0.001);
@@ -149,12 +161,13 @@ const useScrollTimeline = ({ listRef, railRef, fillRef, markerRefs }) => {
       rail.querySelectorAll('path').forEach((path) => path.setAttribute('d', d));
       pathLength = track.getTotalLength();
       fillPath.style.strokeDasharray = String(pathLength);
+      auraPath.style.strokeDasharray = String(pathLength);
 
       markerRefs.current.forEach((marker, i) => {
         if (!marker) return;
         const y = markerFractions[i] * railHeight;
         marker.style.top = `${y}px`;
-        marker.style.left = `${xAtY(y) - TICK / 2}px`;
+        marker.style.left = `${xAtY(y)}px`;
       });
       current = null; // snap to the new layout instead of easing from the old one
       onScroll();
@@ -228,9 +241,20 @@ export const WorkSection = () => {
           <RailGutter aria-hidden="true">
             <Rail ref={railRef}>
               <RailPath>
+                <defs>
+                  <linearGradient id="timeline-aura" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="0" y2="0">
+                    <stop offset="0" data-stop="tail" />
+                    <stop offset="1" data-stop="tip" />
+                  </linearGradient>
+                  <filter id="timeline-aura-blur" x="-200%" y="-10%" width="500%" height="120%">
+                    <feGaussianBlur stdDeviation="2.5" />
+                  </filter>
+                </defs>
                 <path data-track />
+                <path data-aura />
                 <path ref={fillRef} data-fill />
               </RailPath>
+              <RailTip data-tip />
               {timeline.map((experience, i) => (
                 <RailMarker
                   key={experience.employer}
@@ -305,11 +329,12 @@ const Rail = styled('div')(() => ({
   position: 'sticky',
   top: 96,
   height: 'calc(100vh - 144px)',
-  width: RAIL_X + JOG + TICK,
+  width: RAIL_X + JOG + DIAMOND * 2,
 }));
 
-// Track (divider color) and fill (text color, drawn in with stroke-dashoffset as you scroll) share one path.
-// No viewBox: SVG units are CSS pixels, so the path lines up exactly with the ticks and progress line.
+// Track (divider color), aura and fill (drawn in with stroke-dashoffset as you scroll) share one path. The aura is
+// a wider, blurred stroke whose gradient moves with the tip, so the glow is brightest at the leading edge.
+// No viewBox: SVG units are CSS pixels, so the path lines up exactly with the diamonds and the tip glow.
 const RailPath = styled('svg')(({ theme }) => ({
   position: 'absolute',
   inset: 0,
@@ -327,24 +352,72 @@ const RailPath = styled('svg')(({ theme }) => ({
   '& [data-fill]': {
     stroke: theme.palette.text.primary,
   },
+  '& [data-aura]': {
+    stroke: 'url(#timeline-aura)',
+    strokeWidth: 5,
+    strokeLinecap: 'round',
+    filter: 'url(#timeline-aura-blur)',
+  },
+  '& [data-stop="tail"]': {
+    stopColor: theme.palette.text.primary,
+    stopOpacity: 0,
+  },
+  '& [data-stop="tip"]': {
+    stopColor: theme.palette.text.primary,
+    stopOpacity: theme.palette.mode === 'dark' ? 0.75 : 0.55,
+  },
 }));
 
-// Each job is a thin horizontal tick across the rail, hidden until the fill reaches it; then it draws out from the
-// center at full strength (and hides again if you scroll back above it).
+const tipPulse = keyframes`
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
+`;
+
+// The brightest point of the aura: a soft halo sitting on the tip of the fill, pulsing gently.
+const RailTip = styled('span')(({ theme }) => ({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: 0,
+  height: 0,
+  pointerEvents: 'none',
+  transition: 'opacity 0.3s ease',
+  willChange: 'transform',
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    width: 10,
+    height: 10,
+    borderRadius: '50%',
+    backgroundColor: alpha(theme.palette.text.primary, 0.85),
+    boxShadow: `0 0 10px 4px ${alpha(theme.palette.text.primary, theme.palette.mode === 'dark' ? 0.55 : 0.4)}`,
+    filter: 'blur(1.5px)',
+    transform: 'translate(-50%, -50%)',
+    animation: `${tipPulse} 2.6s ease-in-out infinite`,
+  },
+  '@media (prefers-reduced-motion: reduce)': {
+    '&::after': { animation: 'none' },
+  },
+}));
+
+// Each job is a small diamond centered on the rail, hidden until the fill reaches it; then it scales up into place
+// at full strength (and hides again if you scroll back above it). `left`/`top` are the rail point (set in measure).
 const RailMarker = styled('span')(({ theme }) => ({
   position: 'absolute',
   top: 0,
-  left: RAIL_X - TICK / 2,
-  width: TICK,
-  height: 1,
+  left: 0,
+  width: DIAMOND,
+  height: DIAMOND,
+  marginLeft: -DIAMOND / 2,
+  marginTop: -DIAMOND / 2,
+  zIndex: 1,
   backgroundColor: theme.palette.text.primary,
-  transformOrigin: 'center',
   opacity: 0,
-  transform: 'scaleX(0)',
-  transition: 'opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
+  transform: 'rotate(45deg) scale(0)',
+  transition: 'opacity 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)',
   '&[data-reached="true"]': {
     opacity: 1,
-    transform: 'scaleX(1.35)',
+    transform: 'rotate(45deg) scale(1)',
   },
   '@media (prefers-reduced-motion: reduce)': {
     transition: 'none',

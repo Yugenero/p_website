@@ -549,6 +549,16 @@ Job ticks on the `/work` timeline are now hidden until the fill reaches them; th
 center (0.3s) at full strength, together with its date highlight, and hides again if you scroll back above it.
 Below the fill the rail is a plain line. Reduced motion shows them without the draw-in.
 
+### 41. Timeline aura back, diamonds for jobs
+
+- The glow is back, now on the line itself: a wider, blurred copy of the fill stroke whose gradient runs from
+  transparent 140px behind the tip to full strength at the tip (an SVG `linearGradient` in user space that's
+  moved with the tip every frame), plus a small halo on the tip that pulses like the old dot. The fill, aura and
+  tip all follow the path through the jog. Reduced motion keeps the glow but stops the pulse.
+- Job markers are now small diamonds (7px squares turned 45°) centered on the line, still hidden until the fill
+  reaches them; they scale in with the date highlight.
+- Checked on desktop (light) and an emulated phone (dark), scrolled top/mid/end, plus the dev server.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

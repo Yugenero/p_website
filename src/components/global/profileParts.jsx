@@ -108,19 +108,20 @@ export const Underlined = styled('a')(({ theme }) => ({
     transformOrigin: 'left center',
     transition: 'transform 0.25s ease',
   },
-  '&:hover::after, &:focus-visible::after': {
+  // `data-lit` shows the hover look without a hover (the /about page lights its links up on arrival).
+  '&:hover::after, &:focus-visible::after, &[data-lit="true"]::after': {
     transform: 'scaleX(1)',
   },
-  '&[data-tone="email"]:hover, &[data-tone="email"]:focus-visible': {
+  '&[data-tone="email"]:hover, &[data-tone="email"]:focus-visible, &[data-tone="email"][data-lit="true"]': {
     color: EMAIL_RED[theme.palette.mode] ?? EMAIL_RED.light,
   },
-  '&[data-tone="school"]:hover, &[data-tone="school"]:focus-visible': {
+  '&[data-tone="school"]:hover, &[data-tone="school"]:focus-visible, &[data-tone="school"][data-lit="true"]': {
     color: TECH_GOLD[theme.palette.mode] ?? TECH_GOLD.light,
   },
-  '&[data-tone="civic"]:hover, &[data-tone="civic"]:focus-visible': {
+  '&[data-tone="civic"]:hover, &[data-tone="civic"]:focus-visible, &[data-tone="civic"][data-lit="true"]': {
     color: CIVIC_BLUE[theme.palette.mode] ?? CIVIC_BLUE.light,
   },
-  '&[data-tone="fullstory"]:hover, &[data-tone="fullstory"]:focus-visible': {
+  '&[data-tone="fullstory"]:hover, &[data-tone="fullstory"]:focus-visible, &[data-tone="fullstory"][data-lit="true"]': {
     color: FULLSTORY_GREEN[theme.palette.mode] ?? FULLSTORY_GREEN.light,
   },
   '@media (prefers-reduced-motion: reduce)': {

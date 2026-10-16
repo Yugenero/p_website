@@ -651,6 +651,12 @@ Entry 51 was a misread: the logos on `/work` go back to color only (no underline
 `data-tone="fullstory"`, like Georgia Tech next to it: no underline at rest; on hover dark green (`#047A5E` light /
 `#11AB85` dark) with a thin underline drawing in from the left.
 
+### 54. /about links light up on arrival
+
+On `/about`, Fullstory and Georgia Institute of Technology no longer wait for a hover: shortly after the page opens
+they take their tone color and the underline draws in (Fullstory at 0.5s, Georgia Tech at 0.85s), and stay lit.
+`Underlined` in `profileParts.jsx` gained `data-lit="true"`, which shows the hover look without a hover.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

@@ -13,7 +13,7 @@ import {
   SectionTitle,
 } from '../ui/primitives';
 import Halftone from '../global/halftone';
-import { FULLSTORY_GREEN, TECH_GOLD } from '../global/profileParts';
+import { CIVIC_BLUE, FULLSTORY_GREEN, TECH_GOLD } from '../global/profileParts';
 import { BinaryMetaText } from '../ui/binaryMetaText';
 import { education, workExperience } from '../../data/profile';
 
@@ -170,7 +170,7 @@ const useScrollTimeline = ({ listRef, railRef, fillRef, markerRefs }) => {
 // Employer shown in a job title: its logo when there is one, otherwise the name; linked when
 // the entry has a `url`.
 const Employer = ({ experience }) => {
-  const { employer, url, logo } = experience;
+  const { employer, url, logo, tone } = experience;
   const linkProps = { href: url, target: '_blank', rel: 'noopener noreferrer' };
 
   if (logo) {
@@ -198,7 +198,13 @@ const Employer = ({ experience }) => {
       </LogoSlot>
     );
   }
-  return url ? <EmployerLink {...linkProps}>{employer}</EmployerLink> : employer;
+  return url ? (
+    <EmployerLink {...linkProps} data-tone={tone}>
+      {employer}
+    </EmployerLink>
+  ) : (
+    employer
+  );
 };
 
 // Work section object
@@ -498,9 +504,30 @@ const LogoLink = styled(Link)(({ theme }) => {
 });
 
 // Employer names link out when the entry has a `url` in profile.js.
-const EmployerLink = styled(Link)(() => ({
+// Employer names link out when the entry has a `url` (Civic Digital Experience → its LinkedIn page). No underline at
+// rest; on hover a thin underline draws in from the left and the name takes its `tone` color (light blue for Civic,
+// as in the sidebar). The underline is a background line rather than a pseudo-element, so it follows the text
+// across a line break when a long title wraps on phones.
+const EmployerLink = styled(Link)(({ theme }) => ({
   color: 'inherit',
   font: 'inherit',
+  textDecoration: 'none',
+  backgroundImage: 'linear-gradient(currentColor, currentColor)',
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: '0 100%',
+  backgroundSize: '0% 1px',
+  WebkitBoxDecorationBreak: 'clone',
+  boxDecorationBreak: 'clone',
+  transition: 'background-size 0.25s ease, color 0.2s ease',
+  '&:hover, &:focus-visible': {
+    backgroundSize: '100% 1px',
+  },
+  '&[data-tone="civic"]:hover, &[data-tone="civic"]:focus-visible': {
+    color: CIVIC_BLUE[theme.palette.mode] ?? CIVIC_BLUE.light,
+  },
+  '@media (prefers-reduced-motion: reduce)': {
+    transition: 'none',
+  },
 }));
 
 const WorkLocation = styled(Typography)(() => ({

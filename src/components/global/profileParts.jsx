@@ -40,7 +40,7 @@ export const TECH_GOLD = { light: '#857437', dark: '#B3A369' };
 // their #059573 in light mode so it reads on off-white (both from fullstory.com's palette).
 export const FULLSTORY_GREEN = { light: '#047A5E', dark: '#11AB85' };
 // Civic Digital Experience turns light blue on hover (a deeper blue in light mode so it reads on off-white).
-const CIVIC_BLUE = { light: '#2B8FD6', dark: '#8CCBFF' };
+export const CIVIC_BLUE = { light: '#2B8FD6', dark: '#8CCBFF' };
 export const INSTAGRAM_GRADIENT = 'linear-gradient(90deg, #F58529, #DD2A7B 45%, #8134AF 75%, #515BD4)';
 
 const timeFormat = new Intl.DateTimeFormat('en-US', {

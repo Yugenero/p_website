@@ -589,6 +589,14 @@ Tech Gold (`#857437` / `#B3A369`), matching the sidebar links. Each logo's `tone
 colors are exported from `profileParts.jsx`. Logos without a tone keep the old fade. Verified the computed
 hover colors in both themes and the dev server.
 
+### 46. Civic Digital Experience linked on /work
+
+The Civic entry on `/work` now has the same LinkedIn link as the sidebar (`url` + `tone: 'civic'` in
+`profile.js`). On hover the name turns light blue (`#2B8FD6` light / `#8CCBFF` dark) and a thin underline draws in
+from the left. The underline is a background line with `box-decoration-break: clone` instead of the sidebar's
+pseudo-element, because a job title can wrap on phones and a pseudo-element underline would break across lines.
+Checked on desktop in both themes and at 360px, where the name wraps to two lines and the underline follows both.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

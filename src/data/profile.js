@@ -84,6 +84,9 @@ export const workExperience = [
   },
   {
     employer: 'Civic Digital Experience, Inc.',
+    url: 'https://www.linkedin.com/company/civicdx/home/',
+    // `tone` picks the employer link's hover color on /work (light blue, as in the sidebar).
+    tone: 'civic',
     location: 'Atlanta, GA',
     date: 'Oct 2024 — Jul 2025',
     title: 'Software Engineer',

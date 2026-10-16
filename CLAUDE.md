@@ -228,6 +228,9 @@ Build on it; don't introduce a new visual language.
   full strength, weight 600). No moving marker, no bends.
 - `/work` employer logos are one-color masks (`currentColor`); on hover they take the brand color set by
   `logo.tone` in `profile.js`: Fullstory dark green, Georgia Tech Tech Gold (same per-theme shades as the sidebar).
+  Employers without a logo but with a `url` (Civic Digital Experience → LinkedIn) are `EmployerLink`s: no underline
+  at rest, a background-line underline that draws in on hover (it survives line wraps on phones) and the entry's
+  `tone` color (Civic light blue).
 - Reading width: long text on wide pages stops at half the window. On `/work`, each role's summary and bullets
   are capped at `50vw` from `md` up (full width on phones).
 - Wrap content in `Container` (handles gutters); use `Section` for full pages. (`CompactSection` and

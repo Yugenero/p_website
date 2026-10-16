@@ -622,6 +622,16 @@ Checked in the dev server in both themes.
   Dates and employers still light up job by job as the fill passes them.
 - eKlozet and GT WebDev now use Tech Gold (same shades as Georgia Tech) instead of the rose and violet from entry 48.
 
+### 50. Metrics bold and typed on scroll; shorter bullets
+
+- Metrics in `/work` summaries and bullets (40%, 30+, 10,000+, sub-5ms, 2nd, …) are bold (600, `text.primary`) and
+  type themselves out with a thin caret the first time they scroll into view (`Metric` / `withMetrics` in
+  `work.jsx`, matched by a % / + / ms / ordinal suffix so years aren't caught). The untyped rest keeps its space, so
+  lines don't reflow; screen readers get the whole metric. Anything jumped past (above the screen) types too, so
+  nothing stays blank. With reduced motion they're shown at once.
+- Bullets rewritten shorter in `profile.js`, same facts and numbers.
+- Summaries and bullets now stop at 60% of the job column (was `50vw`), full width on phones.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { alpha, keyframes, styled } from '@mui/material/styles';
 import {
   Container,
@@ -189,6 +189,63 @@ const useScrollTimeline = ({ listRef, railRef, fillRef, markerRefs }) => {
   }, [listRef, railRef, fillRef, markerRefs]);
 };
 
+// Metrics in a summary or bullet (40%, 30+, 10,000+, sub-5ms, 2nd) are bolded and type themselves out the first
+// time they scroll into view. Years ("Fall 2022") aren't matched: a metric needs a %, +, ms or ordinal suffix.
+const METRIC = /((?:sub-)?\d[\d,]*(?:\.\d+)?(?:%|\+|ms\b)|\b\d+(?:st|nd|rd|th)\b)/;
+const TYPE_STEP_MS = 70; // per character
+
+const withMetrics = (text) =>
+  text.split(METRIC).map((part, i) => (i % 2 === 1 ? <Metric key={i} text={part} /> : part));
+
+const Metric = ({ text }) => {
+  const ref = useRef(null);
+  const [shown, setShown] = useState(0);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return undefined;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || typeof IntersectionObserver === 'undefined') {
+      setShown(text.length);
+      return undefined;
+    }
+    let timer = 0;
+    // Start once the metric is a little way above the bottom of the screen, so it's being looked at. The root reaches
+    // far above the screen so a metric that was jumped past (e.g. straight to the bottom) still types instead of
+    // staying blank.
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        timer = window.setInterval(() => {
+          setShown((n) => {
+            if (n + 1 >= text.length) window.clearInterval(timer);
+            return Math.min(n + 1, text.length);
+          });
+        }, TYPE_STEP_MS);
+      },
+      { rootMargin: '100000px 0px -15% 0px', threshold: 1 },
+    );
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      window.clearInterval(timer);
+    };
+  }, [text]);
+
+  const typing = shown < text.length;
+  // The untyped rest keeps its space (hidden), so the line never reflows while typing. Screen readers get the
+  // whole metric at once.
+  return (
+    <MetricText ref={ref} data-typing={typing && shown > 0 ? 'true' : undefined}>
+      <VisuallyHidden>{text}</VisuallyHidden>
+      <span aria-hidden="true">
+        <span data-typed>{text.slice(0, shown)}</span>
+        <span style={{ visibility: 'hidden' }}>{text.slice(shown)}</span>
+      </span>
+    </MetricText>
+  );
+};
+
 // Employer shown in a job title: its logo when there is one, otherwise the name; linked when
 // the entry has a `url`.
 const Employer = ({ experience }) => {
@@ -288,11 +345,11 @@ export const WorkSection = () => {
                   {experience.location}
                 </WorkLocation>
                 <WorkSummary variant="body1" paragraph>
-                  {experience.summary}
+                  {withMetrics(experience.summary)}
                 </WorkSummary>
                 <Highlights>
                   {experience.highlights.map((point) => (
-                    <HighlightItem key={point}>{point}</HighlightItem>
+                    <HighlightItem key={point}>{withMetrics(point)}</HighlightItem>
                   ))}
                 </Highlights>
                 <InlineList>
@@ -585,8 +642,36 @@ const WorkLocation = styled(Typography)(() => ({
   fontSize: '0.98rem',
 }));
 
-// Summary and bullets stop at half the window width so lines stay readable on wide screens.
-const READING_WIDTH = '50vw';
+// Summary and bullets stop at 60% of the job column so lines stay short and readable (full width on phones).
+const READING_WIDTH = '60%';
+
+const MetricText = styled('strong')(({ theme }) => ({
+  fontWeight: 600,
+  color: theme.palette.text.primary,
+  whiteSpace: 'nowrap',
+  // A thin caret follows the typed characters while typing.
+  '& [data-typed]': {
+    position: 'relative',
+  },
+  '&[data-typing] [data-typed]::after': {
+    content: '""',
+    position: 'absolute',
+    right: -2,
+    top: '0.1em',
+    bottom: '0.1em',
+    width: 1,
+    backgroundColor: 'currentColor',
+  },
+}));
+
+const VisuallyHidden = styled('span')(() => ({
+  position: 'absolute',
+  width: 1,
+  height: 1,
+  overflow: 'hidden',
+  clip: 'rect(0 0 0 0)',
+  whiteSpace: 'nowrap',
+}));
 
 const WorkSummary = styled(Typography)(({ theme }) => ({
   fontSize: '1.06rem',

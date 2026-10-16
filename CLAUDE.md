@@ -235,8 +235,10 @@ Build on it; don't introduce a new visual language.
   Employers without a logo but with a `url` (Civic Digital Experience → LinkedIn) are `EmployerLink`s: no underline
   at rest, a background-line underline that draws in on hover (it survives line wraps on phones) and the entry's
   `tone` color (Civic light blue).
-- Reading width: long text on wide pages stops at half the window. On `/work`, each role's summary and bullets
-  are capped at `50vw` from `md` up (full width on phones).
+- Reading width: long text on wide pages stays short. On `/work`, each role's summary and bullets are capped at
+  60% of the job column from `md` up (full width on phones). Keep bullets short: one idea, about two lines.
+- Metrics on `/work` (numbers with %, +, ms or an ordinal) are bold and type themselves out on first scroll into view
+  (`withMetrics` in `work.jsx`); reduced motion shows them at once.
 - Wrap content in `Container` (handles gutters); use `Section` for full pages. (`CompactSection` and
   `SectionHeaderRow` in `primitives.js` are currently unused; they served the old overview sections.)
 - Background texture: every page section uses `<Halftone />` (`global/halftone.jsx`), a canvas grid of small

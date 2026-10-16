@@ -477,6 +477,12 @@ turns Georgia Tech's Tech Gold on hover, underline included: `#B3A369` in dark m
   on hover (`#8CCBFF` dark, `#2B8FD6` light). `profile.previously` became a list of `{ name, href?, tone? }`.
 - Checked both with real mouse hovers in light and dark mode, plus the dev server.
 
+### 35. Fullstory hover: darker green text and underline
+
+Fullstory now turns green on hover, text and underline together, in a darker green than entry 34's underline:
+`#11AB85` in dark mode (from fullstory.com's palette) and `#047A5E` in light mode (a deeper shade of their
+`#059573`, so it reads on off-white). The underline follows the text color.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

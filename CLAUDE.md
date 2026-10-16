@@ -117,7 +117,7 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
   mono, tabular figures).
 - Inline links (Fullstory, Civic Digital Experience, school, email, resume) are full-strength text with a thin underline drawing in from the left on
   hover (`Underlined`, kept on one line so the underline never breaks); email also turns light red, the school
-  Tech Gold, Civic light blue, and Fullstory gets a green underline (`data-tone`).
+  Tech Gold, Civic light blue, Fullstory dark green (`data-tone`).
 - Nav pinned to the bottom, stacked: Home, About, Experience, Projects, Photography, Writing, with the theme toggle
   bottom-right on the same row (its label opens upward, `tipPlacement="top"`). The current page
   gets a small filled square before it. Locked pages show greyed out with a small mono "soon" and aren't links.
@@ -162,7 +162,7 @@ Build on it; don't introduce a new visual language.
   sidebar's social links **on hover only** (LinkedIn `#0A66C2` / `#70B5F9` in dark, GitHub green `#2DA44E` / `#7EE787` in dark,
   Instagram's gradient), the email link's light red on hover (`#D9473F` / `#FF8A80` in dark), Georgia Tech CS in Tech Gold on hover
   (`#857437` Tech Dark Gold / `#B3A369` Tech Gold in dark), Civic Digital Experience in light blue on hover
-  (`#2B8FD6` / `#8CCBFF` in dark), and Fullstory's underline (only) in its brand green (`#059573` / `#07C799`). At rest
+  (`#2B8FD6` / `#8CCBFF` in dark), and Fullstory in a darker brand green, text and underline (`#047A5E` / `#11AB85` in dark). At rest
   they're the normal text colors.
   `accentColors` (crimson) in `theme.js` exists but is intentionally unused.
 - Every change must look right in **both** light and dark mode.

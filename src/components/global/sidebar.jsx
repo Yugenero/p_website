@@ -40,8 +40,9 @@ const BRAND = {
 const EMAIL_RED = { light: '#D9473F', dark: '#FF8A80' };
 // Georgia Tech CS turns Tech Gold on hover (GT's Tech Dark Gold in light mode; Tech Gold is too pale on off-white).
 const TECH_GOLD = { light: '#857437', dark: '#B3A369' };
-// Fullstory's brand green (from fullstory.com), on the underline only; the darker shade in light mode.
-const FULLSTORY_GREEN = { light: '#059573', dark: '#07C799' };
+// Fullstory turns a darker green on hover, text and underline: their #11AB85 in dark mode, and a deeper shade of
+// their #059573 in light mode so it reads on off-white (both from fullstory.com's palette).
+const FULLSTORY_GREEN = { light: '#047A5E', dark: '#11AB85' };
 // Civic Digital Experience turns light blue on hover (a deeper blue in light mode so it reads on off-white).
 const CIVIC_BLUE = { light: '#2B8FD6', dark: '#8CCBFF' };
 const INSTAGRAM_GRADIENT = 'linear-gradient(90deg, #F58529, #DD2A7B 45%, #8134AF 75%, #515BD4)';
@@ -400,8 +401,8 @@ const Underlined = styled('a')(({ theme }) => ({
   '&[data-tone="civic"]:hover, &[data-tone="civic"]:focus-visible': {
     color: CIVIC_BLUE[theme.palette.mode] ?? CIVIC_BLUE.light,
   },
-  '&[data-tone="fullstory"]::after': {
-    backgroundColor: FULLSTORY_GREEN[theme.palette.mode] ?? FULLSTORY_GREEN.light,
+  '&[data-tone="fullstory"]:hover, &[data-tone="fullstory"]:focus-visible': {
+    color: FULLSTORY_GREEN[theme.palette.mode] ?? FULLSTORY_GREEN.light,
   },
   '@media (prefers-reduced-motion: reduce)': {
     transition: 'none',

@@ -16,6 +16,70 @@ behind them and keeps the history.
 - Give the landing page visual richness without filler; keep detail on the dedicated pages.
 - Keep the existing pages: About, Experience (`/work`), Projects, Photography.
 - Document the stack, design language and guardrails in `CLAUDE.md`.
+- Move off Create React App (deprecated) to a framework that ships real pages: Astro (entry 25).
+
+## Tech stack
+
+The site is a **static Astro site that runs a React app inside each page**. Astro builds one HTML file per
+route; React (with MUI for styling) draws everything on the page in the browser. This is stage 1 of the
+migration (entry 25): Astro owns the build, routing files and HTML shell, React still owns the UI.
+
+| Layer | What we use | Notes |
+| --- | --- | --- |
+| Framework / build | **Astro 5** (5.18), static output, Vite 6 under the hood | `astro.config.mjs`. Replaced Create React App (`react-scripts`) in entry 25 |
+| Pages | `src/pages/*.astro`, wrapped in `src/layouts/Base.astro` | One file per route: index, about, work, projects, photography, blog, `blog/[slug]`, 404. Each sets its own `<title>` |
+| UI | **React 18** (18.3), mounted with `client:only="react"` via `@astrojs/react` 4 | The whole app is one island on every page; nothing is pre-rendered yet |
+| In-app routing | `react-router-dom` 6, `BrowserRouter` in `src/App.jsx` | Clicking a link swaps pages inside React, no reload. A new route needs both a `<Route>` and a `.astro` page |
+| Styling | **MUI 5** (`@mui/material`) with `styled()` and theme tokens; Emotion under the hood | Square corners, hairlines, sentence case; see *Design language* |
+| Theme | `src/theme.js`: `buildTheme(mode)` for light and dark, saved in `localStorage.themeMode` | `Base.astro` paints the saved background before React loads, so dark mode doesn't flash white |
+| Fonts | Serif: Baskerville system stack. Sans: Aeonik if installed, else the system sans. Mono: IBM Plex Mono (Google Fonts). Geist (self-hosted in `public/fonts/`) for role titles | Baskerville and Aeonik aren't shipped with the site, so devices without them show Times/Garamond and the system sans |
+| Motion and texture | `Halftone` canvas background (`global/halftone.jsx`), CSS keyframes, `react-typed` for the typed tagline, a custom typing effect in the code card | Everything respects `prefers-reduced-motion` |
+| Cursors | SVG data-URI arrow and hand in `theme.js` | Mouse/trackpad only (`pointer: fine`) |
+| Content | `src/data/profile.js` | Single source of truth for resume content and site flags (`openToWork`, `photographyOpen`) |
+| Photos | Google Cloud Function (`cloud-functions/`, Node) listing a Cloud Storage bucket; fetched by `global/usePhotos.js` | Shared by the landing strip and the (locked) photography page |
+| Hosting | GitHub Pages, `gh-pages` branch, custom domain from `public/CNAME` | `npm run deploy` builds and publishes `dist/` |
+| Language | JavaScript; files with JSX are `.jsx` | TypeScript is installed but unused |
+
+### How a page loads
+
+1. GitHub Pages serves the route's own file, e.g. `dist/work/index.html` for `/work`. This is why deep links
+   and refreshes work now; under CRA there was only one `index.html`, so `/work` returned GitHub's 404.
+2. The HTML has the page title, meta and Open Graph tags, fonts, and a tiny script that sets the
+   background color for the saved theme. The body is otherwise empty.
+3. The React bundle (about 112 kB gzipped) loads and renders the header, the page and the footer.
+4. From there, clicking a nav link changes pages inside React without loading new HTML.
+
+### Commands
+
+```bash
+npm ci            # install exactly what package-lock.json pins (works again since entry 25)
+npm start         # dev server on http://localhost:4321 (same as npm run dev)
+npm run build     # static build to dist/; must pass before pushing
+npm run preview   # serve dist/ locally
+npm run deploy    # build + publish dist/ to gh-pages (production)
+```
+
+### What changed from Create React App
+
+| | Before (CRA, on `react-back-up-branch`) | Now (Astro) |
+| --- | --- | --- |
+| Build tool | `react-scripts` 5 (webpack), deprecated | Astro 5 + Vite |
+| HTML | One `public/index.html` for every URL | One generated HTML file per route |
+| Deep links on GitHub Pages | Refreshing `/work` returned a 404 | Every route loads directly |
+| Page titles | "Nelson Rodriguez" everywhere | Per page, e.g. "Experience · Nelson Rodriguez" |
+| Entry point | `src/index.js` | `src/pages/*.astro` mounting `App.jsx` |
+| Output folder | `build/` | `dist/` |
+| Dev server | `:3000` | `:4321` |
+| Lint | CRA's built-in ESLint | None yet; new build warnings are the bar |
+| Tests | CRA's default test (failing) | Removed |
+
+### Where it's heading (stage 2)
+
+Convert the static parts (About, Experience, Projects, footer, most of the hero) into `.astro` components
+that Astro renders to real HTML at build time, and keep React only as small islands for the interactive
+pieces: the theme toggle, typed tagline, halftone, code card and photos. That's what makes pages readable by
+search engines and link previews and faster to show. MUI would be replaced by plain CSS with the same tokens
+as it goes.
 
 ## Design language
 
@@ -53,35 +117,37 @@ or give the page structure. Nothing is decoration for its own sake.
 
 ### Signature elements
 
-- **Cross rule** (`ui/crossRule.js`): a hairline with small "+" crop marks at both ends. On load the line
+- **Cross rule** (`ui/crossRule.jsx`): a hairline with small "+" crop marks at both ends. On load the line
   grows out from the middle to both ends (1.1s, ease-out), and the marks fade in as it reaches them. It's the site's divider motif, used as the header's bottom edge and to close the landing
-  hero under the buttons. Use it for any new divider; keep it bare (no labels or clocks).
+  hero, below both columns. Use it for any new divider; keep it bare (no labels or clocks).
 - **Name block**: serif name (`clamp(2.4rem, 3.6vw, 3.8rem)`), then the typed tagline. No job title; the
   role shows in the pitch ("Currently at Fullstory") and on `/work`.
-- **Code card** (`landing/codeCard.js`): a bordered card titled `nelson.ts` that types out a small "about me"
+- **Code card** (`landing/codeCard.jsx`): a bordered card titled `nelson.ts` that types out a small "about me"
   in TypeScript: base, fuel (iced coffee), training (strength and endurance), offline (photography and cars),
   and `kaizen(365) // ≈ 37.8x`, since 1% better a day compounds to about 37.8 times in a year. It's company
   agnostic on purpose. Monochrome highlighting (italic grey comments, including trailing ones, and bold
   keywords) with line numbers; the cursor blinks once typing finishes.
 - **Quick facts**: a `dl` with a dark top rule and hairline rows (Focus, Education with a Georgia Tech link,
   Based in).
-- **Photography strip** (`landing/photoStrip.js`): four of Nelson's photos, grayscale at rest and color
-  plus a slight zoom on hover, linking to `/photography`.
+- **Photography strip** (`landing/photoStrip.jsx`): four of Nelson's photos, grayscale at rest and color
+  plus a slight zoom on hover. It links to `/photography` only while that page is open (it's locked now).
 - **Binary section labels** (`BinaryMetaText`): "0000", "0001" and so on type in above each page's title.
 - **Employer logos on `/work`**: monochrome silhouettes (an SVG mask over the text color) in place of
   employer names, so they follow light and dark mode.
 - **Theme toggle**: a square button with a half-filled circle (the contrast symbol) that turns 180° when the
   theme flips. Hovering (or keyboard focus) shows "Switch to dark mode" / "Switch to light mode" in an inverted
   label. It's 44px and bordered on phones, so it's easy to find and tap.
-- **Header**: square social icon boxes, 44px tap targets on phones, and a horizontally scrolling nav strip
-  on mobile that keeps the current page underlined and in view.
+- **Header**: Nelson's name in the serif on the left (links home), nav links in the sans at regular weight
+  with hairline separators, and the theme toggle. On phones the name and toggle share the top row and the
+  nav becomes a horizontally scrolling strip that keeps the current page underlined and in view. Social
+  links live in the footer.
 
 ### Layout and responsiveness
 
 - Content sits in `Container` (40px side gutters on desktop, 16px on phones).
-- The landing hero fills the screen below the header on desktop (the header publishes `--header-height`),
-  with the footer below the fold. Two columns: name, tagline, pitch, status and buttons on the left; code
-  card and quick facts on the right. The buttons line up with the last quick-fact row.
+- The landing hero sits between two cross rules with equal space above and below (72px desktop, 40px phones).
+  Two columns: name, tagline, pitch, status and buttons on the left; code card and quick facts on the right.
+  The buttons sit right under the status line, leaving deliberate open space in the lower left.
 - Below the `md` breakpoint everything stacks into one column, the corner marks hide, and the photo strip
   becomes a 2 × 2 grid.
 - No horizontal page scrolling at any width from 360px up (checked at 360, 390, 768, 1280 and 1440px, light
@@ -91,11 +157,11 @@ or give the page structure. Nothing is decoration for its own sake.
 
 | Piece | File | Contents |
 | --- | --- | --- |
-| Main column | `landing/intro.js` | Name, typed tagline, "Currently at Fullstory" pitch, "Open to new roles" status, *View resume* and *Get in touch* buttons |
-| Side column | `landing/intro.js`, `landing/codeCard.js` | Typing code card, quick facts (Focus · Education · Based in) |
-| Cross rule | `ui/crossRule.js` | Closes the hero under the buttons (same rule as under the header) |
+| Main column | `landing/intro.jsx` | Name, typed tagline, "Currently at Fullstory" pitch, "Open to new roles" status, *View resume* and *Get in touch* buttons |
+| Side column | `landing/intro.jsx`, `landing/codeCard.jsx` | Typing code card, quick facts (Focus · Education · Based in) |
+| Cross rule | `ui/crossRule.jsx` | Closes the hero below both columns (same rule as under the header) |
 | Background | `global/halftone.jsx` | Halftone cloud texture behind the hero (same as every other page) |
-| Photography strip | `landing/photoStrip.js` | Four photos linking to `/photography`; hidden if the photo service fails |
+| Photography strip | `landing/photoStrip.jsx` | Four photos (not linked while `/photography` is locked); hidden if the photo service fails |
 
 All text content comes from `src/data/profile.js`. The photo fetch lives in `global/usePhotos.js` and is
 shared with the photography page, so a visit makes one request.
@@ -284,28 +350,6 @@ with normal tracking to match the design rules. Set the flag to `true` to reopen
 The halftone's peak opacity went up about 55%: 0.11 → 0.17 in light mode (darker squares) and 0.16 → 0.25 in
 dark mode (brighter squares), so the texture reads clearly without competing with the text.
 
-### Content corrections along the way
-
-- "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.
-- Empty Fullstory bullets were filled in, and project stacks were matched to the resume.
-- Removed the lorem-ipsum "Empty Card" project and the placeholder cat images on `/projects`.
-- Replaced the create-react-app default page description, and added Open Graph tags.
-
-## Security incident: personal documents on the live site
-
-**Found:** `public/documents/` held three personal tax documents next to the resume: an IRS tax return
-transcript, a 2025 income summary and a tax-software consent form. Everything in `public/` is deployed
-as-is, so they were downloadable from the live site.
-
-**Resolved:**
-- Removed from the source branches, with a `CLAUDE.md` guardrail: only the resume belongs in `public/documents/`.
-- Removed from the live site by Nelson's Oct 12 deploy; `gh-pages` now holds only the resume and `Notes.txt`.
-
-**Optional, still open:**
-- Purge them from git history on every branch. This rewrites history and needs a force-push, so it waits
-  for an explicit decision.
-- Request an IRS Identity Protection PIN as a precaution.
-
 ### 25. Astro migration, stage 1 (`website-migration`)
 
 Moved the build from Create React App (deprecated, unmaintained) to **Astro 5** without changing how the site
@@ -333,6 +377,28 @@ exact CRA state.
   Projects, footer) to `.astro` with real HTML, keeping React only for the theme toggle, typed text,
   halftone, code card and photos.
 
+### Content corrections along the way
+
+- "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.
+- Empty Fullstory bullets were filled in, and project stacks were matched to the resume.
+- Removed the lorem-ipsum "Empty Card" project and the placeholder cat images on `/projects`.
+- Replaced the create-react-app default page description, and added Open Graph tags.
+
+## Security incident: personal documents on the live site
+
+**Found:** `public/documents/` held three personal tax documents next to the resume: an IRS tax return
+transcript, a 2025 income summary and a tax-software consent form. Everything in `public/` is deployed
+as-is, so they were downloadable from the live site.
+
+**Resolved:**
+- Removed from the source branches, with a `CLAUDE.md` guardrail: only the resume belongs in `public/documents/`.
+- Removed from the live site by Nelson's Oct 12 deploy; `gh-pages` now holds only the resume and `Notes.txt`.
+
+**Optional, still open:**
+- Purge them from git history on every branch. This rewrites history and needs a force-push, so it waits
+  for an explicit decision.
+- Request an IRS Identity Protection PIN as a precaution.
+
 ## Working locally
 
 ```bash
@@ -351,7 +417,7 @@ The live site only changes on `npm run deploy`, which runs the build for you (`p
 - **Pre-rendering (Astro stage 2):** pages render in the browser only; see entry 25.
 - **Writing page:** disabled in the header, and its code still references a placeholder cat image.
 - **Build warnings:** one left from before this work: `landing/projects.jsx` (duplicate `minHeight`).
-- **Unused code and dependencies:** legacy CSS, animations, `navigation.js`, `stuff.js`, `signature.js`,
+- **Unused code and dependencies:** legacy CSS, animations, `navigation.jsx`, `stuff.jsx`, `signature.jsx`,
   `Notes.txt`, the stray `p_website.git/` directory, the `SectionHeaderRow` and `CompactSection` primitives
   (unused since the landing page was trimmed), and several installed but unused packages (see `CLAUDE.md`).
 

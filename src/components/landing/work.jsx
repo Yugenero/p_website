@@ -551,13 +551,9 @@ const LogoMark = styled('span')(() => ({
   maskPosition: 'left center',
 }));
 
-// Inline after the title on desktop; on phones the logo gets its own line below it.
-const LogoSlot = styled('span')(({ theme }) => ({
-  [theme.breakpoints.down('md')]: {
-    display: 'block',
-    marginTop: theme.spacing(0.75),
-    lineHeight: 1,
-  },
+// Inline after the title at every width; it only wraps to the next line when it doesn't fit beside the title.
+const LogoSlot = styled('span')(() => ({
+  whiteSpace: 'nowrap',
 }));
 
 // On hover the logo (a mask filled with currentColor) takes its brand color: Fullstory's dark green, Georgia Tech's

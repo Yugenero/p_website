@@ -638,6 +638,12 @@ The Fullstory and Georgia Tech logos on `/work` now get the same thin underline 
 eKlozet, GT WebDev), in their tone color, on hover and while their job is active: Fullstory green, Tech Gold.
 Before, the logos only changed color.
 
+### 52. Logos stay beside the job title
+
+Below `md` the employer logo on `/work` was forced onto its own line under the title. It's now inline at every width
+and kept in one piece (`nowrap`), so it only drops to the next line when it doesn't fit: Fullstory stays beside
+"Solutions Engineer" down to 360px; the wider Georgia Tech logo wraps on phones. No horizontal scroll at 360/390px.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

@@ -615,6 +615,13 @@ Checked in the dev server in both themes.
   `#B4A6FF`). They have no published brand colors, so these are picks that sit apart from the others (`tone` in
   `profile.js`, colors in `profileParts.jsx`). All tone colors live in one `TONES` map in `work.jsx`.
 
+### 49. Diamonds only at the ends; eKlozet and GT WebDev in gold
+
+- The middle diamonds on the `/work` line are gone: only the first job's (top) and the last one's (bottom) are
+  rendered. The line is a mini-map of the page, so the middle ones never sat next to their jobs and read as extras.
+  Dates and employers still light up job by job as the fill passes them.
+- eKlozet and GT WebDev now use Tech Gold (same shades as Georgia Tech) instead of the rose and violet from entry 48.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

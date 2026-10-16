@@ -102,7 +102,7 @@ export const workExperience = [
   },
   {
     employer: 'eKlozet Designer Consignment',
-    // `tone` picks the employer's highlight color on /work (rose; see profileParts.jsx).
+    // `tone` picks the employer's highlight color on /work (Tech Gold, like GT WebDev and Georgia Tech).
     tone: 'eklozet',
     location: 'Atlanta, GA',
     date: 'Jan 2022 — Dec 2022',

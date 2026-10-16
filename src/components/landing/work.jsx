@@ -13,7 +13,7 @@ import {
   SectionTitle,
 } from '../ui/primitives';
 import Halftone from '../global/halftone';
-import { CIVIC_BLUE, EKLOZET_ROSE, FULLSTORY_GREEN, TECH_GOLD, WEBDEV_VIOLET } from '../global/profileParts';
+import { CIVIC_BLUE, FULLSTORY_GREEN, TECH_GOLD } from '../global/profileParts';
 import { BinaryMetaText } from '../ui/binaryMetaText';
 import { education, workExperience } from '../../data/profile';
 
@@ -263,7 +263,8 @@ export const WorkSection = () => {
                 <path ref={fillRef} data-fill />
               </RailPath>
               <RailTip data-tip />
-              {timeline.map((experience, i) => (
+              {/* Diamonds only at the two ends of the line: the first job and the last. */}
+              {timeline.map((experience, i) => (i === 0 || i === timeline.length - 1) && (
                 <RailMarker
                   key={experience.employer}
                   ref={(el) => {
@@ -530,8 +531,9 @@ const TONES = {
   fullstory: FULLSTORY_GREEN,
   school: TECH_GOLD,
   civic: CIVIC_BLUE,
-  eklozet: EKLOZET_ROSE,
-  webdev: WEBDEV_VIOLET,
+  // No published brand colors for these two; they share Georgia Tech's gold.
+  eklozet: TECH_GOLD,
+  webdev: TECH_GOLD,
 };
 
 // Color rules for every tone: while the job is active on the timeline, and on hover/focus for links.

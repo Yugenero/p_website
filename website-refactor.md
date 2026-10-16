@@ -126,8 +126,8 @@ tiles carry the energy.
   sheen and a "that's me :)" note on hover),
   tagline, a two-line bio, a *now* block (`→ Forward Deployed Engineer at Fullstory`, green-dot "Open to new
   roles"), "Previously at …", "Reach out via email, or read my resume", plain-text social links, and a live
-  clock ("Currently Atlanta, GA · 17:03:30", Eastern time, mono figures) with the theme toggle beside it. Nav pinned to the
-  bottom; a filled square marks the current page, locked pages are greyed with a mono "soon".
+  clock ("Currently Atlanta, GA · 17:03:30", Eastern time, mono figures). Socials stacked, brand-colored on hover.
+  Nav pinned to the bottom with the theme toggle at its right; a filled square marks the current page, locked pages are greyed with a mono "soon".
 - **Project tiles** (`landing/projectFeed.jsx`): each project is a tile with its own halftone texture, a mono
   top row (`01 :: iOS application` · date), a big sans title, and the description and stack in small mono.
   The first tile is a full-width cover; the rest pair up. The border darkens and the ↗ nudges on hover.
@@ -426,6 +426,18 @@ separate stops for light and dark mode (light mode tops out at mid-grey so lette
 page). A first, softer gradient read as a plain fade, so the bands and streak were strengthened. Mouse and
 keyboard focus only; reduced motion shows the chrome without the sweep. Checked with real mouse hovers via
 Chrome DevTools in both themes, plus the dev server.
+
+### 29. Darker light-mode tiles, brand-colored socials, toggle moved
+
+- Halftone peak opacity in light mode 0.17 → 0.22 (squares a bit darker); dark mode unchanged at 0.25.
+- LinkedIn, GitHub and Instagram are stacked vertically. On hover each takes its brand color with a thin
+  underline drawing in from the left: LinkedIn blue (`#0A66C2`, or `#70B5F9` in dark mode, since the standard
+  blue is dim on black), GitHub full black/white (its brand has no color), Instagram its orange-pink-purple
+  gradient on both text and underline. A deliberate, hover-only exception to the no-accent rule.
+- The theme toggle moved from beside the clock to the bottom-right of the sidebar, level with the nav, like a
+  settings control. The top-right corner would have collided with the name's "that's me :)" note. Its label
+  now opens upward there (`ThemeToggle tipPlacement="top"`). On phones it stays beside the name.
+- Checked with real mouse hovers via Chrome DevTools in both themes, plus the dev server.
 
 ### Content corrections along the way
 

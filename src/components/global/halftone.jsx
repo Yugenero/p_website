@@ -53,7 +53,7 @@ const cloud = (x, y, t) => {
 };
 
 // Peak square opacity per theme.
-const MAX_ALPHA = { light: 0.17, dark: 0.25 };
+const MAX_ALPHA = { light: 0.22, dark: 0.25 };
 
 const Halftone = ({ className, style }) => {
   const canvasRef = useRef(null);

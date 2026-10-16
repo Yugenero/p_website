@@ -22,6 +22,22 @@ const NAV = [
   { to: '/blog', label: 'Writing', locked: true },
 ];
 
+// Plain-text socials, stacked. On hover each takes its brand's color (Instagram its gradient) with a thin
+// underline drawing in from the left. Brand colors here are the one deliberate exception to the monochrome rule.
+const SOCIALS = [
+  { label: 'LinkedIn', href: profile.linkedin, brand: 'linkedin' },
+  { label: 'GitHub', href: profile.github, brand: 'github' },
+  { label: 'Instagram', href: profile.instagram, brand: 'instagram' },
+];
+
+const BRAND = {
+  // LinkedIn's lighter blue in dark mode; their #0A66C2 is too dim on black.
+  linkedin: { light: '#0A66C2', dark: '#70B5F9' },
+  // GitHub's brand is black/white, so it simply goes full strength.
+  github: { light: '#181717', dark: '#FFFFFF' },
+};
+const INSTAGRAM_GRADIENT = 'linear-gradient(90deg, #F58529, #DD2A7B 45%, #8134AF 75%, #515BD4)';
+
 const timeFormat = new Intl.DateTimeFormat('en-US', {
   timeZone: profile.timeZone,
   hour: '2-digit',
@@ -103,41 +119,45 @@ export const Sidebar = ({ mode, onToggleTheme }) => {
                 </Underlined>
               </Line>
               <Socials>
-                <SocialLink href={profile.linkedin} target="_blank" rel="noopener noreferrer">
-                  LinkedIn
-                </SocialLink>
-                <SocialLink href={profile.github} target="_blank" rel="noopener noreferrer">
-                  GitHub
-                </SocialLink>
-                <SocialLink href={profile.instagram} target="_blank" rel="noopener noreferrer">
-                  Instagram
-                </SocialLink>
+                {SOCIALS.map((social) => (
+                  <SocialLink
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-brand={social.brand}
+                  >
+                    {social.label}
+                  </SocialLink>
+                ))}
               </Socials>
             </Block>
 
             <ClockRow>
               <LocalClock />
-              {!isMobile && <ThemeToggle mode={mode} onClick={onToggleTheme} />}
             </ClockRow>
           </>
         )}
       </Box>
 
-      <Nav aria-label="Main">
-        {NAV.map((item) =>
-          item.locked ? (
-            <NavItemLocked key={item.to} aria-disabled="true">
-              {item.label}
-              <Soon>soon</Soon>
-            </NavItemLocked>
-          ) : (
-            <NavItem key={item.to} to={item.to} end={item.end}>
-              <Marker aria-hidden="true" />
-              {item.label}
-            </NavItem>
-          ),
-        )}
-      </Nav>
+      <BottomRow>
+        <Nav aria-label="Main">
+          {NAV.map((item) =>
+            item.locked ? (
+              <NavItemLocked key={item.to} aria-disabled="true">
+                {item.label}
+                <Soon>soon</Soon>
+              </NavItemLocked>
+            ) : (
+              <NavItem key={item.to} to={item.to} end={item.end}>
+                <Marker aria-hidden="true" />
+                {item.label}
+              </NavItem>
+            ),
+          )}
+        </Nav>
+        {!isMobile && <ThemeToggle mode={mode} onClick={onToggleTheme} tipPlacement="top" />}
+      </BottomRow>
     </SidebarRoot>
   );
 };
@@ -331,19 +351,53 @@ const Underlined = styled('a')(({ theme }) => ({
 
 const Socials = styled(Box)(({ theme }) => ({
   display: 'flex',
-  flexWrap: 'wrap',
-  gap: theme.spacing(0.5, 3),
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+  gap: theme.spacing(0.5),
   marginTop: theme.spacing(2),
 }));
 
-const SocialLink = styled('a')(({ theme }) => ({
-  color: theme.palette.text.secondary,
-  textDecoration: 'none',
-  transition: 'color 0.2s ease',
-  '&:hover': {
-    color: theme.palette.text.primary,
-  },
-}));
+const SocialLink = styled('a')(({ theme }) => {
+  const { mode } = theme.palette;
+  const brandHover = (color) => ({
+    color,
+    '&::after': { transform: 'scaleX(1)', backgroundColor: color },
+  });
+
+  return {
+    position: 'relative',
+    color: theme.palette.text.secondary,
+    textDecoration: 'none',
+    transition: 'color 0.2s ease',
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      bottom: 1,
+      height: 1,
+      backgroundColor: 'currentColor',
+      transform: 'scaleX(0)',
+      transformOrigin: 'left center',
+      transition: 'transform 0.25s ease',
+    },
+    '&:hover, &:focus-visible': {
+      '&[data-brand="linkedin"]': brandHover(BRAND.linkedin[mode]),
+      '&[data-brand="github"]': brandHover(BRAND.github[mode]),
+      '&[data-brand="instagram"]': {
+        color: 'transparent',
+        backgroundImage: INSTAGRAM_GRADIENT,
+        WebkitBackgroundClip: 'text',
+        backgroundClip: 'text',
+        '&::after': { transform: 'scaleX(1)', backgroundImage: INSTAGRAM_GRADIENT },
+      },
+    },
+    '@media (prefers-reduced-motion: reduce)': {
+      transition: 'none',
+      '&::after': { transition: 'none' },
+    },
+  };
+});
 
 const ClockRow = styled(Box)(({ theme }) => ({
   marginTop: theme.spacing(3.5),
@@ -361,6 +415,14 @@ const ClockLine = styled('p')(({ theme }) => ({
     fontVariantNumeric: 'tabular-nums',
     color: theme.palette.text.primary,
   },
+}));
+
+// Nav on the left, theme toggle bottom-right (desktop; on phones the toggle sits beside the name).
+const BottomRow = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'flex-end',
+  justifyContent: 'space-between',
+  gap: theme.spacing(2),
 }));
 
 const Nav = styled('nav')(({ theme }) => ({

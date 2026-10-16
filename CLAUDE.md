@@ -111,9 +111,10 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
   reduced motion the chrome shows without the sweep.
 - Top to bottom: name (serif, links home) · tagline · bio · *now* block (`→ <role> at <company>`, green-dot
   "Open to new roles") · "Previously at …" · "Reach out via email, or read my resume" · LinkedIn / GitHub /
-  Instagram as plain text · live clock "Currently Atlanta, GA · HH:MM:SS" (`profile.location` + Nelson's base time zone, `profile.timeZone`; the time in
-  mono, tabular figures) with the theme toggle beside it.
-- Nav pinned to the bottom, stacked: Home, About, Experience, Projects, Photography, Writing. The current page
+  Instagram stacked as plain text (on hover: brand color and a thin underline drawing in from the left) · live clock "Currently Atlanta, GA · HH:MM:SS" (`profile.location` + Nelson's base time zone, `profile.timeZone`; the time in
+  mono, tabular figures).
+- Nav pinned to the bottom, stacked: Home, About, Experience, Projects, Photography, Writing, with the theme toggle
+  bottom-right on the same row (its label opens upward, `tipPlacement="top"`). The current page
   gets a small filled square before it. Locked pages show greyed out with a small mono "soon" and aren't links.
 - **Two-tone text** is the hierarchy: `text.secondary` for connecting words ("Previously at", "Reach out via"),
   `text.primary` for what matters (company names, links, the time). Almost no bold.
@@ -152,7 +153,9 @@ Build on it; don't introduce a new visual language.
 - Use theme tokens only: `theme.palette.text.primary`, `text.secondary`, `background.default`, `divider`.
   Light = near-black `#111` on off-white `#F1F0EC`, secondary `#888`; dark = off-white on black `#000`,
   secondary `#A3A3A3` (`colors.grayMid`; was `#E0E0E0`, which was too close to white for the two-tone text).
-- No new accent colors. The only exception is the green status dot (`#2EA043`) in the sidebar.
+- No new accent colors. Exceptions: the green status dot (`#2EA043`) in the sidebar, and brand colors on the
+  sidebar's social links **on hover only** (LinkedIn `#0A66C2` / `#70B5F9` in dark, GitHub black/white,
+  Instagram's gradient). At rest they're `text.secondary` like everything else.
   `accentColors` (crimson) in `theme.js` exists but is intentionally unused.
 - Every change must look right in **both** light and dark mode.
 
@@ -180,7 +183,8 @@ Build on it; don't introduce a new visual language.
   `/projects` cards.
 - Theme toggle (`animations/themeToggle.jsx`): a square button with a half-filled circle that turns 180° when the
   theme flips, and a "Switch to dark/light mode" label on hover (hover-capable devices) or keyboard focus.
-  It sits beside the clock in the sidebar (top right of the sidebar on phones). It's 44px on phones.
+  It sits bottom-right of the sidebar, level with the nav (top right beside the name on phones). It's 44px on
+  phones. Pass `tipPlacement="top"` when it's near the bottom of the screen.
 - Structure with **1px hairlines**: `text.primary` for a section's top rule, `divider` between rows.
   No drop shadows except on hover lift.
 - Each section starts with a `BinaryMetaText` label + `SectionTitle`. Pages use fixed codes
@@ -193,7 +197,7 @@ Build on it; don't introduce a new visual language.
   `SectionHeaderRow` in `primitives.js` are currently unused; they served the old overview sections.)
 - Background texture: every page section uses `<Halftone />` (`global/halftone.jsx`), a canvas grid of small
   squares whose opacity follows slowly drifting cloud noise. It reads `text.primary` and the peak opacity
-  (0.17 light, 0.25 dark) from the theme. Its parent needs `position: relative` and `overflow: hidden`, with
+  (0.22 light, 0.25 dark) from the theme. Its parent needs `position: relative` and `overflow: hidden`, with
   content above it at `zIndex: 1`. Feed tiles each have their own. The sidebar stays plain. No mouse ripples (tried in entry 15 of the
   log and removed). The old `Starfield` was removed.
 - Cursors: chunky Figma-style arrow and hand (SVG data URIs in `theme.js`, `CURSOR_ARROW` / `CURSOR_HAND`),

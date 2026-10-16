@@ -3,7 +3,8 @@ import { styled } from '@mui/material/styles';
 
 // Light/dark switch: a square button with a half-filled circle (the contrast symbol) that turns
 // 180° when the theme flips, plus a "Switch to … mode" label on hover / keyboard focus.
-export const ThemeToggle = ({ mode, onClick }) => {
+// `tipPlacement="top"` opens the label upward (for spots near the bottom of the screen).
+export const ThemeToggle = ({ mode, onClick, tipPlacement = 'bottom' }) => {
   const label = `Switch to ${mode === 'light' ? 'dark' : 'light'} mode`;
 
   return (
@@ -14,7 +15,7 @@ export const ThemeToggle = ({ mode, onClick }) => {
           <path d="M12 3.75a8.25 8.25 0 0 1 0 16.5z" />
         </svg>
       </ToggleButton>
-      <Tip data-tip aria-hidden="true">
+      <Tip data-tip data-placement={tipPlacement} aria-hidden="true">
         {label}
       </Tip>
     </ToggleWrap>
@@ -97,6 +98,11 @@ const Tip = styled('span')(({ theme }) => ({
   position: 'absolute',
   top: `calc(100% + ${theme.spacing(1)})`,
   right: 0,
+  '&[data-placement="top"]': {
+    top: 'auto',
+    bottom: `calc(100% + ${theme.spacing(1)})`,
+    transform: 'translateY(4px)',
+  },
   whiteSpace: 'nowrap',
   padding: theme.spacing(0.75, 1.25),
   fontFamily: theme.typography.fontFamily,

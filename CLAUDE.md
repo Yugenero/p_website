@@ -226,6 +226,8 @@ Build on it; don't introduce a new visual language.
   the tip. Jobs are small diamonds (`DIAMOND` 7px), hidden until the fill reaches them (then they scale in, and
   hide again if you scroll back above), and reaching a diamond highlights that job's date (`data-timeline-date`:
   full strength, weight 600). No moving marker, no bends.
+- `/work` employer logos are one-color masks (`currentColor`); on hover they take the brand color set by
+  `logo.tone` in `profile.js`: Fullstory dark green, Georgia Tech Tech Gold (same per-theme shades as the sidebar).
 - Reading width: long text on wide pages stops at half the window. On `/work`, each role's summary and bullets
   are capped at `50vw` from `md` up (full width on phones).
 - Wrap content in `Container` (handles gutters); use `Section` for full pages. (`CompactSection` and

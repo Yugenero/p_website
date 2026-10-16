@@ -13,6 +13,7 @@ import {
   SectionTitle,
 } from '../ui/primitives';
 import Halftone from '../global/halftone';
+import { FULLSTORY_GREEN, TECH_GOLD } from '../global/profileParts';
 import { BinaryMetaText } from '../ui/binaryMetaText';
 import { education, workExperience } from '../../data/profile';
 
@@ -188,7 +189,7 @@ const Employer = ({ experience }) => {
     return (
       <LogoSlot>
         {url ? (
-          <LogoLink {...linkProps} title={employer}>
+          <LogoLink {...linkProps} title={employer} data-tone={logo.tone}>
             {mark}
           </LogoLink>
         ) : (
@@ -473,14 +474,28 @@ const LogoSlot = styled('span')(({ theme }) => ({
   },
 }));
 
-const LogoLink = styled(Link)(() => ({
-  color: 'inherit',
-  textDecoration: 'none',
-  transition: 'opacity 0.2s ease',
-  '&:hover': {
-    opacity: 0.65,
-  },
-}));
+// On hover the logo (a mask filled with currentColor) takes its brand color: Fullstory's dark green, Georgia Tech's
+// Tech Gold. Same per-theme shades as the sidebar links.
+const LogoLink = styled(Link)(({ theme }) => {
+  const { mode } = theme.palette;
+  return {
+    color: 'inherit',
+    textDecoration: 'none',
+    transition: 'color 0.2s ease',
+    '&[data-tone="fullstory"]:hover, &[data-tone="fullstory"]:focus-visible': {
+      color: FULLSTORY_GREEN[mode] ?? FULLSTORY_GREEN.light,
+    },
+    '&[data-tone="school"]:hover, &[data-tone="school"]:focus-visible': {
+      color: TECH_GOLD[mode] ?? TECH_GOLD.light,
+    },
+    '&:not([data-tone]):hover': {
+      opacity: 0.65,
+    },
+    '@media (prefers-reduced-motion: reduce)': {
+      transition: 'none',
+    },
+  };
+});
 
 // Employer names link out when the entry has a `url` in profile.js.
 const EmployerLink = styled(Link)(() => ({

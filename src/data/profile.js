@@ -66,7 +66,8 @@ export const workExperience = [
     // Logo replaces the employer name in the Experience title, as a monochrome silhouette.
     // `ratio` = SVG viewBox width / height; optional `scale` (default 1) sizes it against the title;
     // `descent` = share of its height below the text baseline.
-    logo: { src: '/images/logos/fullstory.svg', ratio: 130 / 25, descent: 0.24 },
+    // `tone` picks the logo's hover color on /work (brand colors from profileParts.jsx).
+    logo: { src: '/images/logos/fullstory.svg', ratio: 130 / 25, descent: 0.24, tone: 'fullstory' },
     location: 'Atlanta, GA',
     date: 'Dec 2025 — Present',
     title: 'Solutions Engineer',
@@ -127,7 +128,7 @@ export const education = {
   school: keepTogether('Georgia Institute of Technology'),
   url: 'https://www.gatech.edu',
   collegeUrl: collegeOfComputingUrl,
-  logo: { src: '/images/logos/georgia-tech.svg', ratio: 720 / 162, scale: 1.6, descent: 0.26 },
+  logo: { src: '/images/logos/georgia-tech.svg', ratio: 720 / 162, scale: 1.6, descent: 0.26, tone: 'school' },
   degree: 'B.S. Computer Science',
   date: 'Aug 2020 — Dec 2023',
   coursework: [

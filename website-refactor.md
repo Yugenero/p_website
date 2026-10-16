@@ -581,6 +581,14 @@ shared `Underlined` link with `data-tone="school"`: bold with no underline at re
 (`#857437` light / `#B3A369` dark) and a thin underline draws in from the left, exactly like "Georgia Tech CS"
 in the sidebar. Checked with real mouse hovers in both themes, plus the dev server.
 
+### 45. Experience logos take their brand colors on hover
+
+The Fullstory and Georgia Tech logos on `/work` (monochrome masks filled with `currentColor`) used to fade on
+hover. They now turn their brand color instead: Fullstory's dark green (`#047A5E` light / `#11AB85` dark) and
+Tech Gold (`#857437` / `#B3A369`), matching the sidebar links. Each logo's `tone` lives in `profile.js`; the
+colors are exported from `profileParts.jsx`. Logos without a tone keep the old fade. Verified the computed
+hover colors in both themes and the dev server.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

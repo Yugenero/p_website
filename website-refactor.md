@@ -656,6 +656,14 @@ Entry 51 was a misread: the logos on `/work` go back to color only (no underline
 On `/about`, Fullstory and Georgia Institute of Technology no longer wait for a hover: shortly after the page opens
 they take their tone color and the underline draws in (Fullstory at 0.5s, Georgia Tech at 0.85s), and stay lit.
 `Underlined` in `profileParts.jsx` gained `data-lit="true"`, which shows the hover look without a hover.
+### 55. Sidebar text scales so the column never scrolls
+
+On shorter or narrower windows (e.g. 992×795) the sidebar was taller than the screen, so it scrolled and the
+custom 10px scrollbar showed up as a light stripe between the sidebar and the page. The sidebar's text now
+scales with the window: `clamp(0.75rem, min(calc(0.6rem + 0.45vw), 1.85vh), 1rem)`, so it shrinks as the window
+narrows (the column stops at 300px, so the text has to) and as it gets shorter. Spacing, the name and the nav
+are in `em` now, so everything shrinks together. At 1440×900 and up it's unchanged (1rem). For very short windows
+the sidebar still scrolls as a fallback, but with its scrollbar hidden. Checked at 992×795, 1000×650 and 1440×900.
 
 ### Content corrections along the way
 

@@ -574,6 +574,13 @@ own auto-hiding overlay bar with a permanent one. It's now scoped to mouse/track
 (`pointer: coarse`) hide scrollbars entirely (`scrollbar-width: none` plus `::-webkit-scrollbar { display: none }`),
 including inside the phone menu. Measured with DevTools emulation: phone 0px scrollbar, desktop still 10px.
 
+### 44. About: Georgia Tech link animates like the sidebar
+
+On `/about`, "Georgia Institute of Technology" was an MUI `Link` with a static 2px underline. It now reuses the
+shared `Underlined` link with `data-tone="school"`: bold with no underline at rest; on hover it turns Tech Gold
+(`#857437` light / `#B3A369` dark) and a thin underline draws in from the left, exactly like "Georgia Tech CS"
+in the sidebar. Checked with real mouse hovers in both themes, plus the dev server.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

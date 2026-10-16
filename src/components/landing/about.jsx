@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
+import { Underlined } from '../global/profileParts';
 import { styled } from '@mui/material/styles';
 import Halftone from '../global/halftone';
 
@@ -55,7 +56,12 @@ export const AboutSection = () => {
             </AboutParagraph>
             <AboutParagraph variant="body1" paragraph>
               I also hold a B.S. in Computer Science from the {' '}
-              <GeorgiaTechLink href={education.collegeUrl} target="_blank" rel="noopener noreferrer">
+              <GeorgiaTechLink
+                href={education.collegeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-tone="school"
+              >
                 Georgia Institute of Technology
               </GeorgiaTechLink>
               ,{' '} where I focused on algorithms, networks, and systems.
@@ -111,7 +117,9 @@ const SkillsList = styled(InlineList)(({ theme }) => ({
   rowGap: theme.spacing(0.5),
 }));
 
-const GeorgiaTechLink = styled(Link)(() => ({
+// Same link as the sidebar's "Georgia Tech CS": no underline at rest, Tech Gold and a thin underline drawing in
+// from the left on hover. Bold so it still reads as a link.
+const GeorgiaTechLink = styled(Underlined)(() => ({
   fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
   fontWeight: 700,
   whiteSpace: 'nowrap',

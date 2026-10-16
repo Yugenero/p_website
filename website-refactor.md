@@ -87,6 +87,10 @@ The site reads like a **printed editorial layout with an engineer's precision**:
 thin rules, and a few quiet, purposeful motions. Every element should either say something true about Nelson
 or give the page structure. Nothing is decoration for its own sake.
 
+Since entry 26 the frame is a **sidebar + feed** (inspired by Sidharth Sabu's portfolio): a calm, fixed left
+column says who Nelson is, and the right side shows the work as big textured tiles. The sidebar is quiet; the
+tiles carry the energy.
+
 ### Principles
 
 1. **Monochrome first.** Near-black on off-white (light) and off-white on black (dark), using theme tokens only.
@@ -96,8 +100,9 @@ or give the page structure. Nothing is decoration for its own sake.
    `text.primary`; rows inside it are separated with `divider`.
 3. **Square geometry.** No rounded corners on buttons, cards, panels, photos or social icon boxes. The `/projects`
    cards are the one existing exception.
-4. **Type does the work.** A serif display face for names and section titles, a clean sans for everything you
-   read, and a monospace face for anything "technical" (the code card, the status line).
+4. **Type does the work.** The serif only for Nelson's name and page section titles, a clean sans for
+   everything else, and a monospace face for small "data" (the clock, tile details).
+   **Two-tone text** carries the hierarchy: grey for connecting words, full-strength for what matters.
 5. **Sentence case, normal tracking.** No all-caps anywhere and no wide letter-spacing. Acronyms like SDK, iOS
    and .NET keep their real capitals.
 6. **Motion with a reason.** Things draw or type in once, on load, and then settle. Looping motion is limited
@@ -109,62 +114,53 @@ or give the page structure. Nothing is decoration for its own sake.
 
 | Role | Face | Where |
 | --- | --- | --- |
-| Display | Baskerville serif stack, weight 300 | Name in the hero, section titles (`SectionTitle`), footer name |
-| Body | Aeonik / system sans | Paragraphs, buttons, nav, quick-fact values |
+| Display | Baskerville serif stack | Nelson's name in the sidebar (weight 400), section titles (`SectionTitle`, weight 300) |
+| Body | Aeonik / system sans | Sidebar text, nav, paragraphs, buttons; feed tile titles (large, weight 400, tight tracking) |
 | Role titles | Geist | Job titles on `/work` |
-| Technical | IBM Plex Mono | Code card, "Open to new roles" status line |
+| Technical | IBM Plex Mono | Sidebar clock time, feed tile meta / description / stack, "soon" tags, code card |
 | Labels | `MetaText`: sans, `0.82rem`, weight 500, `text.secondary` | Fact labels, frame labels, dates, small headings |
 
 ### Signature elements
 
-- **Cross rule** (`ui/crossRule.jsx`): a hairline with small "+" crop marks at both ends. On load the line
-  grows out from the middle to both ends (1.1s, ease-out), and the marks fade in as it reaches them. It's the site's divider motif, used as the header's bottom edge and to close the landing
-  hero, below both columns. Use it for any new divider; keep it bare (no labels or clocks).
-- **Name block**: serif name (`clamp(2.4rem, 3.6vw, 3.8rem)`), then the typed tagline. No job title; the
-  role shows in the pitch ("Currently at Fullstory") and on `/work`.
-- **Code card** (`landing/codeCard.jsx`): a bordered card titled `nelson.ts` that types out a small "about me"
-  in TypeScript: base, fuel (iced coffee), training (strength and endurance), offline (photography and cars),
-  and `kaizen(365) // ≈ 37.8x`, since 1% better a day compounds to about 37.8 times in a year. It's company
-  agnostic on purpose. Monochrome highlighting (italic grey comments, including trailing ones, and bold
-  keywords) with line numbers; the cursor blinks once typing finishes.
-- **Quick facts**: a `dl` with a dark top rule and hairline rows (Focus, Education with a Georgia Tech link,
-  Based in).
-- **Photography strip** (`landing/photoStrip.jsx`): four of Nelson's photos, grayscale at rest and color
-  plus a slight zoom on hover. It links to `/photography` only while that page is open (it's locked now).
+- **Sidebar** (`global/sidebar.jsx`): fixed left column with a hairline on its right edge. Name (serif),
+  tagline, a two-line bio, a *now* block (`→ Forward Deployed Engineer at Fullstory`, green-dot "Open to new
+  roles"), "Previously at …", "Reach out via email, or read my resume", plain-text social links, and a live
+  clock ("Atlanta, GA · 17:03:30", Eastern time, mono figures) with the theme toggle beside it. Nav pinned to the
+  bottom; a filled square marks the current page, locked pages are greyed with a mono "soon".
+- **Project tiles** (`landing/projectFeed.jsx`): each project is a tile with its own halftone texture, a mono
+  top row (`01 :: iOS application` · date), a big sans title, and the description and stack in small mono.
+  The first tile is a full-width cover; the rest pair up. The border darkens and the ↗ nudges on hover.
+- **Halftone texture** (`global/halftone.jsx`): drifting cloud squares behind every page and tile.
 - **Binary section labels** (`BinaryMetaText`): "0000", "0001" and so on type in above each page's title.
 - **Employer logos on `/work`**: monochrome silhouettes (an SVG mask over the text color) in place of
   employer names, so they follow light and dark mode.
 - **Theme toggle**: a square button with a half-filled circle (the contrast symbol) that turns 180° when the
-  theme flips. Hovering (or keyboard focus) shows "Switch to dark mode" / "Switch to light mode" in an inverted
-  label. It's 44px and bordered on phones, so it's easy to find and tap.
-- **Header**: Nelson's name in the serif on the left (links home), nav links in the sans at regular weight
-  with hairline separators, and the theme toggle. On phones the name and toggle share the top row and the
-  nav becomes a horizontally scrolling strip that keeps the current page underlined and in view. Social
-  links live in the footer.
+  theme flips, with a "Switch to … mode" label on hover or keyboard focus. 44px on phones.
+
+Kept in the codebase but not shown since entry 26: the **code card** (`landing/codeCard.jsx`, a typing
+`nelson.ts` "about me" with a `kaizen()` that compounds 1% a day), the **cross rule** (`ui/crossRule.jsx`),
+the **photo strip** (`landing/photoStrip.jsx`) and the old hero (`landing/intro.jsx`) with its quick facts.
 
 ### Layout and responsiveness
 
-- Content sits in `Container` (40px side gutters on desktop, 16px on phones).
-- The landing hero sits between two cross rules with equal space above and below (72px desktop, 40px phones).
-  Two columns: name, tagline, pitch, status and buttons on the left; code card and quick facts on the right.
-  The buttons sit right under the status line, leaving deliberate open space in the lower left.
-- Below the `md` breakpoint everything stacks into one column, the corner marks hide, and the photo strip
-  becomes a 2 × 2 grid.
-- No horizontal page scrolling at any width from 360px up (checked at 360, 390, 768, 1280 and 1440px, light
-  and dark). The mobile header nav is the one intentional sideways-scrolling strip.
+- Desktop: `Page` is a row; the sidebar (`clamp(300px, 26vw, 400px)`) is sticky at full height and the content
+  column scrolls beside it. Page content sits in `Container` (40px side gutters on desktop, 16px on phones).
+- Home feed: 24px padding, 12px gaps, lead tile `clamp(380px, 64vh, 680px)` tall, the rest
+  `clamp(300px, 44vh, 460px)`.
+- Below the `md` breakpoint the sidebar stacks on top (full profile on `/`, just name + toggle + nav elsewhere),
+  and the feed and other grids become one column.
+- No horizontal page scrolling at any width from 360px up (measured at 360px on `/`, `/work`, `/about` and
+  `/projects` after entry 26).
 
-## Landing page today (`/`)
+## Home page today (`/`)
 
 | Piece | File | Contents |
 | --- | --- | --- |
-| Main column | `landing/intro.jsx` | Name, typed tagline, "Currently at Fullstory" pitch, "Open to new roles" status, *View resume* and *Get in touch* buttons |
-| Side column | `landing/intro.jsx`, `landing/codeCard.jsx` | Typing code card, quick facts (Focus · Education · Based in) |
-| Cross rule | `ui/crossRule.jsx` | Closes the hero below both columns (same rule as under the header) |
-| Background | `global/halftone.jsx` | Halftone cloud texture behind the hero (same as every other page) |
-| Photography strip | `landing/photoStrip.jsx` | Four photos (not linked while `/photography` is locked); hidden if the photo service fails |
+| Sidebar | `global/sidebar.jsx` | Name, tagline, bio, now, previously, contact, socials, Atlanta clock, theme toggle, nav (on every page) |
+| Feed | `landing/projectFeed.jsx` | One tile per project from `profile.projects`: Zenith (lead), Running Sonification Engine, Nexus |
+| Texture | `global/halftone.jsx` | One halftone per tile |
 
-All text content comes from `src/data/profile.js`. The photo fetch lives in `global/usePhotos.js` and is
-shared with the photography page, so a visit makes one request.
+All text content comes from `src/data/profile.js` (sidebar copy: `tagline`, `bio`, `previously`, `timeZone`).
 
 ## Branches
 
@@ -174,6 +170,7 @@ shared with the photography page, so a visit makes one request.
 | `halftone-background` | Entries 12–24: halftone background, custom cursors, smaller text and name, no hero job title (ripples tried and removed); merged into `master` on Oct 16 |
 | `react-back-up-branch` | Snapshot of `master` right before the Astro migration (`dc471b5`): the last Create React App version |
 | `website-migration` | Entry 25: the Astro port |
+| `sidebar-redesign` | Entry 26: sidebar + project feed layout (branched from `website-migration`) |
 | `landing-picture-pending` | Nelson's full version with the portrait frame, saved for later |
 | `landing-picture-local` | Temporary copy used for the merge; safe to delete |
 | `master` | Source branch. [Yugenero/p_website#2](https://github.com/Yugenero/p_website/pull/2) merged the early redesign; later work was merged directly |
@@ -377,6 +374,28 @@ exact CRA state.
   Projects, footer) to `.astro` with real HTML, keeping React only for the theme toggle, typed text,
   halftone, code card and photos.
 
+### 26. Sidebar + project feed (`sidebar-redesign`)
+
+Reworked the frame after a reference Nelson liked (Sidharth Sabu's portfolio): a fixed left sidebar with
+identity and nav, and a feed of big tiles on the right.
+
+- **Sidebar replaces the header and footer** (`global/sidebar.jsx`; `header.jsx` and `footer.jsx` deleted).
+  It holds everything the hero and footer used to: name (still the serif), a new tagline and two-line bio
+  (written only from claims already on the site), the *now* block with the green open-to-work dot,
+  "Previously at Civic Digital Experience, eKlozet, GT WebDev", email and resume links, LinkedIn / GitHub /
+  Instagram as text, and the theme toggle. Nav moved to the bottom of the sidebar with a filled-square marker.
+- **Live clock is back**, by request: "Atlanta, GA · HH:MM:SS" in Eastern time (`profile.timeZone`). A static
+  site can't know where Nelson physically is, so it uses his base. (A location/time label was removed in
+  entry 8 as bloat; this one is part of the sidebar's design rather than decoration on a divider.)
+- **Home is now a project feed** (`landing/projectFeed.jsx`), projects only: Zenith as a full-width cover
+  tile, then two side by side. Each tile has its own halftone, mono details and a big sans title, and links to
+  the repo.
+- **Code card kept but not shown**, per Nelson; same for the old hero, cross rule and photo strip.
+- **Dark mode's secondary text** changed from `#E0E0E0` to `#A3A3A3`. The old value was nearly white, so
+  the grey/white two-tone hierarchy (and labels and dates everywhere in dark mode) barely read.
+- **Checked:** build passes (same old `projects.jsx` warning); screenshots of home (light and dark),
+  `/work` (dark) and the phone layouts; no horizontal overflow at 360px on four pages.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.
@@ -433,5 +452,9 @@ The live site only changes on `npm run deploy`, which runs the build for you (`p
 - [x] Regenerate `package-lock.json` (entry 25)
 - [x] Save the CRA version on `react-back-up-branch`
 - [ ] Review `website-migration` locally, then merge into `master`
-- [ ] Astro stage 2: convert static sections to `.astro` so pages ship real HTML
+- [ ] Astro stage 2: convert static sections to `.astro` so pages ship real HTML (the sidebar is a good first
+      candidate: static text plus a small clock/toggle island)
+- [ ] Review `sidebar-redesign`, then merge it (into `website-migration` or `master`)
+- [ ] Decide whether the code card comes back (e.g. as a feed tile)
+- [ ] Give project tiles real visuals (screenshots or covers) when available
 - [ ] Delete `landing-picture-local`

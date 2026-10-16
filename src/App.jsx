@@ -1,5 +1,4 @@
-import { Header } from './components/global/header';
-import Footer from './components/global/footer';
+import { Sidebar } from './components/global/sidebar';
 import Home from './components/landing/home';
 
 import { CssBaseline, ThemeProvider } from '@mui/material';
@@ -40,11 +39,10 @@ const AnimatedRoutes = () => {
 const AppShell = ({ mode, onToggleTheme }) => {
   return (
     <Page>
-      <Header mode={mode} onToggleTheme={onToggleTheme} />
+      <Sidebar mode={mode} onToggleTheme={onToggleTheme} />
       <Main>
         <AnimatedRoutes />
       </Main>
-      <Footer />
     </Page>
   );
 };

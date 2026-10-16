@@ -3,16 +3,23 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import { styled } from '@mui/material/styles';
 
+// Sidebar on the left, page content on the right; stacked on phones.
 export const Page = styled(Box)(({ theme }) => ({
   minHeight: '100vh',
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
+  alignItems: 'flex-start',
   backgroundColor: theme.palette.background.default,
   color: theme.palette.text.primary,
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'column',
+    alignItems: 'stretch',
+  },
 }));
 
 export const Main = styled('main')(() => ({
   flex: 1,
+  minWidth: 0,
   display: 'block',
 }));
 

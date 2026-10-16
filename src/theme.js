@@ -6,6 +6,7 @@ export const colors = {
   nearBlack: '#111111',
   grayDark: '#222222',
   gray: '#888888',
+  grayMid: '#A3A3A3', // dark mode's secondary text: clearly grey on black, ~8.5:1 contrast
   grayLight: '#E0E0E0',
   offWhite: '#F1F0EC',
   white: '#F1F0EC',
@@ -140,7 +141,7 @@ const darkPalette = {
   },
   text: {
     primary: colors.offWhite,
-    secondary: colors.grayLight,
+    secondary: colors.grayMid,
   },
   background: {
     default: colors.black,

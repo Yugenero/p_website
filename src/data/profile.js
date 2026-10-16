@@ -13,6 +13,13 @@ export const profile = {
   company: 'Fullstory',
   companyUrl: 'https://www.fullstory.com',
   location: 'Atlanta, GA',
+  // IANA zone for the live clock in the sidebar ("Atlanta, GA · 14:03:22").
+  timeZone: 'America/New_York',
+  // Sidebar: a short line under the name and a two-line bio.
+  tagline: 'Software engineer · Georgia Tech CS',
+  bio: "I build across mobile SDKs, AI workflows and full-stack web, often working directly in customers' codebases.",
+  // Sidebar "Previously at" line, newest first.
+  previously: ['Civic Digital Experience', 'eKlozet', 'GT WebDev'],
   email: 'neroxv1313@gmail.com',
   resumeUrl: '/documents/NelsonRodriguez.pdf',
   linkedin: 'https://www.linkedin.com/in/nelson-rodriguez13/',

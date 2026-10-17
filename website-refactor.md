@@ -726,6 +726,12 @@ make room. The stack comes from `profile.builtWith`. To keep the column from scr
 height term of `SIDEBAR_FONT_SIZE` went from `1.85vh` to `1.65vh` (1440×900 now 14.85px instead of 15px); checked
 no overflow at 1440×900, 1280×720, 992×795 and 1000×650.
 
+### 65. Fullstory highlighted from the start on /work
+
+The first job (Fullstory) is now the active one as soon as `/work` opens: its logo is dark green before any
+scrolling. It hands off as before when the fill passes the next job's title (Civic), and comes back if you scroll
+back to the top. One job highlighted at a time.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

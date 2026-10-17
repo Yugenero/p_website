@@ -113,8 +113,9 @@ const useScrollTimeline = ({ listRef, railRef, fillRef, markerRefs }) => {
         if (items[i]) items[i].dataset.reached = reached;
       });
       // Once the fill has gone past a job's title, that job is the active one (the last such job wins): its employer
-      // takes its highlight color and underline.
-      let active = -1;
+      // takes its highlight color and underline. The first job (Fullstory) is active from the start, until the next
+      // one takes over.
+      let active = 0;
       activeFractions.forEach((fraction, i) => {
         if (current >= fraction) active = i;
       });

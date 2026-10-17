@@ -127,7 +127,7 @@ tiles carry the energy.
   tagline ("Computer Enjoyer · Engineer", then "Georgia Tech CS" below, gold on hover), a two-line bio, a *now* block (`→ Solutions Engineer at Fullstory`, green-dot "Open to new
   roles"), "Previously at …", "Reach out via email, or read my resume", plain-text social links, and a live
   clock ("Currently Atlanta, GA · 17:03:30", Eastern time, mono figures). Socials stacked, brand-colored on hover.
-  Nav pinned to the bottom with the theme toggle at its right; a filled square marks the current page, locked pages are greyed with a mono "soon".
+  Nav pinned to the bottom with the theme toggle at its right; a small glowing diamond marks the current page, locked pages are greyed with a mono "soon".
 - **Project tiles** (`landing/projectFeed.jsx`): each project is a tile with its own halftone texture, a mono
   top row (`01 :: iOS application` · date), a big sans title, and the description and stack in small mono.
   The first tile is a full-width cover; the rest pair up. The border darkens and the ↗ nudges on hover.
@@ -827,6 +827,12 @@ Everything that isn't a root file by necessity now lives in `markdowns/` at the 
 old `Notes.txt`. Only `CLAUDE.md` and `README.md` stay at the root, plus `.claude/` (Claude Code settings). The
 cloud-functions README stays beside its code, renamed `cloud-functions/cloud-functions.md`. `Notes.txt` came out of `public/documents/`, where it was
 being deployed; `public/documents/` now holds only the resume. It stays on the live site until the next deploy.
+
+### 80. Nav: the current page's marker is a glowing diamond
+
+The square in front of the current page became a small diamond (`0.4em`, rotated 45°; kept about the same size in
+the phone menu despite its bigger text). It briefly pulsed; now it has a soft, steady glow instead (two
+`text.primary` box-shadows, stronger in dark mode), matching the `/work` timeline diamonds (entry 76).
 
 ### Content corrections along the way
 

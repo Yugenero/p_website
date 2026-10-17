@@ -7,9 +7,12 @@ able to understand who Nelson is, what he has built, and how to reach him within
 
 This is a living document. Update it when the stack, design rules, or guardrails change.
 
+Docs other than this file and `README.md` live in `markdowns/` at the root; put new ones there too (a doc about a
+self-contained folder, like `cloud-functions/`, can sit beside its code).
+
 ## Before making any changes: read `website-refactor.md`
 
-[`website-refactor.md`](./website-refactor.md) is the project log and the reference for the design language.
+[`website-refactor.md`](./markdowns/website-refactor.md) is the project log and the reference for the design language.
 Read it **before** editing anything. It explains why things look and work the way they do, which branch
 holds what, what's already been tried or rejected, and what's still open.
 
@@ -31,7 +34,7 @@ holds what, what's already been tried or rejected, and what's still open.
 | Theme | `src/theme.js`, light/dark built by `buildTheme(mode)`, persisted in `localStorage.themeMode`; **dark by default** (light only when saved as light) |
 | Animation | CSS keyframes, `react-typed` (typewriter text), custom `Halftone` canvas background |
 | Icons | `@mui/icons-material` |
-| Photos | Fetched at runtime from a Google Cloud Function (`cloud-functions/`) backed by GCS |
+| Photos | Fetched at runtime from a Google Cloud Function (`cloud-functions/`, documented in `cloud-functions/cloud-functions.md`) backed by GCS |
 | Hosting | GitHub Pages via `npm run deploy` (`gh-pages -d dist --nojekyll`) to the `gh-pages` branch; custom domain via `public/CNAME`. `--nojekyll` is required: Jekyll would drop Astro's `_astro/` folder (all the JS) |
 | Language | JavaScript; **any file containing JSX must be `.jsx`** (Vite won't parse JSX in `.js`). TypeScript is installed but unused |
 
@@ -52,6 +55,9 @@ npm run deploy                  # build + publish dist/ to gh-pages (production!
 ## Project structure
 
 ```
+CLAUDE.md, README.md     the only docs at the root (Claude Code and GitHub read them from there)
+markdowns/               all other docs: website-refactor.md (project log), TODO.md, Notes.txt
+                         (the photo service's doc stays beside its code: cloud-functions/cloud-functions.md)
 astro.config.mjs         Astro config: static output, React integration, site URL
 src/
   layouts/Base.astro     HTML shell: meta/OG tags, fonts, index.css, pre-paint theme background script
@@ -82,7 +88,7 @@ public/                           copied verbatim into dist/ (and so deployed)
 | `/` | `landing/home.jsx` → `landing/projectFeed.jsx` | Project feed: one full-width lead tile, the rest two to a row. No metrics |
 | `/about` | `landing/about.jsx` | Bio + core stack |
 | `/work` | `landing/work.jsx` | Full experience timeline with all bullets |
-| `/projects` | `landing/projects.jsx` | Project cards |
+| `/projects` | (redirects to `/`) | **Out of use for now**: removed from every nav and redirected home. `landing/projects.jsx` and `pages/projects.jsx` are kept for later; the home feed shows the projects |
 | `/photography` | `pages/photography.jsx` | Masonry grid from the GCS cloud function. **Locked** while `profile.photographyOpen` is `false`: redirects to `/`, sidebar nav item greyed out with "soon" |
 | `/blog`, `/blog/:slug` | `pages/blog.jsx` | Under construction; sidebar nav item greyed out. Post pages come from `blogData.js` (`getStaticPaths` in `src/pages/blog/[slug].astro`) |
 
@@ -92,7 +98,7 @@ or a direct visit to that URL will 404.
 ## Content: `src/data/profile.js`
 
 All resume-derived content (role, experience, skills, projects, quick facts)
-lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/about` read from it.
+lives in `src/data/profile.js`. The landing page, `/work`, and `/about` read from it (and `/projects`, while it's out of use).
 
 - When the resume changes, update **both** `public/documents/NelsonRodriguez.pdf` and `profile.js`.
 - Every number or claim on the site must be traceable to the resume. Don't invent metrics,
@@ -128,9 +134,10 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
   Tech Gold, Civic light blue, Fullstory dark green (`data-tone`).
 - At the very bottom, under the nav: "Built from scratch with Astro, React and MUI" in small text (`0.78em`,
   `text.secondary`, from `profile.builtWith`).
-- Nav pinned to the bottom (just above that note), stacked: Home, About, Experience, Projects, Photography, Writing, with the theme toggle
+- Nav pinned to the bottom (just above that note), stacked: Home, About, Experience, Photography, Writing (Projects removed for now), with the theme toggle
   bottom-right on the same row. The current page
-  gets a small filled square before it. Other links slide `0.4em` right on hover/focus; the current page doesn't
+  gets a small filled diamond before it (`Marker`, `0.4em`, a soft steady `text.primary` glow, no pulse; about the
+  same size in the phone menu). Other links slide `0.4em` right on hover/focus; the current page doesn't
   (after a click it shows its square and settles back). Locked pages show greyed out with a small mono "soon" and aren't links.
 - **Two-tone text** is the hierarchy: `text.secondary` for connecting words ("Previously at", "Reach out via"),
   `text.primary` for what matters (company names, links, the time). Almost no bold.
@@ -245,15 +252,17 @@ Build on it; don't introduce a new visual language.
 - `/work` timeline (`landing/work.jsx`): a rail pinned beside the job list that maps the whole list (a mini-map).
   It's a straight SVG line from the first job marker to the last (markers sit right on its ends). The fill draws
   along it (stroke-dashoffset) with a soft aura: a blurred, wider stroke whose gradient fades from nothing
-  `AURA_TAIL` (140px) back to its peak at the tip (opacity 0.45 dark / 0.32 light), plus a faint pulsing halo on
-  the tip. Only the two ends get a diamond (`DIAMOND` 7px; first and last job; the middle ones were removed),
-  hidden until the fill reaches them (then they scale in, and hide again if you scroll back above), and reaching
+  `AURA_TAIL` (140px) back to its peak at the tip (opacity 0.45 dark / 0.32 light), plus a faint steady halo on
+  the tip (no pulse). Only the two ends get a diamond (`DIAMOND` 7px; first and last job; the middle ones were removed),
+  hidden until the fill reaches them (then they scale in with a steady `text.primary` glow, and hide again if you scroll back above), and reaching
   each job's point on the line highlights that job's date (`data-timeline-date`:
   full strength, weight 600). No moving marker, no bends. The fill starts empty, its tip at the very top of the line. Once the
   fill passes a job's title, that job is `data-active`: its employer takes its `tone` color (and underline for text
   names), one job at a time.
 - `/work` employer logos are one-color masks (`currentColor`); on hover they take the brand color set by
   `logo.tone` in `profile.js`: Fullstory dark green, Georgia Tech Tech Gold (same per-theme shades as the sidebar).
+  On phones a logo never wraps below its title: titles with a logo (`data-has-logo`) are one flex row and the
+  logo shrinks to fit beside the title (e.g. "CS Undergraduate · [Georgia Tech]").
   Employers without a logo but with a `url` (Civic Digital Experience → LinkedIn) are `EmployerLink`s: no underline
   at rest, a background-line underline that draws in on hover (it survives line wraps on phones) and the entry's
   `tone` color (Civic light blue).
@@ -311,7 +320,8 @@ Build on it; don't introduce a new visual language.
   Deployed Engineer. Nelson will update the resume; replace the PDF then (the one sanctioned exception to
   "traceable to the resume" until it's done).
 - Writing/blog page is locked in the sidebar nav; `blogData.js` / `blog.js` still reference a cat placeholder image.
-- Pre-existing build warning: `landing/projects.jsx` (duplicate `minHeight`). There's no ESLint step since
-  leaving CRA; treat new Vite/esbuild warnings in `npm run build` as the bar instead.
+- `landing/projects.jsx` has a duplicate `minHeight`; it no longer warns because the file isn't bundled while
+  `/projects` is out of use. Fix it if the page comes back. There's no ESLint step since leaving CRA; treat new
+  Vite/esbuild warnings in `npm run build` as the bar instead.
 - Legacy unused files: `components/styles/*.css`, `components/animations/*`,
-  `pages/stuff.jsx`, `global/signature.jsx`, `public/documents/Notes.txt`, and the stray `p_website.git/` directory.
+  `pages/stuff.jsx`, `global/signature.jsx`, and the stray `p_website.git/` directory.

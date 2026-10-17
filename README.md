@@ -43,4 +43,7 @@ Only deploy from `master`. Everything in `public/` is published as-is, so never 
 ### More
 
 - [`CLAUDE.md`](./CLAUDE.md): stack, project structure, design rules and guardrails
-- [`website-refactor.md`](./website-refactor.md): design language, history of changes, and next steps
+- [`markdowns/`](./markdowns): the rest of the project docs
+  - [`website-refactor.md`](./markdowns/website-refactor.md): design language, history of changes, and next steps
+  - [`TODO.md`](./markdowns/TODO.md): open tasks
+- [`cloud-functions/cloud-functions.md`](./cloud-functions/cloud-functions.md): the photo service

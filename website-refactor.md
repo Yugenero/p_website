@@ -731,6 +731,12 @@ no overflow at 1440×900, 1280×720, 992×795 and 1000×650.
 Briefly made the first job (Fullstory) active as soon as `/work` opens; Nelson reverted it. Back to entry 48's rule:
 nothing is highlighted until the fill passes a job's title.
 
+### 66. Current page doesn't slide in the sidebar nav
+
+Clicking a nav link while hovering it left the new current page shifted right with its square. The slide now
+applies to links that aren't the current page (`:not(.active)`), so after a click the square appears and the link
+settles back into place. Hovering the other links still slides them.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

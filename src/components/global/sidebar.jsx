@@ -320,16 +320,17 @@ const Nav = styled('nav')(() => ({
   '& > a, & > span': {
     fontSize: '1.05em',
   },
-  // Links slide a little to the right on hover or keyboard focus, square marker included. Locked items stay put.
+  // Links slide a little to the right on hover or keyboard focus. The current page doesn't: clicking a link shows its
+  // square and the link settles back into place. Locked items stay put.
   '& > a': {
     transition: 'color 0.2s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1)',
   },
   '@media (hover: hover)': {
-    '& > a:hover': {
+    '& > a:not(.active):hover': {
       transform: 'translateX(0.4em)',
     },
   },
-  '& > a:focus-visible': {
+  '& > a:not(.active):focus-visible': {
     transform: 'translateX(0.4em)',
   },
   '@media (prefers-reduced-motion: reduce)': {

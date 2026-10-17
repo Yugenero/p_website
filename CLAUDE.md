@@ -129,7 +129,8 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
   `text.secondary`, from `profile.builtWith`).
 - Nav pinned to the bottom (just above that note), stacked: Home, About, Experience, Projects, Photography, Writing, with the theme toggle
   bottom-right on the same row (its label opens upward, `tipPlacement="top"`). The current page
-  gets a small filled square before it. Links slide `0.4em` right on hover/focus, square included. Locked pages show greyed out with a small mono "soon" and aren't links.
+  gets a small filled square before it. Other links slide `0.4em` right on hover/focus; the current page doesn't
+  (after a click it shows its square and settles back). Locked pages show greyed out with a small mono "soon" and aren't links.
 - **Two-tone text** is the hierarchy: `text.secondary` for connecting words ("Previously at", "Reach out via"),
   `text.primary` for what matters (company names, links, the time). Almost no bold.
 - Desktop only. `App.jsx` renders it from `md` up and `MobileHeader` below, chosen on the first render

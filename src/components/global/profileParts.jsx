@@ -137,6 +137,13 @@ const StatusArrowGlyph = styled('span')(() => ({
 
 export const StatusArrow = () => <StatusArrowGlyph aria-hidden="true">→</StatusArrowGlyph>;
 
+// "Open to new roles" links to Nelson's LinkedIn (LinkedIn blue + underline on hover, like the other inline links).
+export const OpenToWorkLink = () => (
+  <Underlined href={profile.linkedin} target="_blank" rel="noopener noreferrer" data-tone="linkedin">
+    Open to new roles
+  </Underlined>
+);
+
 // Inline links (school, email, resume): full-strength text with a thin underline that draws in from the left
 // on hover, like the socials. `data-tone="email"` also turns the link light red.
 export const Underlined = styled('a')(({ theme }) => ({
@@ -169,6 +176,9 @@ export const Underlined = styled('a')(({ theme }) => ({
   },
   '&[data-tone="civic"]:hover, &[data-tone="civic"]:focus-visible': {
     color: CIVIC_BLUE[theme.palette.mode] ?? CIVIC_BLUE.light,
+  },
+  '&[data-tone="linkedin"]:hover, &[data-tone="linkedin"]:focus-visible': {
+    color: BRAND.linkedin[theme.palette.mode] ?? BRAND.linkedin.light,
   },
   '&[data-tone="fullstory"]:hover, &[data-tone="fullstory"]:focus-visible': {
     color: FULLSTORY_GREEN[theme.palette.mode] ?? FULLSTORY_GREEN.light,

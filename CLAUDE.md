@@ -99,7 +99,7 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
   titles, or availability promises.
 - `/about`'s "Core stack" is `profile.coreStack` (explicit list, in order).
 - `profile.photographyOpen` locks or opens `/photography` everywhere (route and sidebar nav).
-- `profile.openToWork` toggles the "Open to new roles" line (pulsing green arrow, `StatusArrow`) in the sidebar's *now* block.
+- `profile.openToWork` toggles the "Open to new roles" line (pulsing green arrow, `StatusArrow`; the text links to LinkedIn, `OpenToWorkLink`) in the sidebar's *now* block.
 - Phone intro copy: `profile.typedLines` (after the derived role line).
 - Sidebar copy also lives in `profile`: `tagline` (list, joined with ` · `), `bio` (two
   lines, truthful), `previously` (entries with `name`, optional `href` and `tone`), `timeZone`, `builtWith` (the
@@ -122,7 +122,7 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
   GT WebDev, Georgia Tech CS" (the school links to the College of Computing, Tech Gold on hover) · "Reach out via email, or read my resume" · LinkedIn / GitHub /
   Instagram stacked as plain text (on hover: brand color and a thin underline drawing in from the left) · live clock "Currently Atlanta, GA · HH:MM:SS" (`profile.location` + Nelson's base time zone, `profile.timeZone`; the time in
   mono, tabular figures).
-- Inline links (Fullstory, Civic Digital Experience, school, email, resume, Fullstory and Georgia Institute of
+- Inline links (Open to new roles → LinkedIn, Fullstory, Civic Digital Experience, school, email, resume, Fullstory and Georgia Institute of
   Technology on `/about`) are full-strength text with a thin underline drawing in from the left on
   hover (`Underlined`, kept on one line so the underline never breaks); email also turns light red, the school
   Tech Gold, Civic light blue, Fullstory dark green (`data-tone`).

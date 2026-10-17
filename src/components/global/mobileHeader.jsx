@@ -18,6 +18,7 @@ import {
   NavItemLocked,
   SOCIALS,
   Soon,
+  OpenToWorkLink,
   StatusArrow,
   Strong,
   Underlined,
@@ -110,7 +111,7 @@ export const MobileHeader = ({ mode, onToggleTheme }) => {
           {profile.openToWork && (
             <Line>
               <StatusArrow />
-              <Strong>Open to new roles</Strong>
+              <OpenToWorkLink />
             </Line>
           )}
           <Line>

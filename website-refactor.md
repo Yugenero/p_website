@@ -788,6 +788,12 @@ role line's arrow, pulsing softly (opacity 0.55 → 1 with a faint green glow, 1
 motion). Used in the sidebar, the phone menu and the phone intro; the intro's extra 10px gap after the old dot was
 dropped so the spacing matches the sidebar.
 
+### 74. "Open to new roles" links to LinkedIn
+
+"Open to new roles" (sidebar, phone menu, phone intro) is now a link to Nelson's LinkedIn (`OpenToWorkLink` in
+`profileParts.jsx`, new tab): full-strength text, and on hover LinkedIn blue (`#0A66C2` / `#70B5F9` in dark) with
+the thin underline drawing in, like the other inline links (`Underlined` gained `data-tone="linkedin"`).
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

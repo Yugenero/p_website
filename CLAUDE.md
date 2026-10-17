@@ -179,7 +179,8 @@ Build on it; don't introduce a new visual language.
 
 ### Color
 - Use theme tokens only: `theme.palette.text.primary`, `text.secondary`, `background.default`, `divider`.
-  Light = near-black `#111` on off-white `#F1F0EC`, secondary `#888`; dark = off-white on black `#000`,
+  Light = near-black `#111` on off-white `#F1F0EC`, secondary `#555` (`colors.grayText`; was `#888`, too faint
+  over the halftone); dark = off-white on black `#000`,
   secondary `#A3A3A3` (`colors.grayMid`; was `#E0E0E0`, which was too close to white for the two-tone text).
 - No new accent colors. Exceptions: the green status dot (`#2EA043`) in the sidebar, and brand colors on the
   sidebar's social links **on hover only** (LinkedIn `#0A66C2` / `#70B5F9` in dark, GitHub green `#2DA44E` / `#7EE787` in dark,

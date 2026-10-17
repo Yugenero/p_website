@@ -678,6 +678,12 @@ down and left plain black below. `Section` in `primitives.js` is now at least a 
 padding doesn't add scroll; `100dvh - 56px` under the phone bar), so the texture always reaches the bottom.
 Applies to every page section (About, Experience, Projects, Photography, Writing).
 
+### 58. Darker grey text in light mode
+
+Light mode's secondary text (`text.secondary`) went from `#888` to `#555` (`colors.grayText` in `theme.js`). At
+`#888` (~3.2:1 on off-white) it got hard to read where the halftone darkens the background; `#555` is ~6.6:1 and
+still clearly lighter than the `#111` primary text, so the two-tone hierarchy holds. Dark mode is unchanged.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

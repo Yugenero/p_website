@@ -6,6 +6,7 @@ export const colors = {
   nearBlack: '#111111',
   grayDark: '#222222',
   gray: '#888888',
+  grayText: '#555555', // light mode's secondary text: dark enough to read over the halftone, ~6.6:1 on off-white
   grayMid: '#A3A3A3', // dark mode's secondary text: clearly grey on black, ~8.5:1 contrast
   grayLight: '#E0E0E0',
   offWhite: '#F1F0EC',
@@ -122,7 +123,7 @@ const lightPalette = {
   },
   text: {
     primary: colors.nearBlack,
-    secondary: colors.gray,
+    secondary: colors.grayText,
   },
   background: {
     default: colors.offWhite,

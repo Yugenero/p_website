@@ -99,7 +99,7 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
   titles, or availability promises.
 - `/about`'s "Core stack" is `profile.coreStack` (explicit list, in order).
 - `profile.photographyOpen` locks or opens `/photography` everywhere (route and sidebar nav).
-- `profile.openToWork` toggles the "Open to new roles" line (green dot) in the sidebar's *now* block.
+- `profile.openToWork` toggles the "Open to new roles" line (pulsing green arrow, `StatusArrow`) in the sidebar's *now* block.
 - Phone intro copy: `profile.typedLines` (after the derived role line).
 - Sidebar copy also lives in `profile`: `tagline` (list, joined with ` · `), `bio` (two
   lines, truthful), `previously` (entries with `name`, optional `href` and `tone`), `timeZone`, `builtWith` (the
@@ -118,7 +118,7 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
   cursor (`CursorTip`). Hover-capable devices and keyboard focus only; with
   reduced motion the chrome shows without the sweep.
 - Top to bottom: name (serif, links home) · tagline "Computer Enjoyer · Engineer" · bio · *now* block
-  (`→ <role> at <company>`, green-dot "Open to new roles") · "Previously at Civic Digital Experience, eKlozet,
+  (`→ <role> at <company>`, pulsing green → "Open to new roles") · "Previously at Civic Digital Experience, eKlozet,
   GT WebDev, Georgia Tech CS" (the school links to the College of Computing, Tech Gold on hover) · "Reach out via email, or read my resume" · LinkedIn / GitHub /
   Instagram stacked as plain text (on hover: brand color and a thin underline drawing in from the left) · live clock "Currently Atlanta, GA · HH:MM:SS" (`profile.location` + Nelson's base time zone, `profile.timeZone`; the time in
   mono, tabular figures).
@@ -136,7 +136,7 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
   `text.primary` for what matters (company names, links, the time). Almost no bold.
 - Desktop only. `App.jsx` renders it from `md` up and `MobileHeader` below, chosen on the first render
   (`useMediaQuery(..., { noSsr: true })`) so phones never flash the sidebar.
-- Pieces both layouts use (nav list, socials, inline links and their hover colors, clock, status dot, "soon")
+- Pieces both layouts use (nav list, socials, inline links and their hover colors, clock, status arrow, "soon")
   live in `global/profileParts.jsx`. Change them there, not per layout.
 
 ### Phones (below `md`): bar, menu, intro
@@ -149,7 +149,7 @@ Content first, navigation one tap away. Don't bring the full sidebar back on top
   Closes on navigation, Escape or the button; locks page scroll while open; focus moves to the first link and
   back to the button on Escape; hidden from screen readers and tab order when closed (`aria-hidden`, `inert`).
 - **Home intro** (`landing/mobileIntro.jsx`, phones only, above the feed): a typed line cycling
-  `"<role> at <company>."` then `profile.typedLines` (static first line with reduced motion), the green-dot
+  `"<role> at <company>."` then `profile.typedLines` (static first line with reduced motion), the green-arrow
   status, and two 44px buttons: "Email me" (contained) and "Resume" (outlined).
 - Feed tiles on phones size to their content (fixed gap under the meta row) rather than a min height.
 
@@ -190,7 +190,7 @@ Build on it; don't introduce a new visual language.
   Light = near-black `#111` on off-white `#F1F0EC`, secondary `#555` (`colors.grayText`; was `#888`, too faint
   over the halftone); dark = off-white on black `#000`,
   secondary `#A3A3A3` (`colors.grayMid`; was `#E0E0E0`, which was too close to white for the two-tone text).
-- No new accent colors. Exceptions: the green status dot (`#2EA043`) in the sidebar, and brand colors on the
+- No new accent colors. Exceptions: the green status arrow (`#2EA043`, pulsing softly, static with reduced motion) for "Open to new roles", and brand colors on the
   sidebar's social links **on hover only** (LinkedIn `#0A66C2` / `#70B5F9` in dark, GitHub green `#2DA44E` / `#7EE787` in dark,
   Instagram's gradient), the email link's light red on hover (`#D9473F` / `#FF8A80` in dark), Georgia Tech CS in Tech Gold on hover
   (`#857437` Tech Dark Gold / `#B3A369` Tech Gold in dark), Civic Digital Experience in light blue on hover

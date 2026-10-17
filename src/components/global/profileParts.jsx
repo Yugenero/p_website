@@ -115,15 +115,27 @@ export const Strong = styled('span')(({ theme }) => ({
   color: theme.palette.text.primary,
 }));
 
-export const StatusDot = styled('span')(() => ({
+// "Open to new roles": a green arrow (same slot as the role line's →) that pulses softly, brightening with a faint
+// glow and easing back. Static with reduced motion.
+const STATUS_GREEN = '#2EA043';
+
+const statusPulse = keyframes`
+  0%, 100% { opacity: 0.55; text-shadow: 0 0 0 transparent; }
+  50% { opacity: 1; text-shadow: 0 0 6px rgba(46, 160, 67, 0.75); }
+`;
+
+const StatusArrowGlyph = styled('span')(() => ({
   display: 'inline-block',
-  width: 8,
-  height: 8,
-  margin: '0 calc(1.4em - 8px) 1px 0',
-  borderRadius: '50%',
-  backgroundColor: '#2EA043',
-  verticalAlign: 'middle',
+  width: '1.4em',
+  color: STATUS_GREEN,
+  animation: `${statusPulse} 1.8s ease-in-out infinite`,
+  '@media (prefers-reduced-motion: reduce)': {
+    animation: 'none',
+    opacity: 1,
+  },
 }));
+
+export const StatusArrow = () => <StatusArrowGlyph aria-hidden="true">→</StatusArrowGlyph>;
 
 // Inline links (school, email, resume): full-strength text with a thin underline that draws in from the left
 // on hover, like the socials. `data-tone="email"` also turns the link light red.

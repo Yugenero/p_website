@@ -781,6 +781,13 @@ directly in multiple codebases through customer-facing SDK implementation." (was
 full-stack web, often working directly in customers' codebases."). The sidebar still fits without scrolling at
 1440×900, 1280×720, 992×795 and 1000×650.
 
+### 73. "Open to new roles" gets a pulsing green arrow
+
+The green status dot became a green → (`StatusArrow` in `profileParts.jsx`, same `#2EA043`) in the same slot as the
+role line's arrow, pulsing softly (opacity 0.55 → 1 with a faint green glow, 1.8s loop; static with reduced
+motion). Used in the sidebar, the phone menu and the phone intro; the intro's extra 10px gap after the old dot was
+dropped so the spacing matches the sidebar.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

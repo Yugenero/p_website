@@ -18,7 +18,7 @@ import {
   SocialLink,
   Socials,
   Soon,
-  StatusDot,
+  StatusArrow,
   Strong,
   Underlined,
 } from './profileParts';
@@ -65,7 +65,7 @@ export const Sidebar = ({ mode, onToggleTheme }) => {
           </Line>
           {profile.openToWork && (
             <Line>
-              <StatusDot aria-hidden="true" />
+              <StatusArrow />
               <Strong>Open to new roles</Strong>
             </Line>
           )}

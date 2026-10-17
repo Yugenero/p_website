@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import { ReactTyped } from 'react-typed';
 import { profile } from '../../data/profile';
-import { StatusDot } from '../global/profileParts';
+import { StatusArrow } from '../global/profileParts';
 
 // Phone home page, above the project feed: a typed line that cycles through who Nelson is (so one line can
 // carry what the desktop sidebar spreads over several blocks), the open-to-work status, and the two primary
@@ -38,7 +38,7 @@ export const MobileIntro = () => {
       </Typed>
       {profile.openToWork && (
         <Status>
-          <StatusDot aria-hidden="true" />
+          <StatusArrow />
           Open to new roles
         </Status>
       )}
@@ -81,9 +81,6 @@ const Status = styled('p')(({ theme }) => ({
   alignItems: 'center',
   fontSize: '0.95rem',
   color: theme.palette.text.secondary,
-  '& > span': {
-    margin: '0 10px 0 0',
-  },
 }));
 
 const Actions = styled(Box)(({ theme }) => ({

@@ -153,8 +153,8 @@ Content first, navigation one tap away. Don't bring the full sidebar back on top
   (`clamp(380px, 64vh, 680px)`); the rest pair up two to a row; a last tile without a partner spans the row.
   One column on phones. The meta row wraps the date onto its own line rather than breaking words, and the ↗
   stays attached to the last stack item.
-- Tile anatomy: halftone texture behind; top row in mono (`01 :: <kind>` left, date right); bottom: big sans
-  title (weight 400, tight tracking), then the description in small mono (`text.secondary`) and the stack in
+- Tile anatomy: halftone texture behind; top row in mono (`01 :: <kind>` left, date right); bottom: big serif
+  title (weight 400, `-0.01em` tracking), then the description in small mono (`text.secondary`) and the stack in
   mono with a ↗ that nudges on hover. The lead tile puts description and stack side by side from `lg` up.
 - Tile surface: `text.primary` at 4–5% alpha with a `divider` border that turns `text.primary` on hover.
   Square corners.
@@ -195,9 +195,10 @@ Build on it; don't introduce a new visual language.
 ### Typography
 - Headings / display: Baskerville serif stack (`theme.typography.h1.fontFamily`), weight 300.
 - Body: Aeonik / system sans (`theme.typography.fontFamily`). Role titles on `/work` use Geist.
-- The serif is reserved for Nelson's name (sidebar, `1.75rem`, weight 400) and page section titles. Everything
+- The serif is reserved for Nelson's name (sidebar, `1.75rem`, weight 400), page section titles and the home feed's
+  project titles. Everything
   else in the sidebar and feed is the sans.
-- Feed tile titles: the sans at weight 400, tight tracking (`-0.035em`), large (`clamp(2rem, 3.4vw, 3.2rem)`,
+- Feed tile titles: the serif at weight 400, slightly tight tracking (`-0.01em`), line height 1, large (`clamp(2rem, 3.4vw, 3.2rem)`,
   lead tile `clamp(2.6rem, 6.4vw, 6rem)`).
 - Technical: IBM Plex Mono for small "data" text: the clock's time, feed tile meta/description/stack, "soon"
   tags, and the code card.

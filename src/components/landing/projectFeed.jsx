@@ -148,13 +148,14 @@ const TileBottom = styled(Box)(({ theme }) => ({
   gap: theme.spacing(2.5),
 }));
 
+// Serif, like the name and page titles. Tracking only slightly tight: the serif doesn't need the sans's squeeze.
 const Title = styled('h2')(({ theme }) => ({
   margin: 0,
-  fontFamily: theme.typography.fontFamily,
+  fontFamily: theme.typography.h1.fontFamily,
   fontWeight: 400,
   fontSize: 'clamp(2rem, 3.4vw, 3.2rem)',
-  lineHeight: 0.95,
-  letterSpacing: '-0.035em',
+  lineHeight: 1,
+  letterSpacing: '-0.01em',
   'a[data-lead] &': {
     fontSize: 'clamp(2.6rem, 6.4vw, 6rem)',
   },

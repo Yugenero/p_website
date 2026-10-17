@@ -696,6 +696,12 @@ Undid entry 54: Fullstory and Georgia Institute of Technology on `/about` no lon
 their color and underline on hover/focus only, like every other inline link. The `data-lit` option was removed
 from `Underlined`.
 
+### 61. Serif project titles on the home feed
+
+Feed tile titles (`Title` in `projectFeed.jsx`) switched from the sans to the Baskerville serif used for the name and
+page titles, weight 400, same sizes. Tracking eased from `-0.035em` to `-0.01em` and line height from 0.95 to 1, since
+the serif doesn't need the sans's squeeze. Checked in both themes and at 390px (no horizontal scroll).
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

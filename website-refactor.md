@@ -690,6 +690,12 @@ New visitors now get dark mode; light mode only when `localStorage.themeMode` is
 pre-paint script in `Base.astro`, which also falls back to dark when storage is blocked). Since the app saves the
 current mode on every visit, anyone who already visited in light mode keeps light until they flip the toggle.
 
+### 60. /about links back to hover only
+
+Undid entry 54: Fullstory and Georgia Institute of Technology on `/about` no longer light up on arrival; they take
+their color and underline on hover/focus only, like every other inline link. The `data-lit` option was removed
+from `Underlined`.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

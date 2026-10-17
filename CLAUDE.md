@@ -121,7 +121,7 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
   Instagram stacked as plain text (on hover: brand color and a thin underline drawing in from the left) · live clock "Currently Atlanta, GA · HH:MM:SS" (`profile.location` + Nelson's base time zone, `profile.timeZone`; the time in
   mono, tabular figures).
 - Inline links (Fullstory, Civic Digital Experience, school, email, resume, Fullstory and Georgia Institute of
-  Technology on `/about`, which light up on their own shortly after the page opens via `data-lit`) are full-strength text with a thin underline drawing in from the left on
+  Technology on `/about`) are full-strength text with a thin underline drawing in from the left on
   hover (`Underlined`, kept on one line so the underline never breaks); email also turns light red, the school
   Tech Gold, Civic light blue, Fullstory dark green (`data-tone`).
 - Nav pinned to the bottom, stacked: Home, About, Experience, Projects, Photography, Writing, with the theme toggle

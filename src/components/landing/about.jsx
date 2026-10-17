@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { useEffect, useState } from 'react';
 import { Underlined } from '../global/profileParts';
 import { styled } from '@mui/material/styles';
 import Halftone from '../global/halftone';
@@ -20,20 +19,7 @@ import { education, skillGroups } from '../../data/profile';
 
 const skills = skillGroups.flatMap((group) => group.items).slice(0, 14);
 
-// The page's links light up on arrival (color + underline drawing in), Fullstory first, then Georgia Tech.
-const LIGHT_UP_MS = [500, 850];
-
-const useLitLinks = (count) => {
-  const [lit, setLit] = useState(0);
-  useEffect(() => {
-    const timers = LIGHT_UP_MS.slice(0, count).map((ms, i) => window.setTimeout(() => setLit(i + 1), ms));
-    return () => timers.forEach((t) => window.clearTimeout(t));
-  }, [count]);
-  return (i) => String(lit > i);
-};
-
 export const AboutSection = () => {
-  const isLit = useLitLinks(2);
   return (
     <AboutWrap id="about">
       <Halftone />
@@ -57,7 +43,6 @@ export const AboutSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-tone="fullstory"
-                data-lit={isLit(0)}
               >
                 Fullstory
               </AboutLink>
@@ -75,7 +60,6 @@ export const AboutSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-tone="school"
-                data-lit={isLit(1)}
               >
                 Georgia Institute of Technology
               </AboutLink>

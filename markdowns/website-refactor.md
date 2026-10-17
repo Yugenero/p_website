@@ -802,6 +802,32 @@ full on tap), since phones can't hover to discover them; plain names stay un-und
 a 2 + 3 grid to one full-width column: Email (filled), Resume, LinkedIn, GitHub, Instagram, each 52px tall with the
 label on the left and an arrow on the right (↗ added to the socials). The menu now scrolls a little on short phones.
 
+### 76. `/work` timeline: glowing diamonds, no pulse
+
+The halo on the fill's tip no longer pulses; it's a steady soft glow. Since the tip rests on the end diamonds, that
+pulse read as the diamonds pulsating. The diamonds themselves now glow once reached (a tight and a wide
+`text.primary` box-shadow, stronger in dark mode) and the glow fades in with the scale-in.
+
+### 77. `/work` on phones: logo stays beside its title
+
+On phones the Georgia Tech logo wrapped onto its own line under "CS Undergraduate ·". Titles with a logo
+(`data-has-logo`) now lay out as one flex row below `md`: the logo stays on the title's line, centered on it, and
+shrinks to fit the remaining width instead of wrapping. Desktop is unchanged (inline, on the baseline).
+
+### 78. Projects page out of use
+
+Projects is gone from every nav (it's one `NAV` list in `profileParts.jsx`, shared by the sidebar and the phone
+menu), so the nav is Home, About, Experience, Photography, Writing. `/projects` redirects home, like locked
+Photography; the home feed already shows every project. `landing/projects.jsx`, `pages/projects.jsx` and
+`src/pages/projects.astro` stay in the codebase for when it comes back: add the nav item and the route element again.
+
+### 79. Docs move to `markdowns/`
+
+Everything that isn't a root file by necessity now lives in `markdowns/` at the root: this log, `TODO.md` and the
+old `Notes.txt`. Only `CLAUDE.md` and `README.md` stay at the root, plus `.claude/` (Claude Code settings). The
+cloud-functions README stays beside its code, renamed `cloud-functions/cloud-functions.md`. `Notes.txt` came out of `public/documents/`, where it was
+being deployed; `public/documents/` now holds only the resume. It stays on the live site until the next deploy.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.
@@ -817,7 +843,8 @@ as-is, so they were downloadable from the live site.
 
 **Resolved:**
 - Removed from the source branches, with a `CLAUDE.md` guardrail: only the resume belongs in `public/documents/`.
-- Removed from the live site by Nelson's Oct 12 deploy; `gh-pages` now holds only the resume and `Notes.txt`.
+- Removed from the live site by Nelson's Oct 12 deploy; `gh-pages` now holds only the resume and `Notes.txt`
+  (`Notes.txt` moved to `markdowns/` in entry 79; gone from the site after the next deploy).
 
 **Optional, still open:**
 - Purge them from git history on every branch. This rewrites history and needs a force-push, so it waits
@@ -843,9 +870,10 @@ The live site only changes on `npm run deploy`, which runs the build for you (`p
 - **Writing page:** disabled in the header, and its code still references a placeholder cat image.
 - **Resume out of sync:** the site says Solutions Engineer (entry 32) but `NelsonRodriguez.pdf` still says
   Forward Deployed Engineer. Replace the PDF when Nelson updates it.
-- **Build warnings:** one left from before this work: `landing/projects.jsx` (duplicate `minHeight`).
+- **Build warnings:** none. `landing/projects.jsx` still has a duplicate `minHeight` but isn't bundled while
+  `/projects` is out of use (entry 78); fix it if the page comes back.
 - **Unused code and dependencies:** legacy CSS, animations, `stuff.jsx`, `signature.jsx`,
-  `Notes.txt`, the stray `p_website.git/` directory, the `SectionHeaderRow` and `CompactSection` primitives
+  the stray `p_website.git/` directory, the `SectionHeaderRow` and `CompactSection` primitives
   (unused since the landing page was trimmed), and several installed but unused packages (see `CLAUDE.md`).
 
 ## Next steps

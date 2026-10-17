@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { useEffect, useRef, useState } from 'react';
-import { alpha, keyframes, styled } from '@mui/material/styles';
+import { alpha, styled } from '@mui/material/styles';
 import {
   Container,
   InlineItem,
@@ -345,7 +345,7 @@ export const WorkSection = () => {
             {timeline.map((experience) => (
               <WorkItem key={experience.employer} data-timeline-item>
                 <MetaText data-timeline-date>{experience.date}</MetaText>
-                <WorkTitle variant="h3">
+                <WorkTitle variant="h3" data-has-logo={experience.logo ? true : undefined}>
                   {experience.title}
                   {'\u00A0· '}
                   <Employer experience={experience} />
@@ -443,12 +443,7 @@ const RailPath = styled('svg')(({ theme }) => ({
   },
 }));
 
-const tipPulse = keyframes`
-  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-  50% { opacity: 0.85; transform: translate(-50%, -50%) scale(1.2); }
-`;
-
-// The brightest point of the aura: a soft halo sitting on the tip of the fill, pulsing gently.
+// The brightest point of the aura: a soft, steady halo sitting on the tip of the fill.
 const RailTip = styled('span')(({ theme }) => ({
   position: 'absolute',
   top: 0,
@@ -468,15 +463,11 @@ const RailTip = styled('span')(({ theme }) => ({
     boxShadow: `0 0 8px 3px ${alpha(theme.palette.text.primary, theme.palette.mode === 'dark' ? 0.32 : 0.22)}`,
     filter: 'blur(1.5px)',
     transform: 'translate(-50%, -50%)',
-    animation: `${tipPulse} 2.6s ease-in-out infinite`,
-  },
-  '@media (prefers-reduced-motion: reduce)': {
-    '&::after': { animation: 'none' },
   },
 }));
 
 // Each job is a small diamond centered on the rail, hidden until the fill reaches it; then it scales up into place
-// at full strength (and hides again if you scroll back above it). `left`/`top` are the rail point (set in measure).
+// at full strength with a steady glow (and hides again if you scroll back above it). `left`/`top` are the rail point (set in measure).
 const RailMarker = styled('span')(({ theme }) => ({
   position: 'absolute',
   top: 0,
@@ -489,10 +480,14 @@ const RailMarker = styled('span')(({ theme }) => ({
   backgroundColor: theme.palette.text.primary,
   opacity: 0,
   transform: 'rotate(45deg) scale(0)',
-  transition: 'opacity 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)',
+  transition: 'opacity 0.3s ease, box-shadow 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)',
   '&[data-reached="true"]': {
     opacity: 1,
     transform: 'rotate(45deg) scale(1)',
+    boxShadow: [
+      `0 0 4px 1px ${alpha(theme.palette.text.primary, theme.palette.mode === 'dark' ? 0.7 : 0.45)}`,
+      `0 0 12px 4px ${alpha(theme.palette.text.primary, theme.palette.mode === 'dark' ? 0.35 : 0.2)}`,
+    ].join(', '),
   },
   '@media (prefers-reduced-motion: reduce)': {
     transition: 'none',
@@ -543,6 +538,22 @@ const WorkTitle = styled(Typography)(({ theme }) => ({
   // Scale with the screen so long names (e.g. Georgia Institute of Technology) fit on one line.
   [theme.breakpoints.down('md')]: {
     fontSize: 'min(1.6rem, 5.4vw)',
+    // Phones: a logo stays on the title's line (e.g. CS Undergraduate · Georgia Tech), shrinking to fit
+    // instead of wrapping below it. Centered on the line, since the logo no longer sits on the text baseline.
+    '&[data-has-logo]': {
+      display: 'flex',
+      alignItems: 'center',
+      whiteSpace: 'pre',
+    },
+    '&[data-has-logo] > *, &[data-has-logo] > * :not([role="img"])': {
+      display: 'flex',
+      alignItems: 'center',
+      minWidth: 0,
+    },
+    '&[data-has-logo] [role="img"]': {
+      flexShrink: 1,
+      minWidth: 0,
+    },
   },
 }));
 

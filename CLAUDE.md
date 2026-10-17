@@ -113,9 +113,9 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
 - Its text scales with the window (`SIDEBAR_FONT_SIZE`: 1rem down to 0.75rem as the window gets narrower or
   shorter) so the column fits without scrolling; spacing inside it is in `em` (the `em()` helper) so it shrinks
   too. Size new sidebar pieces in `em`, not `rem` or px. Its scrollbar is hidden (it read as a stripe).
-- Name hover (`NameLink` / `NameTip`): the name turns brushed chrome (grey-scale banded gradient clipped to the
-  text, tuned per theme) and a bright streak sweeps across it once (1.1s); a "that's me :)" note appears to its
-  right in the same style as the theme toggle's label. Hover-capable devices and keyboard focus only; with
+- Name hover (`NameLink`): the name turns brushed chrome (grey-scale banded gradient clipped to the
+  text, tuned per theme) and a bright streak sweeps across it once (1.1s); a "that's me :)" tag follows the
+  cursor (`CursorTip`). Hover-capable devices and keyboard focus only; with
   reduced motion the chrome shows without the sweep.
 - Top to bottom: name (serif, links home) · tagline "Computer Enjoyer · Engineer" · bio · *now* block
   (`→ <role> at <company>`, green-dot "Open to new roles") · "Previously at Civic Digital Experience, eKlozet,
@@ -129,7 +129,7 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
 - At the very bottom, under the nav: "Built from scratch with Astro, React and MUI" in small text (`0.78em`,
   `text.secondary`, from `profile.builtWith`).
 - Nav pinned to the bottom (just above that note), stacked: Home, About, Experience, Projects, Photography, Writing, with the theme toggle
-  bottom-right on the same row (its label opens upward, `tipPlacement="top"`). The current page
+  bottom-right on the same row. The current page
   gets a small filled square before it. Other links slide `0.4em` right on hover/focus; the current page doesn't
   (after a click it shows its square and settles back). Locked pages show greyed out with a small mono "soon" and aren't links.
 - **Two-tone text** is the hierarchy: `text.secondary` for connecting words ("Previously at", "Reach out via"),
@@ -224,9 +224,14 @@ Build on it; don't introduce a new visual language.
 - Square corners (`borderRadius: 0`) for buttons, panels, cards and feed tiles. Existing exception: the
   `/projects` cards.
 - Theme toggle (`animations/themeToggle.jsx`): a square button with a half-filled circle that turns 180° when the
-  theme flips, and a "Switch to dark/light mode" label on hover (hover-capable devices) or keyboard focus.
-  It sits bottom-right of the sidebar, level with the nav (in the phone bar, beside the menu button). It's 44px on
-  phones. Pass `tipPlacement="top"` when it's near the bottom of the screen.
+  theme flips, and a "Switch to dark/light mode" label (`CursorTip`). It sits bottom-right of the sidebar, level
+  with the nav (in the phone bar, beside the menu button). It's 44px on phones.
+- **Hover labels** (`global/cursorTip.jsx`): every popup on the site is a `CursorTip`, a small inverted tag
+  (`text.primary` background, `background.default` text, `0.8rem`, square) that follows the mouse, sitting just
+  above and to the right of the cursor and flipping left/below near the window edges. Keyboard focus puts it at the
+  element's top-right; touch screens don't get it. Rendered in a portal. Don't use native `title` tooltips or
+  fixed-position labels; wrap the trigger in `<CursorTip label="…">`. Current uses: the sidebar name, the theme
+  toggle, and the employer logos on `/work` (the employer's name).
 - Structure with **1px hairlines**: `text.primary` for a section's top rule, `divider` between rows.
   No drop shadows except on hover lift.
 - Each section starts with a `BinaryMetaText` label + `SectionTitle`. Pages use fixed codes

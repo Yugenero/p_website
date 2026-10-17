@@ -13,6 +13,7 @@ import {
   SectionTitle,
 } from '../ui/primitives';
 import Halftone from '../global/halftone';
+import { CursorTip } from '../global/cursorTip';
 import { CIVIC_BLUE, FULLSTORY_GREEN, TECH_GOLD } from '../global/profileParts';
 import { BinaryMetaText } from '../ui/binaryMetaText';
 import { education, workExperience } from '../../data/profile';
@@ -268,9 +269,11 @@ const Employer = ({ experience }) => {
     return (
       <LogoSlot>
         {url ? (
-          <LogoLink {...linkProps} title={employer} data-tone={logo.tone}>
-            {mark}
-          </LogoLink>
+          <LogoTip label={employer}>
+            <LogoLink {...linkProps} data-tone={logo.tone}>
+              {mark}
+            </LogoLink>
+          </LogoTip>
         ) : (
           mark
         )}
@@ -549,6 +552,11 @@ const LogoMark = styled('span')(() => ({
   maskSize: 'contain',
   WebkitMaskPosition: 'left center',
   maskPosition: 'left center',
+}));
+
+// The employer's name follows the cursor over its logo. Plain inline so the logo keeps its baseline alignment.
+const LogoTip = styled(CursorTip)(() => ({
+  display: 'inline',
 }));
 
 // Inline after the title at every width; it only wraps to the next line when it doesn't fit beside the title.

@@ -750,6 +750,15 @@ React Native, iOS / SwiftUI, React. Job stacks on `/work` are unchanged.
 of "Previously at …" (`profile.previously`, still linking to the College of Computing with the Tech Gold hover).
 `profile.school` was removed. "GT WebDev" is kept on one line so it doesn't split on phones.
 
+### 69. Popups follow the cursor
+
+Every hover label is now one shared component, `CursorTip` (`global/cursorTip.jsx`): the tag follows the mouse and
+sits just above and to the right of the cursor (14px off), flipping to the left or below near the window edges. It
+replaces the name's fixed "that's me :)" note, the theme toggle's fixed label (and its `tipPlacement` prop), and the
+browser's native `title` tooltip on the `/work` logos, which now show the employer name the same way. Keyboard focus
+shows the tag at the element's top-right; touch screens get none. Rendered in a portal so the sidebar's overflow
+can't clip it.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

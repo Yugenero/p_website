@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
 import { ThemeToggle } from '../animations/themeToggle';
 import Starfield from './starfield';
+import { CursorTip } from './cursorTip';
 import { profile } from '../../data/profile';
 import {
   Arrow,
@@ -40,10 +41,9 @@ export const Sidebar = ({ mode, onToggleTheme }) => {
       <Starfield />
       <Box>
         <TopRow>
-          <NameWrap>
+          <CursorTip label="that's me :)">
             <NameLink to="/">{profile.name}</NameLink>
-            <NameTip aria-hidden="true">that's me :)</NameTip>
-          </NameWrap>
+          </CursorTip>
         </TopRow>
 
         <Tagline>{profile.tagline.join(' · ')}</Tagline>
@@ -134,7 +134,7 @@ export const Sidebar = ({ mode, onToggleTheme }) => {
               ),
             )}
           </Nav>
-          <ThemeToggle mode={mode} onClick={onToggleTheme} tipPlacement="top" />
+          <ThemeToggle mode={mode} onClick={onToggleTheme} />
         </BottomRow>
         <BuiltWith>
           Built from scratch with {profile.builtWith.slice(0, -1).join(', ')} and {profile.builtWith.at(-1)}
@@ -183,23 +183,7 @@ const TopRow = styled(Box)(() => ({
 }));
 
 // Hovering the name turns it brushed chrome and sweeps a highlight across it once (metalText / metalOn in
-// profileParts.jsx), and shows a small note.
-
-const NameWrap = styled('span')(() => ({
-  position: 'relative',
-  display: 'inline-flex',
-  alignItems: 'center',
-  '@media (hover: hover)': {
-    '&:hover > [aria-hidden]': {
-      opacity: 1,
-      transform: 'translate(0, -50%)',
-    },
-  },
-  '&:has(a:focus-visible) > [aria-hidden]': {
-    opacity: 1,
-    transform: 'translate(0, -50%)',
-  },
-}));
+// profileParts.jsx), and a "that's me :)" tag follows the cursor (CursorTip).
 
 const NameLink = styled(NavLink)(({ theme }) => ({
   display: 'inline-block',
@@ -215,26 +199,6 @@ const NameLink = styled(NavLink)(({ theme }) => ({
     '&:hover': metalOn,
   },
   '&:focus-visible': metalOn,
-}));
-
-// Same look as the theme toggle's hover label: inverted colors, square, small sans.
-const NameTip = styled('span')(({ theme }) => ({
-  position: 'absolute',
-  left: `calc(100% + ${theme.spacing(1.5)})`,
-  top: '50%',
-  whiteSpace: 'nowrap',
-  padding: theme.spacing(0.75, 1.25),
-  fontFamily: theme.typography.fontFamily,
-  fontSize: '0.8rem',
-  fontWeight: 500,
-  lineHeight: 1.2,
-  color: theme.palette.background.default,
-  backgroundColor: theme.palette.text.primary,
-  opacity: 0,
-  transform: 'translate(-4px, -50%)',
-  transition: 'opacity 0.15s ease, transform 0.15s ease',
-  pointerEvents: 'none',
-  zIndex: theme.zIndex.tooltip,
 }));
 
 const Tagline = styled('p')(({ theme }) => ({

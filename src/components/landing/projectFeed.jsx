@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import { alpha, styled } from '@mui/material/styles';
 import Halftone from '../global/halftone';
 import { metalOn, metalText } from '../global/profileParts';
+import { useCursorTip } from '../global/cursorTip';
 import { projects } from '../../data/profile';
 
 // Home page: a tiled feed of projects. The first tile spans the full width like a cover; the rest pair up
@@ -16,40 +17,51 @@ export const ProjectFeed = () => (
       Selected projects
     </VisuallyHidden>
     {projects.map((project, index) => (
-      <Tile
-        key={project.title}
-        href={project.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-lead={index === 0 || undefined}
-      >
-        <Halftone />
-        <TileTop>
-          <Meta>
-            {String(index + 1).padStart(2, '0')} :: {project.kind}
-          </Meta>
-          {project.date && <Meta>{project.date}</Meta>}
-        </TileTop>
-        <TileBottom>
-          <Title>{project.title}</Title>
-          <Details>
-            <Description>{project.description}</Description>
-            <Stack>
-              {project.stack.slice(0, -1).map((item) => `${item} · `)}
-              {/* The last item and the arrow stay together so the arrow never wraps onto its own line. */}
-              <span className="tile-last">
-                {project.stack[project.stack.length - 1]}
-                <span className="tile-arrow" aria-hidden="true">
-                  ↗
-                </span>
-              </span>
-            </Stack>
-          </Details>
-        </TileBottom>
-      </Tile>
+      <ProjectTile key={project.title} project={project} index={index} />
     ))}
   </Feed>
 );
+
+// Hovering a tile shows where it leads ("View on GitHub") in the cursor tag.
+const tipLabel = (link) => (link.includes('github.com') ? 'View on GitHub' : 'Open project');
+
+const ProjectTile = ({ project, index }) => {
+  const { handlers, tip } = useCursorTip(tipLabel(project.link));
+  return (
+    <Tile
+      href={project.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-lead={index === 0 || undefined}
+      {...handlers}
+    >
+      {tip}
+      <Halftone />
+      <TileTop>
+        <Meta>
+          {String(index + 1).padStart(2, '0')} :: {project.kind}
+        </Meta>
+        {project.date && <Meta>{project.date}</Meta>}
+      </TileTop>
+      <TileBottom>
+        <Title>{project.title}</Title>
+        <Details>
+          <Description>{project.description}</Description>
+          <Stack>
+            {project.stack.slice(0, -1).map((item) => `${item} · `)}
+            {/* The last item and the arrow stay together so the arrow never wraps onto its own line. */}
+            <span className="tile-last">
+              {project.stack[project.stack.length - 1]}
+              <span className="tile-arrow" aria-hidden="true">
+                ↗
+              </span>
+            </span>
+          </Stack>
+        </Details>
+      </TileBottom>
+    </Tile>
+  );
+};
 
 const Feed = styled('section')(({ theme }) => ({
   display: 'grid',

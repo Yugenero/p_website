@@ -230,8 +230,9 @@ Build on it; don't introduce a new visual language.
   (`text.primary` background, `background.default` text, `0.8rem`, square) that follows the mouse, sitting just
   above and to the right of the cursor and flipping left/below near the window edges. Keyboard focus puts it at the
   element's top-right; touch screens don't get it. Rendered in a portal. Don't use native `title` tooltips or
-  fixed-position labels; wrap the trigger in `<CursorTip label="…">`. Current uses: the sidebar name, the theme
-  toggle, and the employer logos on `/work` (the employer's name).
+  fixed-position labels; wrap the trigger in `<CursorTip label="…">`, or use `useCursorTip(label)` (spread
+  `handlers`, render `tip`) when a wrapper would break layout, e.g. grid items. Current uses: the sidebar name, the
+  theme toggle, the employer logos on `/work` (the employer's name) and the home feed tiles ("View on GitHub").
 - Structure with **1px hairlines**: `text.primary` for a section's top rule, `divider` between rows.
   No drop shadows except on hover lift.
 - Each section starts with a `BinaryMetaText` label + `SectionTitle`. Pages use fixed codes

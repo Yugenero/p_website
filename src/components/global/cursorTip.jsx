@@ -10,7 +10,9 @@ import { styled } from '@mui/material/styles';
 const OFFSET = 14; // px between the cursor and the tag
 const EDGE = 8; // px kept clear of the window edges
 
-export const CursorTip = ({ label, children, className }) => {
+// Hook form, for triggers that can't take a wrapper (e.g. grid items): spread `handlers` on the trigger and render
+// `tip` inside it.
+export const useCursorTip = (label) => {
   const tipRef = useRef(null);
   const [shown, setShown] = useState(false);
 
@@ -27,33 +29,41 @@ export const CursorTip = ({ label, children, className }) => {
 
   const fromPointer = (event) => event.pointerType === 'mouse' || event.pointerType === 'pen';
 
+  const handlers = {
+    onPointerEnter: (event) => {
+      if (!fromPointer(event)) return;
+      place(event.clientX, event.clientY);
+      setShown(true);
+    },
+    onPointerMove: (event) => {
+      if (fromPointer(event)) place(event.clientX, event.clientY);
+    },
+    onPointerLeave: () => setShown(false),
+    onFocus: (event) => {
+      if (!event.target.matches(':focus-visible')) return;
+      const rect = event.target.getBoundingClientRect();
+      place(rect.right - OFFSET, rect.top + OFFSET);
+      setShown(true);
+    },
+    onBlur: () => setShown(false),
+  };
+
+  const tip = createPortal(
+    <Tip ref={tipRef} data-shown={shown || undefined} aria-hidden="true">
+      {label}
+    </Tip>,
+    document.body,
+  );
+
+  return { handlers, tip };
+};
+
+export const CursorTip = ({ label, children, className }) => {
+  const { handlers, tip } = useCursorTip(label);
   return (
-    <Trigger
-      className={className}
-      onPointerEnter={(event) => {
-        if (!fromPointer(event)) return;
-        place(event.clientX, event.clientY);
-        setShown(true);
-      }}
-      onPointerMove={(event) => {
-        if (fromPointer(event)) place(event.clientX, event.clientY);
-      }}
-      onPointerLeave={() => setShown(false)}
-      onFocus={(event) => {
-        if (!event.target.matches(':focus-visible')) return;
-        const rect = event.target.getBoundingClientRect();
-        place(rect.right - OFFSET, rect.top + OFFSET);
-        setShown(true);
-      }}
-      onBlur={() => setShown(false)}
-    >
+    <Trigger className={className} {...handlers}>
       {children}
-      {createPortal(
-        <Tip ref={tipRef} data-shown={shown || undefined} aria-hidden="true">
-          {label}
-        </Tip>,
-        document.body,
-      )}
+      {tip}
     </Trigger>
   );
 };

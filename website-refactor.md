@@ -759,6 +759,13 @@ browser's native `title` tooltip on the `/work` logos, which now show the employ
 shows the tag at the element's top-right; touch screens get none. Rendered in a portal so the sidebar's overflow
 can't clip it.
 
+### 70. "View on GitHub" tag on project tiles
+
+Hovering a home feed tile now shows a cursor tag saying where it leads: "View on GitHub" (all three tiles link to
+repos; anything else would say "Open project"). Tiles are grid items, so a wrapper would break the grid:
+`cursorTip.jsx` gained a `useCursorTip(label)` hook (`handlers` to spread on the trigger, `tip` to render), which
+`CursorTip` now uses too.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

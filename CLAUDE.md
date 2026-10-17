@@ -238,8 +238,8 @@ Build on it; don't introduce a new visual language.
   the tip. Only the two ends get a diamond (`DIAMOND` 7px; first and last job; the middle ones were removed),
   hidden until the fill reaches them (then they scale in, and hide again if you scroll back above), and reaching
   each job's point on the line highlights that job's date (`data-timeline-date`:
-  full strength, weight 600). No moving marker, no bends. The fill starts empty, its tip at the very top of the line. The first job
-  (Fullstory) is `data-active` from the start; once the fill passes a later job's title, that job takes over: its employer takes its `tone` color (and underline for text
+  full strength, weight 600). No moving marker, no bends. The fill starts empty, its tip at the very top of the line. Once the
+  fill passes a job's title, that job is `data-active`: its employer takes its `tone` color (and underline for text
   names), one job at a time.
 - `/work` employer logos are one-color masks (`currentColor`); on hover they take the brand color set by
   `logo.tone` in `profile.js`: Fullstory dark green, Georgia Tech Tech Gold (same per-theme shades as the sidebar).

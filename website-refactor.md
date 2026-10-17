@@ -777,8 +777,9 @@ Then nudged up to 48px each side on desktop, 32px on phones.
 ### 72. New sidebar bio
 
 `profile.bio` now leads with AI workflows: "I build AI workflows, full-stack web and, lately, mobile SDKs, often
-working directly in multiple codebases." (was "I build across mobile SDKs, AI workflows and full-stack web, often
-working directly in customers' codebases."). Same three lines; the sidebar still fits without scrolling.
+working directly in multiple codebases through customer-facing implementation." (was "I build across mobile SDKs, AI
+workflows and full-stack web, often working directly in customers' codebases."). Four lines at sidebar width; the
+sidebar still fits without scrolling at 1440×900, 1280×720, 992×795 and 1000×650.
 
 ### Content corrections along the way
 

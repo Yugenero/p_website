@@ -4,6 +4,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 import { styled } from '@mui/material/styles';
 import { NavLink, useLocation } from 'react-router-dom';
 import { ThemeToggle } from '../animations/themeToggle';
+import Starfield from './starfield';
 import { profile } from '../../data/profile';
 import {
   Arrow,
@@ -61,6 +62,7 @@ export const MobileHeader = ({ mode, onToggleTheme }) => {
   return (
     <>
       <Bar>
+        <Starfield />
         <NameLink to="/">{profile.name}</NameLink>
         <Actions>
           <ThemeToggle mode={mode} onClick={onToggleTheme} />
@@ -80,6 +82,7 @@ export const MobileHeader = ({ mode, onToggleTheme }) => {
       </Bar>
 
       <Menu id="site-menu" ref={menuRef} data-open={open || undefined} aria-hidden={!open} inert={open ? undefined : ''}>
+        <Starfield />
         <MenuNav aria-label="Main">
           {NAV.map((item) =>
             item.locked ? (
@@ -172,6 +175,11 @@ const Bar = styled('header')(({ theme }) => ({
   padding: theme.spacing(0, 2),
   backgroundColor: theme.palette.background.default,
   borderBottom: `1px solid ${theme.palette.divider}`,
+  // Content above the dark-mode starfield.
+  '& > *:not([data-starfield])': {
+    position: 'relative',
+    zIndex: 1,
+  },
 }));
 
 const NameLink = styled(NavLink)(({ theme }) => ({
@@ -238,6 +246,11 @@ const Menu = styled('div')(({ theme }) => ({
   padding: theme.spacing(1, 2, 4),
   backgroundColor: theme.palette.background.default,
   color: theme.palette.text.secondary,
+  // Content above the dark-mode starfield.
+  '& > *:not([data-starfield])': {
+    position: 'relative',
+    zIndex: 1,
+  },
   fontSize: '1rem',
   lineHeight: 1.55,
   opacity: 0,

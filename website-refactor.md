@@ -702,6 +702,15 @@ Feed tile titles (`Title` in `projectFeed.jsx`) switched from the sans to the Ba
 page titles, weight 400, same sizes. Tracking eased from `-0.035em` to `-0.01em` and line height from 0.95 to 1, since
 the serif doesn't need the sans's squeeze. Checked in both themes and at 390px (no horizontal scroll).
 
+### 62. Starfield back, dark mode only, where there's no halftone
+
+Nelson asked for the starfield again (removed in entry 13), in dark mode only, around everything without the
+halftone. New `global/starfield.jsx` is a single canvas (the old one was hundreds of animated DOM dots): small
+stars twinkling at ~30fps, paused off screen or in a hidden tab, static with reduced motion, and nothing at all in
+light mode. It sits in the sidebar, behind the home feed (`HomeWrap` in `home.jsx`, at least a screen tall, which
+also covers the phone intro), and in the phone bar and menu. Feed tiles are now opaque (their tint layered over the
+page color, same look) so the stars show between the tiles, not through them.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

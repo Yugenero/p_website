@@ -74,6 +74,8 @@ const VisuallyHidden = styled('span')(() => ({
   whiteSpace: 'nowrap',
 }));
 
+const tileTint = (theme) => alpha(theme.palette.text.primary, theme.palette.mode === 'dark' ? 0.05 : 0.04);
+
 const Tile = styled('a')(({ theme }) => ({
   position: 'relative',
   overflow: 'hidden',
@@ -85,7 +87,10 @@ const Tile = styled('a')(({ theme }) => ({
   padding: theme.spacing(3),
   color: theme.palette.text.primary,
   textDecoration: 'none',
-  backgroundColor: alpha(theme.palette.text.primary, theme.palette.mode === 'dark' ? 0.05 : 0.04),
+  // The tint is layered over the page color so the tile is opaque: the dark-mode starfield behind the feed shows
+  // around the tiles, not through them.
+  backgroundColor: theme.palette.background.default,
+  backgroundImage: `linear-gradient(${tileTint(theme)}, ${tileTint(theme)})`,
   border: `1px solid ${theme.palette.divider}`,
   transition: 'border-color 0.25s ease',
   '& > *:not(canvas)': {

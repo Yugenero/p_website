@@ -156,7 +156,8 @@ Content first, navigation one tap away. Don't bring the full sidebar back on top
 - Tile anatomy: halftone texture behind; top row in mono (`01 :: <kind>` left, date right); bottom: big serif
   title (weight 400, `-0.01em` tracking), then the description in small mono (`text.secondary`) and the stack in
   mono with a ↗ that nudges on hover. The lead tile puts description and stack side by side from `lg` up.
-- Tile surface: `text.primary` at 4–5% alpha with a `divider` border that turns `text.primary` on hover.
+- Tile surface: `text.primary` at 4–5% alpha layered over `background.default` (opaque, so the starfield doesn't
+  show through) with a `divider` border that turns `text.primary` on hover.
   Square corners.
 
 ### Old hero components (kept, not rendered)
@@ -250,8 +251,11 @@ Build on it; don't introduce a new visual language.
 - Background texture: every page section uses `<Halftone />` (`global/halftone.jsx`), a canvas grid of small
   squares whose opacity follows slowly drifting cloud noise. It reads `text.primary` and the peak opacity
   (0.22 light, 0.25 dark) from the theme. Its parent needs `position: relative` and `overflow: hidden`, with
-  content above it at `zIndex: 1`. Feed tiles each have their own. The sidebar stays plain. No mouse ripples (tried in entry 15 of the
-  log and removed). The old `Starfield` was removed.
+  content above it at `zIndex: 1`. Feed tiles each have their own. No mouse ripples (tried in entry 15 of the log and removed).
+- Starfield (`global/starfield.jsx`), **dark mode only**: one canvas of small twinkling stars on the surfaces without
+  the halftone: the sidebar, the home feed around its tiles (and the phone intro), the phone bar and menu. Renders
+  nothing in light mode; static with reduced motion; pauses off screen. Same parent rules as the halftone (mark
+  siblings above it with `& > *:not([data-starfield])`). Don't put it under the halftone.
 - Scrollbar: the custom 10px scrollbar (`text.primary` thumb) applies only to mouse/trackpad devices
   (`(hover: hover) and (pointer: fine)`); on touch screens (`pointer: coarse`) scrollbars are hidden entirely.
 - Cursors: chunky Figma-style arrow and hand (SVG data URIs in `theme.js`, `CURSOR_ARROW` / `CURSOR_HAND`),

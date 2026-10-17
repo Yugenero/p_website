@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import { keyframes, styled } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
 import { ThemeToggle } from '../animations/themeToggle';
+import Starfield from './starfield';
 import { profile } from '../../data/profile';
 import {
   Arrow,
@@ -34,6 +35,7 @@ const em = (n) => `${+((n * 8) / 15).toFixed(3)}em`;
 export const Sidebar = ({ mode, onToggleTheme }) => {
   return (
     <SidebarRoot>
+      <Starfield />
       <Box>
         <TopRow>
           <NameWrap>
@@ -170,6 +172,11 @@ const SidebarRoot = styled('aside')(({ theme }) => ({
   lineHeight: 1.55,
   color: theme.palette.text.secondary,
   zIndex: 2,
+  // Content above the dark-mode starfield.
+  '& > *:not([data-starfield])': {
+    position: 'relative',
+    zIndex: 1,
+  },
 }));
 
 const TopRow = styled(Box)(() => ({

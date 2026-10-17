@@ -19,7 +19,7 @@ export const profile = {
   builtWith: ['Astro', 'React', 'MUI'],
   // Sidebar: a short line under the name ("Computer Enjoyer · Engineer") and a two-line bio.
   tagline: ['Computer Enjoyer', 'Engineer'],
-  bio: 'I build AI workflows and full-stack web, often working directly in multiple codebases through customer-facing SDK implementation.',
+  bio: 'I build AI workflows and full-stack web, and now, often working directly in multiple codebases through customer-facing SDK implementation.',
   // Sidebar "Previously at" line, newest first.
   // Phone home page: a typed line cycling through "<role> at <company>." and then these (from the old hero).
   typedLines: [

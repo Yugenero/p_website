@@ -766,6 +766,13 @@ repos; anything else would say "Open project"). Tiles are grid items, so a wrapp
 `cursorTip.jsx` gained a `useCursorTip(label)` hook (`handlers` to spread on the trigger, `tip` to render), which
 `CursorTip` now uses too.
 
+### 71. Hairlines between jobs on /work
+
+Jobs on `/work` now have a faint 1px `divider` line between them and a bit more room: 40px above and below the line
+on desktop (was a 48px gap with no line), 28px on phones. The timeline used to place each job's point at a fixed
+10px below the job's top, which the new padding would have thrown off, so it now measures the middle of the job's
+date instead. Checked that dates and employer highlights still switch at the same moments in both themes.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

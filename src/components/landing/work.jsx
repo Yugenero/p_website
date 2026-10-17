@@ -42,7 +42,7 @@ const timeline = [
 // diamond, the diamond appears and that job's date is highlighted. The rail is a straight SVG line from the first
 // marker to the last, so the markers sit right on its ends.
 const READ_LINE = 0.45; // where the "reading line" sits in the viewport at the top of the page
-const MARKER_Y = 10; // px from an item's top to the point its marker represents (its date line)
+const MARKER_Y = 10; // fallback: px from an item's top to its date line, if the date can't be measured
 const RAIL_GUTTER = { desktop: 48, mobile: 30 };
 const RAIL_X = 5; // px from the gutter's left edge to the rail's center
 const RAIL_INSET = 24; // px of breathing room above and below the pinned rail
@@ -148,14 +148,20 @@ const useScrollTimeline = ({ listRef, railRef, fillRef, markerRefs }) => {
       rail.style.height = `${Math.max(window.innerHeight - headerHeight - RAIL_INSET * 2, 120)}px`;
       railHeight = rail.offsetHeight;
       items = Array.from(list.querySelectorAll('[data-timeline-item]'));
-      markerFractions = items.map((item) => toFraction(item.offsetTop + MARKER_Y));
+      // A job's point on the line is the middle of its date (offsetTop is measured from the list, the nearest
+      // positioned ancestor), so the divider and padding above each job don't throw the markers off.
+      const markerY = (item) => {
+        const date = item.querySelector('[data-timeline-date]');
+        return date ? date.offsetTop + date.offsetHeight / 2 : item.offsetTop + MARKER_Y;
+      };
+      markerFractions = items.map((item) => toFraction(markerY(item)));
       // Titles' offsetTop is measured from the list too (the nearest positioned ancestor).
       activeFractions = items.map((item) => {
         const title = item.querySelector('h3');
-        return toFraction(title ? title.offsetTop + title.offsetHeight : item.offsetTop + MARKER_Y);
+        return toFraction(title ? title.offsetTop + title.offsetHeight : markerY(item));
       });
       if (!markerFractions.length) return;
-      startReadY = list.getBoundingClientRect().top + window.scrollY + items[0].offsetTop + MARKER_Y;
+      startReadY = list.getBoundingClientRect().top + window.scrollY + markerY(items[0]);
 
       // Rail line: straight down from the first marker to the last, so neither end has a stub past a marker.
       startY = markerFractions[0] * railHeight;
@@ -499,9 +505,17 @@ const WorkList = styled(Box)(({ theme }) => ({
   minWidth: 0,
   display: 'flex',
   flexDirection: 'column',
-  gap: theme.spacing(6),
+  gap: theme.spacing(5),
+  // A faint hairline between jobs, with room on both sides of it.
+  '& > [data-timeline-item] + [data-timeline-item]': {
+    borderTop: `1px solid ${theme.palette.divider}`,
+    paddingTop: theme.spacing(5),
+  },
   [theme.breakpoints.down('md')]: {
-    gap: theme.spacing(4),
+    gap: theme.spacing(3.5),
+    '& > [data-timeline-item] + [data-timeline-item]': {
+      paddingTop: theme.spacing(3.5),
+    },
   },
 }));
 

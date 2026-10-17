@@ -17,10 +17,8 @@ export const profile = {
   timeZone: 'America/New_York',
   // What this site is built with, for the small note at the bottom of the sidebar.
   builtWith: ['Astro', 'React', 'MUI'],
-  // Sidebar: a short line under the name and a two-line bio.
-  // Rendered as "Computer Enjoyer · Engineer" with the school on the line below, linking to the College of Computing.
+  // Sidebar: a short line under the name ("Computer Enjoyer · Engineer") and a two-line bio.
   tagline: ['Computer Enjoyer', 'Engineer'],
-  school: { label: 'Georgia Tech CS', href: collegeOfComputingUrl },
   bio: "I build across mobile SDKs, AI workflows and full-stack web, often working directly in customers' codebases.",
   // Sidebar "Previously at" line, newest first.
   // Phone home page: a typed line cycling through "<role> at <company>." and then these (from the old hero).
@@ -35,7 +33,8 @@ export const profile = {
   previously: [
     { name: 'Civic Digital Experience', href: 'https://www.linkedin.com/company/civicdx/home/', tone: 'civic' },
     { name: 'eKlozet' },
-    { name: 'GT WebDev' },
+    { name: keepTogether('GT WebDev') },
+    { name: 'Georgia Tech CS', href: collegeOfComputingUrl, tone: 'school' },
   ],
   email: 'neroxv1313@gmail.com',
   resumeUrl: '/documents/NelsonRodriguez.pdf',

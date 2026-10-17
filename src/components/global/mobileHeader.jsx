@@ -128,11 +128,6 @@ export const MobileHeader = ({ mode, onToggleTheme }) => {
               </span>
             ))}
           </Line>
-          <Line>
-            <Underlined href={profile.school.href} target="_blank" rel="noopener noreferrer" data-tone="school">
-              {profile.school.label}
-            </Underlined>
-          </Line>
         </Details>
 
         <LinkGrid role="group" aria-label="Contact and profiles">

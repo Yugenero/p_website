@@ -101,7 +101,7 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
 - `profile.photographyOpen` locks or opens `/photography` everywhere (route and sidebar nav).
 - `profile.openToWork` toggles the "Open to new roles" line (green dot) in the sidebar's *now* block.
 - Phone intro copy: `profile.typedLines` (after the derived role line).
-- Sidebar copy also lives in `profile`: `tagline` (list, joined with ` · `), `school` (label + link), `bio` (two
+- Sidebar copy also lives in `profile`: `tagline` (list, joined with ` · `), `bio` (two
   lines, truthful), `previously` (entries with `name`, optional `href` and `tone`), `timeZone`, `builtWith` (the
   sidebar's "Built from scratch with …" note; keep it to what the site really uses).
 - No metrics/impact numbers on the home page or sidebar. Experience, projects, and skills belong on their own
@@ -117,9 +117,9 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
   text, tuned per theme) and a bright streak sweeps across it once (1.1s); a "that's me :)" note appears to its
   right in the same style as the theme toggle's label. Hover-capable devices and keyboard focus only; with
   reduced motion the chrome shows without the sweep.
-- Top to bottom: name (serif, links home) · tagline "Computer Enjoyer · Engineer" with "Georgia Tech CS" on the
-  line below (links to the College of Computing) · bio · *now* block (`→ <role> at <company>`, green-dot
-  "Open to new roles") · "Previously at …" · "Reach out via email, or read my resume" · LinkedIn / GitHub /
+- Top to bottom: name (serif, links home) · tagline "Computer Enjoyer · Engineer" · bio · *now* block
+  (`→ <role> at <company>`, green-dot "Open to new roles") · "Previously at Civic Digital Experience, eKlozet,
+  GT WebDev, Georgia Tech CS" (the school links to the College of Computing, Tech Gold on hover) · "Reach out via email, or read my resume" · LinkedIn / GitHub /
   Instagram stacked as plain text (on hover: brand color and a thin underline drawing in from the left) · live clock "Currently Atlanta, GA · HH:MM:SS" (`profile.location` + Nelson's base time zone, `profile.timeZone`; the time in
   mono, tabular figures).
 - Inline links (Fullstory, Civic Digital Experience, school, email, resume, Fullstory and Georgia Institute of
@@ -144,7 +144,7 @@ Content first, navigation one tap away. Don't bring the full sidebar back on top
 - **Sticky bar** (`global/mobileHeader.jsx`, 56px, bottom hairline): name in the serif (links home), theme toggle
   and a menu button (a chevron pointing down, flipping up when open), both 44px squares.
 - **Full-screen menu** under the bar: big nav rows (56px, hairlines, square marker, locked items with "soon"),
-  then role/open-to-work, "Previously at", Georgia Tech CS, a grid of 48px link tiles (Email filled + Resume,
+  then role/open-to-work, "Previously at" (Georgia Tech CS included), a grid of 48px link tiles (Email filled + Resume,
   then LinkedIn · GitHub · Instagram; brand color on press/hover), and the clock.
   Closes on navigation, Escape or the button; locks page scroll while open; focus moves to the first link and
   back to the button on Escape; hidden from screen readers and tab order when closed (`aria-hidden`, `inert`).

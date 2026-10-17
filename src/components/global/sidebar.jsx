@@ -46,18 +46,7 @@ export const Sidebar = ({ mode, onToggleTheme }) => {
           </NameWrap>
         </TopRow>
 
-        <Tagline>
-          {profile.tagline.join(' · ')}
-          <br />
-          <Underlined
-            href={profile.school.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-tone="school"
-          >
-            {profile.school.label}
-          </Underlined>
-        </Tagline>
+        <Tagline>{profile.tagline.join(' · ')}</Tagline>
         <Bio>{profile.bio}</Bio>
 
         <Block>

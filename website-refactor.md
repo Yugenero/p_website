@@ -744,6 +744,12 @@ Removed Kotlin, Android, Flutter, SDK instrumentation and Node / Express from th
 fill the gap, so it now reads an explicit `profile.coreStack` list: TypeScript, JavaScript, Java, C#, Swift, SQL,
 React Native, iOS / SwiftUI, React. Job stacks on `/work` are unchanged.
 
+### 68. Georgia Tech CS moves into "Previously at"
+
+"Georgia Tech CS" no longer has its own line under the tagline (sidebar) or in the phone menu; it's the last entry
+of "Previously at …" (`profile.previously`, still linking to the College of Computing with the Tech Gold hover).
+`profile.school` was removed. "GT WebDev" is kept on one line so it doesn't split on phones.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

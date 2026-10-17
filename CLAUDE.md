@@ -126,7 +126,7 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
   Tech Gold, Civic light blue, Fullstory dark green (`data-tone`).
 - Nav pinned to the bottom, stacked: Home, About, Experience, Projects, Photography, Writing, with the theme toggle
   bottom-right on the same row (its label opens upward, `tipPlacement="top"`). The current page
-  gets a small filled square before it. Locked pages show greyed out with a small mono "soon" and aren't links.
+  gets a small filled square before it. Links slide `0.4em` right on hover/focus, square included. Locked pages show greyed out with a small mono "soon" and aren't links.
 - **Two-tone text** is the hierarchy: `text.secondary` for connecting words ("Previously at", "Reach out via"),
   `text.primary` for what matters (company names, links, the time). Almost no bold.
 - Desktop only. `App.jsx` renders it from `md` up and `MobileHeader` below, chosen on the first render

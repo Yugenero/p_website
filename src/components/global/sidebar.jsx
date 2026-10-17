@@ -323,6 +323,21 @@ const Nav = styled('nav')(() => ({
   '& > a, & > span': {
     fontSize: '1.05em',
   },
+  // Links slide a little to the right on hover or keyboard focus, square marker included. Locked items stay put.
+  '& > a': {
+    transition: 'color 0.2s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1)',
+  },
+  '@media (hover: hover)': {
+    '& > a:hover': {
+      transform: 'translateX(0.4em)',
+    },
+  },
+  '& > a:focus-visible': {
+    transform: 'translateX(0.4em)',
+  },
+  '@media (prefers-reduced-motion: reduce)': {
+    '& > a': { transition: 'color 0.2s ease' },
+  },
   '& > a > span': {
     width: '0.6em',
     height: '0.6em',

@@ -665,6 +665,12 @@ narrows (the column stops at 300px, so the text has to) and as it gets shorter. 
 are in `em` now, so everything shrinks together. At 1440×900 and up it's unchanged (1rem). For very short windows
 the sidebar still scrolls as a fallback, but with its scrollbar hidden. Checked at 992×795, 1000×650 and 1440×900.
 
+### 56. Sidebar nav nudges right on hover
+
+Sidebar nav links (Home, About, Experience, Projects) slide `0.4em` to the right on hover or keyboard focus, the
+current page's square included (eased, 0.25s). Locked items (Photography, Writing) stay put since they aren't links.
+Desktop sidebar only; reduced motion keeps the color change without the slide.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

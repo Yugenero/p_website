@@ -101,7 +101,8 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
 - `profile.openToWork` toggles the "Open to new roles" line (green dot) in the sidebar's *now* block.
 - Phone intro copy: `profile.typedLines` (after the derived role line).
 - Sidebar copy also lives in `profile`: `tagline` (list, joined with ` · `), `school` (label + link), `bio` (two
-  lines, truthful), `previously` (entries with `name`, optional `href` and `tone`), `timeZone`.
+  lines, truthful), `previously` (entries with `name`, optional `href` and `tone`), `timeZone`, `builtWith` (the
+  sidebar's "Built from scratch with …" note; keep it to what the site really uses).
 - No metrics/impact numbers on the home page or sidebar. Experience, projects, and skills belong on their own
   pages; order those arrays by importance. The home feed shows `projects` in array order (first = lead tile).
 
@@ -124,7 +125,9 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
   Technology on `/about`) are full-strength text with a thin underline drawing in from the left on
   hover (`Underlined`, kept on one line so the underline never breaks); email also turns light red, the school
   Tech Gold, Civic light blue, Fullstory dark green (`data-tone`).
-- Nav pinned to the bottom, stacked: Home, About, Experience, Projects, Photography, Writing, with the theme toggle
+- At the very bottom, under the nav: "Built from scratch with Astro, React and MUI" in small text (`0.78em`,
+  `text.secondary`, from `profile.builtWith`).
+- Nav pinned to the bottom (just above that note), stacked: Home, About, Experience, Projects, Photography, Writing, with the theme toggle
   bottom-right on the same row (its label opens upward, `tipPlacement="top"`). The current page
   gets a small filled square before it. Links slide `0.4em` right on hover/focus, square included. Locked pages show greyed out with a small mono "soon" and aren't links.
 - **Two-tone text** is the hierarchy: `text.secondary` for connecting words ("Previously at", "Reach out via"),

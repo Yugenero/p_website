@@ -719,6 +719,13 @@ from `sidebar.jsx` into `profileParts.jsx` as `metalText(theme)` (base) and `met
 Titles are `width: fit-content` so the gradient spans the words; at full tile width a short title only caught one
 grey band. Checked in both themes; the sidebar name still behaves the same.
 
+### 64. "Built from scratch with Astro, React and MUI" in the sidebar
+
+A small note (`0.78em`, `text.secondary`) now closes the sidebar, under the nav and theme toggle, which moved up to
+make room. The stack comes from `profile.builtWith`. To keep the column from scrolling with the extra line, the
+height term of `SIDEBAR_FONT_SIZE` went from `1.85vh` to `1.65vh` (1440×900 now 14.85px instead of 15px); checked
+no overflow at 1440×900, 1280×720, 992×795 and 1000×650.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

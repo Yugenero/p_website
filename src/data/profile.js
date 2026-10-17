@@ -15,6 +15,8 @@ export const profile = {
   location: 'Currently Atlanta, GA',
   // IANA zone for the live clock in the sidebar ("Currently Atlanta, GA · 14:03:22").
   timeZone: 'America/New_York',
+  // What this site is built with, for the small note at the bottom of the sidebar.
+  builtWith: ['Astro', 'React', 'MUI'],
   // Sidebar: a short line under the name and a two-line bio.
   // Rendered as "Computer Enjoyer · Engineer" with the school on the line below, linking to the College of Computing.
   tagline: ['Computer Enjoyer', 'Engineer'],

@@ -31,7 +31,7 @@ export const SIDEBAR_WIDTH = 'clamp(300px, 26vw, 400px)';
 // Sidebar text scales with the window so the column fits without scrolling: it shrinks as the window narrows
 // (the column stops shrinking at 300px, so its text has to) and as it gets shorter, from 1rem down to 0.75rem.
 // Spacing is in em (8px steps at the 15px base) so gaps shrink along with the text.
-const SIDEBAR_FONT_SIZE = 'clamp(0.75rem, min(calc(0.6rem + 0.45vw), 1.85vh), 1rem)';
+const SIDEBAR_FONT_SIZE = 'clamp(0.75rem, min(calc(0.6rem + 0.45vw), 1.65vh), 1rem)';
 const em = (n) => `${+((n * 8) / 15).toFixed(3)}em`;
 
 export const Sidebar = ({ mode, onToggleTheme }) => {
@@ -128,24 +128,29 @@ export const Sidebar = ({ mode, onToggleTheme }) => {
         </ClockRow>
       </Box>
 
-      <BottomRow>
-        <Nav aria-label="Main">
-          {NAV.map((item) =>
-            item.locked ? (
-              <NavItemLocked key={item.to} aria-disabled="true">
-                {item.label}
-                <Soon>soon</Soon>
-              </NavItemLocked>
-            ) : (
-              <NavItem key={item.to} to={item.to} end={item.end}>
-                <Marker aria-hidden="true" />
-                {item.label}
-              </NavItem>
-            ),
-          )}
-        </Nav>
-        <ThemeToggle mode={mode} onClick={onToggleTheme} tipPlacement="top" />
-      </BottomRow>
+      <Footer>
+        <BottomRow>
+          <Nav aria-label="Main">
+            {NAV.map((item) =>
+              item.locked ? (
+                <NavItemLocked key={item.to} aria-disabled="true">
+                  {item.label}
+                  <Soon>soon</Soon>
+                </NavItemLocked>
+              ) : (
+                <NavItem key={item.to} to={item.to} end={item.end}>
+                  <Marker aria-hidden="true" />
+                  {item.label}
+                </NavItem>
+              ),
+            )}
+          </Nav>
+          <ThemeToggle mode={mode} onClick={onToggleTheme} tipPlacement="top" />
+        </BottomRow>
+        <BuiltWith>
+          Built from scratch with {profile.builtWith.slice(0, -1).join(', ')} and {profile.builtWith.at(-1)}
+        </BuiltWith>
+      </Footer>
     </SidebarRoot>
   );
 };
@@ -280,6 +285,19 @@ const ClockRow = styled(Box)(({ theme }) => ({
   gap: theme.spacing(2),
 }));
 
+
+// Nav + toggle, with the small "built with" note under them.
+const Footer = styled(Box)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: em(2),
+}));
+
+const BuiltWith = styled('p')(() => ({
+  margin: 0,
+  fontSize: '0.78em',
+  lineHeight: 1.4,
+}));
 
 // Nav on the left, theme toggle bottom-right.
 const BottomRow = styled(Box)(({ theme }) => ({

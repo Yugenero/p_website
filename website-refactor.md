@@ -774,6 +774,12 @@ on desktop (was a 48px gap with no line), 28px on phones. The timeline used to p
 date instead. Checked that dates and employer highlights still switch at the same moments in both themes.
 Then nudged up to 48px each side on desktop, 32px on phones.
 
+### 72. New sidebar bio
+
+`profile.bio` now leads with AI workflows: "I build AI workflows, full-stack web and, lately, mobile SDKs, often
+working directly in multiple codebases." (was "I build across mobile SDKs, AI workflows and full-stack web, often
+working directly in customers' codebases."). Same three lines; the sidebar still fits without scrolling.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

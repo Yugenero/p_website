@@ -144,8 +144,9 @@ Content first, navigation one tap away. Don't bring the full sidebar back on top
 - **Sticky bar** (`global/mobileHeader.jsx`, 56px, bottom hairline): name in the serif (links home), theme toggle
   and a menu button (a chevron pointing down, flipping up when open), both 44px squares.
 - **Full-screen menu** under the bar: big nav rows (56px, hairlines, square marker, locked items with "soon"),
-  then role/open-to-work, "Previously at" (Georgia Tech CS included), a grid of 48px link tiles (Email filled + Resume,
-  then LinkedIn · GitHub · Instagram; brand color on press/hover), and the clock.
+  then role/open-to-work and "Previously at" (Georgia Tech CS included) at `1.08rem` with their links underlined at
+  rest (no hover on phones), then a full-width stack of 52px link tiles, label left and arrow right (Email filled,
+  Resume, LinkedIn, GitHub, Instagram; brand color on press/hover), and the clock.
   Closes on navigation, Escape or the button; locks page scroll while open; focus moves to the first link and
   back to the button on Escape; hidden from screen readers and tab order when closed (`aria-hidden`, `inert`).
 - **Home intro** (`landing/mobileIntro.jsx`, phones only, above the feed): a typed line cycling

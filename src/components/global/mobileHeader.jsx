@@ -147,7 +147,7 @@ export const MobileHeader = ({ mode, onToggleTheme }) => {
                 rel="noopener noreferrer"
                 data-tone={social.brand}
               >
-                {social.label}
+                {social.label} <span aria-hidden="true">↗</span>
               </LinkTile>
             ))}
           </SocialRow>
@@ -286,29 +286,38 @@ const MenuItemLocked = styled(NavItemLocked)(({ theme }) => ({
   alignItems: 'center',
 }));
 
+// Slightly larger than the sidebar, and the links are underlined at rest (a phone has no hover to discover them);
+// tapping still gives the tone color. Plain names (eKlozet, GT WebDev) stay without an underline.
 const Details = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  gap: theme.spacing(0.75),
+  gap: theme.spacing(1),
+  fontSize: '1.08rem',
+  '& a::after': {
+    transform: 'scaleX(1)',
+    opacity: 0.45,
+  },
+  '& a:hover::after, & a:active::after, & a:focus-visible::after': {
+    opacity: 1,
+  },
 }));
 
 const Line = styled('p')(() => ({
   margin: 0,
 }));
 
-// Contact and profiles as real tap targets: Email (filled, the primary action) and Resume side by side, then the
-// three socials in a row. 48px tall, square, hairline borders; on press or hover the label takes the brand color.
+// Contact and profiles as real tap targets, stacked full width: Email (filled, the primary action), Resume, then
+// LinkedIn, GitHub and Instagram. Label on the left, arrow on the right. 52px tall, square, hairline borders; on
+// press or hover the label takes the brand color.
 const LinkGrid = styled(Box)(({ theme }) => ({
-  display: 'grid',
-  gridTemplateColumns: '1fr 1fr',
+  display: 'flex',
+  flexDirection: 'column',
   gap: theme.spacing(1),
 }));
 
-const SocialRow = styled(Box)(({ theme }) => ({
-  gridColumn: '1 / -1',
-  display: 'grid',
-  gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-  gap: theme.spacing(1),
+// Kept as a group in the markup; lays its tiles out in the same column.
+const SocialRow = styled(Box)(() => ({
+  display: 'contents',
 }));
 
 const LinkTile = styled('a')(({ theme }) => {
@@ -318,13 +327,13 @@ const LinkTile = styled('a')(({ theme }) => {
   return {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     gap: theme.spacing(1),
-    minHeight: 48,
-    padding: theme.spacing(0, 1),
+    minHeight: 52,
+    padding: theme.spacing(0, 2),
     border: `1px solid ${theme.palette.divider}`,
     color: theme.palette.text.primary,
-    fontSize: '0.98rem',
+    fontSize: '1.05rem',
     textDecoration: 'none',
     whiteSpace: 'nowrap',
     WebkitTapHighlightColor: 'transparent',

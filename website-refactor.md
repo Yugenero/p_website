@@ -794,6 +794,14 @@ dropped so the spacing matches the sidebar.
 `profileParts.jsx`, new tab): full-strength text, and on hover LinkedIn blue (`#0A66C2` / `#70B5F9` in dark) with
 the thin underline drawing in, like the other inline links (`Underlined` gained `data-tone="linkedin"`).
 
+### 75. Phone menu: obvious links, stacked buttons
+
+In the phone menu, the role / open-to-work / "Previously at" block is a bit larger (`1.08rem`) and its links
+(Fullstory, Open to new roles, Civic Digital Experience, Georgia Tech CS) show their underline at rest (45% opacity,
+full on tap), since phones can't hover to discover them; plain names stay un-underlined. The contact tiles went from
+a 2 + 3 grid to one full-width column: Email (filled), Resume, LinkedIn, GitHub, Instagram, each 52px tall with the
+label on the left and an arrow on the right (↗ added to the socials). The menu now scrolls a little on short phones.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

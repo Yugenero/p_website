@@ -15,9 +15,7 @@ import {
   SectionTitle,
 } from '../ui/primitives';
 import { BinaryMetaText } from '../ui/binaryMetaText';
-import { education, skillGroups } from '../../data/profile';
-
-const skills = skillGroups.flatMap((group) => group.items).slice(0, 14);
+import { coreStack, education } from '../../data/profile';
 
 export const AboutSection = () => {
   return (
@@ -67,7 +65,7 @@ export const AboutSection = () => {
             </AboutParagraph>
             <CoreStackLabel>Core stack</CoreStackLabel>
             <SkillsList>
-              {skills.map((skill) => (
+              {coreStack.map((skill) => (
                 <InlineItem key={skill}>{skill}</InlineItem>
               ))}
             </SkillsList>

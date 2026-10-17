@@ -97,6 +97,7 @@ lives in `src/data/profile.js`. The landing page, `/work`, `/projects`, and `/ab
 - When the resume changes, update **both** `public/documents/NelsonRodriguez.pdf` and `profile.js`.
 - Every number or claim on the site must be traceable to the resume. Don't invent metrics,
   titles, or availability promises.
+- `/about`'s "Core stack" is `profile.coreStack` (explicit list, in order).
 - `profile.photographyOpen` locks or opens `/photography` everywhere (route and sidebar nav).
 - `profile.openToWork` toggles the "Open to new roles" line (green dot) in the sidebar's *now* block.
 - Phone intro copy: `profile.typedLines` (after the derived role line).

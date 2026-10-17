@@ -149,18 +149,21 @@ export const education = {
   ],
 };
 
+// The "Core stack" list on /about, in order.
+export const coreStack = ['TypeScript', 'JavaScript', 'Java', 'C#', 'Swift', 'SQL', 'React Native', 'iOS / SwiftUI', 'React'];
+
 export const skillGroups = [
   {
     label: 'Languages',
-    items: ['TypeScript', 'JavaScript', 'Java', 'C#', 'Swift', 'Kotlin', 'SQL'],
+    items: ['TypeScript', 'JavaScript', 'Java', 'C#', 'Swift', 'SQL'],
   },
   {
     label: 'Mobile',
-    items: ['React Native', 'iOS / SwiftUI', 'Android', 'Flutter', 'SDK instrumentation'],
+    items: ['React Native', 'iOS / SwiftUI'],
   },
   {
     label: 'Web & backend',
-    items: ['React', 'Node / Express', '.NET', 'Flask', 'Django', 'Tailwind', 'MUI'],
+    items: ['React', '.NET', 'Flask', 'Django', 'Tailwind', 'MUI'],
   },
   {
     label: 'Data & infra',

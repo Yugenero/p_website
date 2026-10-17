@@ -737,6 +737,13 @@ Clicking a nav link while hovering it left the new current page shifted right wi
 applies to links that aren't the current page (`:not(.active)`), so after a click the square appears and the link
 settles back into place. Hovering the other links still slides them.
 
+### 67. Trimmed core stack on /about
+
+Removed Kotlin, Android, Flutter, SDK instrumentation and Node / Express from the core stack (and from
+`skillGroups`). `/about` used to show the first 14 `skillGroups` items, which would have pulled in five others to
+fill the gap, so it now reads an explicit `profile.coreStack` list: TypeScript, JavaScript, Java, C#, Swift, SQL,
+React Native, iOS / SwiftUI, React. Job stacks on `/work` are unchanged.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

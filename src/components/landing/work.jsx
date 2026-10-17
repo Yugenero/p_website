@@ -505,16 +505,16 @@ const WorkList = styled(Box)(({ theme }) => ({
   minWidth: 0,
   display: 'flex',
   flexDirection: 'column',
-  gap: theme.spacing(5),
+  gap: theme.spacing(6),
   // A faint hairline between jobs, with room on both sides of it.
   '& > [data-timeline-item] + [data-timeline-item]': {
     borderTop: `1px solid ${theme.palette.divider}`,
-    paddingTop: theme.spacing(5),
+    paddingTop: theme.spacing(6),
   },
   [theme.breakpoints.down('md')]: {
-    gap: theme.spacing(3.5),
+    gap: theme.spacing(4),
     '& > [data-timeline-item] + [data-timeline-item]': {
-      paddingTop: theme.spacing(3.5),
+      paddingTop: theme.spacing(4),
     },
   },
 }));

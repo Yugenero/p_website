@@ -772,6 +772,7 @@ Jobs on `/work` now have a faint 1px `divider` line between them and a bit more 
 on desktop (was a 48px gap with no line), 28px on phones. The timeline used to place each job's point at a fixed
 10px below the job's top, which the new padding would have thrown off, so it now measures the middle of the job's
 date instead. Checked that dates and employer highlights still switch at the same moments in both themes.
+Then nudged up to 48px each side on desktop, 32px on phones.
 
 ### Content corrections along the way
 

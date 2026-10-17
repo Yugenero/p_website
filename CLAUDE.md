@@ -239,8 +239,8 @@ Build on it; don't introduce a new visual language.
   (About `0000`, Experience `0001`, Projects `0010`, Photography `0011`, Writing `0100`). The home feed has
   no section label.
 - Buttons: MUI `Button` `contained` (filled) for the primary action, `outlined` for secondary.
-- `/work` jobs are separated by a faint `divider` hairline with room on both sides (`spacing(5)` above and below
-  on desktop, `3.5` on phones). Timeline markers are measured from each job's date, so spacing changes don't move them.
+- `/work` jobs are separated by a faint `divider` hairline with room on both sides (`spacing(6)` above and below
+  on desktop, `4` on phones). Timeline markers are measured from each job's date, so spacing changes don't move them.
 - `/work` timeline (`landing/work.jsx`): a rail pinned beside the job list that maps the whole list (a mini-map).
   It's a straight SVG line from the first job marker to the last (markers sit right on its ends). The fill draws
   along it (stroke-dashoffset) with a soft aura: a blurred, wider stroke whose gradient fades from nothing

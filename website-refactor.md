@@ -684,6 +684,12 @@ Light mode's secondary text (`text.secondary`) went from `#888` to `#555` (`colo
 `#888` (~3.2:1 on off-white) it got hard to read where the halftone darkens the background; `#555` is ~6.6:1 and
 still clearly lighter than the `#111` primary text, so the two-tone hierarchy holds. Dark mode is unchanged.
 
+### 59. Dark mode by default
+
+New visitors now get dark mode; light mode only when `localStorage.themeMode` is `'light'` (`App.jsx`, and the
+pre-paint script in `Base.astro`, which also falls back to dark when storage is blocked). Since the app saves the
+current mode on every visit, anyone who already visited in light mode keeps light until they flip the toggle.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

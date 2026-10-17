@@ -45,10 +45,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <!-- Paint the saved theme's background before the React island loads, so dark mode doesn't flash white.
          Colors match background.default in src/theme.js. -->
     <script is:inline>
+      // Dark by default (same rule as App.jsx): light only when saved as light.
+      var dark = true;
       try {
-        var dark = localStorage.getItem('themeMode') === 'dark';
-        document.documentElement.style.backgroundColor = dark ? '#000000' : '#F1F0EC';
+        dark = localStorage.getItem('themeMode') !== 'light';
       } catch (e) {}
+      document.documentElement.style.backgroundColor = dark ? '#000000' : '#F1F0EC';
     </script>
   </head>
   <body>

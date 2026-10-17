@@ -28,7 +28,7 @@ holds what, what's already been tried or rejected, and what's still open.
 | Pages | `src/pages/*.astro`: one HTML file per route, each with its own `<title>`, all wrapped in `src/layouts/Base.astro` |
 | Routing | `react-router-dom` v6, `BrowserRouter` inside the island (see `src/App.jsx`), so in-app navigation stays client-side |
 | Styling | MUI v5 (`@mui/material`) with `styled()` + theme tokens; Emotion under the hood |
-| Theme | `src/theme.js`, light/dark built by `buildTheme(mode)`, persisted in `localStorage.themeMode` |
+| Theme | `src/theme.js`, light/dark built by `buildTheme(mode)`, persisted in `localStorage.themeMode`; **dark by default** (light only when saved as light) |
 | Animation | CSS keyframes, `react-typed` (typewriter text), custom `Halftone` canvas background |
 | Icons | `@mui/icons-material` |
 | Photos | Fetched at runtime from a Google Cloud Function (`cloud-functions/`) backed by GCS |

@@ -58,8 +58,9 @@ const AppShell = ({ mode, onToggleTheme }) => {
 
 function App() {
   const [mode, setMode] = useState(() => {
+    // Dark by default; light only when the visitor chose it.
     const storedMode = window.localStorage.getItem('themeMode');
-    return storedMode === 'dark' ? 'dark' : 'light';
+    return storedMode === 'light' ? 'light' : 'dark';
   });
 
   useEffect(() => {

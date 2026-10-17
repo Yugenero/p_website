@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import { alpha, styled } from '@mui/material/styles';
 import Halftone from '../global/halftone';
+import { metalOn, metalText } from '../global/profileParts';
 import { projects } from '../../data/profile';
 
 // Home page: a tiled feed of projects. The first tile spans the full width like a cover; the rest pair up
@@ -161,6 +162,15 @@ const Title = styled('h2')(({ theme }) => ({
   fontSize: 'clamp(2rem, 3.4vw, 3.2rem)',
   lineHeight: 1,
   letterSpacing: '-0.01em',
+  // Hovering (or focusing) the tile turns the title brushed chrome, like the sidebar name. Sized to the text, so the
+  // gradient spans the words rather than the whole tile.
+  width: 'fit-content',
+  maxWidth: '100%',
+  ...metalText(theme),
+  '@media (hover: hover)': {
+    'a:hover > div > &': metalOn,
+  },
+  'a:focus-visible > div > &': metalOn,
   'a[data-lead] &': {
     fontSize: 'clamp(2.6rem, 6.4vw, 6rem)',
   },

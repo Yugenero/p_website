@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import { keyframes, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
 import { ThemeToggle } from '../animations/themeToggle';
 import Starfield from './starfield';
@@ -8,6 +8,8 @@ import {
   Arrow,
   LocalClock,
   Marker,
+  metalOn,
+  metalText,
   NAV,
   NavItem,
   NavItemLocked,
@@ -186,19 +188,8 @@ const TopRow = styled(Box)(() => ({
   gap: 16,
 }));
 
-// Hovering the name turns it brushed chrome and sweeps a highlight across it once, and shows a small note.
-// Grey-scale only (no accent color); the stops are tuned per theme so the metal reads on both backgrounds.
-const METAL = {
-  // Banded reflections with a narrow specular streak at ~49%; the sweep carries the streak from the first
-  // letter to the last. Light mode tops out at mid-grey so letters never fade into the off-white page.
-  dark: 'linear-gradient(105deg, #7a7a7a 0%, #d6d6d6 18%, #8a8a8a 32%, #9a9a9a 42%, #ffffff 47.5%, #ffffff 50%, #8c8c8c 56%, #cfcfcf 72%, #6e6e6e 88%, #bdbdbd 100%)',
-  light: 'linear-gradient(105deg, #2b2b2b 0%, #7c7c7c 18%, #1f1f1f 32%, #3a3a3a 42%, #a6a6a6 47.5%, #a6a6a6 50%, #333333 56%, #6e6e6e 72%, #151515 88%, #4a4a4a 100%)',
-};
-
-const metalSweep = keyframes`
-  from { background-position: 100% 0; }
-  to { background-position: 0% 0; }
-`;
+// Hovering the name turns it brushed chrome and sweeps a highlight across it once (metalText / metalOn in
+// profileParts.jsx), and shows a small note.
 
 const NameWrap = styled('span')(() => ({
   position: 'relative',
@@ -223,32 +214,13 @@ const NameLink = styled(NavLink)(({ theme }) => ({
   fontSize: '1.75em',
   lineHeight: 1.1,
   letterSpacing: '-0.01em',
-  // Room for the "g" descender, which gradient text would otherwise clip; the margin cancels it in layout.
-  paddingBottom: '0.15em',
-  marginBottom: '-0.15em',
   color: theme.palette.text.primary,
   textDecoration: 'none',
-  backgroundImage: METAL[theme.palette.mode] ?? METAL.light,
-  backgroundSize: '200% 100%',
-  backgroundPosition: '100% 0',
-  WebkitBackgroundClip: 'text',
-  backgroundClip: 'text',
+  ...metalText(theme),
   '@media (hover: hover)': {
-    '&:hover': {
-      color: 'transparent',
-      animation: `${metalSweep} 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards`,
-    },
+    '&:hover': metalOn,
   },
-  '&:focus-visible': {
-    color: 'transparent',
-    animation: `${metalSweep} 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards`,
-  },
-  '@media (prefers-reduced-motion: reduce)': {
-    '&:hover, &:focus-visible': {
-      animation: 'none',
-      backgroundPosition: '40% 0',
-    },
-  },
+  '&:focus-visible': metalOn,
 }));
 
 // Same look as the theme toggle's hover label: inverted colors, square, small sans.

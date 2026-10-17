@@ -156,6 +156,8 @@ Content first, navigation one tap away. Don't bring the full sidebar back on top
 - Tile anatomy: halftone texture behind; top row in mono (`01 :: <kind>` left, date right); bottom: big serif
   title (weight 400, `-0.01em` tracking), then the description in small mono (`text.secondary`) and the stack in
   mono with a ↗ that nudges on hover. The lead tile puts description and stack side by side from `lg` up.
+- Hovering/focusing a tile turns its title brushed chrome with the one-time streak, the same effect as the sidebar
+  name (`metalText` / `metalOn` in `profileParts.jsx`; the title is `fit-content` so the gradient spans the words).
 - Tile surface: `text.primary` at 4–5% alpha layered over `background.default` (opaque, so the starfield doesn't
   show through) with a `divider` border that turns `text.primary` on hover.
   Square corners.

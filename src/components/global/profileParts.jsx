@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-import { styled } from '@mui/material/styles';
+import { keyframes, styled } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
 import { profile } from '../../data/profile';
 
@@ -25,6 +25,44 @@ export const SOCIALS = [
   { label: 'GitHub', href: profile.github, brand: 'github' },
   { label: 'Instagram', href: profile.instagram, brand: 'instagram' },
 ];
+
+// Brushed chrome text: grey-scale banded gradient clipped to the text, with a bright streak that sweeps across once
+// when it turns on. Used by the sidebar name and the home feed's project titles. Grey-scale only (no accent
+// color); the stops are tuned per theme so the metal reads on both backgrounds.
+const METAL = {
+  // Banded reflections with a narrow specular streak at ~49%; the sweep carries the streak from the first
+  // letter to the last. Light mode tops out at mid-grey so letters never fade into the off-white page.
+  dark: 'linear-gradient(105deg, #7a7a7a 0%, #d6d6d6 18%, #8a8a8a 32%, #9a9a9a 42%, #ffffff 47.5%, #ffffff 50%, #8c8c8c 56%, #cfcfcf 72%, #6e6e6e 88%, #bdbdbd 100%)',
+  light: 'linear-gradient(105deg, #2b2b2b 0%, #7c7c7c 18%, #1f1f1f 32%, #3a3a3a 42%, #a6a6a6 47.5%, #a6a6a6 50%, #333333 56%, #6e6e6e 72%, #151515 88%, #4a4a4a 100%)',
+};
+
+const metalSweep = keyframes`
+  from { background-position: 100% 0; }
+  to { background-position: 0% 0; }
+`;
+
+// Base styles: the gradient sits under the text, hidden while the text color is solid.
+export const metalText = (theme) => ({
+  backgroundImage: METAL[theme.palette.mode] ?? METAL.light,
+  backgroundSize: '200% 100%',
+  backgroundPosition: '100% 0',
+  WebkitBackgroundClip: 'text',
+  backgroundClip: 'text',
+  // Room for descenders, which gradient text would otherwise clip; the margin cancels it in layout.
+  paddingBottom: '0.15em',
+  marginBottom: '-0.15em',
+});
+
+// Turned on (hover/focus): the text goes transparent to show the metal, and the streak sweeps once. With reduced
+// motion the chrome shows without the sweep.
+export const metalOn = {
+  color: 'transparent',
+  animation: `${metalSweep} 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards`,
+  '@media (prefers-reduced-motion: reduce)': {
+    animation: 'none',
+    backgroundPosition: '40% 0',
+  },
+};
 
 export const BRAND = {
   // LinkedIn's lighter blue in dark mode; their #0A66C2 is too dim on black.

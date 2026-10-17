@@ -711,6 +711,14 @@ light mode. It sits in the sidebar, behind the home feed (`HomeWrap` in `home.js
 also covers the phone intro), and in the phone bar and menu. Feed tiles are now opaque (their tint layered over the
 page color, same look) so the stars show between the tiles, not through them.
 
+### 63. Project titles go chrome on hover
+
+Hovering (or keyboard-focusing) a home feed tile now gives its title the sidebar name's hover: brushed chrome with a
+bright streak sweeping across once (1.1s; chrome without the sweep under reduced motion). The gradient and sweep moved
+from `sidebar.jsx` into `profileParts.jsx` as `metalText(theme)` (base) and `metalOn` (turned on), shared by both.
+Titles are `width: fit-content` so the gradient spans the words; at full tile width a short title only caught one
+grey band. Checked in both themes; the sidebar name still behaves the same.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

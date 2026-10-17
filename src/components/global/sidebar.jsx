@@ -291,8 +291,6 @@ const Nav = styled('nav')(() => ({
     '& > a': { transition: 'color 0.2s ease' },
   },
   '& > a > span': {
-    width: '0.6em',
-    height: '0.6em',
     marginRight: em(1.5),
   },
   '& > span > span': {

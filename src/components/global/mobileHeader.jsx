@@ -279,7 +279,14 @@ const menuRow = (theme) => ({
   borderBottom: `1px solid ${theme.palette.divider}`,
 });
 
-const MenuItem = styled(NavItem)(({ theme }) => menuRow(theme));
+// The current page's diamond, kept about the same size as the sidebar's despite the bigger text.
+const MenuItem = styled(NavItem)(({ theme }) => ({
+  ...menuRow(theme),
+  '& > span': {
+    width: '0.28em',
+    height: '0.28em',
+  },
+}));
 
 const MenuItemLocked = styled(NavItemLocked)(({ theme }) => ({
   ...menuRow(theme),

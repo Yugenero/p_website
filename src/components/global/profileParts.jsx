@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-import { keyframes, styled } from '@mui/material/styles';
+import { alpha, keyframes, styled } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
 import { profile } from '../../data/profile';
 
@@ -13,7 +13,6 @@ export const NAV = [
   { to: '/', label: 'Home', end: true },
   { to: '/about', label: 'About' },
   { to: '/work', label: 'Experience' },
-  { to: '/projects', label: 'Projects' },
   { to: '/photography', label: 'Photography', locked: !profile.photographyOpen },
   { to: '/blog', label: 'Writing', locked: true },
 ];
@@ -249,15 +248,24 @@ const ClockLine = styled('p')(({ theme }) => ({
   },
 }));
 
-// Current page gets a small filled square in front of it.
-export const Marker = styled('span')(({ theme }) => ({
-  display: 'none',
-  width: 9,
-  height: 9,
-  marginRight: theme.spacing(1.5),
-  backgroundColor: theme.palette.text.primary,
-  flexShrink: 0,
-}));
+// Current page gets a small filled diamond in front of it with a soft, steady glow (no pulse).
+// Sized in em so it follows the nav's text size.
+export const Marker = styled('span')(({ theme }) => {
+  const dark = theme.palette.mode === 'dark';
+  return {
+    display: 'none',
+    width: '0.4em',
+    height: '0.4em',
+    marginRight: theme.spacing(1.5),
+    backgroundColor: theme.palette.text.primary,
+    flexShrink: 0,
+    transform: 'rotate(45deg)',
+    boxShadow: [
+      `0 0 4px 1px ${alpha(theme.palette.text.primary, dark ? 0.7 : 0.45)}`,
+      `0 0 10px 3px ${alpha(theme.palette.text.primary, dark ? 0.35 : 0.2)}`,
+    ].join(', '),
+  };
+});
 
 export const NavItem = styled(NavLink)(({ theme }) => ({
   display: 'inline-flex',

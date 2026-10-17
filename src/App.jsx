@@ -14,7 +14,6 @@ import { profile } from './data/profile';
 import { AboutPage } from './components/pages/about';
 import { WorkPage } from './components/pages/work';
 import PhotographyPage from './components/pages/photography';
-import { ProjectsPage } from './components/pages/projects';
 import { BlogPage, BlogPostPage } from './components/pages/blog';
 
 const AnimatedRoutes = () => {
@@ -26,7 +25,9 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/work" element={<WorkPage />} />
-        <Route path="/projects" element={<ProjectsPage />} />
+        {/* The projects page (pages/projects.jsx → landing/projects.jsx) is kept but out of use for now; the home
+            feed covers projects. Old links land on home. */}
+        <Route path="/projects" element={<Navigate to="/" replace />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route

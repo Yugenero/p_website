@@ -671,6 +671,13 @@ Sidebar nav links (Home, About, Experience, Projects) slide `0.4em` to the right
 current page's square included (eased, 0.25s). Locked items (Photography, Writing) stay put since they aren't links.
 Desktop sidebar only; reduced motion keeps the color change without the slide.
 
+### 57. Page backgrounds reach the bottom of the window
+
+On short pages (e.g. `/about` on a tall window) the section ended with its content, so the halftone stopped partway
+down and left plain black below. `Section` in `primitives.js` is now at least a screen tall (`100vh`, border-box so
+padding doesn't add scroll; `100dvh - 56px` under the phone bar), so the texture always reaches the bottom.
+Applies to every page section (About, Experience, Projects, Photography, Writing).
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

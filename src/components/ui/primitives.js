@@ -39,10 +39,15 @@ export const Container = styled(Box)(({ theme }) => ({
   },
 }));
 
+// At least a screen tall, so a short page's halftone background still reaches the bottom of the window
+// (on phones, the window below the 56px sticky bar).
 export const Section = styled('section')(({ theme }) => ({
+  boxSizing: 'border-box',
+  minHeight: '100vh',
   paddingTop: theme.spacing(10),
   paddingBottom: theme.spacing(10),
   [theme.breakpoints.down('md')]: {
+    minHeight: 'calc(100dvh - 56px)',
     paddingTop: theme.spacing(6),
     paddingBottom: theme.spacing(6),
   },

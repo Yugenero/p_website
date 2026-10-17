@@ -242,7 +242,8 @@ Build on it; don't introduce a new visual language.
   60% of the job column from `md` up (full width on phones). Keep bullets short: one idea, about two lines.
 - Metrics on `/work` (numbers with %, +, ms or an ordinal) are bold and type themselves out on first scroll into view
   (`withMetrics` in `work.jsx`); reduced motion shows them at once.
-- Wrap content in `Container` (handles gutters); use `Section` for full pages. (`CompactSection` and
+- Wrap content in `Container` (handles gutters); use `Section` for full pages (at least a screen tall, so the
+  halftone always reaches the bottom of the window). (`CompactSection` and
   `SectionHeaderRow` in `primitives.js` are currently unused; they served the old overview sections.)
 - Background texture: every page section uses `<Halftone />` (`global/halftone.jsx`), a canvas grid of small
   squares whose opacity follows slowly drifting cloud noise. It reads `text.primary` and the peak opacity

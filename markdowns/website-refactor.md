@@ -100,7 +100,7 @@ tiles carry the energy.
    `text.primary`; rows inside it are separated with `divider`.
 3. **Square geometry.** No rounded corners on buttons, cards, panels, photos or social icon boxes. The `/projects`
    cards are the one existing exception.
-4. **Type does the work.** The serif only for Nelson's name and page section titles, a clean sans for
+4. **Type does the work.** The serif only for Nelson's name, page section titles, project titles and the nav's page names, a clean sans for
    everything else, and a monospace face for small "data" (the clock, tile details).
    **Two-tone text** carries the hierarchy: grey for connecting words, full-strength for what matters.
 5. **Sentence case, normal tracking.** No all-caps anywhere and no wide letter-spacing. Acronyms like SDK, iOS
@@ -114,8 +114,8 @@ tiles carry the energy.
 
 | Role | Face | Where |
 | --- | --- | --- |
-| Display | Baskerville serif stack | Nelson's name in the sidebar (weight 400), section titles (`SectionTitle`, weight 300) |
-| Body | Aeonik / system sans | Sidebar text, nav, paragraphs, buttons; feed tile titles (large, weight 400, tight tracking) |
+| Display | Baskerville serif stack | Nelson's name in the sidebar (weight 400), section titles (`SectionTitle`, weight 300), feed tile titles (large, weight 400, tight tracking), nav page names (weight 400) |
+| Body | Aeonik / system sans | Sidebar text, paragraphs, buttons |
 | Role titles | Geist | Job titles on `/work` |
 | Technical | IBM Plex Mono | Sidebar clock time, feed tile meta / description / stack, "soon" tags, code card |
 | Labels | `MetaText`: sans, `0.82rem`, weight 500, `text.secondary` | Fact labels, frame labels, dates, small headings |
@@ -127,7 +127,7 @@ tiles carry the energy.
   tagline ("Computer Enjoyer · Engineer", then "Georgia Tech CS" below, gold on hover), a two-line bio, a *now* block (`→ Solutions Engineer at Fullstory`, green-dot "Open to new
   roles"), "Previously at …", "Reach out via email, or read my resume", plain-text social links, and a live
   clock ("Currently Atlanta, GA · 17:03:30", Eastern time, mono figures). Socials stacked, brand-colored on hover.
-  Nav pinned to the bottom with the theme toggle at its right; a small glowing diamond marks the current page, locked pages are greyed with a mono "soon".
+  Nav pinned to the bottom with the theme toggle at its right, page names in the serif; a small glowing diamond marks the current page, locked pages are greyed with a mono "soon".
 - **Project tiles** (`landing/projectFeed.jsx`): each project is a tile with its own halftone texture, a mono
   top row (`01 :: iOS application` · date), a big sans title, and the description and stack in small mono.
   The first tile is a full-width cover; the rest pair up. The border darkens and the ↗ nudges on hover.
@@ -833,6 +833,13 @@ being deployed; `public/documents/` now holds only the resume. It stays on the l
 The square in front of the current page became a small diamond (`0.4em`, rotated 45°; kept about the same size in
 the phone menu despite its bigger text). It briefly pulsed; now it has a soft, steady glow instead (two
 `text.primary` box-shadows, stronger in dark mode), matching the `/work` timeline diamonds (entry 76).
+
+### 81. Nav page names in the serif
+
+The page names in the nav (Home, About, Experience, Photography, Writing) switched from the sans to the Baskerville
+serif, weight 400, on desktop and phones: one change to the shared `NavItem` / `NavItemLocked` in `profileParts.jsx`.
+Sizes are unchanged; the "soon" tag stays mono. This brings back the serif nav from entry 21 (dropped for the sans in
+entry 22, when the nav sat in the old header next to the name); in the sidebar it now pairs with the name above it.
 
 ### Content corrections along the way
 

@@ -150,7 +150,7 @@ lives in `src/data/profile.js`. The landing page, `/work`, and `/about` read fro
 Content first, navigation one tap away. Don't bring the full sidebar back on top of the content.
 - **Sticky bar** (`global/mobileHeader.jsx`, 56px, bottom hairline): name in the serif (links home), theme toggle
   and a menu button (a chevron pointing down, flipping up when open), both 44px squares.
-- **Full-screen menu** under the bar: big nav rows (56px, hairlines, square marker, locked items with "soon"),
+- **Full-screen menu** under the bar: big nav rows (56px, hairlines, serif page names, diamond marker, locked items with "soon"),
   then role/open-to-work and "Previously at" (Georgia Tech CS included) at `1.08rem` with their links underlined at
   rest (no hover on phones), then a full-width stack of 52px link tiles, label left and arrow right (Email filled,
   Resume, LinkedIn, GitHub, Instagram; brand color on press/hover), and the clock.
@@ -211,9 +211,9 @@ Build on it; don't introduce a new visual language.
 ### Typography
 - Headings / display: Baskerville serif stack (`theme.typography.h1.fontFamily`), weight 300.
 - Body: Aeonik / system sans (`theme.typography.fontFamily`). Role titles on `/work` use Geist.
-- The serif is reserved for Nelson's name (sidebar, `1.75rem`, weight 400), page section titles and the home feed's
-  project titles. Everything
-  else in the sidebar and feed is the sans.
+- The serif is reserved for Nelson's name (sidebar, `1.75rem`, weight 400), page section titles, the home feed's
+  project titles and the nav's page names (sidebar and phone menu, weight 400; the "soon" tag stays mono).
+  Everything else in the sidebar and feed is the sans.
 - Feed tile titles: the serif at weight 400, slightly tight tracking (`-0.01em`), line height 1, large (`clamp(2rem, 3.4vw, 3.2rem)`,
   lead tile `clamp(2.6rem, 6.4vw, 6rem)`).
 - Technical: IBM Plex Mono for small "data" text: the clock's time, feed tile meta/description/stack, "soon"

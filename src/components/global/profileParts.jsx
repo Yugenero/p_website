@@ -267,10 +267,12 @@ export const Marker = styled('span')(({ theme }) => {
   };
 });
 
+// Page names are in the serif, like Nelson's name; the "soon" tag stays mono.
 export const NavItem = styled(NavLink)(({ theme }) => ({
   display: 'inline-flex',
   alignItems: 'center',
   width: 'fit-content',
+  fontFamily: theme.typography.h1.fontFamily,
   fontSize: '1.05rem',
   color: theme.palette.text.secondary,
   textDecoration: 'none',
@@ -291,6 +293,7 @@ export const NavItemLocked = styled('span')(({ theme }) => ({
   alignItems: 'baseline',
   gap: theme.spacing(1),
   width: 'fit-content',
+  fontFamily: theme.typography.h1.fontFamily,
   fontSize: '1.05rem',
   color: theme.palette.text.disabled,
   cursor: 'default',

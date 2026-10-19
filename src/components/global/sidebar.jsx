@@ -272,7 +272,7 @@ const Nav = styled('nav')(() => ({
   flexDirection: 'column',
   gap: em(0.75),
   '& > a, & > span': {
-    fontSize: '1.05em',
+    fontSize: '1.2em',
   },
   // Links slide a little to the right on hover or keyboard focus. The current page doesn't: clicking a link shows its
   // square and the link settles back into place. Locked items stay put.

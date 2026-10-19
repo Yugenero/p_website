@@ -275,7 +275,7 @@ const MenuNav = styled('nav')(() => ({
 const menuRow = (theme) => ({
   width: '100%',
   minHeight: 56,
-  fontSize: '1.5rem',
+  fontSize: '1.3rem',
   borderBottom: `1px solid ${theme.palette.divider}`,
 });
 
@@ -283,8 +283,8 @@ const menuRow = (theme) => ({
 const MenuItem = styled(NavItem)(({ theme }) => ({
   ...menuRow(theme),
   '& > span': {
-    width: '0.28em',
-    height: '0.28em',
+    width: '0.32em',
+    height: '0.32em',
   },
 }));
 

@@ -841,6 +841,12 @@ serif, weight 400, on desktop and phones: one change to the shared `NavItem` / `
 Sizes are unchanged; the "soon" tag stays mono. This brings back the serif nav from entry 21 (dropped for the sans in
 entry 22, when the nav sat in the old header next to the name); in the sidebar it now pairs with the name above it.
 
+### 82. Nav sizes: bigger on desktop, smaller on phones
+
+The sidebar's page names went from `1.05em` to `1.2em` (still scaling with the sidebar's text). The phone menu's rows
+went from `1.5rem` to `1.3rem`, rows still 56px tall for the thumb; the diamond went from `0.28em` to `0.32em` so it
+stays about the same size.
+
 ### Content corrections along the way
 
 - "Solutions Engineer" became **Forward Deployed Engineer** everywhere, matching the resume.

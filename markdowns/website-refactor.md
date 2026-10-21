@@ -863,7 +863,7 @@ The sidebar's theme toggle left the nav row at the bottom and now sits at the ri
 ### 85. Theme toggle: star and sun
 
 The half-filled circle became a star in dark mode and a sun in light mode. The star is two copies of one diamond
-path, stretched tall and wide (`scale(0.4, 1.8)` / `scale(1.8, 0.4)`, springy easing), so the diamond sharpens into a
+path, stretched tall and wide (`scale(0.32, 1.8)` / `scale(1.8, 0.32)`, first 0.4, springy easing), so the diamond sharpens into a
 four-point star with the nav diamond's soft glow. Switching to light pulls the points back into a diamond that turns
 45° and fades behind a disc growing in, while eight rays fan in with a 35ms stagger. CSS transforms only, since
 Safari doesn't animate SVG path `d`.
@@ -872,6 +872,32 @@ Safari doesn't animate SVG path `d`.
 
 The faint plate behind the sidebar name's chrome hover (entry 83) is gone; the name is back to the chrome and streak
 alone. No text on the site has a background highlight now.
+
+### 87. The sun is a diamond with spikes
+
+The light-mode sun dropped its disc and line rays: its center is now the same diamond the star grows from (the
+points just pull back in, at 85%), ringed by eight thin triangular spikes that fan in with the same stagger. So the
+toggle is one diamond throughout: sharpened into a star in dark mode, haloed with spikes in light mode. The sun then got a faint glow too: a `text.primary` drop-shadow at 30%,
+monochrome like the star's (a warm color would be a new accent).
+
+### 88. Star gets hairline diagonals
+
+The dark-mode star got two very thin diagonals crossing between its points, like a sparkle's glints. First plain
+`0.45` strokes; then a little longer and needle-shaped (thin filled diamonds tapering to sharp tips, reaching about
+80% as far as the main points). They draw out from the center just after the points
+sharpen (0.12s delay) and pull in quickly when switching to the sun.
+
+### 89. Diagonals out; the sun's spikes wrap the diamond
+
+The star's diagonals (entry 88) were removed. The sun lost its four diagonal spikes too, keeping one spike per
+diamond corner. Each spike's base is now a V notch parallel to the diamond's edges (`SPIKE` in `themeToggle.jsx`),
+so it wraps the corner it points away from with an even gap of about one unit.
+
+### 90. Flat diagonal spikes on the sun
+
+The sun got its diagonals back as shorter spikes (`DIAGONAL_SPIKE`): plain triangles with a flat base parallel to
+the diamond edge they sit off, at the same one-unit gap, reaching about 70% as far as the corner spikes. The eight
+spikes fan in clockwise, alternating corner and diagonal.
 
 ### Content corrections along the way
 

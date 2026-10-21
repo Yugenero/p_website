@@ -233,7 +233,9 @@ Build on it; don't introduce a new visual language.
   `/projects` cards.
 - Theme toggle (`animations/themeToggle.jsx`): a square button whose icon is a glowing four-point star in dark mode
   (two stacked diamonds stretched apart, so the diamond sharpens into a star with a slight spring) and a sun in light
-  mode (the diamonds turn and fade behind a growing disc while eight square-capped rays fan in one after another).
+  mode (the points pull back into a plain diamond at the center while eight spikes fan in one after another:
+  long ones off the corners, each with a V-notched base parallel to the diamond's edges so it wraps the corner with
+  an even gap, and shorter flat-based ones on the diagonals, off the middle of each edge, with a faint `text.primary` glow at 30%).
   Transforms only (no path morphing) so Safari animates it too; instant with reduced motion. It has a "Switch to dark/light mode" label (`CursorTip`). It sits top-right of the sidebar, level
   with the name (in the phone bar, beside the menu button). It's 44px on phones.
 - **Hover labels** (`global/cursorTip.jsx`): every popup on the site is a `CursorTip`, a small inverted tag

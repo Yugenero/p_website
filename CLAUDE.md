@@ -123,7 +123,7 @@ lives in `src/data/profile.js`. The landing page, `/work`, and `/about` read fro
   text, tuned per theme) and a bright streak sweeps across it once (1.1s); a "that's me :)" tag follows the
   cursor (`CursorTip`). Hover-capable devices and keyboard focus only; with
   reduced motion the chrome shows without the sweep.
-- Top to bottom: name (serif, links home) · tagline "Computer Enjoyer · Engineer" · bio · *now* block
+- Top to bottom: name (serif, links home) with the theme toggle at the right of its row · tagline "Computer Enjoyer · Engineer" · bio · *now* block
   (`→ <role> at <company>`, pulsing green → "Open to new roles") · "Previously at Civic Digital Experience, eKlozet,
   GT WebDev, Georgia Tech CS" (the school links to the College of Computing, Tech Gold on hover) · "Reach out via email, or read my resume" · LinkedIn / GitHub /
   Instagram stacked as plain text (on hover: brand color and a thin underline drawing in from the left) · live clock "Currently Atlanta, GA · HH:MM:SS" (`profile.location` + Nelson's base time zone, `profile.timeZone`; the time in
@@ -134,8 +134,7 @@ lives in `src/data/profile.js`. The landing page, `/work`, and `/about` read fro
   Tech Gold, Civic light blue, Fullstory dark green (`data-tone`).
 - At the very bottom, under the nav: "Built from scratch with Astro, React and MUI" in small text (`0.78em`,
   `text.secondary`, from `profile.builtWith`).
-- Nav pinned to the bottom (just above that note), stacked: Home, About, Experience, Photography, Writing (Projects removed for now), with the theme toggle
-  bottom-right on the same row. The current page
+- Nav pinned to the bottom (just above that note), stacked: Home, About, Experience, Photography, Writing (Projects removed for now). The current page
   gets a small filled diamond before it (`Marker`, `0.4em`, a soft steady `text.primary` glow, no pulse; about the
   same size in the phone menu). Other links slide `0.4em` right on hover/focus; the current page doesn't
   (after a click it shows its square and settles back). Locked pages show greyed out with a small mono "soon" and aren't links.
@@ -157,7 +156,8 @@ Content first, navigation one tap away. Don't bring the full sidebar back on top
   Closes on navigation, Escape or the button; locks page scroll while open; focus moves to the first link and
   back to the button on Escape; hidden from screen readers and tab order when closed (`aria-hidden`, `inert`).
 - **Home intro** (`landing/mobileIntro.jsx`, phones only, above the feed): a typed line cycling
-  `"<role> at <company>."` then `profile.typedLines` (static first line with reduced motion), the green-arrow
+  `"<role> at <company>."` then `profile.typedLines` (static first line with reduced motion) in a static
+  panel with the feed tiles' surface (tint, `divider` border, halftone; no hover), the green-arrow
   status, and two 44px buttons: "Email me" (contained) and "Resume" (outlined).
 - Feed tiles on phones size to their content (fixed gap under the meta row) rather than a min height.
 
@@ -231,9 +231,11 @@ Build on it; don't introduce a new visual language.
 ### Layout & components
 - Square corners (`borderRadius: 0`) for buttons, panels, cards and feed tiles. Existing exception: the
   `/projects` cards.
-- Theme toggle (`animations/themeToggle.jsx`): a square button with a half-filled circle that turns 180° when the
-  theme flips, and a "Switch to dark/light mode" label (`CursorTip`). It sits bottom-right of the sidebar, level
-  with the nav (in the phone bar, beside the menu button). It's 44px on phones.
+- Theme toggle (`animations/themeToggle.jsx`): a square button whose icon is a glowing four-point star in dark mode
+  (two stacked diamonds stretched apart, so the diamond sharpens into a star with a slight spring) and a sun in light
+  mode (the diamonds turn and fade behind a growing disc while eight square-capped rays fan in one after another).
+  Transforms only (no path morphing) so Safari animates it too; instant with reduced motion. It has a "Switch to dark/light mode" label (`CursorTip`). It sits top-right of the sidebar, level
+  with the name (in the phone bar, beside the menu button). It's 44px on phones.
 - **Hover labels** (`global/cursorTip.jsx`): every popup on the site is a `CursorTip`, a small inverted tag
   (`text.primary` background, `background.default` text, `0.8rem`, square) that follows the mouse, sitting just
   above and to the right of the cursor and flipping left/below near the window edges. Keyboard focus puts it at the

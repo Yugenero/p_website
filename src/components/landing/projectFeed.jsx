@@ -87,7 +87,8 @@ const VisuallyHidden = styled('span')(() => ({
   whiteSpace: 'nowrap',
 }));
 
-const tileTint = (theme) => alpha(theme.palette.text.primary, theme.palette.mode === 'dark' ? 0.05 : 0.04);
+// Also used by the phone intro's typed-line panel (mobileIntro.jsx), so it matches the tiles.
+export const tileTint = (theme) => alpha(theme.palette.text.primary, theme.palette.mode === 'dark' ? 0.05 : 0.04);
 
 const Tile = styled('a')(({ theme }) => ({
   position: 'relative',

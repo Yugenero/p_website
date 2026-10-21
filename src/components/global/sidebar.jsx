@@ -45,6 +45,7 @@ export const Sidebar = ({ mode, onToggleTheme }) => {
           <CursorTip label="that's me :)">
             <NameLink to="/">{profile.name}</NameLink>
           </CursorTip>
+          <ThemeToggle mode={mode} onClick={onToggleTheme} />
         </TopRow>
 
         <Tagline>{profile.tagline.join(' · ')}</Tagline>
@@ -135,7 +136,6 @@ export const Sidebar = ({ mode, onToggleTheme }) => {
               ),
             )}
           </Nav>
-          <ThemeToggle mode={mode} onClick={onToggleTheme} />
         </BottomRow>
         <BuiltWith>
           Built from scratch with {profile.builtWith.slice(0, -1).join(', ')} and {profile.builtWith.at(-1)}
@@ -240,7 +240,7 @@ const ClockRow = styled(Box)(({ theme }) => ({
 }));
 
 
-// Nav + toggle, with the small "built with" note under them.
+// Nav, with the small "built with" note under it.
 const Footer = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'column',
@@ -253,7 +253,7 @@ const BuiltWith = styled('p')(() => ({
   lineHeight: 1.4,
 }));
 
-// Nav on the left, theme toggle bottom-right.
+// Nav on the left (the theme toggle moved up beside the name).
 const BottomRow = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'flex-end',

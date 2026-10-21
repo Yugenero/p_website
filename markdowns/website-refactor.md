@@ -123,11 +123,11 @@ tiles carry the energy.
 ### Signature elements
 
 - **Sidebar** (`global/sidebar.jsx`): fixed left column with a hairline on its right edge. Name (serif; chrome
-  sheen and a "that's me :)" note on hover),
+  sheen and a "that's me :)" note on hover; the theme toggle at the right of its row),
   tagline ("Computer Enjoyer · Engineer", then "Georgia Tech CS" below, gold on hover), a two-line bio, a *now* block (`→ Solutions Engineer at Fullstory`, green-dot "Open to new
   roles"), "Previously at …", "Reach out via email, or read my resume", plain-text social links, and a live
   clock ("Currently Atlanta, GA · 17:03:30", Eastern time, mono figures). Socials stacked, brand-colored on hover.
-  Nav pinned to the bottom with the theme toggle at its right, page names in the serif; a small glowing diamond marks the current page, locked pages are greyed with a mono "soon".
+  Nav pinned to the bottom, page names in the serif; a small glowing diamond marks the current page, locked pages are greyed with a mono "soon".
 - **Project tiles** (`landing/projectFeed.jsx`): each project is a tile with its own halftone texture, a mono
   top row (`01 :: iOS application` · date), a big sans title, and the description and stack in small mono.
   The first tile is a full-width cover; the rest pair up. The border darkens and the ↗ nudges on hover.
@@ -135,8 +135,8 @@ tiles carry the energy.
 - **Binary section labels** (`BinaryMetaText`): "0000", "0001" and so on type in above each page's title.
 - **Employer logos on `/work`**: monochrome silhouettes (an SVG mask over the text color) in place of
   employer names, so they follow light and dark mode.
-- **Theme toggle**: a square button with a half-filled circle (the contrast symbol) that turns 180° when the
-  theme flips, with a "Switch to … mode" label on hover or keyboard focus. 44px on phones.
+- **Theme toggle**: a square button with a glowing four-point star in dark mode (a diamond that sharpens into it)
+  and a sun in light mode (entry 85), with a "Switch to … mode" label on hover or keyboard focus. 44px on phones.
 
 Kept in the codebase but not shown since entry 26: the **code card** (`landing/codeCard.jsx`, a typing
 `nelson.ts` "about me" with a `kaizen()` that compounds 1% a day), the **cross rule** (`ui/crossRule.jsx`),
@@ -846,6 +846,32 @@ entry 22, when the nav sat in the old header next to the name); in the sidebar i
 The sidebar's page names went from `1.05em` to `1.2em` (still scaling with the sidebar's text). The phone menu's rows
 went from `1.5rem` to `1.3rem`, rows still 56px tall for the thumb; the diamond went from `0.28em` to `0.32em` so it
 stays about the same size.
+
+### 83. Sidebar name plate; the phone's typed line in a tile panel
+
+The sidebar name's chrome hover got a faint square plate (`text.primary` at 7% light / 10% dark, a little wider than
+the words) that wipes in from the left as the streak sweeps and out to the right after (`NameLink` in `sidebar.jsx`).
+It briefly applied to the feed tile titles too and was removed from them. The phone intro's typed line got a
+background: first an inverted highlight behind the text itself (dropped), now a static panel with the feed tiles'
+surface (`tileTint` exported from `projectFeed.jsx`, `divider` border, its own halftone, no hover).
+
+### 84. Theme toggle moves up beside the name
+
+The sidebar's theme toggle left the nav row at the bottom and now sits at the right of the name's row at the top
+(`TopRow`, already `space-between`), where the phone bar has it too. The nav row at the bottom is just the nav.
+
+### 85. Theme toggle: star and sun
+
+The half-filled circle became a star in dark mode and a sun in light mode. The star is two copies of one diamond
+path, stretched tall and wide (`scale(0.4, 1.8)` / `scale(1.8, 0.4)`, springy easing), so the diamond sharpens into a
+four-point star with the nav diamond's soft glow. Switching to light pulls the points back into a diamond that turns
+45° and fades behind a disc growing in, while eight rays fan in with a 35ms stagger. CSS transforms only, since
+Safari doesn't animate SVG path `d`.
+
+### 86. Name plate removed
+
+The faint plate behind the sidebar name's chrome hover (entry 83) is gone; the name is back to the chrome and streak
+alone. No text on the site has a background highlight now.
 
 ### Content corrections along the way
 
